@@ -2,6 +2,17 @@
 
 [![CircleCI](https://circleci.com/gh/ServiceInnovationLab/openfisca-aotearoa/tree/master.svg?style=svg)](https://circleci.com/gh/ServiceInnovationLab/openfisca-aotearoa/tree/master)
 
+## Get Started 
+
+Requirements:
+
+* Docker
+
+```
+docker build . -t openfisca # to build container using repo's `Dockerfile`
+docker run -t openfisca # to run openfisca
+```
+
 ## Writing the Legislation
 
 This is an experiment. We've coded large swathes of New Zealand's legislation, regulation, and some government policy into rules that run in the Open Fisca calculation engine. We've released all the code here, for anyone to use.
