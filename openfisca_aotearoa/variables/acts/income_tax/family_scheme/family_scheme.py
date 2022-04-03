@@ -60,7 +60,7 @@ class family_scheme__full_time_earner(Variable):
 
 
 class family_scheme__assessable_income(Variable):
-    base_function = missing_value
+    # base_function = missing_value # missing value removed from OpenFisca model_api
     value_type = float
     entity = Person
     definition_period = YEAR
@@ -77,7 +77,7 @@ class family_scheme__assessable_income(Variable):
 
 
 class family_scheme__assessable_income_for_month(Variable):
-    base_function = missing_value
+    # base_function = missing_value # missing value removed from OpenFisca model_api
     value_type = float
     entity = Person
     definition_period = MONTH
