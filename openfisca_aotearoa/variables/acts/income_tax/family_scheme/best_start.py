@@ -1,8 +1,10 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
-from openfisca_aotearoa.entities import Person, Family
 from numpy import datetime64
+
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person, Family
 
 
 class best_start__eligibility(Variable):

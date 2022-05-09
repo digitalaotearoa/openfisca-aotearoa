@@ -1,10 +1,12 @@
 """TODO: Add missing doctring."""
 
+from numpy import clip, floor
+
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
+from openfisca_core.variables import Variable
+
 # Import the entities specifically defined for this tax and entitlement system
 from openfisca_aotearoa.entities import Titled_Property, Person
-from numpy import clip, floor
 
 
 class rates_rebates__dependants(Variable):

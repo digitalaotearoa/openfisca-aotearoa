@@ -1,8 +1,10 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
-from openfisca_aotearoa.entities import Person
 from numpy import logical_not, clip
+
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person
 
 
 class acc__sched_1__incapacitated_for_6_months(Variable):

@@ -1,5 +1,8 @@
+"""TODO: Add missing doctring."""
+
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
-from openfisca_core.model_api import *
 
 """
 #     Benefit: Part 1E Supported Living Payment (eligible self applicant):

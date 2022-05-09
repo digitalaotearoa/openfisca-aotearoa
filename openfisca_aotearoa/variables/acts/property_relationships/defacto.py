@@ -1,5 +1,8 @@
-from openfisca_core.model_api import *
+"""TODO: Add missing doctring."""
+
 from openfisca_aotearoa.entities import Person
+
+from openfisca_core.variables import Variable
 
 
 class property_relationships__is_in_de_facto_relationship(Variable):

@@ -1,4 +1,7 @@
-from openfisca_core.model_api import *
+"""TODO: Add missing doctring."""
+
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
 
 

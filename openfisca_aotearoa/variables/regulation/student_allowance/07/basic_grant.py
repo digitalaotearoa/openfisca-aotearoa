@@ -1,8 +1,10 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
-from openfisca_aotearoa.entities import Person
 from numpy import invert
+
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person
 
 
 class student_allowance__eligible_for_basic_grant(Variable):

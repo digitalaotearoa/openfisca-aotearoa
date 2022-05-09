@@ -1,5 +1,8 @@
+"""TODO: Add missing doctring."""
+
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
-from openfisca_core.model_api import *
 
 """
 http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468373

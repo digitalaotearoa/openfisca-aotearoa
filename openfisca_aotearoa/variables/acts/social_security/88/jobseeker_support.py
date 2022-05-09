@@ -1,5 +1,7 @@
+"""TODO: Add missing doctring."""
+
 from openfisca_aotearoa.entities import Person
-from openfisca_core.model_api import *
+from openfisca_core.variables import Variable
 
 
 class jobseeker_support__is_prepared_for_employment(Variable):

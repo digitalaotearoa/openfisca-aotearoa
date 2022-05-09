@@ -1,5 +1,8 @@
+"""TODO: Add missing doctring."""
+
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person, Family
-from openfisca_core.model_api import *
 
 """
 MSD Policy (retrieved August 2018 from )
