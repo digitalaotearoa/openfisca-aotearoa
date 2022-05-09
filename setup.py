@@ -15,13 +15,13 @@ setup(
     license='http://www.fsf.org/licensing/licenses/agpl-3.0.html',
     url='https://github.com/ServiceInnovationLab/openfisca-aotearoa',
     include_package_data=True,  # Will read MANIFEST.in
-     install_requires=[
-        'OpenFisca-Core',
-        'openfisca_core[web-api]'
+    install_requires=[
+        'numpy >= 1.21, < 1.22',
+        'openfisca-core[web-api] >= 35, < 36',
         ],
     extras_require={
-        'test': [
-            'flake8 >=3.4.0,<3.7.0',
+        'dev': [
+            'flake8 >= 3.4, < 3.7',
             'flake8-print',
             'nose',
             'yamllint'
