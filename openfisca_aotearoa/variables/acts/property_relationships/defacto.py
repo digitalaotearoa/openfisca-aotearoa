@@ -1,8 +1,9 @@
 """TODO: Add missing doctring."""
 
-from openfisca_aotearoa.entities import Person
-
+from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person
 
 
 class property_relationships__is_in_de_facto_relationship(Variable):

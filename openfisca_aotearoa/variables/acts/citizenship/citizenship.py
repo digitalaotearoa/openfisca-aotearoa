@@ -1,9 +1,11 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.model_api import Variable
-from openfisca_core.periods import DAY, ETERNITY
-from openfisca_aotearoa.entities import Person
 from datetime import timedelta
+
+from openfisca_core.periods import DAY, ETERNITY
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person
 
 
 class citizenship__citizenship_by_grant_may_be_authorized(Variable):

@@ -1,7 +1,10 @@
 """TODO: Add missing doctring."""
 
+from openfisca_core.holders import set_input_dispatch_by_period
+from openfisca_core.periods import ETERNITY, MONTH
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
-from openfisca_core.model_api import Variable, MONTH, ETERNITY, set_input_dispatch_by_period
 
 
 class social_security__meets_residential_requirements_for_certain_benefits(Variable):

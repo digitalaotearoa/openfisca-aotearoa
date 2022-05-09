@@ -1,7 +1,9 @@
 """TODO: Add missing doctring."""
 
-from openfisca_aotearoa.entities import Person
+from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Person
 
 
 class jobseeker_support__is_prepared_for_employment(Variable):

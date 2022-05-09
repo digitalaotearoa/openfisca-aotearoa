@@ -1,5 +1,6 @@
 """TODO: Add missing doctring."""
 
+from openfisca_core.periods import DAY
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person

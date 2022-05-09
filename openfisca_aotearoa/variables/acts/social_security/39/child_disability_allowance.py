@@ -1,7 +1,9 @@
 """TODO: Add missing doctring."""
 
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Family, Person
-from openfisca_core.model_api import Variable, MONTH
 
 
 class social_security__eligible_for_child_disability_allowance(Variable):

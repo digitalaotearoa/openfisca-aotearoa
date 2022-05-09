@@ -2,6 +2,7 @@
 
 from numpy import logical_not, clip
 
+from openfisca_core.periods import DAY, ETERNITY
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person

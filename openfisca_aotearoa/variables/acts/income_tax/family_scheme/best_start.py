@@ -2,6 +2,7 @@
 
 from numpy import datetime64
 
+from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person, Family
