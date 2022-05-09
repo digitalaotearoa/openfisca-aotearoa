@@ -13,7 +13,7 @@ class social_security__eligible_for_child_disability_allowance(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resident_or_citizen = persons('is_citizen_or_resident', period)
+        resident_or_citizen = persons("is_citizen_or_resident", period)
 
         is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
         has_eligible_disabled_child = persons.family("disability_allowance__family_has_eligible_child", period)
@@ -29,7 +29,7 @@ class social_security__eligible_for_child_disability_allowance(Variable):
         in respect of whom the benefit or any part of the benefit is or would be payable,
         is not ordinarily resident in New Zealand; """
         resides_in_nz = persons(
-            'social_security__is_ordinarily_resident_in_new_zealand', period)
+            "social_security__is_ordinarily_resident_in_new_zealand", period)
 
         return resident_or_citizen * \
             resides_in_nz * \
@@ -41,13 +41,13 @@ class disability_allowance__family_has_eligible_child(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH
-    label = u'Does the family have a child who meets the criteria for disabled'
+    label = "Does the family have a child who meets the criteria for disabled"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
     def formula(families, period, parameters):
-        has_disability = families.members('social_security__child_meets_child_disability_allowance_criteria', period)
+        has_disability = families.members("social_security__child_meets_child_disability_allowance_criteria", period)
         child_age_threshold = parameters(period).entitlements.social_security.child_disability_allowance.child_age_threshold
-        children = families.members('age', period.start) <= child_age_threshold
+        children = families.members("age", period.start) <= child_age_threshold
         disabled_children = has_disability * children
         return families.any(disabled_children, role=Family.CHILD)
 
@@ -61,9 +61,9 @@ class social_security__child_meets_child_disability_allowance_criteria(Variable)
     def formula(persons, period, parameters):
         med_cert_required_months = parameters(period).entitlements.social_security.child_disability_allowance.medical_certification_required_months
 
-        return persons('social_security__child_with_serious_disability', period) * \
-            persons('social_security__requires_constant_care_and_attention', period) * \
-            (persons('social_security__medical_certification_months', period) >= med_cert_required_months)
+        return persons("social_security__child_with_serious_disability", period) * \
+            persons("social_security__requires_constant_care_and_attention", period) * \
+            (persons("social_security__medical_certification_months", period) >= med_cert_required_months)
 
 
 class social_security__medical_certification_months(Variable):

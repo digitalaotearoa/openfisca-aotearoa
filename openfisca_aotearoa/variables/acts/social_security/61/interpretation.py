@@ -48,14 +48,14 @@ class social_security__is_a_beneficiary(Variable):
     (b) New Zealand superannuation or a veteran's pension
     """
     def formula(persons, period, parameters):
-        return persons('social_security__is_being_paid_jobseeker_benefit', period) + \
-            persons('social_security__is_being_paid_sole_parent_support', period) + \
-            persons('social_security__is_being_paid_a_supported_living_payment', period) + \
-            persons('social_security__is_being_paid_a_youth_payment', period) + \
-            persons('social_security__is_being_paid_a_young_parent_payment', period) + \
-            persons('social_security__is_being_paid_an_emergency_benefit', period) + \
-            persons('super__is_being_paid_nz_superannuation', period) + \
-            persons('veterans_support__is_being_paid_a_veterans_pension', period)
+        return persons("social_security__is_being_paid_jobseeker_benefit", period) + \
+            persons("social_security__is_being_paid_sole_parent_support", period) + \
+            persons("social_security__is_being_paid_a_supported_living_payment", period) + \
+            persons("social_security__is_being_paid_a_youth_payment", period) + \
+            persons("social_security__is_being_paid_a_young_parent_payment", period) + \
+            persons("social_security__is_being_paid_an_emergency_benefit", period) + \
+            persons("super__is_being_paid_nz_superannuation", period) + \
+            persons("veterans_support__is_being_paid_a_veterans_pension", period)
 
 
 class social_security__is_being_paid_jobseeker_benefit(Variable):

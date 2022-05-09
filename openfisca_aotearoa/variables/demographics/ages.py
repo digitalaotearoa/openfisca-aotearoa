@@ -31,15 +31,15 @@ class age(Variable):
     entity = Person
     definition_period = DAY
     label = u"The age of a Person (in years)"
-    unit = 'years'
+    unit = "years"
     default_value = -9999
     # A person's age is computed according to their birth date.
 
     def formula(persons, period, parameters):
-        birth = persons('date_of_birth', period)
-        birth_year = birth.astype('datetime64[Y]').astype(int) + 1970
-        birth_month = birth.astype('datetime64[M]').astype(int) % 12 + 1
-        birth_day = (birth - birth.astype('datetime64[M]') + 1).astype(int)
+        birth = persons("date_of_birth", period)
+        birth_year = birth.astype("datetime64[Y]").astype(int) + 1970
+        birth_month = birth.astype("datetime64[M]").astype(int) % 12 + 1
+        birth_day = (birth - birth.astype("datetime64[M]") + 1).astype(int)
 
         is_birthday_past = (birth_month < period.start.month) + (birth_month == period.start.month) * (birth_day <= period.start.day)
         return (period.start.year - birth_year) - where(is_birthday_past, 0, 1)  # If the birthday is not passed this year, substract one year
@@ -49,7 +49,7 @@ class age_of_youngest(Variable):
     value_type = int
     entity = Family
     definition_period = DAY
-    unit = 'years'
+    unit = "years"
     label = u"The age of the youngest member of a family"
     # A person's age is computed according to their birth date.
 
@@ -61,7 +61,7 @@ class age_of_partner(Variable):
     value_type = int
     entity = Person
     definition_period = DAY
-    unit = 'years'
+    unit = "years"
     label = u"The age of partner in a family"
 
     def formula(persons, period, parameters):

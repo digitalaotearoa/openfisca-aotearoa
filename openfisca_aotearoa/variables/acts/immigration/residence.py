@@ -27,7 +27,7 @@ class is_resident(Variable):
     reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
     def formula(persons, period, parameters):
-        return persons('immigration__holds_resident_visa', period) + persons('immigration__holds_permanent_resident_visa', period)
+        return persons("immigration__holds_resident_visa", period) + persons("immigration__holds_permanent_resident_visa", period)
 
 
 class is_permanent_resident(Variable):
@@ -38,7 +38,7 @@ class is_permanent_resident(Variable):
     reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
     def formula(persons, period, parameters):
-        return persons('immigration__holds_permanent_resident_visa', period)
+        return persons("immigration__holds_permanent_resident_visa", period)
 
 
 class is_nz_citizen(Variable):
@@ -58,7 +58,7 @@ class is_citizen_or_resident(Variable):
     reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
     def formula(persons, period, parameters):
-        return persons('is_nz_citizen', period) + persons('is_permanent_resident', period) + persons('is_resident', period)
+        return persons("is_nz_citizen", period) + persons("is_permanent_resident", period) + persons("is_resident", period)
 
 
 class immigration__is_recognised_refugee(Variable):

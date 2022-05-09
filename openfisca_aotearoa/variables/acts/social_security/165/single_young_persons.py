@@ -34,15 +34,15 @@ class social_security__meets_young_parent_payment_single_persons_requirements(Va
         """
 
     def formula(persons, period, parameters):
-        sixteen_or_seventeen = (persons('age', period.start) >= 16) * (persons('age', period.start) < 18)
-        eighteen_or_nineteen = (persons('age', period.start) >= 18) * (persons('age', period.start) < 20)
+        sixteen_or_seventeen = (persons("age", period.start) >= 16) * (persons("age", period.start) < 18)
+        eighteen_or_nineteen = (persons("age", period.start) >= 18) * (persons("age", period.start) < 20)
 
-        living_with_parent_or_guardian = persons('living_with_parent_or_guardian', period)
-        financially_supported_by_parent_or_guardian = persons('financially_supported_by_parent_or_guardian', period)
+        living_with_parent_or_guardian = persons("living_with_parent_or_guardian", period)
+        financially_supported_by_parent_or_guardian = persons("financially_supported_by_parent_or_guardian", period)
 
-        family_income_under_threshold = persons('social_security__family_income_under_young_parent_payment_threshold', period)
+        family_income_under_threshold = persons("social_security__family_income_under_young_parent_payment_threshold", period)
 
-        exceptional_circumstances = persons('social_security__single_young_person_in_exceptional_circumstances', period)
+        exceptional_circumstances = persons("social_security__single_young_person_in_exceptional_circumstances", period)
 
         section_2 = sixteen_or_seventeen * not_(living_with_parent_or_guardian) * exceptional_circumstances
         section_3 = sixteen_or_seventeen * (living_with_parent_or_guardian + financially_supported_by_parent_or_guardian) * family_income_under_threshold
@@ -63,5 +63,5 @@ class social_security__family_income_under_young_parent_payment_threshold(Variab
 
     def formula(persons, period, parameters):
         yearly_income_threshold = 52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold
-        yearly_family_income = persons('family_scheme__assessable_income_for_month', period) * 12
+        yearly_family_income = persons("family_scheme__assessable_income_for_month", period) * 12
         return yearly_family_income < yearly_income_threshold

@@ -13,7 +13,7 @@ class super___eligibility_age(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM114223.html"
 
     def formula(persons, period, parameters):
-        return persons('super__eligibility', period) * parameters(period).entitlements.superannuation.age_qualification
+        return persons("super__eligibility", period) * parameters(period).entitlements.superannuation.age_qualification
 
 
 class super__eligibility(Variable):
@@ -24,12 +24,12 @@ class super__eligibility(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM113987.html"
 
     def formula(persons, period, parameters):
-        return persons('is_citizen_or_resident', period) *\
-            not_(persons('total_number_of_years_lived_in_nz_since_age_20', period) < 10) *\
-            not_(persons('total_number_of_years_lived_in_nz_since_age_50', period) < 5) *\
-            not_(persons('acc__is_receiving_compensation', period)) +\
+        return persons("is_citizen_or_resident", period) *\
+            not_(persons("total_number_of_years_lived_in_nz_since_age_20", period) < 10) *\
+            not_(persons("total_number_of_years_lived_in_nz_since_age_50", period) < 5) *\
+            not_(persons("acc__is_receiving_compensation", period)) +\
             persons(
-                'veterans_support__is_entitled_to_be_paid_veterans_pension', period)
+                "veterans_support__is_entitled_to_be_paid_veterans_pension", period)
 
 
 class super__is_being_paid_nz_superannuation(Variable):

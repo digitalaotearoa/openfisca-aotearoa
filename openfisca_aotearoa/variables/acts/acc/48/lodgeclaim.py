@@ -14,9 +14,9 @@ class acc__part_3__has_lodged_claim(Variable):
 
     def formula(persons, period, parameters):
         return (
-            persons('acc__lodged_claim_for_cover_for_personal_injury', period)
-            + persons('acc__lodged_claim_for_cover_and_specified_entitlement_for_personal_injury', period)
-            + persons('acc__assessed_as_having_a_need_caused_by_this_covered_injury', period)
+            persons("acc__lodged_claim_for_cover_for_personal_injury", period)
+            + persons("acc__lodged_claim_for_cover_and_specified_entitlement_for_personal_injury", period)
+            + persons("acc__assessed_as_having_a_need_caused_by_this_covered_injury", period)
             )
 
 # Missing variables

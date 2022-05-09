@@ -22,20 +22,20 @@ class social_security__eligible_for_orphans_benefit(Variable):
     """
 
     def formula(persons, period, parameters):
-        resident_or_citizen = persons('is_citizen_or_resident', period)
+        resident_or_citizen = persons("is_citizen_or_resident", period)
         normally_in_nz = persons("social_security__is_ordinarily_resident_in_new_zealand", period)
 
-        age_test = persons('age', period.start) >= 18
+        age_test = persons("age", period.start) >= 18
 
         not_the_parent = not_(
-            persons('social_security__is_the_parent_of_dependent_child', period))
+            persons("social_security__is_the_parent_of_dependent_child", period))
         one_year = persons(
-            'social_security__is_principal_carer_for_one_year_from_application_date', period)
+            "social_security__is_principal_carer_for_one_year_from_application_date", period)
 
         is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
 
         has_orphaned_child_in_family = persons.family(
-            'social_security__has_orphaned_child_in_family', period)
+            "social_security__has_orphaned_child_in_family", period)
 
         return resident_or_citizen * normally_in_nz * age_test * not_the_parent * one_year * is_principal_carer * has_orphaned_child_in_family
 
@@ -49,10 +49,10 @@ class social_security__has_orphaned_child_in_family(Variable):
 
     def formula(families, period, parameters):
         children = families.members(
-            'social_security__is_a_child', period)
-        orphaned = families.members('social_security__is_orphaned', period)
+            "social_security__is_a_child", period)
+        orphaned = families.members("social_security__is_orphaned", period)
         resident_or_citizen = families.members(
-            'is_citizen_or_resident', period)
+            "is_citizen_or_resident", period)
 
         return families.any((children * orphaned * resident_or_citizen), role=Family.CHILD)
 

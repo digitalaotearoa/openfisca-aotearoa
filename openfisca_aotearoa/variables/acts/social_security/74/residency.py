@@ -14,23 +14,23 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     def formula(persons, period, parameters):
         # (a) is a New Zealand citizen, or is a person who holds a residence
         # class visa under the Immigration Act 2009
-        is_citizen_or_resident = persons('is_citizen_or_resident', period)
+        is_citizen_or_resident = persons("is_citizen_or_resident", period)
 
         # (b) is ordinarily resident in New Zealand when he or she first
         # applies for the benefit; and
         ordinarily_lives_in_nz = persons(
-            'social_security__is_ordinarily_resident_in_new_zealand', period)
+            "social_security__is_ordinarily_resident_in_new_zealand", period)
 
         # (c) except in the case of a person who is recognised as a refugee or
         #     a protected person in New Zealand under
         #     the Immigration Act 2009, has resided continuously in New Zealand
         #     for a period of at least 2 years at any one time,
         is_refugee_or_protected = \
-            persons('immigration__is_recognised_refugee', period) \
-            + persons('immigration__is_protected_person', period)
+            persons("immigration__is_recognised_refugee", period) \
+            + persons("immigration__is_protected_person", period)
 
         enough_years_in_nz = persons(
-            'social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time',
+            "social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time",
             period)
 
         return (is_citizen_or_resident * ordinarily_lives_in_nz) \

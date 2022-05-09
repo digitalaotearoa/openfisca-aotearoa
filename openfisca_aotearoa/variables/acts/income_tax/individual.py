@@ -13,7 +13,7 @@ class income_tax__residence(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     default_value = True
-    label = u'Boolean for if a Person is classified as meeting residence requirements'
+    label = "Boolean for if a Person is classified as meeting residence requirements"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518482.html"
 
 
@@ -41,7 +41,7 @@ class income_tax__net_income(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512339.html"
 
     def formula(person, period, parameters):
-        net_income = person('income_tax__annual_gross_income', period) - person('income_tax__annual_total_deduction', period)
+        net_income = person("income_tax__annual_gross_income", period) - person("income_tax__annual_total_deduction", period)
 
         return (
             net_income * (net_income > 0)
@@ -56,7 +56,7 @@ class income_tax__net_loss(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512339.html"
 
     def formula(person, period, parameters):
-        net_loss = person('income_tax__annual_gross_income', period) - person('income_tax__annual_total_deduction', period)
+        net_loss = person("income_tax__annual_gross_income", period) - person("income_tax__annual_total_deduction", period)
 
         return (
             net_loss * (net_loss < 0)
@@ -79,7 +79,7 @@ class income_tax__taxable_income(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512344.html"
 
     def formula(person, period, parameters):
-        taxable_income = (person('income_tax__net_income', period) - person('income_tax__available_tax_loss', period))
+        taxable_income = (person("income_tax__net_income", period) - person("income_tax__available_tax_loss", period))
 
         return (
             taxable_income * (taxable_income > 0)

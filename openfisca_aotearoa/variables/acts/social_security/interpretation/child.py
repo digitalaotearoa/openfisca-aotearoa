@@ -23,11 +23,11 @@ class social_security__is_a_child(Variable):
     reference = u""
 
     def formula(persons, period, parameters):
-        under_16 = persons('age', period.start) < 16
-        under_18 = persons('age', period.start) < 18
+        under_16 = persons("age", period.start) < 16
+        under_18 = persons("age", period.start) < 18
 
         financially_independent = persons(
-            'social_security__is_financially_independent', period)
+            "social_security__is_financially_independent", period)
 
         return under_16 + (under_18 * not_(financially_independent))
 
@@ -61,7 +61,7 @@ class social_security__is_dependent_child(Variable):
     # (f) for the purposes of clause 1(a) and (b) of Schedule 18A (rates of winter energy payment), has the meaning given to it by clause 2 of Schedule 18A
 
     def formula(persons, period, parameters):
-        return persons('social_security__is_a_child', period) * persons('is_dependent_child', period)
+        return persons("social_security__is_a_child", period) * persons("is_dependent_child", period)
 
 
 class social_security__has_child_in_family(Variable):
@@ -71,5 +71,5 @@ class social_security__has_child_in_family(Variable):
     label = "Family has a child"
 
     def formula(families, period, parameters):
-        children = families.members('social_security__is_a_child', period)
+        children = families.members("social_security__is_a_child", period)
         return families.any(children, role=Family.CHILD)

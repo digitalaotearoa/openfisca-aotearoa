@@ -65,7 +65,7 @@ class student_allowance__is_married_or_partnered(Variable):
     """
 
     def formula(persons, period, parameters):
-        return persons('student_allowance__has_a_spouse', period)
+        return persons("student_allowance__has_a_spouse", period)
 
 
 class student_allowance__has_a_supported_child(Variable):
@@ -115,9 +115,9 @@ class student_allowance__has_a_spouse(Variable):
     def formula(persons, period, parameters):
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
-        part_a = (persons('age', period.start) >= 24) * (persons('age_of_partner', period.start) >= 24)
-        part_b = ((persons('age', period.start) >= 24) + (persons('age_of_partner', period.start) >= 24)) * \
-            (persons('student_allowance__has_a_supported_child', period) + persons('student_allowance__partner_has_a_supported_child', period))
+        part_a = (persons("age", period.start) >= 24) * (persons("age_of_partner", period.start) >= 24)
+        part_b = ((persons("age", period.start) >= 24) + (persons("age_of_partner", period.start) >= 24)) * \
+            (persons("student_allowance__has_a_supported_child", period) + persons("student_allowance__partner_has_a_supported_child", period))
 
         return part_a + part_b
 
@@ -130,4 +130,4 @@ class student_allowance__is_a_student(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259958"
 
     def formula(persons, period, parameters):
-        return persons('student_allowance__is_tertiary_student', period) + persons('student_allowance__is_secondary_student', period)
+        return persons("student_allowance__is_tertiary_student", period) + persons("student_allowance__is_secondary_student", period)

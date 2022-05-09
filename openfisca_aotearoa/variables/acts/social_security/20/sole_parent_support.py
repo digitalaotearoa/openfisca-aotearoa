@@ -28,19 +28,19 @@ class social_security__eligible_for_sole_parent_support(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resides_in_nz = persons('social_security__meets_residential_requirements_for_certain_benefits', period)
-        resident_or_citizen = persons('is_citizen_or_resident', period)
+        resides_in_nz = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
+        resident_or_citizen = persons("is_citizen_or_resident", period)
 
-        years_in_nz = persons('sole_parent_support__meets_years_in_nz_requirement', period)
-        age_requirement = persons('sole_parent_support__meets_age_threshold', period)
-        child_age_requirement = persons.family('sole_parent_support__family_has_child_under_age_limit', period)
+        years_in_nz = persons("sole_parent_support__meets_years_in_nz_requirement", period)
+        age_requirement = persons("sole_parent_support__meets_age_threshold", period)
+        child_age_requirement = persons.family("sole_parent_support__family_has_child_under_age_limit", period)
 
-        relationship_test = persons('sole_parent_support__meets_relationship_qualification', period)
+        relationship_test = persons("sole_parent_support__meets_relationship_qualification", period)
         # TODO isInadequatelySupportedByPartner
         # TODO isMaintainingChild
 
         # income low enough?
-        low_income = persons('sole_parent_support__below_income_threshold', period)
+        low_income = persons("sole_parent_support__below_income_threshold", period)
 
         return resides_in_nz * resident_or_citizen * years_in_nz *\
             age_requirement * child_age_requirement * \
@@ -67,8 +67,8 @@ class sole_parent_support__meets_relationship_qualification(Variable):
     """
     def formula(persons, period, parameters):
         # Do they have a partner
-        no_partners = (persons('has_a_partner', period) == 0)
-        not_supported = (persons('is_adequately_supported_by_partner', period) == 0)
+        no_partners = (persons("has_a_partner", period) == 0)
+        not_supported = (persons("is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported
 
@@ -77,11 +77,11 @@ class sole_parent_support__family_has_child_under_age_limit(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH
-    label = u'Does the family have a child who meets the criteria for disabled'
+    label = "Does the family have a child who meets the criteria for disabled"
 
     def formula(families, period, parameters):
         youngest_child_age_threshold = parameters(period).entitlements.social_security.sole_parent_support.youngest_child_age_threshold
-        youngest_ages = families('age_of_youngest', period.start)
+        youngest_ages = families("age_of_youngest", period.start)
         return youngest_ages < youngest_child_age_threshold
 
 
@@ -110,5 +110,5 @@ class sole_parent_support__meets_years_in_nz_requirement(Variable):
     def formula(persons, period, parameters):
         # been in NZ log enough?
         min_years = parameters(period).entitlements.social_security.sole_parent_support.minumum_continuous_time_in_nz
-        years_in_nz = persons('number_of_years_lived_in_nz', period)
+        years_in_nz = persons("number_of_years_lived_in_nz", period)
         return years_in_nz >= min_years

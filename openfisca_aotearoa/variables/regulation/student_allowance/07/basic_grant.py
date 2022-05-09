@@ -15,23 +15,23 @@ class student_allowance__eligible_for_basic_grant(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260306"
 
     def formula(persons, period, parameters):
-        has_children = persons('student_allowance__has_a_supported_child', period)
-        is_secondary_student = persons('student_allowance__is_secondary_student', period)
-        is_tertiary_student = persons('student_allowance__is_tertiary_student', period)
+        has_children = persons("student_allowance__has_a_supported_child", period)
+        is_secondary_student = persons("student_allowance__is_secondary_student", period)
+        is_tertiary_student = persons("student_allowance__is_tertiary_student", period)
 
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
-        is_or_over_16 = persons('age', period.start) >= 16
-        is_under_18 = persons('age', period.start) < 18
-        is_or_over_18 = persons('age', period.start) >= 18
+        is_or_over_16 = persons("age", period.start) >= 16
+        is_under_18 = persons("age", period.start) < 18
+        is_or_over_18 = persons("age", period.start) >= 18
 
-        is_married_or_partnered = persons('student_allowance__is_married_or_partnered', period)
+        is_married_or_partnered = persons("student_allowance__is_married_or_partnered", period)
 
         criteria_a = is_secondary_student * is_or_over_16 * is_under_18 * is_married_or_partnered * has_children
         criteria_b = is_tertiary_student * is_or_over_16 * is_under_18 * has_children
         criteria_c = (is_secondary_student + is_tertiary_student) * is_or_over_18
 
-        student_allowance__eligible_for_certain_allowances = persons('student_allowance__eligible_for_certain_allowances', period)
+        student_allowance__eligible_for_certain_allowances = persons("student_allowance__eligible_for_certain_allowances", period)
 
         partner_or_person_receives_certain_allowances = invert(persons("student_allowance__partner_or_person_receiving_certain_allowances", period))
 

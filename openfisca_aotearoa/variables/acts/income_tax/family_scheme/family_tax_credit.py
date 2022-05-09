@@ -9,7 +9,7 @@ class family_scheme__qualifies_for_family_tax_credit(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u'Is a person qualified as eligible for the family tax credit'
+    label = "Is a person qualified as eligible for the family tax credit"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518515.html#DLM1518515"
 
     def formula(persons, period, parameters):
@@ -21,7 +21,7 @@ class family_scheme__family_tax_credit_income_under_threshold(Variable):  # this
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u'Is the person income under the threshold for the family tax credit'
+    label = "Is the person income under the threshold for the family tax credit"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518484.html"
 
 
@@ -29,7 +29,7 @@ class family_scheme__family_tax_credit_entitlement(Variable):
     value_type = float
     entity = Person
     definition_period = MONTH
-    label = u'The family tax credit person is entitlement to under the family scheme'
+    label = "The family tax credit person is entitlement to under the family scheme"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518514.html"
 
     def formula(persons, period, parameters):

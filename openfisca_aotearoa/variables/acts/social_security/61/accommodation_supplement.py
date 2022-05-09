@@ -38,18 +38,18 @@ class social_security__eligible_for_accommodation_supplement(Variable):
         in respect of whom the benefit or any part of the benefit is or would be payable,
         is not ordinarily resident in New Zealand; """
         in_nz = persons(
-            'social_security__is_ordinarily_resident_in_new_zealand', period)
-        resident_or_citizen = persons('is_resident', period) + persons(
-            'is_permanent_resident', period) + persons('is_nz_citizen', period)
+            "social_security__is_ordinarily_resident_in_new_zealand", period)
+        resident_or_citizen = persons("is_resident", period) + persons(
+            "is_permanent_resident", period) + persons("is_nz_citizen", period)
         social_security__has_accomodation_costs = persons(
-            'social_security__has_accomodation_costs', period)
+            "social_security__has_accomodation_costs", period)
         not_social_housing = (
-            persons('eligible_for_social_housing', period) == 0)
+            persons("eligible_for_social_housing", period) == 0)
 
         income = persons(
-            'accommodation_supplement__below_income_threshold', period)
+            "accommodation_supplement__below_income_threshold", period)
         cash = persons(
-            'accommodation_supplement__below_cash_threshold', period)
+            "accommodation_supplement__below_cash_threshold", period)
 
         return age_requirement * resident_or_citizen * in_nz * social_security__has_accomodation_costs * not_social_housing * income * cash
 

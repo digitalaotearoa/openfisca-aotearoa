@@ -53,7 +53,7 @@ class is_married(Variable):
     label = "Is married?"
 
     def formula(persons, period, parameters):
-        return persons('marriage__is_married', period)
+        return persons("marriage__is_married", period)
 
 
 class is_in_civil_union(Variable):
@@ -63,7 +63,7 @@ class is_in_civil_union(Variable):
     label = "Is in a civil union?"
 
     def formula(persons, period, parameters):
-        return persons('civil_union__is_in_civil_union', period)
+        return persons("civil_union__is_in_civil_union", period)
 
 
 class is_in_de_facto_relationship(Variable):
@@ -73,7 +73,7 @@ class is_in_de_facto_relationship(Variable):
     label = "Is in a de facto relationship?"
 
     def formula(persons, period, parameters):
-        return persons('property_relationships__is_in_de_facto_relationship', period)
+        return persons("property_relationships__is_in_de_facto_relationship", period)
 
 
 class has_been_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
@@ -90,4 +90,4 @@ class is_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
     label = "He or she is married, or in a civil union or de facto relationship"
 
     def formula(persons, period, parameters):
-        return persons('is_married', period) + persons('is_in_civil_union', period) + persons('is_in_de_facto_relationship', period)
+        return persons("is_married", period) + persons("is_in_civil_union", period) + persons("is_in_de_facto_relationship", period)

@@ -262,7 +262,7 @@ Calculation improvement.
 * Organising by numbered section of the act
 * Moved Social Security Act disability definitions to that folder
 * Move social security tests to folder with that name
-* refactored to add 'is_citizen_or_resident' variable
+* refactored to add "is_citizen_or_resident" variable
 * Renaming job seeker to Jobseeker Support
 * Restructured Social Security Act variables
 

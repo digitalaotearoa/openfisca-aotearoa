@@ -46,7 +46,7 @@ The virtualenv you just created will be automatically activated. This means you 
 
 ```sh
 Installing setuptools, pip, wheel...done.
-Launching subshell in virtual environment. Type 'exit' or 'Ctrl+D' to return.
+Launching subshell in virtual environment. Type "exit" or 'Ctrl+D' to return.
 ```
 
 Additional information:

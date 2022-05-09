@@ -11,7 +11,7 @@ class yearly_income(Variable):
     label = u"Yearly income of this person"
     definition_period = YEAR
     reference = u"TODO"
-    unit = 'NZD'
+    unit = "NZD"
     set_input = set_input_divide_by_period
 
 
@@ -21,4 +21,4 @@ class monthly_income(Variable):
     label = u"Monthly income of this person"
     definition_period = MONTH
     reference = u"One twelfth of their yearly income"
-    unit = 'NZD'
+    unit = "NZD"

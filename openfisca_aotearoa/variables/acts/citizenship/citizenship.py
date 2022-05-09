@@ -15,14 +15,14 @@ class citizenship__citizenship_by_grant_may_be_authorized(Variable):
 
     def formula_2005_04_20(persons, period, parameters):
 
-        return (persons('age', period) >= parameters(period).citizenship.by_grant.minimum_age_threshold) * \
-            persons('is_of_full_capacity', period) * \
-            persons('citizenship__meets_minimum_presence_requirements', period) * \
-            persons('citizenship__is_of_good_character', period) * \
-            persons('citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship', period) * \
-            persons('citizenship__has_sufficient_knowledge_of_the_english_language', period) * \
-            (persons('citizenship__intends_to_reside_in_nz', period) + persons('citizenship__intends_crown_service', period)
-                + persons('citizenship__intends_international_service', period) + persons('citizenship__intends_nz_employment', period))
+        return (persons("age", period) >= parameters(period).citizenship.by_grant.minimum_age_threshold) * \
+            persons("is_of_full_capacity", period) * \
+            persons("citizenship__meets_minimum_presence_requirements", period) * \
+            persons("citizenship__is_of_good_character", period) * \
+            persons("citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship", period) * \
+            persons("citizenship__has_sufficient_knowledge_of_the_english_language", period) * \
+            (persons("citizenship__intends_to_reside_in_nz", period) + persons("citizenship__intends_crown_service", period)
+                + persons("citizenship__intends_international_service", period) + persons("citizenship__intends_nz_employment", period))
 
 
 class citizenship__meets_minimum_presence_requirements(Variable):
@@ -33,12 +33,12 @@ class citizenship__meets_minimum_presence_requirements(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
 
     def formula(persons, period, parameters):
-        # persons('immigration__entitled_to_stay_indefinitely', period) * \
+        # persons("immigration__entitled_to_stay_indefinitely", period) * \
         # (ii) for at least 240 days in each of those 5 years,—
         # being days during which the applicant was entitled in terms of the Immigration Act 2009 to be in New Zealand indefinitely
         # for p in [period.offset(offset) for offset in range(-365, 1)]:
-        return persons('citizenship__meets_5_year_presence_requirement', period) * \
-            persons('citizenship__meets_each_year_minimum_presence_requirements', period)
+        return persons("citizenship__meets_5_year_presence_requirement", period) * \
+            persons("citizenship__meets_each_year_minimum_presence_requirements", period)
 
 
 class citizenship__meets_each_year_minimum_presence_requirements(Variable):
@@ -63,7 +63,7 @@ class citizenship__meets_each_year_minimum_presence_requirements(Variable):
             day_n_years_ago = period.offset(number_of_days_ago * -1)
             # print("day_n_years_ago", day_n_years_ago)
 
-            days_present = persons('days_present_in_new_zealand_in_preceeding_year', day_n_years_ago)
+            days_present = persons("days_present_in_new_zealand_in_preceeding_year", day_n_years_ago)
             # print("days present on rolling year ending at", day_n_years_ago, "is", days_present)
 
             meets_presence_n_years_ago = (days_present >= required_days)
@@ -86,7 +86,7 @@ class citizenship__meets_preceeding_single_year_minimum_presence_requirement(Var
 
     def formula(persons, period, parameters):
         required_days = parameters(period).citizenship.by_grant.minimum_days_present_for_each_of_preceeding_5_years
-        return persons('days_present_in_new_zealand_in_preceeding_year', period) >= required_days
+        return persons("days_present_in_new_zealand_in_preceeding_year", period) >= required_days
 
 
 class citizenship__meets_5_year_presence_requirement(Variable):
@@ -101,7 +101,7 @@ class citizenship__meets_5_year_presence_requirement(Variable):
         # that the applicant was present in New Zealand—
         # (i)  and
         required_days = parameters(period).citizenship.by_grant.minimum_days_present_in_preceeding_5_years
-        days_present = persons('days_present_in_new_zealand_in_preceeding_5_years', period)
+        days_present = persons("days_present_in_new_zealand_in_preceeding_5_years", period)
 
         return (days_present >= required_days)
 
@@ -118,7 +118,7 @@ class days_present_in_new_zealand_in_preceeding_5_years(Variable):
         "\t\t** -> days_present_in_new_zealand_in_preceeding_5_years"
         for offset in range((days_since_n_years_ago(period.date, 5) * -1), 1):
             p = period.offset(offset)
-            sum += (persons('was_present_in_nz_and_entitled_to_indefinite_stay', p) * 1)
+            sum += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
 
         return sum
 
@@ -154,7 +154,7 @@ class days_present_in_new_zealand_in_preceeding_year(Variable):
 
         start_date = days_since_n_years_ago(period.date)
         for p in [period.offset(offset) for offset in range((start_date * -1), 0)]:
-            sum += (persons('was_present_in_nz_and_entitled_to_indefinite_stay', p) * 1)
+            sum += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
 
         return sum
 
@@ -167,8 +167,8 @@ class was_present_in_nz_and_entitled_to_indefinite_stay(Variable):
     reference = "Whether both `present_in_new_zealand` and `immigration__entitled_to_indefinite_stay` were true"
 
     def formula(persons, period, parameters):
-        present = persons('present_in_new_zealand', period)
-        entitled = persons('immigration__entitled_to_indefinite_stay', period)
+        present = persons("present_in_new_zealand", period)
+        entitled = persons("immigration__entitled_to_indefinite_stay", period)
         return present * entitled
 
 
