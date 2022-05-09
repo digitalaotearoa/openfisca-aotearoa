@@ -2,9 +2,7 @@
 
 ### Step 1: Install pyenv
 
-```sh
-curl https://pyenv.run | bash
-```
+Install [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv).
 
 ### Step 2: Clone the repo
 
@@ -14,20 +12,24 @@ cd openfisca-aotearoa
 ```
 
 ### Step 3: Install python using pyenv
+
 We want to use the exact version of python we use on the official servers
 
 ```sh
- pyenv install < .python-version
- python --version # This should match the version in .python-version file
+pyenv install 3.10.4
+pyenv virtualenv openfisca-aotearoa-3.10.4
+pyenv local openfisca-aotearoa-3.10.4
+python --version # This should match the version in .python-version file
 ```
 
 ### If `ModuleNotFoundError: No module named '_ctypes'`
->
->     sudo apt-get update
->     sudo apt-get install libffi-dev
->
-More problems? [Try the instructions here](https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul#41310760)
 
+```sh
+sudo apt-get update
+sudo apt-get install libffi-dev
+````
+
+More problems? [Try the instructions here](https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul#41310760)
 
 #### Step 4: Install Dev dependencies
 
