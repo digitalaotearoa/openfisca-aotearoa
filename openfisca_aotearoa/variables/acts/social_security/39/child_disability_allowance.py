@@ -20,16 +20,16 @@ class social_security__eligible_for_child_disability_allowance(Variable):
         is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
         has_eligible_disabled_child = persons.family("disability_allowance__family_has_eligible_child", period)
 
-        """
-        http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html
-        Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
-        Support Act 2014 or the New Zealand Superannuation and Retirement Income Act 2001,
-        the chief executive may, in the chief executive’s discretion, refuse to grant any
-        benefit or may terminate or reduce any benefit already granted or may grant a
-        benefit at a reduced rate in any case where the chief executive is satisfied—
-        (a) that the applicant, or the spouse or partner of the applicant or any person
-        in respect of whom the benefit or any part of the benefit is or would be payable,
-        is not ordinarily resident in New Zealand; """
+        # http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html
+        # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
+        # Support Act 2014 or the New Zealand Superannuation and Retirement Income Act 2001,
+        # the chief executive may, in the chief executive’s discretion, refuse to grant any
+        # benefit or may terminate or reduce any benefit already granted or may grant a
+        # benefit at a reduced rate in any case where the chief executive is satisfied—
+        # (a) that the applicant, or the spouse or partner of the applicant or any person
+        # in respect of whom the benefit or any part of the benefit is or would be payable,
+        # is not ordinarily resident in New Zealand;
+
         resides_in_nz = persons(
             "social_security__is_ordinarily_resident_in_new_zealand", period)
 

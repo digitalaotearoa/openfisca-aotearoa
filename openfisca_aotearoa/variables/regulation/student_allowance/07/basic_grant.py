@@ -38,22 +38,20 @@ class student_allowance__eligible_for_basic_grant(Variable):
 
         return (criteria_a + criteria_b + criteria_c) * student_allowance__eligible_for_certain_allowances * partner_or_person_receives_certain_allowances
 
-    """
-    TODO:
-    (1A)
+    # TODO:
+    # (1A)
 
-    As from the commencement of 1 January 2004, the students who are eligible for a basic grant
-    include a single tertiary student of or over 16 but younger than 18 who—
-    (a)
+    # As from the commencement of 1 January 2004, the students who are eligible for a basic grant
+    # include a single tertiary student of or over 16 but younger than 18 who—
+    # (a)
 
-    has completed a course of secondary instruction to year 13 level; or
-    (b)
+    # has completed a course of secondary instruction to year 13 level; or
+    # (b)
 
-    has not completed a course of secondary instruction to year 13 level but—
-    (i)
+    # has not completed a course of secondary instruction to year 13 level but—
+    # (i)
 
-    has obtained, in the University Bursaries Examination, 3 "“C”" grade passes or better; or
-    (ii)
+    # has obtained, in the University Bursaries Examination, 3 "“C”" grade passes or better; or
+    # (ii)
 
-    has obtained, at level 3 of the National Certificate of Educational Achievement, 42 credits or more.
-    """
+    # has obtained, at level 3 of the National Certificate of Educational Achievement, 42 credits or more.

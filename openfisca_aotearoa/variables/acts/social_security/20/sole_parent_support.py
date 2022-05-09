@@ -1,13 +1,4 @@
-"""TODO: Add missing doctring."""
-
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
-
-from openfisca_aotearoa.entities import Family, Person
-
-"""
-MSD Policy (retrieved August 2018 from )
-    https://www.workandincome.govt.nz/products/a-z-benefits/sole-parent-support.html
+"""MSD Policy (retrieved August 2018 from https://www.workandincome.govt.nz/products/a-z-benefits/sole-parent-support.html).
 
 You may get Sole Parent Support if you are:
 
@@ -18,6 +9,11 @@ You may get Sole Parent Support if you are:
     * a New Zealand citizen or permanent resident who has been here for at least two years
     at any one time since becoming a citizen or permanent resident, and who normally lives here.
 """
+
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Family, Person
 
 
 class social_security__eligible_for_sole_parent_support(Variable):

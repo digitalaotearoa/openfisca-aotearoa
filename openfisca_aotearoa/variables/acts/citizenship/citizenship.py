@@ -117,7 +117,7 @@ class days_present_in_new_zealand_in_preceeding_5_years(Variable):
     def formula(persons, period, parameters):
 
         sum_ = 0
-        "\t\t** -> days_present_in_new_zealand_in_preceeding_5_years"
+
         for offset in range((days_since_n_years_ago(period.date, 5) * -1), 1):
             p = period.offset(offset)
             sum_ += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)

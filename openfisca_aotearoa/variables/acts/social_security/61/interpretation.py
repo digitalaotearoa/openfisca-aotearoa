@@ -5,9 +5,7 @@ from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
 
-"""
-http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468373
-"""
+# http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468373
 
 
 class social_security__has_accomodation_costs(Variable):
@@ -15,26 +13,24 @@ class social_security__has_accomodation_costs(Variable):
     entity = Person
     label = "Person has accommodation costs"
     definition_period = MONTH
-
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362802"
-    """
-        accommodation costs, in relation to any person for any given period, means, -
-        (a) in relation to premises rented by the person, the amount payable by the person for
-            rent of the premises, excluding any service costs included in that rent and any arrears:
-        (b) in relation to premises that are owned by the person, the total amount of all
-            payments (including essential repairs and maintenance, local authority rates, and
-            house insurance premiums, but excluding any service costs and any arrears) that -
-        (i) subject to section 68A, are required to be made under any mortgage security for
-            money advanced under that security to acquire the premises, or to repay advances
-            similarly secured; or
-        (ii) the chief executive is satisfied are reasonably required to be made:
-        (c)in relation to a person who is a boarder or lodger in any premises, 62% of the amount
-            paid for board or lodging (excluding any arrears):
-        provided that, where a person is a joint tenant or owner in common of any premises with
-            another person or other persons living in the premises, that applicant's accommodation
-            costs shall be the share of the total accommodation costs of the premises that the
-            chief executive is satisfied the person is paying
-        """
+
+    # accommodation costs, in relation to any person for any given period, means, -
+    # (a) in relation to premises rented by the person, the amount payable by the person for
+    #     rent of the premises, excluding any service costs included in that rent and any arrears:
+    # (b) in relation to premises that are owned by the person, the total amount of all
+    #     payments (including essential repairs and maintenance, local authority rates, and
+    #     house insurance premiums, but excluding any service costs and any arrears) that -
+    # (i) subject to section 68A, are required to be made under any mortgage security for
+    #     money advanced under that security to acquire the premises, or to repay advances
+    #     similarly secured; or
+    # (ii) the chief executive is satisfied are reasonably required to be made:
+    # (c)in relation to a person who is a boarder or lodger in any premises, 62% of the amount
+    #     paid for board or lodging (excluding any arrears):
+    # provided that, where a person is a joint tenant or owner in common of any premises with
+    #     another person or other persons living in the premises, that applicant's accommodation
+    #     costs shall be the share of the total accommodation costs of the premises that the
+    #     chief executive is satisfied the person is paying
 
 
 class social_security__is_a_beneficiary(Variable):

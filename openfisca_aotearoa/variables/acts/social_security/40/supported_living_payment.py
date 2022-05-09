@@ -7,15 +7,13 @@ from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
 
-"""
-#     Benefit: Part 1E Supported Living Payment (eligible self applicant):
-#     If applicant.isNZResident
-#         and 16 <= applicant.Age
-#         and applicant.hasMedicalCertificate
-#         and applicant.hasSeriousDisability
-#         and threshold.income.SupportedLivingPayment
-#     then benefit.isSupportedLivingPayment is PERMITTED
-"""
+# Benefit: Part 1E Supported Living Payment (eligible self applicant):
+# If applicant.isNZResident
+#     and 16 <= applicant.Age
+#     and applicant.hasMedicalCertificate
+#     and applicant.hasSeriousDisability
+#     and threshold.income.SupportedLivingPayment
+# then benefit.isSupportedLivingPayment is PERMITTED
 
 
 class social_security__is_required_to_give_fulltime_care(Variable):

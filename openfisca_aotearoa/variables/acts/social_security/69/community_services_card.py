@@ -1,4 +1,25 @@
-"""TODO: Add missing doctring."""
+"""MSD Policy (retrieved August 2018 from https://www.workandincome.govt.nz/map/card-services/community-services-card/qualifications.html).
+
+To be able to receive a Community Services Card, a client must:
+
+*   receive an income tested benefit or
+*   be a child for whom an Orphans Benefit, an Unsupported Childs Benefit or a Child Disability Allowance is paid or
+*   receive a Residential Care Subsidy or
+*   receive New Zealand Superannuation and meet an income test or
+*   receive Veteran's Pension or
+*   receive weekly income compensation (paid by Veterans' Affairs) or
+*   receive weekly compensation (paid by Veterans' Affairs) or
+*   be a full time student, generally be ordinarily resident and meet an income test or
+
+*   for people with dependent children
+    *   meet an income test and generally be ordinarily resident in New Zealand or
+    *   be eligible to receive Working for Families Tax Credits (where Inland Revenue applies a Residency test)
+
+*   for people with no children:
+    *   meet an income test
+    *   generally be ordinarily resident and
+    *   be aged over 16 years old, but not be a dependent child
+"""
 
 from numpy import logical_not as not_
 
@@ -6,31 +27,6 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
-
-"""
-MSD Policy (retrieved August 2018 from )
-    https://www.workandincome.govt.nz/map/card-services/community-services-card/qualifications.html
-
-    To be able to receive a Community Services Card, a client must:
-
-    *   receive an income tested benefit or
-    *   be a child for whom an Orphans Benefit, an Unsupported Childs Benefit or a Child Disability Allowance is paid or
-    *   receive a Residential Care Subsidy or
-    *   receive New Zealand Superannuation and meet an income test or
-    *   receive Veteran's Pension or
-    *   receive weekly income compensation (paid by Veterans' Affairs) or
-    *   receive weekly compensation (paid by Veterans' Affairs) or
-    *   be a full time student, generally be ordinarily resident and meet an income test or
-
-    *   for people with dependent children
-        *   meet an income test and generally be ordinarily resident in New Zealand or
-        *   be eligible to receive Working for Families Tax Credits (where Inland Revenue applies a Residency test)
-
-    *   for people with no children:
-        *   meet an income test
-        *   generally be ordinarily resident and
-        *   be aged over 16 years old, but not be a dependent child
-"""
 
 
 class social_security__eligible_for_community_services_card(Variable):
