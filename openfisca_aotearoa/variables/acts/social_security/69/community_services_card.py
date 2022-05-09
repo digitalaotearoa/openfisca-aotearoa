@@ -169,5 +169,5 @@ class has_community_services_card(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Has a current Community Services Card"
-    reference = u"https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"
+    label = "Has a current Community Services Card"
+    reference = "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"

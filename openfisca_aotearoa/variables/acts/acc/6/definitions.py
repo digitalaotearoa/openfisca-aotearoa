@@ -12,7 +12,7 @@ class acc__earner(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
-    label = u"A natural person who engages in employment"
+    label = "A natural person who engages in employment"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100103.html#DLM100167"
 
 
@@ -20,7 +20,7 @@ class acc__potential_earner(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
-    label = u"Is a potential earner"
+    label = "Is a potential earner"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100103.html#DLM100322"
 
     def formula(persons, period, parameters):

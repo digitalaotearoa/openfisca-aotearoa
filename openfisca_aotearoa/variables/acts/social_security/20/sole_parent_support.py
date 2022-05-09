@@ -52,7 +52,7 @@ class sole_parent_support__meets_relationship_qualification(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Meets the sole parent support test for not being in a relationship"
+    label = "Meets the sole parent support test for not being in a relationship"
     definition_period = MONTH
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
 
@@ -90,7 +90,7 @@ class sole_parent_support__meets_age_threshold(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Meets the age test for sole parent support?"
+    label = "Meets the age test for sole parent support?"
     definition_period = MONTH
     reference = "https://www.workandincome.govt.nz/products/a-z-benefits/sole-parent-support.html"
 
@@ -104,7 +104,7 @@ class sole_parent_support__meets_years_in_nz_requirement(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Has lived continuously in New Zealand for 2 years or more at any one time since becoming a New Zealand citizen or permanent resident?"
+    label = "Has lived continuously in New Zealand for 2 years or more at any one time since becoming a New Zealand citizen or permanent resident?"
     definition_period = MONTH
     reference = "TODO"
 

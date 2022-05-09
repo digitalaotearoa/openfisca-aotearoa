@@ -9,7 +9,7 @@ from openfisca_aotearoa.entities import Person
 class social_security__is_financially_independent(Variable):
     value_type = bool
     entity = Person
-    label = u"""financially independent, in relation to a person, means—
+    label = """financially independent, in relation to a person, means—
         (a) in full employment; or
         (b) in receipt of a basic grant or an independent circumstances grant under the Student Allowances Regulations 1998 (SR 1998/277); or
         (c) in receipt of payments under a Government-assisted scheme which the chief executive considers analogous to a main benefit under this Act; or
@@ -17,7 +17,7 @@ class social_security__is_financially_independent(Variable):
         """
 
     definition_period = MONTH
-    reference = u"""Interpretation section of Social Security Act 1964"""
+    reference = """Interpretation section of Social Security Act 1964"""
 
     def formula(persons, period, parameters):
         in_full_employment = persons("social_security__is_in_full_employment", period)

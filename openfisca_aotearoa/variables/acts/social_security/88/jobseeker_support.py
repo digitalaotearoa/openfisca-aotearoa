@@ -10,7 +10,7 @@ class jobseeker_support__is_prepared_for_employment(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Is prepared for employment?"
+    label = "Is prepared for employment?"
     definition_period = MONTH
     reference = "TODO"
 
@@ -19,7 +19,7 @@ class jobseeker_support__meets_age_threshold(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Meets the age test for Jobseeker Support?"
+    label = "Meets the age test for Jobseeker Support?"
     definition_period = MONTH
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 

@@ -13,7 +13,7 @@ http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468373
 class social_security__has_accomodation_costs(Variable):
     value_type = bool
     entity = Person
-    label = u"Person has accommodation costs"
+    label = "Person has accommodation costs"
     definition_period = MONTH
 
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362802"

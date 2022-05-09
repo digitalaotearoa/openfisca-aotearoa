@@ -12,7 +12,7 @@ class acc__sched_1__incapacitated_for_6_months(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
-    label = u"Incapacitated for 6 months"
+    label = "Incapacitated for 6 months"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
@@ -20,7 +20,7 @@ class acc__sched_1__loe_more_than_lope(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
-    label = u"Loss of earnings entitlement is more than loss of potential earnings entitlement"
+    label = "Loss of earnings entitlement is more than loss of potential earnings entitlement"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
@@ -28,7 +28,7 @@ class acc__sched_1__engaged_fulltime_study_or_training(Variable):
     value_type = bool
     entity = Person
     definition_period = DAY
-    label = u"Engaged in full-time study or training, does not include full-time study or training in living or social skills"
+    label = "Engaged in full-time study or training, does not include full-time study or training in living or social skills"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
@@ -36,7 +36,7 @@ class acc__sched_1__lope_eligible(Variable):
     value_type = bool
     entity = Person
     definition_period = DAY
-    label = u"Corporation determination of incapacity"
+    label = "Corporation determination of incapacity"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
     def formula(persons, period, parameters):
@@ -70,7 +70,7 @@ class acc__sched_1__weekly_earnings(Variable):
     value_type = float
     entity = Person
     definition_period = DAY
-    label = u"Weekly earnings"
+    label = "Weekly earnings"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
@@ -78,7 +78,7 @@ class acc__sched_1__lope_weekly_compensation(Variable):
     value_type = float
     entity = Person
     definition_period = DAY
-    label = u"Compensation per week"
+    label = "Compensation per week"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
     def formula(persons, period, parameters):

@@ -12,9 +12,9 @@ from openfisca_aotearoa.entities import Family, Person
 class has_a_partner(Variable):
     value_type = bool
     entity = Person
-    label = u"Is this person in a relationship?"
+    label = "Is this person in a relationship?"
     definition_period = MONTH  # This variable changes over time.
-    reference = u"TODO"
+    reference = "TODO"
 
     def formula(persons, period, parameters):
         # has 1 or more partners
@@ -25,11 +25,11 @@ class has_a_partner(Variable):
 class is_adequately_supported_by_partner(Variable):
     value_type = bool
     entity = Person
-    label = u"""Is adequately supported by their partner? (false if lost the regular support of
+    label = """Is adequately supported by their partner? (false if lost the regular support of
     their partner as their partner has been imprisoned or is subject to release or detention conditions that prevent employment)
     """
     definition_period = MONTH
-    reference = u"https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
+    reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
     default_value = True
 
 

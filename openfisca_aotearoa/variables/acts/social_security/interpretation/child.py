@@ -11,19 +11,19 @@ from openfisca_aotearoa.entities import Family, Person
 class social_security__has_dependant_child(Variable):
     value_type = bool
     entity = Person
-    label = u"has a dependent child (or children)"
+    label = "has a dependent child (or children)"
     definition_period = MONTH
 
 
 class social_security__is_a_child(Variable):
     value_type = bool
     entity = Person
-    label = u"""child means a single person under the age of 18 years, other than a person who is—
+    label = """child means a single person under the age of 18 years, other than a person who is—
         (a) aged 16 years or 17 years; and
         (b) financially independent
         """
     definition_period = MONTH
-    reference = u""
+    reference = ""
 
     def formula(persons, period, parameters):
         under_16 = persons("age", period.start) < 16

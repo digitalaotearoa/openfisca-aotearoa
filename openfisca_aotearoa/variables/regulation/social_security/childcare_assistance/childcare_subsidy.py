@@ -12,7 +12,7 @@ class is_attending_school(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Is child attending school"
+    label = "Is child attending school"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
 
 
@@ -20,7 +20,7 @@ class will_be_enrolled_in_school(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Child will be enrolled in a school that has a cohort entry policy in place"
+    label = "Child will be enrolled in a school that has a cohort entry policy in place"
     # (ba) who is 5, whose parent, principal caregiver, or guardian intends to enrol
     # the child in a school that has a cohort entry policy in place, and who
     # (under section 5B(2) of the Education Act 1989) may not be enrolled in that
@@ -32,8 +32,8 @@ class social_security_regulation__eligible_for_childcare_subsidy(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Eligibility of child for payment of childcare subsidy"
-    reference = u"http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
+    label = "Eligibility of child for payment of childcare subsidy"
+    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
 
     def formula(persons, period, parameters):
         is_citizen_or_resident = persons("is_citizen_or_resident", period)
@@ -57,7 +57,7 @@ class early_childcare_hours_participation_per_week(Variable):
     value_type = int
     entity = Person
     definition_period = MONTH
-    label = u"Number of hours per week person is participating in approved early-childhood education programmes"
+    label = "Number of hours per week person is participating in approved early-childhood education programmes"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282547"
 
 
@@ -128,5 +128,5 @@ class social_security_regulation__household_income_below_childcare_subsidy_thres
     value_type = bool
     default_value = True
     entity = Family
-    label = u"Household income is below Childcare Subsidy threshold"
+    label = "Household income is below Childcare Subsidy threshold"
     definition_period = MONTH

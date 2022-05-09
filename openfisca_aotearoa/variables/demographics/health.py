@@ -19,6 +19,6 @@ class is_of_full_capacity(Variable):
 class date_of_injury(Variable):
     value_type = date
     entity = Person
-    label = u"Date of injury, ACC act does not explicitly define this term but does add to it for specific circumstances"
+    label = "Date of injury, ACC act does not explicitly define this term but does add to it for specific circumstances"
     definition_period = ETERNITY  # This variable cannot change over time.
-    reference = u""
+    reference = ""

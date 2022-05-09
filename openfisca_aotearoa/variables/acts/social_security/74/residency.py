@@ -10,7 +10,7 @@ from openfisca_aotearoa.entities import Person
 class social_security__meets_residential_requirements_for_certain_benefits(Variable):
     value_type = bool
     entity = Person
-    label = u"Residential requirements for certain benefits"
+    label = "Residential requirements for certain benefits"
     definition_period = MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363796.html"
 
@@ -43,7 +43,7 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
 class social_security__is_ordinarily_resident_in_new_zealand(Variable):
     value_type = bool
     entity = Person
-    label = u"is ordinarily resident in New Zealand"
+    label = "is ordinarily resident in New Zealand"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html"
@@ -52,5 +52,5 @@ class social_security__is_ordinarily_resident_in_new_zealand(Variable):
 class social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time(Variable):
     value_type = bool
     entity = Person
-    label = u"has resided continuously in New Zealand for a period of at least 2 years at any one time"
+    label = "has resided continuously in New Zealand for a period of at least 2 years at any one time"
     definition_period = ETERNITY

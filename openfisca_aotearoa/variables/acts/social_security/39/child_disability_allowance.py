@@ -57,7 +57,7 @@ class disability_allowance__family_has_eligible_child(Variable):
 class social_security__child_meets_child_disability_allowance_criteria(Variable):
     value_type = bool
     entity = Person
-    label = u"Has serious disability"
+    label = "Has serious disability"
     definition_period = MONTH
 
     def formula(persons, period, parameters):
@@ -71,12 +71,12 @@ class social_security__child_meets_child_disability_allowance_criteria(Variable)
 class social_security__medical_certification_months(Variable):
     value_type = int
     entity = Person
-    label = u"Number of future months the disability is expected to last for, in months"
+    label = "Number of future months the disability is expected to last for, in months"
     definition_period = MONTH
 
 
 class social_security__requires_constant_care_and_attention(Variable):
     value_type = bool
     entity = Person
-    label = u"Requires constant care and attention"
+    label = "Requires constant care and attention"
     definition_period = MONTH

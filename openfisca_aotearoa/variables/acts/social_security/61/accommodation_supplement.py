@@ -60,6 +60,6 @@ class eligible_for_social_housing(Variable):
     value_type = bool
     default_value = True
     entity = Person
-    label = u"Has social housing?"
+    label = "Has social housing?"
     definition_period = MONTH
     reference = "Social Security Act 1964 - 61EA Accommodation supplement http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362856"

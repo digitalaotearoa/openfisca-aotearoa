@@ -11,7 +11,7 @@ from openfisca_aotearoa.entities import Person
 class has_dependent_child(Variable):
     value_type = bool
     entity = Person
-    label = u"has a dependent child or dependent children"
+    label = "has a dependent child or dependent children"
     definition_period = MONTH
     default_value = True
 

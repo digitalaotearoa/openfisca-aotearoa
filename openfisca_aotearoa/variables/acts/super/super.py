@@ -12,7 +12,7 @@ class super___eligibility_age(Variable):
     value_type = int
     entity = Person
     definition_period = ETERNITY
-    label = u"The age the applicant will be eligible for NZ Super."
+    label = "The age the applicant will be eligible for NZ Super."
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM114223.html"
 
     def formula(persons, period, parameters):
@@ -23,7 +23,7 @@ class super__eligibility(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Classified as eligible for NZ Super"
+    label = "Classified as eligible for NZ Super"
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM113987.html"
 
     def formula(persons, period, parameters):

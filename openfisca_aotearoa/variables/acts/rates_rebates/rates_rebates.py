@@ -15,7 +15,7 @@ class rates_rebates__dependants(Variable):
     value_type = int
     entity = Person
     definition_period = YEAR
-    label = u"Number of Persons classified as dependant for the purposes of Rates Rebates"
+    label = "Number of Persons classified as dependant for the purposes of Rates Rebates"
 
 
 class rates_rebates__rates_total(Variable):

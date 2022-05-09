@@ -10,7 +10,7 @@ class acc__part_3__has_lodged_claim(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
-    label = u"Has lodged a claim with the Corporation"
+    label = "Has lodged a claim with the Corporation"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100910.html"
 
     def formula(persons, period, parameters):

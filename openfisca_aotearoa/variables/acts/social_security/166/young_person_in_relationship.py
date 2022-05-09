@@ -13,7 +13,7 @@ class social_security__meets_young_parent_payment_in_relationship_requirements(V
     entity = Person
     definition_period = MONTH
     label = "Meets Young Parent Payment single person requirements from section 165"
-    reference = u"""
+    reference = """
         Young parent payment: persons who are or have been married, or in civil union or de facto relationship
         (a) he or she is not married, or in a civil union or de facto relationship, but has been married or in
         a civil union or de facto relationship; or

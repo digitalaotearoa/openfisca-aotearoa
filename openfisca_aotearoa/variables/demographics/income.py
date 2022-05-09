@@ -10,9 +10,9 @@ from openfisca_aotearoa.entities import Person
 class yearly_income(Variable):
     value_type = float
     entity = Person
-    label = u"Yearly income of this person"
+    label = "Yearly income of this person"
     definition_period = YEAR
-    reference = u"TODO"
+    reference = "TODO"
     unit = "NZD"
     set_input = set_input_divide_by_period
 
@@ -20,7 +20,7 @@ class yearly_income(Variable):
 class monthly_income(Variable):
     value_type = float
     entity = Person
-    label = u"Monthly income of this person"
+    label = "Monthly income of this person"
     definition_period = MONTH
-    reference = u"One twelfth of their yearly income"
+    reference = "One twelfth of their yearly income"
     unit = "NZD"
