@@ -24,8 +24,8 @@ class super__eligibility(Variable):
 
     def formula(persons, period, parameters):
         return persons('is_citizen_or_resident', period) *\
-            not_((persons('total_number_of_years_lived_in_nz_since_age_20', period) < 10)) *\
-            not_((persons('total_number_of_years_lived_in_nz_since_age_50', period) < 5)) *\
+            not_(persons('total_number_of_years_lived_in_nz_since_age_20', period) < 10) *\
+            not_(persons('total_number_of_years_lived_in_nz_since_age_50', period) < 5) *\
             not_(persons('acc__is_receiving_compensation', period)) +\
             persons(
                 'veterans_support__is_entitled_to_be_paid_veterans_pension', period)

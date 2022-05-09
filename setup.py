@@ -26,8 +26,8 @@ setup(
             ),
         ],
     install_requires=[
-        "numpy >= 1.21, < 1.22",
-        "openfisca-core[web-api] >= 35, < 36",
+        "numpy >= 1.21.0, < 1.22.0",
+        "openfisca-core[web-api] >= 35.0.0, < 36.0.0",
         ],
     extras_require={
         "dev": [
@@ -46,6 +46,7 @@ setup(
             "flake8-use-fstring >= 1.1.0, < 2.0.0",
             "pylint >= 2.6.0, < 3.0.0",
             "pycodestyle >= 2.6.0, < 3.0.0",
+            "pyupgrade >= 2.32.0, < 3.0.0",
             ],
         },
     packages=find_packages(),
