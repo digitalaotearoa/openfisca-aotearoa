@@ -8,28 +8,28 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()  # pylint: disable=W1514
 
 setup(
-    name="OpenFisca-Aotearoa",
-    version="12.0.0",
-    author="New Zealand Government, Service Innovation Lab",
-    author_email="brenda.wallace@dia.govt.nz,hamish.fraser@dia.govt.nz",
-    description="OpenFisca tax and benefit system for Aotearoa",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    keywords="benefit microsimulation social tax",
-    license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
-    url="https://github.com/ServiceInnovationLab/openfisca-aotearoa",
-    include_package_data=True,  # Will read MANIFEST.in
+    name = "OpenFisca-Aotearoa",
+    version = "12.0.0",
+    author = "New Zealand Government, Service Innovation Lab",
+    author_email = "brenda.wallace@dia.govt.nz,hamish.fraser@dia.govt.nz",
+    description = "OpenFisca tax and benefit system for Aotearoa",
+    long_description = long_description,
+    long_description_content_type = "text/markdown",
+    keywords = "benefit microsimulation social tax",
+    license = "http://www.fsf.org/licensing/licenses/agpl-3.0.html",
+    url = "https://github.com/ServiceInnovationLab/openfisca-aotearoa",
+    include_package_data = True,  # Will read MANIFEST.in
     data_files = [
         (
             "share/openfisca/openFisca-aotearoa",
             ["CHANGELOG.md", "README.md"],
             ),
         ],
-    install_requires=[
+    install_requires = [
         "numpy >= 1.21.0, < 1.22.0",
         "openfisca-core[web-api] >= 35.0.0, < 36.0.0",
         ],
-    extras_require={
+    extras_require = {
         "dev": [
             "autopep8 >= 1.5.4, < 2.0.0",
             "flake8 >= 3.8.0, < 4.0.0",
@@ -46,8 +46,9 @@ setup(
             "flake8-use-fstring >= 1.1.0, < 2.0.0",
             "pylint >= 2.6.0, < 3.0.0",
             "pycodestyle >= 2.6.0, < 3.0.0",
+            "pytest >= 6.2.5, < 7.0.0",
             "pyupgrade >= 2.32.0, < 3.0.0",
             ],
         },
-    packages=find_packages(),
+    packages = find_packages(),
     )
