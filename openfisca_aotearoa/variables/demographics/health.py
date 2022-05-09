@@ -1,5 +1,7 @@
 """TODO: Add missing doctring."""
 
+from datetime import date
+
 from openfisca_core.periods import ETERNITY
 from openfisca_core.variables import Variable
 

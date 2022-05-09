@@ -1,6 +1,8 @@
 """TODO: Add missing doctring."""
 
+from openfisca_core.holders import set_input_divide_by_period
 from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.populations import DIVIDE
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person, Family
