@@ -22,15 +22,15 @@ Titled_Property = build_entity(
             "key": "owner",
             "plural": "owners",
             "label": "Owners",
-            "doc": "The one or more persons who hold title for the property."
+            "doc": "The one or more persons who hold title for the property.",
             },
         {
             "key": "other",
             "plural": "others",
             "label": "Others",
-            "doc": "People who are not in any other role"
-            }
-        ]
+            "doc": "People who are not in any other role",
+            },
+        ],
     )
 
 Person = build_entity(
@@ -72,7 +72,7 @@ Family = build_entity(
             "key": "principal_caregiver",
             "label": "Principal caregiver",
             "doc": "The one person who is the principal caregiver of a family.",
-            "max": 1
+            "max": 1,
             },
         {
             "key": "parent",
@@ -84,21 +84,21 @@ Family = build_entity(
             "key": "partner",
             "plural": "partners",
             "label": "Partners",
-            "doc": "The one or more persons who are partners of a family principal caregiver."
+            "doc": "The one or more persons who are partners of a family principal caregiver.",
             },
         {
             "key": "child",
             "plural": "children",
             "label": "Children",
-            "doc": "The children of a family."
+            "doc": "The children of a family.",
             },
         {
             "key": "other",
             "plural": "others",
             "label": "Other",
-            "doc": "All other members of a family/whānau."
-            }
-        ]
+            "doc": "All other members of a family/whānau.",
+            },
+        ],
     )
 
 entities = [Titled_Property, Person, Family]
