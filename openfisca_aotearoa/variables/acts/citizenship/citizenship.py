@@ -105,7 +105,7 @@ class citizenship__meets_5_year_presence_requirement(Variable):
         required_days = parameters(period).citizenship.by_grant.minimum_days_present_in_preceeding_5_years
         days_present = persons("days_present_in_new_zealand_in_preceeding_5_years", period)
 
-        return (days_present >= required_days)
+        return days_present >= required_days
 
 
 class days_present_in_new_zealand_in_preceeding_5_years(Variable):

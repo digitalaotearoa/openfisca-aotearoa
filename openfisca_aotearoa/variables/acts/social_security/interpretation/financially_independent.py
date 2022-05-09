@@ -25,7 +25,7 @@ class social_security__is_financially_independent(Variable):
         recieves_gov_assisted_payments = persons("social_security__recieves_goverment_assisted_scheme_payments", period)
         recieves_benefit = persons("social_security__recieves_main_benefit", period)
 
-        return (in_full_employment + recieves_grant + recieves_gov_assisted_payments + recieves_benefit)
+        return in_full_employment + recieves_grant + recieves_gov_assisted_payments + recieves_benefit
 
 
 class social_security__recieves_goverment_assisted_scheme_payments(Variable):

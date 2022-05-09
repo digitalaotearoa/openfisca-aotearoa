@@ -55,7 +55,7 @@ class social_security__meets_young_parent_payment_single_persons_requirements(Va
 
         # TODO section_5
 
-        return (section_2 + section_3 + section_4)
+        return section_2 + section_3 + section_4
 
 
 class social_security__family_income_under_young_parent_payment_threshold(Variable):

@@ -85,7 +85,7 @@ class rates_rebates__maximum_income_for_full_rebate(Variable):
 
         rates_total = titled_properties("rates_rebates__rates_total", period)
 
-        return (((((rates_total - initial_contribution) - rebate) - ((rates_total - initial_contribution) / 3)) * 8) + allowable_income)
+        return ((((rates_total - initial_contribution) - rebate) - ((rates_total - initial_contribution) / 3)) * 8) + allowable_income
 
 
 class rates_rebates__minimum_income_for_no_rebate(Variable):
@@ -107,4 +107,4 @@ class rates_rebates__minimum_income_for_no_rebate(Variable):
 
         rates_total = titled_properties("rates_rebates__rates_total", period)
 
-        return (((((rates_total - initial_contribution) - rebate) - ((rates_total - initial_contribution) / 3)) * 8) + allowable_income)
+        return ((((rates_total - initial_contribution) - rebate) - ((rates_total - initial_contribution) / 3)) * 8) + allowable_income
