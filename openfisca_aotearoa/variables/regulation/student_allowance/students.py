@@ -1,3 +1,5 @@
+"""TODO: Add missing doctring."""
+
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 

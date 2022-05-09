@@ -1,3 +1,5 @@
+"""TODO: Add missing doctring."""
+
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core.periods import DAY
 from openfisca_core.variables import Variable
