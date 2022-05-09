@@ -8,7 +8,7 @@ from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and entitlement system
-from openfisca_aotearoa.entities import Titled_Property, Person
+from openfisca_aotearoa.entities import Person, Titled_Property
 
 
 class rates_rebates__dependants(Variable):

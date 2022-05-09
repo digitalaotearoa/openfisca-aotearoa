@@ -1,4 +1,4 @@
-"""This file is from the OpenFisca default country template and as such can be removed"""
+"""This file is from the OpenFisca default country template and as such can be removed."""
 
 import json
 import os

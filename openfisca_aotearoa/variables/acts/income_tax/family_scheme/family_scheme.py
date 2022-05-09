@@ -5,7 +5,7 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.populations import DIVIDE
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 class family_scheme__base_qualifies(Variable):
@@ -31,8 +31,6 @@ class family_scheme__caregiver_age_qualifies(Variable):
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518479.html#DLM1518479"
 
     def formula(persons, period, parameters):
-        print(period)
-        print(period.start)
         return persons("age", period.start) >= parameters(period).entitlements.income_tax.family_scheme.principal_caregiver_age_threshold
 
 

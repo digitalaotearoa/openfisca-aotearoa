@@ -3,7 +3,7 @@
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 """
 MSD Policy (retrieved August 2018 from )

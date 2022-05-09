@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not, clip
+from numpy import clip, logical_not
 
 from openfisca_core.periods import DAY, ETERNITY
 from openfisca_core.variables import Variable

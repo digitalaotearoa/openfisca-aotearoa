@@ -5,7 +5,7 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 # Re-usable variable for having a partner

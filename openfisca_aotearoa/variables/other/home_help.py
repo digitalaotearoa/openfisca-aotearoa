@@ -3,7 +3,7 @@
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 class home_help__had_multiple_birth(Variable):

@@ -1,11 +1,11 @@
 """TODO: Add missing doctring."""
 
-from numpy import datetime64, where, logical_not as not_
+from numpy import datetime64, logical_not as not_, where
 
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 class best_start__eligibility(Variable):

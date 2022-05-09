@@ -1,11 +1,12 @@
 """TODO: Add missing doctring."""
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
+from openfisca_core.holders import set_input_dispatch_by_period
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
-from openfisca_aotearoa.entities import *
+from openfisca_aotearoa.entities import Person
 
 
 class income_tax__residence(Variable):

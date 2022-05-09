@@ -5,7 +5,7 @@ from numpy import logical_not as not_
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 class is_attending_school(Variable):

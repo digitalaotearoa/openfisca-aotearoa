@@ -116,18 +116,19 @@ class days_present_in_new_zealand_in_preceeding_5_years(Variable):
 
     def formula(persons, period, parameters):
 
-        sum = 0
+        sum_ = 0
         "\t\t** -> days_present_in_new_zealand_in_preceeding_5_years"
         for offset in range((days_since_n_years_ago(period.date, 5) * -1), 1):
             p = period.offset(offset)
-            sum += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
+            sum_ += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
 
-        return sum
+        return sum_
 
 
 def days_since_n_years_ago(day, n=1):
     """
     Note does not include the day itself.
+
     e.g. days since 1 years ago for
     1-June-2013 would count from 2-June-2012,
     to 1-June-2013, thus 365 days
@@ -152,13 +153,13 @@ class days_present_in_new_zealand_in_preceeding_year(Variable):
 
     def formula(persons, period, parameters):
 
-        sum = 0
+        sum_ = 0
 
         start_date = days_since_n_years_ago(period.date)
         for p in [period.offset(offset) for offset in range((start_date * -1), 0)]:
-            sum += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
+            sum_ += (persons("was_present_in_nz_and_entitled_to_indefinite_stay", p) * 1)
 
-        return sum
+        return sum_
 
 
 class was_present_in_nz_and_entitled_to_indefinite_stay(Variable):
