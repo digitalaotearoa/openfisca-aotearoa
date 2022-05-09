@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
 from openfisca_aotearoa.entities import Person
 from openfisca_core.model_api import MONTH, Variable

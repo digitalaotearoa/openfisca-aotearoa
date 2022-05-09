@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core.model_api import *

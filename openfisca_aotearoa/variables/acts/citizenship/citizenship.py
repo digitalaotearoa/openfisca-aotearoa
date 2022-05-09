@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
 from openfisca_core.model_api import Variable
 from openfisca_core.periods import DAY, ETERNITY
