@@ -13,7 +13,7 @@
   output:
     social_security__eligible_for_jobseeker_support: [true, true, false, false, false]
 
-- name: Social Security — Job Seeker Support — Prior to 2013-07-15
+- name: Social Security — Jobseeker Support — Prior to commencement
   period: 2013-07-14
   description: |
     Jobseeker Support commenced on 15 July 2013.
@@ -24,11 +24,24 @@
   output:
     jobseeker_support: [0, 0, 0, 0, 0]
 
-- name: Social Security — Job Seeker Support — From 2013-07-15 onward — Without full-time employment
+- name: Social Security — Jobseeker Support — Not in full-time employment
   period: 2013-07-15
-  description: A person in full-time employment is not entitled to Jobseeker Support.
+  description: |
+    A person not in full-time employment could be entitled to Jobseeker Support.
   input:
     fulltime_employment: [false, false, false, false, false]
+    age: [17, 18, 19, 20, 21]
+  output:
+    jobseeker_support: [1, 1, 1, 1, 1]
+
+- name: Social Security — Jobseeker Support — In full-time employment but losing earnings from health injury
+  period: 2013-07-15
+  description: |
+    A person in full-time employment but losing earnings from health injury
+    could be entitled to Jobseeker Support.
+  input:
+    fulltime_employment: [true, true, true, true, true]
+    losing_earnings_from_health_injury: [true, true, true, true, true]
     age: [17, 18, 19, 20, 21]
   output:
     jobseeker_support: [1, 1, 1, 1, 1]
