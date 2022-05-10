@@ -15,6 +15,6 @@ class jobseeker_support(variables.Variable):
     def formula_2013_07_15(people, period, parameters):
         work_gap = people("work_gap", period)
         age = people("age", period)
-        net_weekly_benefit = parameters(period).legislation.jobseeker_support.net_weekly_benefit
+        net_weekly_benefit = parameters(period).jobseeker_support.net_weekly_benefit
 
         return work_gap * net_weekly_benefit[age]
