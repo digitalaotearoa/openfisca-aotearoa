@@ -1,41 +1,38 @@
-17:
-  metadata:
-    reference:
-      2013-07-15:
-        title: Social Security Act 1964
-        href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
-      2018-11-26:
-        title: Social Security Act 2018
-        href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145
-  values:
+description: Jobseeker Support cut-out points
+metadata:
+  type: single_amount
+  reference:
     2013-07-15:
-        value: false
+      title: Social Security Act 1964
+      href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
+    2018-11-26:
+      title: Social Security Act 2018
+      href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145
 
-18:
-  metadata:
-    reference:
+brackets:
+  - threshold:
       2013-07-15:
-        title: Social Security Act 1964
-        href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
-      2018-11-26:
-        title: Social Security Act 2018
-        href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145
-  values:
-    2013-07-15:
+        value: 18
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-15-july-2013-01.html
+            title: Social Security Act 1964
+            href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
+    amount:
+      2013-07-15:
         value: 137.47
-    2019-04-01:
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2019-01.html
+            title: Net weekly benefit
+            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-15-july-2013-01.html
+      2019-04-01:
         value: 145.98
-    2022-04-01:
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/jobseeker-support-cut-out-points-current.html
+          title: Jobseeker Support cut-out points
+          href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2019-01.html
+      2022-04-01:
         value: 233.75
+        metadata:
+          reference:
+          title: Jobseeker Support cut-out points
+          href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/jobseeker-support-cut-out-points-current.htm
