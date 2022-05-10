@@ -42,7 +42,7 @@
     fulltime_employment: [false, false, false, false, false, false, false]
     age: [17, 18, 19, 20, 21, 24, 25]
   output:
-    jobseeker_support: [false, 145.98, 145.98, 182.47, 182.47, 182.47, 218.98]
+    jobseeker_support: [false, 143.55, 143.55, 179.44, 179.44, 179.44, 215.34]
 
 - name: Social Security — Jobseeker Support — Not in full-time employment
   period: 2018-11-26
@@ -52,7 +52,7 @@
     fulltime_employment: [false, false, false, false, false, false, false]
     age: [17, 18, 19, 20, 21, 24, 25]
   output:
-    jobseeker_support: [false, 145.98, 145.98, 182.47, 182.47, 182.47, 218.98]
+    jobseeker_support: [false, 143.55, 143.55, 179.44, 179.44, 179.44, 215.34]
 
 - name: Social Security — Jobseeker Support — Not in full-time employment
   period: 2022-04-01
