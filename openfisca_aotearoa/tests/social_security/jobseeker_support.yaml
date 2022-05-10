@@ -13,18 +13,12 @@
   output:
     social_security__eligible_for_jobseeker_support: [true, true, false, false, false]
 
-- name: Social Security — Job Seeker Support — Without fulltime employment
-  period: 2018-11
+- name: Social Security — Job Seeker Support — With fulltime employment
+  period: 2013-07-15
   input:
-    fulltime_employment: false
+    fulltime_employment: [true, true, true, true, true]
     age:
-      2018-11-01: [21, 18, 6, 99, 50]
-    social_security__is_ordinarily_resident_in_new_zealand: [true, true, true, true, true]
-    is_resident: [true, true, true, true, true]
-    number_of_years_lived_in_nz: [10, 10, 2, 5, 50]
-    social_security__has_dependant_child: [false, true, false, false, false]
-    jobseeker_support__below_income_threshold: [true, true, true, true, false]
-    jobseeker_support__is_prepared_for_employment: [true, true, true, false, false]
+      2018-11-01: [17, 18, 19, 20, 21]
 
   output:
     jobseeker_support: [0, 0, 0, 0, 0]
