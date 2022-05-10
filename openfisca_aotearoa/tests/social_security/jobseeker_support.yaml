@@ -19,29 +19,59 @@
     Jobseeker Support commenced on 15 July 2013.
     Consequently, any scenario before this date outputs zero.
   input:
-    fulltime_employment: [false, false, false, false, false]
-    age: [17, 18, 19, 20, 21]
+    fulltime_employment: [false, false, false, false, false, false, false]
+    age: [17, 18, 19, 20, 21, 24, 25]
   output:
-    jobseeker_support: [0, 0, 0, 0, 0]
+    jobseeker_support: [false, false, false, false, false, false, false]
 
 - name: Social Security — Jobseeker Support — Not in full-time employment
   period: 2013-07-15
   description: |
     A person not in full-time employment could be entitled to Jobseeker Support.
   input:
-    fulltime_employment: [false, false, false, false, false]
-    age: [17, 18, 19, 20, 21]
+    fulltime_employment: [false, false, false, false, false, false, false]
+    age: [17, 18, 19, 20, 21, 24, 25]
   output:
-    jobseeker_support: [1, 1, 1, 1, 1]
+    jobseeker_support: [false, 137.47, 137.47, 171.84, 171.84, 171.84, 206.21]
+
+- name: Social Security — Jobseeker Support — Not in full-time employment
+  period: 2018-11-25
+  description: |
+    A person not in full-time employment could be entitled to Jobseeker Support.
+  input:
+    fulltime_employment: [false, false, false, false, false, false, false]
+    age: [17, 18, 19, 20, 21, 24, 25]
+  output:
+    jobseeker_support: [false, 145.98, 145.98, 182.47, 182.47, 182.47, 218.98]
+
+- name: Social Security — Jobseeker Support — Not in full-time employment
+  period: 2018-11-26
+  description: |
+    A person not in full-time employment could be entitled to Jobseeker Support.
+  input:
+    fulltime_employment: [false, false, false, false, false, false, false]
+    age: [17, 18, 19, 20, 21, 24, 25]
+  output:
+    jobseeker_support: [false, 145.98, 145.98, 182.47, 182.47, 182.47, 218.98]
+
+- name: Social Security — Jobseeker Support — Not in full-time employment
+  period: 2022-04-01
+  description: |
+    A person not in full-time employment could be entitled to Jobseeker Support.
+  input:
+    fulltime_employment: [false, false, false, false, false, false, false]
+    age: [17, 18, 19, 20, 21, 24, 25]
+  output:
+    jobseeker_support: [false, 233.75, 233.75, 274.37, 274.37, 274.37, 315.00]
 
 - name: Social Security — Jobseeker Support — In full-time employment but losing earnings from health injury
-  period: 2013-07-15
+  period: 2022-04-01
   description: |
     A person in full-time employment but losing earnings from health injury
     could be entitled to Jobseeker Support.
   input:
-    fulltime_employment: [true, true, true, true, true]
-    losing_earnings_from_health_injury: [true, true, true, true, true]
-    age: [17, 18, 19, 20, 21]
+    fulltime_employment: [true, true, true, true, true, true, true]
+    losing_earnings_from_health_injury: [true, true, true, true, true, true, true]
+    age: [17, 18, 19, 20, 21, 24, 25]
   output:
-    jobseeker_support: [1, 1, 1, 1, 1]
+    jobseeker_support: [false, 233.75, 233.75, 274.37, 274.37, 274.37, 315.00]
