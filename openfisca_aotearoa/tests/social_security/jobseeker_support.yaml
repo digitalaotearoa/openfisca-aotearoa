@@ -13,12 +13,22 @@
   output:
     social_security__eligible_for_jobseeker_support: [true, true, false, false, false]
 
-- name: Social Security — Job Seeker Support — With fulltime employment
+- name: Social Security — Job Seeker Support — Prior to 2013-07-15
+  period: 2013-07-14
+  description: |
+    Jobseeker Support commenced on 15 July 2013.
+    Consequently, any scenario before this date outputs zero.
+  input:
+    fulltime_employment: [false, false, false, false, false]
+    age: [17, 18, 19, 20, 21]
+  output:
+    jobseeker_support: [0, 0, 0, 0, 0]
+
+- name: Social Security — Job Seeker Support — From 2013-07-15 onward — With full-time employment
   period: 2013-07-15
+  description: A person in full-time employment is not entitled to Jobseeker Support.
   input:
     fulltime_employment: [true, true, true, true, true]
-    age:
-      2018-11-01: [17, 18, 19, 20, 21]
-
+    age: [17, 18, 19, 20, 21]
   output:
     jobseeker_support: [0, 0, 0, 0, 0]
