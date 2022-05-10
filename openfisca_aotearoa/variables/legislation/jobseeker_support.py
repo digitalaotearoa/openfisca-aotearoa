@@ -16,5 +16,6 @@ class jobseeker_support(variables.Variable):
 
     def formula_2013_07_15(people, period, parameters):
         fulltime_employment = people("fulltime_employment", period)
+        losing_earnings_from_health_injury = people("losing_earnings_from_health_injury", period)
 
-        return numpy.logical_not(fulltime_employment)
+        return numpy.logical_not(fulltime_employment) + fulltime_employment * losing_earnings_from_health_injury
