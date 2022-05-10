@@ -1,58 +1,14 @@
-- name: Job Seeker Support Scenarios
-  period: 2018-08
-  absolute_error_margin: 0
+- name: Social Security — Job Seeker Support — Eligibility
+  period: 2018-11
   input:
-    persons:
-      Mama:
-        age:
-          "2018-08-01": 21
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
-        number_of_years_lived_in_nz: 10
-        jobseeker_support__below_income_threshold: true
-        jobseeker_support__is_prepared_for_employment: true
-
-      Dada:
-        age:
-          "2018-08-01": 18
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
-        number_of_years_lived_in_nz: 10
-        social_security__has_dependant_child: true
-        jobseeker_support__below_income_threshold: true
-        jobseeker_support__is_prepared_for_employment: true
-
-      Tama:
-        age:
-          "2018-08-01": 6
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
-        number_of_years_lived_in_nz: 2
-        jobseeker_support__below_income_threshold: true
-        jobseeker_support__is_prepared_for_employment: true
-
-      Papa:
-        age:
-          "2018-08-01": 99
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
-        number_of_years_lived_in_nz: 5
-        jobseeker_support__below_income_threshold: true
-        jobseeker_support__is_prepared_for_employment: false
-
-      Alan:
-        age:
-          "2018-08-01": 50
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
-        number_of_years_lived_in_nz: 50
-        jobseeker_support__below_income_threshold: false
-        jobseeker_support__is_prepared_for_employment: false
+    age:
+      2018-11-01: [21, 18, 6, 99, 50]
+    social_security__is_ordinarily_resident_in_new_zealand: [true, true, true, true, true]
+    is_resident: [true, true, true, true, true]
+    number_of_years_lived_in_nz: [10, 10, 2, 5, 50]
+    social_security__has_dependant_child: [false, true, false, false, false]
+    jobseeker_support__below_income_threshold: [true, true, true, true, false]
+    jobseeker_support__is_prepared_for_employment: [true, true, true, false, false]
 
   output:
-    social_security__eligible_for_jobseeker_support:
-      - true # mama
-      - true # dada
-      - false # tama
-      - false # papa
-      - false # alan
+    social_security__eligible_for_jobseeker_support: [true, true, false, false, false]
