@@ -22,7 +22,7 @@ And then run:
 
 ```sh
 pyenv install 3.10.4
-pyenv virtualenv openfisca-aotearoa-3.10.4
+pyenv virtualenv 3.10.4 openfisca-aotearoa-3.10.4
 pyenv local openfisca-aotearoa-3.10.4
 python --version # This should match the version in .python-version file
 ```
