@@ -1,0 +1,26 @@
+name: Rules tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7.2
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.7.2"
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip build twine
+        pip install --use-deprecated=legacy-resolver --upgrade --editable ".[dev]"
+    - name: Run tests
+      run: make test
