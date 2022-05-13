@@ -1,6 +1,10 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
+from datetime import date
+
+from openfisca_core.periods import ETERNITY
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
 
 
@@ -15,6 +19,6 @@ class is_of_full_capacity(Variable):
 class date_of_injury(Variable):
     value_type = date
     entity = Person
-    label = u"Date of injury, ACC act does not explicitly define this term but does add to it for specific circumstances"
+    label = "Date of injury, ACC act does not explicitly define this term but does add to it for specific circumstances"
     definition_period = ETERNITY  # This variable cannot change over time.
-    reference = u""
+    reference = ""

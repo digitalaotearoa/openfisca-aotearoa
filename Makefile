@@ -1,6 +1,42 @@
+all: test
+
+uninstall:
+	pip freeze | grep -v "^-e" | xargs pip uninstall -y
+
 clean:
 	rm -rf build dist
 	find . -name '*.pyc' -exec rm \{\} \;
 
-test:
-	openfisca-run-test --country-package openfisca_aotearoa openfisca_aotearoa/tests
+deps:
+	pip install --upgrade pip build twine
+
+install: deps
+	@# Install OpenFisca-Aotearoa for development.
+	@# `make install` installs the editable version of OpenFisca-Aotearoa.
+	@# This allows contributors to test as they code.
+	pip install --upgrade --editable .[dev] --use-deprecated=legacy-resolver
+
+build: clean deps
+	@# Install OpenFisca-Aotearoa for deployment and publishing.
+	@# `make build` allows us to be be sure tests are run against the packaged version
+	@# of OpenFisca-Aotearoa, the same we put in the hands of users and reusers.
+	python -m build
+	find dist -name "*.whl" -exec pip install --force-reinstall {}[dev] \;
+
+check-syntax-errors:
+	python -m compileall -q .
+
+format-style:
+	@# Do not analyse .gitignored files.
+	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
+	pyupgrade `git ls-files | grep "\.py$$"`
+	autopep8 `git ls-files | grep "\.py$$"`
+
+check-style:
+	@# Do not analyse .gitignored files.
+	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
+	flake8 `git ls-files | grep "\.py$$"`
+	pylint `git ls-files | grep "\.py$$"`
+
+test: clean check-syntax-errors check-style
+	openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests

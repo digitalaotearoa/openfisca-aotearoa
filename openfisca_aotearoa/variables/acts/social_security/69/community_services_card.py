@@ -1,32 +1,32 @@
-# -*- coding: utf-8 -*-
+"""MSD Policy (retrieved August 2018 from https://www.workandincome.govt.nz/map/card-services/community-services-card/qualifications.html).
+
+To be able to receive a Community Services Card, a client must:
+
+*   receive an income tested benefit or
+*   be a child for whom an Orphans Benefit, an Unsupported Childs Benefit or a Child Disability Allowance is paid or
+*   receive a Residential Care Subsidy or
+*   receive New Zealand Superannuation and meet an income test or
+*   receive Veteran's Pension or
+*   receive weekly income compensation (paid by Veterans' Affairs) or
+*   receive weekly compensation (paid by Veterans' Affairs) or
+*   be a full time student, generally be ordinarily resident and meet an income test or
+
+*   for people with dependent children
+    *   meet an income test and generally be ordinarily resident in New Zealand or
+    *   be eligible to receive Working for Families Tax Credits (where Inland Revenue applies a Residency test)
+
+*   for people with no children:
+    *   meet an income test
+    *   generally be ordinarily resident and
+    *   be aged over 16 years old, but not be a dependent child
+"""
+
+from numpy import logical_not as not_
+
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
-from openfisca_core.model_api import *
-
-"""
-MSD Policy (retrieved August 2018 from )
-    https://www.workandincome.govt.nz/map/card-services/community-services-card/qualifications.html
-
-    To be able to receive a Community Services Card, a client must:
-
-    *   receive an income tested benefit or
-    *   be a child for whom an Orphans Benefit, an Unsupported Childs Benefit or a Child Disability Allowance is paid or
-    *   receive a Residential Care Subsidy or
-    *   receive New Zealand Superannuation and meet an income test or
-    *   receive Veteran's Pension or
-    *   receive weekly income compensation (paid by Veterans' Affairs) or
-    *   receive weekly compensation (paid by Veterans' Affairs) or
-    *   be a full time student, generally be ordinarily resident and meet an income test or
-
-    *   for people with dependent children
-        *   meet an income test and generally be ordinarily resident in New Zealand or
-        *   be eligible to receive Working for Families Tax Credits (where Inland Revenue applies a Residency test)
-
-    *   for people with no children:
-        *   meet an income test
-        *   generally be ordinarily resident and
-        *   be aged over 16 years old, but not be a dependent child
-"""
 
 
 class social_security__eligible_for_community_services_card(Variable):
@@ -38,33 +38,33 @@ class social_security__eligible_for_community_services_card(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resident_or_citizen = persons('is_citizen_or_resident', period)
-        in_nz = persons('social_security__is_ordinarily_resident_in_new_zealand', period)
+        resident_or_citizen = persons("is_citizen_or_resident", period)
+        in_nz = persons("social_security__is_ordinarily_resident_in_new_zealand", period)
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
         age_requirement = persons("age", period.start) >= parameters(
             period).entitlements.social_security.community_services_card.age_threshold
         low_income = persons(
-            'community_services_card__below_income_threshold', period)
+            "community_services_card__below_income_threshold", period)
         dependent_children = persons(
-            'social_security__has_dependant_child', period)
+            "social_security__has_dependant_child", period)
         is_fulltime_student = persons(
-            'social_security__is_fulltime_student', period)
+            "social_security__is_fulltime_student", period)
         received_superannuation = persons(
-            'social_security__received_superannuation', period)
+            "social_security__received_superannuation", period)
         eligible_for_wff = persons(
-            'family_scheme__qualifies_for_working_for_families', period)
+            "family_scheme__qualifies_for_working_for_families", period)
         childs_benefit = \
-            persons('social_security__received_orphans_benefit', period) +\
-            persons('social_security__received_unsupported_childs_benefit', period) +\
-            persons('social_security__received_child_disability_allowance', period)
+            persons("social_security__received_orphans_benefit", period) +\
+            persons("social_security__received_unsupported_childs_benefit", period) +\
+            persons("social_security__received_child_disability_allowance", period)
 
         return \
-            persons('social_security__received_income_tested_benefit', period.this_year) +\
-            persons('social_security__received_residential_care_subsidy', period) +\
-            persons('veterans_support__received_veterans_pension', period) +\
-            persons('veterans_support__received_weekly_income_compensation', period) +\
-            persons('veterans_support__received_weekly_compensation', period) +\
+            persons("social_security__received_income_tested_benefit", period.this_year) +\
+            persons("social_security__received_residential_care_subsidy", period) +\
+            persons("veterans_support__received_veterans_pension", period) +\
+            persons("veterans_support__received_weekly_income_compensation", period) +\
+            persons("veterans_support__received_weekly_compensation", period) +\
             childs_benefit +\
             (received_superannuation * low_income) +\
             (is_fulltime_student * low_income) +\
@@ -165,5 +165,5 @@ class has_community_services_card(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
-    label = u"Has a current Community Services Card"
-    reference = u"https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"
+    label = "Has a current Community Services Card"
+    reference = "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"

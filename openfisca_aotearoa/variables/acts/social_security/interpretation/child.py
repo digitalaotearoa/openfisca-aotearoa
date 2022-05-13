@@ -1,32 +1,36 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
-from openfisca_aotearoa.entities import Person, Family
+from numpy import logical_not as not_
+
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
+from openfisca_aotearoa.entities import Family, Person
 
 
 class social_security__has_dependant_child(Variable):
     value_type = bool
     entity = Person
-    label = u"has a dependent child (or children)"
+    label = "has a dependent child (or children)"
     definition_period = MONTH
 
 
 class social_security__is_a_child(Variable):
     value_type = bool
     entity = Person
-    label = u"""child means a single person under the age of 18 years, other than a person who is—
+    label = """child means a single person under the age of 18 years, other than a person who is—
         (a) aged 16 years or 17 years; and
         (b) financially independent
         """
     definition_period = MONTH
-    reference = u""
+    reference = ""
 
     def formula(persons, period, parameters):
-        under_16 = persons('age', period.start) < 16
-        under_18 = persons('age', period.start) < 18
+        under_16 = persons("age", period.start) < 16
+        under_18 = persons("age", period.start) < 18
 
         financially_independent = persons(
-            'social_security__is_financially_independent', period)
+            "social_security__is_financially_independent", period)
 
         return under_16 + (under_18 * not_(financially_independent))
 
@@ -60,7 +64,7 @@ class social_security__is_dependent_child(Variable):
     # (f) for the purposes of clause 1(a) and (b) of Schedule 18A (rates of winter energy payment), has the meaning given to it by clause 2 of Schedule 18A
 
     def formula(persons, period, parameters):
-        return persons('social_security__is_a_child', period) * persons('is_dependent_child', period)
+        return persons("social_security__is_a_child", period) * persons("is_dependent_child", period)
 
 
 class social_security__has_child_in_family(Variable):
@@ -70,5 +74,5 @@ class social_security__has_child_in_family(Variable):
     label = "Family has a child"
 
     def formula(families, period, parameters):
-        children = families.members('social_security__is_a_child', period)
+        children = families.members("social_security__is_a_child", period)
         return families.any(children, role=Family.CHILD)

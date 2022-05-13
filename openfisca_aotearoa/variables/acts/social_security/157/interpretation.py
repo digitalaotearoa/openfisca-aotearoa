@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
 
 
@@ -10,7 +12,7 @@ class social_security__spouse_is_a_specified_beneficiary(Variable):
     definition_period = MONTH
     label = """his or her spouse is a specified beneficiary within the meaning of paragraphs (b) to (d) of the definition
         of that term in section 157."""
-    reference = u"""
+    reference = """
     specified beneficiary means a person who is married, in a civil union, or in a de facto relationship and
         receives in his or her own right
     (a) [Repealed]

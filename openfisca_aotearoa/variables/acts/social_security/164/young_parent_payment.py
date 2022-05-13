@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
+"""TODO: Add missing doctring."""
 
-from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
 from openfisca_aotearoa.entities import Person
 
 
@@ -10,7 +12,7 @@ class social_security__eligible_for_young_parent_payment(Variable):
     definition_period = MONTH
     label = "Eligible for Young Parent Payment"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
-    u"""
+    """
 
     164 Young parent payment: basic criteria
     (1) The basic qualifications for entitlement to a young parent payment are in subsection (2). The qualifications for a single person are in section 165.
@@ -26,16 +28,16 @@ class social_security__eligible_for_young_parent_payment(Variable):
 
     def formula(persons, period, parameters):
         basic_requirements = persons(
-            'social_security__meets_young_parent_payment_basic_requirements', period)
+            "social_security__meets_young_parent_payment_basic_requirements", period)
 
         single_requirements = persons(
-            'social_security__meets_young_parent_payment_single_persons_requirements', period)
+            "social_security__meets_young_parent_payment_single_persons_requirements", period)
         in_relationship_requirements = persons(
-            'social_security__meets_young_parent_payment_in_relationship_requirements', period)
+            "social_security__meets_young_parent_payment_in_relationship_requirements", period)
 
         # 74AA (2)
         residency = persons(
-            'social_security__meets_residential_requirements_for_certain_benefits', period)
+            "social_security__meets_residential_requirements_for_certain_benefits", period)
 
         return basic_requirements * (single_requirements + in_relationship_requirements) * residency
 
@@ -46,7 +48,7 @@ class social_security__meets_young_parent_payment_basic_requirements(Variable):
     definition_period = MONTH
     label = "Meets young parent payment basic requirements"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
-    u"""
+    """
     (2) The basic qualifications for entitlement to a young parent payment are that the young person
         (a) is aged 16 to 19 years; and
         (b) is a parent or step-parent of a dependent child or dependent children; and
@@ -66,16 +68,16 @@ class social_security__meets_young_parent_payment_basic_requirements(Variable):
 
     def formula(persons, period, parameters):
         # (a) is aged 16 to 19 years; and
-        age_test = (persons('age', period.start) >= 16) * \
-            (persons('age', period.start) < 20)
+        age_test = (persons("age", period.start) >= 16) * \
+            (persons("age", period.start) < 20)
 
         # (b) is a parent or step-parent of a dependent child or dependent children; and
-        is_parent_of_dependent_children = (persons('is_a_parent', period) + persons(
-            'is_a_step_parent', period)) * persons('has_dependent_child', period)
+        is_parent_of_dependent_children = (persons("is_a_parent", period) + persons(
+            "is_a_step_parent", period)) * persons("has_dependent_child", period)
 
         # (e) has no income or an income of less than the amount that would fully abate the young parent payment.
         income_test = persons(
-            'social_security__income_under_young_parent_payment_threshold', period)
+            "social_security__income_under_young_parent_payment_threshold", period)
 
         return age_test * is_parent_of_dependent_children * income_test
 
@@ -87,7 +89,7 @@ class social_security__income_under_young_parent_payment_threshold(Variable):
     label = "Is their income under the Young Parent Payment threshold?"
 
     def formula(persons, period, parameters):
-        yearly_income = (persons('monthly_income', period) * 12)
+        yearly_income = (persons("monthly_income", period) * 12)
         yearly_income_threshold = (
             52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold)
         return yearly_income < yearly_income_threshold

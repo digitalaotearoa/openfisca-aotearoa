@@ -1,7 +1,8 @@
+"""TODO: Add missing doctring."""
 
-# -*- coding: utf-8 -*-
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
 
-from openfisca_core.model_api import *
 from openfisca_aotearoa.entities import Person
 
 

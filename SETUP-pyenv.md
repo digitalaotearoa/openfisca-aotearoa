@@ -1,48 +1,47 @@
-## Setup Aotearoa Open Fisca in pyenv
+## Setup Aotearoa OpenFisca
 
-### Step 1: Install pyenv
-
-```sh
-curl https://pyenv.run | bash
-```
-
-### Step 2: Clone the repo
+### Step 1: Clone the repo
 
 ```sh
 git clone https://github.com/ServiceInnovationLab/openfisca-aotearoa.git
 cd openfisca-aotearoa
 ```
 
-### Step 3: Install python using pyenv
-We want to use the exact version of python we use on the official servers
+### Step 2: Install Python
+
+Install [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv).
+
+And then add to `.bashrc` or `.zshrc`:
 
 ```sh
- pyenv install < .python-version
- python --version # This should match the version in .python-version file
+eval "$(pyenv init -)"
+if which pyenv-virtualenv-init >/dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 ```
 
-### If `ModuleNotFoundError: No module named '_ctypes'`
->
->     sudo apt-get update
->     sudo apt-get install libffi-dev
->
-More problems? [Try the instructions here](https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul#41310760)
-
-
-#### Step 4: Install Dev dependencies
+And then run:
 
 ```sh
-pip install -r requirements.txt
+pyenv install 3.10.4
+pyenv virtualenv 3.10.4 openfisca-aotearoa-3.10.4
+pyenv local openfisca-aotearoa-3.10.4
+python --version # This should match the version in .python-version file
+```
+
+### Step 3: Install dev dependencies
+
+```sh
+pip install --upgrade pip build twine
+pip install --use-deprecated=legacy-resolver --upgrade --editable ".[dev]"
 ```
 
 :tada: This OpenFisca Country Package is now installed and ready!
 
-## Step 5: Running the tests
+### Step 4: Running the tests
 
 ```sh
-pip install -e ".[test]"
 make test
 ```
+
 > [Learn more about tests](https://openfisca.org/doc/coding-the-legislation/writing_yaml_tests.html)
 
 :tada: This OpenFisca Aotearoa Package is now installed and ready!
