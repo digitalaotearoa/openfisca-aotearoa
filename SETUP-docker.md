@@ -4,7 +4,7 @@
 
 - [Install Docker](https://www.docker.com/get-started).
 - Build the docker image: `docker build . -t openfisca-aotearoa`
-- Run the image: `docker run -it -p 5000:5000 openfisca-aotearoa`
+- Run the image: `docker run -it -v .:/openfisca -p 5000:5000 openfisca-aotearoa`
 
 ## Serve OpenFisca Aotearoa with the OpenFisca Web API
 
