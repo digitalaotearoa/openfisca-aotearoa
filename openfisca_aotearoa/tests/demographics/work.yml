@@ -1,0 +1,12 @@
+- name: Demographics — Work — Work gap
+  period: 1000-01-01
+  description: |
+    A person not in full-time employment has a work gap.
+    A person in full-time employment but losing earnings from health injury also has a work gap.
+    A person in any other case has not a work gap.
+  input:
+    fulltime_employment: [false, true, true, false]
+    losing_earnings_from_health_injury: [true, true, false, false]
+
+  output:
+    work_gap: [true, true, false, true]
