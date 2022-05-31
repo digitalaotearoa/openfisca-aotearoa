@@ -13,11 +13,6 @@ docker run -v .:/openfisca -t openfisca # to run openfisca and connect log/error
 docker run -v .:/openfisca -t openfisca -d # To run in background (see it running using `docker ps` and logs with `docker logs openfisca`
 ```
 
-### Docker Compose 
-
-With `docker-compose` you can run `docker-compose up` or `docker-compose up -d` to run OpenFisca in your dev Docker environment. Settings are read from the `docker-compose.yml` file, the same file we use in testing and production.
-
-
 
 ## Writing the Legislation
 
