@@ -1,6 +1,5 @@
 # OpenFisca Aotearoa
 
-[![CircleCI](https://circleci.com/gh/ServiceInnovationLab/openfisca-aotearoa/tree/master.svg?style=svg)](https://circleci.com/gh/ServiceInnovationLab/openfisca-aotearoa/tree/master)
 
 ## Get Started 
 
@@ -24,15 +23,8 @@ Please also read [the wiki](https://github.com/ServiceInnovationLab/openfisca-ao
 ### The Lab Team's server
 
 An instance of Open Fisca is running at
-[http://api.rules.nz/](http://api.rules.nz/)
+[http://rac.g0v.nz/](http://rac.rg0v.nz/)
 
-and an app called "Rapu Ture" is available to explore which variables exist
-[https://www.rules.nz/](http://www.rules.nz/)
-
-
-## Install Instructions for Users and Contributors
-
-This package requires [Python 3](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) .
 
 ## Installing this Country Package (Aotearoa New Zealand)
 
