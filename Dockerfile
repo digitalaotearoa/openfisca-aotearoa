@@ -1,4 +1,5 @@
 FROM python:3-stretch
+COPY . /openfisca
 WORKDIR /openfisca
 
 RUN pip install --upgrade pip && \
