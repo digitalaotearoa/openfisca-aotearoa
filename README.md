@@ -21,7 +21,7 @@ docker run -v ${PWD}:/openfisca -p 5000:5000 -t openfisca -d
 
 *Note that we're using -v to map the local directory inside of the container 
 so you shouldn't have to rebuild the container while developing and 
-testing changes in your development environment. If you have something running locally on port 5000, you can change the `-p 5000:5000` to an unocupied local port like 5005 in this example: `-p 5005:5000`*
+testing changes in your development environment. If you have something running locally on port 5000, you can change the `-p 5000:5000` to an unocupied local port like 5005 like this: `-p 5005:5000`*
 
 
 ## Writing the Legislation
