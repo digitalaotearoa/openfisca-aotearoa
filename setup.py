@@ -26,7 +26,7 @@ setup(
             ),
         ],
     install_requires = [
-        "numpy",
+        "numpy >= 1.11, < 1.21'",
         "openfisca-core[web-api] >= 35.0.0, < 36.0.0",
         ],
     extras_require = {
