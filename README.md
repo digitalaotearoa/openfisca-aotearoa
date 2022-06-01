@@ -9,7 +9,7 @@ Requirements:
 
 ```
 # Using the `Dockerfile` in this repo build a docker container tagged/named `openfisca`
-docker build . -t openfisca # to build container using repo's `Dockerfile`
+docker build . -t openfisca 
 
 # to run openfisca and connect log/error output to your terminal
 docker run -v ${PWD}:/openfisca -p 5000:5000 -t openfisca
