@@ -38,5 +38,11 @@ check-style:
 	flake8 `git ls-files | grep "\.py$$"`
 	pylint `git ls-files | grep "\.py$$"`
 
+dockerbuild:
+	docker build . -t openfisca
+
+dockerserve:
+	docker run -v ${PWD}:/openfisca -p 5000:5000 -t openfisca
+
 test: clean check-syntax-errors check-style
 	openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests
