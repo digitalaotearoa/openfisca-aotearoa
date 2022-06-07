@@ -1,6 +1,6 @@
 services:
   openfisca-aotearoa:
-    image: python:3.7-buster
+    image: python:3.10
     container_name: openfisca_aotearoa_dev
     working_dir: /openfisca
     restart: always
@@ -9,8 +9,8 @@ services:
             git config --global core.autocrlf true && 
             cd /openfisca && 
             pip install --upgrade pip && 
-            pip install -e . &&
-            openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000"
+            pip install -e .[dev] --use-deprecated=legacy-resolver &&
+            tail -f /dev/null"
     ports:
     - '5000:5000'
     volumes:
