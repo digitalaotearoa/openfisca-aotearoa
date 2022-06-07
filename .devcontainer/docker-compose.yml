@@ -1,0 +1,17 @@
+services:
+  openfisca-aotearoa:
+    image: python:3.7-buster
+    container_name: openfisca_aotearoa_dev
+    working_dir: /openfisca
+    restart: always
+    command: >
+      sh -c "git config --global core.filemode false && 
+            git config --global core.autocrlf true && 
+            cd /openfisca && 
+            pip install --upgrade pip && 
+            pip install -e . &&
+            openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000"
+    ports:
+    - '5000:5000'
+    volumes:
+    - ../:/openfisca
