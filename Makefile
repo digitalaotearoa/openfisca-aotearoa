@@ -44,5 +44,8 @@ dockerbuild:
 dockerserve:
 	docker run -v ${PWD}:/openfisca -p 5000:5000 -t openfisca
 
-test: clean check-syntax-errors check-style
+test: clean check-syntax-errors
 	openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests
+
+serve:
+	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000
