@@ -1,0 +1,66 @@
+ahoyapi: v2
+
+commands:
+  build:
+    cmd: |
+      docker-compose -f dev-docker-compose.yml up -d --build
+      ahoy install
+    usage: Build the docker-compose containers.
+
+  up:
+    cmd: docker-compose -f dev-docker-compose.yml up -d
+    usage: Start the docker-compose containers.
+
+  stop:
+    cmd: docker-compose -f dev-docker-compose.yml stop
+    usage: Stop the docker-compose containers.
+
+  down:
+    cmd: docker-compose -f dev-docker-compose.yml down
+    usage: Destroy the docker-compose containers.
+
+  ps:
+    cmd: docker-compose -f dev-docker-compose.yml ps
+    usage: Show docker-compose containers.
+
+  logs:
+    cmd: docker-compose -f dev-docker-compose.yml logs
+    usage: Show logs for the docker-compose containers.
+  
+  restart:
+    cmd: docker-compose -f dev-docker-compose.yml restart
+    usage: Restart the docker-compose containers.
+
+  cli:
+    cmd: docker-compose -f dev-docker-compose.yml exec openfisca bash
+    usage: Start a shell in the container (like ssh without actual ssh).
+
+  run:
+    cmd: docker-compose -f dev-docker-compose.yml exec openfisca bash -c "$*"
+    usage: Run a command in the container
+
+  install:
+    cmd: ahoy run "pip install --upgrade pip build twine && pip install --upgrade --editable .[dev] --use-deprecated=legacy-resolver"
+    usage: Install OpenFisca-Aotearoa for development
+
+  test:
+    cmd: |
+      ahoy check-syntax-errors
+      ahoy check-style
+      ahoy run "openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests/${1:-*}"
+    usage:
+      Run tests within the container. Optional parameter to run specific tests using relative path
+      eg. ahoy test social_security
+      eg. ahoy test social_security/jobseeker_support.yaml
+
+  check-syntax-errors:
+    cmd: ahoy run "make check-syntax-errors"
+    usage: Check syntax errors
+
+  format-style:
+    cmd: ahoy run "make format-style"
+    usage: Format style
+
+  check-style:
+    cmd: ahoy run "make check-style"
+    usage: Check style
