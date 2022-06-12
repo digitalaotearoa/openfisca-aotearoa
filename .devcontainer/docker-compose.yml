@@ -5,7 +5,7 @@ services:
     working_dir: /openfisca
     restart: always
     command: >
-      sh -c "git config --global core.filemode false && 
+      bash -c "git config --global core.filemode false && 
             git config --global core.autocrlf true && 
             cd /openfisca && 
             pip install --upgrade pip && 
