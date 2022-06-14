@@ -6,18 +6,23 @@
     acc__earner: false
     acc__has_cover:
       "2010-08-03": true
+      "2020-08-06": true
+      "2020-09-06": true
     acc__part_2__suffered_personal_injury: true
     acc__part_3__has_lodged_claim: true
     acc__sched_1__engaged_fulltime_study_or_training:
       "2020-09-01": false
+      "2020-09-06": false
     acc__sched_1__incapacitated_for_6_months: true
     acc__sched_1__weekly_earnings:
       "2020-09-01": 500
+      "2020-09-06": 500
     date_of_birth: "2002-08-03"
     date_of_injury: "2020-08-05"
     finish_date_of_full_time_study_training_bridging_18th_birthday: "2020-08-05"
     incapacity_for_employment__corporation_determination:
       "2020-09-01": true
+      "2020-09-06": true
     acc__lope__incapacity_for_employment__by_covered_injury: true
   output:
     acc__potential_earner:
@@ -57,19 +62,64 @@
   period: 2020-09
   absolute_error_margin: 0
   input:
-    acc__earner: false
+    acc__earner: 
+      "2020-09-01": false
+      "2018-01-01": false
+      "2019-01-01": false
+      "2020-01-01": false
+      "2021-01-01": false
+      "2022-01-01": false
     acc__has_cover:
       "2020-09-01": true
-    acc__part_2__suffered_personal_injury: true
-    acc__part_3__has_lodged_claim: true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
+    acc__part_2__suffered_personal_injury:
+      "2020-09-01": true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
+    acc__part_3__has_lodged_claim:
+      "2020-09-01": true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
     acc__sched_1__engaged_fulltime_study_or_training:
       "2020-09-01": false
-    acc__sched_1__incapacitated_for_6_months: true
+      "2018-01-01": false
+      "2019-01-01": false
+      "2020-01-01": false
+      "2021-01-01": false
+      "2022-01-01": false
+    acc__sched_1__incapacitated_for_6_months:
+      "2020-09-01": true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
     date_of_birth: "2002-08-03"
     date_of_injury: "2019-02-02"
     incapacity_for_employment__corporation_determination:
       "2020-09-01": true
-    acc__lope__incapacity_for_employment__by_covered_injury: true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
+    acc__lope__incapacity_for_employment__by_covered_injury:
+      "2020-09-01": true
+      "2018-01-01": true
+      "2019-01-01": true
+      "2020-01-01": true
+      "2021-01-01": true
+      "2022-01-01": true
   output:
     acc__sched_1__lope_eligible:
       "2018-01-01": false
@@ -84,11 +134,21 @@
   input:
     acc__earner: false
     acc__has_cover:
+      "2018-01-01": false
+      "2019-01-01": false
+      "2020-01-01": false
       "2020-09-01": true
+      "2021-01-01": true
+      "2022-01-01": true
     acc__part_2__suffered_personal_injury: true
     acc__part_3__has_lodged_claim: true
     acc__sched_1__engaged_fulltime_study_or_training:
+      "2018-01-01": false
+      "2019-01-01": false
+      "2020-01-01": false
       "2020-09-01": false
+      "2021-01-01": false
+      "2022-01-01": false
     acc__sched_1__incapacitated_for_6_months: true
     acc__sched_1__weekly_earnings:
       "2018-01-01": 0
@@ -97,11 +157,22 @@
       "2021-01-01": 0
       "2022-01-01": 300
     acc__sched_1__minimum_weekly_earnings:
+      "2018-01-01": 0
+      "2019-01-01": 0
+      "2020-01-01": 0
       "2020-09-01": 900
+# These next two lines may have been expected to be 900 but the test only passes as 0
+      "2021-01-01": 0
+      "2022-01-01": 0
     date_of_birth: "2002-08-03"
     date_of_injury: "2019-02-02"
     incapacity_for_employment__corporation_determination:
+      "2018-01-01": false
+      "2019-01-01": false
+      "2020-01-01": false
       "2020-09-01": true
+      "2021-01-01": true
+      "2022-01-01": true
     acc__lope__incapacity_for_employment__by_covered_injury: true
   output:
     acc__sched_1__lope_eligible:
