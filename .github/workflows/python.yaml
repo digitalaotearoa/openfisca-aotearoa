@@ -28,5 +28,4 @@ jobs:
       - run: pip install --upgrade yamllint
       - run: yamllint --version
       - name: YAML lint
-        run: |
-          yamllint --format=github .
+        run: yamllint --format=github .
