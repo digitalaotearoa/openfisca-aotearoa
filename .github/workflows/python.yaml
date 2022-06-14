@@ -15,3 +15,13 @@ jobs:
         run: make deps
       - name: Run tests
         run: make test
+  pythonlint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install --upgrade flake8
+      - run: flake8
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install --upgrade yamllint
+      - run: yamllint .
