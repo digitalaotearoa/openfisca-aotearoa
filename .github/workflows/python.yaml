@@ -18,10 +18,12 @@ jobs:
   pythonlint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: pip install --upgrade flake8
       - run: flake8
   yamllint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: pip install --upgrade yamllint
       - run: yamllint .
