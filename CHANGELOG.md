@@ -1,6 +1,6 @@
 # Changelog
 
-# 12.0.1 [15](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/15)
+# 12.1.0 [16](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/16)
 * Removal of some tests while underlying issue in openfisca core is resolved (see openfisca_core/holders/helpers.py and period days)
 * Adjustments to some tests to account for above issue
 * Breaking changes:
