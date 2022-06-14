@@ -1,0 +1,19 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10.4
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e .[dev] --use-deprecated=legacy-resolver
+      - name: Run tests
+        run: make test
