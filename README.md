@@ -1,44 +1,6 @@
 # OpenFisca Aotearoa
 
 
-## Get Started 
-
-Requirements:
-
-* Ahoy
-  https://ahoy-cli.readthedocs.io/en/latest/#installation
-
-* Docker
-
-```
-# Using the `dev-docker-compose.yml` in this repo to configure and build the `openfisaca` container
-ahoy build
-
-# to run openfisca container background
-ahoy up
-
-# to view openfisca logs
-ahoy logs
-
-# Attach to openfisca container
-ahoy cli
-
-# Run a command in the openfisca container
-ahoy run "openfisca --help"
-
-# Install dev requirements for tests
-ahoy install
-
-# Run tests
-ahoy test
-```
-
-*Note that we're using `volumes:` property in `dev-docker-compose.yml` to map the local directory inside of the container 
-so you shouldn't have to rebuild the container while developing and testing changes in your development environment. 
-If you have something running locally on port 5000, you can change the `ports:` property in `dev-docker-compose.yml` 
-`- 5000:5000` to an unoccupied local port like 5005 like this: `- 5005:5000`*
-
-
 ## Writing the Legislation
 
 This is an experiment. We've coded large swathes of New Zealand's legislation, regulation, and some government policy into rules that run in the Open Fisca calculation engine. We've released all the code here, for anyone to use.
@@ -47,7 +9,7 @@ From late January 2018, the Service Innovation Lab (LabPlus) facilitated a cross
 
 Please also read [the wiki](https://github.com/ServiceInnovationLab/openfisca-aotearoa/wiki) as a way of introduction.
 
-### The Lab Team's server
+### The Team's server
 
 An instance of Open Fisca is running at
 [http://rac.g0v.nz/](http://rac.rg0v.nz/)
@@ -81,6 +43,10 @@ There are 3 documented ways to do this - Pick your tech:
 ### B. Advanced Installation - for devs, modifying the rules and code
 
 Follow this tutorial if you wish to change the OpenFisca-Aotearoa rules or contribute to the source code.
+
+Read the [Setup OpenFisca Aotearoa in vscode with devcontainer](SETUP-devcontainer.md) instructions to setup a development environment in Visual Studio Code using the VSCode Development container approach.
+
+Or
 
 Read the [Setup Aotearoa Open Fisca in pyenv](SETUP-pyenv.md) instructions to manage python runtimes and eggs
 
