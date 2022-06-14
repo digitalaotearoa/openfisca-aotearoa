@@ -125,7 +125,7 @@
         parental_leave__is_the_biological_mother: true
         parental_leave__transferred_her_entitlement_to_spouse: true # Doesn't make sense, as this person doesn't have  spouse
       "biological father":
-          parental_leave__is_the_biological_mother: false
+        parental_leave__is_the_biological_mother: false
     families:
       "a family":
         principal_caregiver: "biological father"

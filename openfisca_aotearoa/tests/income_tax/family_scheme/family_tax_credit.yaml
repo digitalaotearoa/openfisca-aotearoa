@@ -35,9 +35,6 @@
         date_of_birth: 1999-01-01
         family_scheme__assessable_income:
           2018: 20000
-
-
-
         family_scheme__family_tax_credit_income_under_threshold: false
       "Rakinui":
         date_of_birth: 1996-01-01
