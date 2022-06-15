@@ -67,7 +67,7 @@ class age_of_partner(Variable):
     entity = Person
     definition_period = DAY
     unit = "years"
-    label = "The age of partner in a family"
+    label = "The maximum age of partner in a family"
 
     def formula(persons, period, parameters):
-        return persons.family.members("age", period, role=Family.PARTNER)
+        return persons.family.max(persons.family.members("age", period), role=Family.PARTNER)

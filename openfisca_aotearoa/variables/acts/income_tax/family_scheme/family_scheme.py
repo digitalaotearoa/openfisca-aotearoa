@@ -58,7 +58,7 @@ class family_scheme__full_time_earner(Variable):
         hours_per_week_threshold_with_partner = parameters(period).entitlements.social_security.family_scheme.hours_per_week_threshold_with_partner
 
         return ((has_partner == 0) * (persons("hours_per_week_employed", period) >= hours_per_week_threshold)) +\
-            ((has_partner > 0) * (persons.family.sum(persons.family.members("hours_per_week_employed", period, role=Family.PARTNER)) >= hours_per_week_threshold_with_partner))
+            ((has_partner > 0) * (persons.family.sum(persons.family.members("hours_per_week_employed", period), role=Family.PARTNER) >= hours_per_week_threshold_with_partner))
 
 
 class family_scheme__assessable_income(Variable):

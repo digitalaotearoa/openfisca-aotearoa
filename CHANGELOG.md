@@ -1,5 +1,14 @@
 # Changelog
 
+# 12.1.0 [16](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/16)
+* Removal of some tests while underlying issue in openfisca core is resolved (see openfisca_core/holders/helpers.py and period days)
+* Adjustments to some tests to account for above issue
+* Breaking changes:
+ - age_of_partner now returns the maximum age of partners rather than assuming one as this section was failing to run after upgrade
+
+# 12.0.0 [13](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/13)
+* Allows utilisation of the vscode .devcontainer development process. Requires container environment.
+
 # 12.0.0 [183](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/183)
 * Upgrade to Open Fisca Core 30.x
 * Breaking changes:
