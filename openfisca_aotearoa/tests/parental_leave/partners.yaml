@@ -18,7 +18,7 @@
         - true
 
 - name: "Parental Leave and Employment Protection Act - Mother transfers entitlement"
-  period: 2019-01
+  period: 2019-03
   input:
     persons:
       "biological mother":
