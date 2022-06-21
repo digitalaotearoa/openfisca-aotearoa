@@ -26,7 +26,7 @@ commands:
   logs:
     cmd: docker-compose -f dev-docker-compose.yml logs
     usage: Show logs for the docker-compose containers.
-  
+
   restart:
     cmd: docker-compose -f dev-docker-compose.yml restart
     usage: Restart the docker-compose containers.

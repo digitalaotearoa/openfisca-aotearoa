@@ -9,6 +9,7 @@ clean:
 
 deps:
 	pip install --upgrade pip build twine
+	pip install -e .[dev] --use-deprecated=legacy-resolver
 
 install: deps
 	@# Install OpenFisca-Aotearoa for development.
@@ -53,3 +54,6 @@ endif
 
 serve:
 	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000
+
+lint:
+	yamllint . && flake8

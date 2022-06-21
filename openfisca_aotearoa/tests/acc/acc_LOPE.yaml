@@ -62,7 +62,7 @@
   period: 2020-09
   absolute_error_margin: 0
   input:
-    acc__earner: 
+    acc__earner:
       "2020-09-01": false
       "2018-01-01": false
       "2019-01-01": false
