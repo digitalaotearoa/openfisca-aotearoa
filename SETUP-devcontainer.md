@@ -9,7 +9,7 @@
 5. Install the `ms-vscode-remote.vscode-remote-extensionpack` Visual Studio Code extension from the Extensions menu (Ctrl+Shift+X)
 6. Click on "Open folder", then select the git repository folder downloaded in Step 3
 7. A popup should appear stating the "Folder contians a Dev Container configuration file". Click on the "Reopen in Container" button.
-8. Click on "View log" to look at the progress of the environment being setup. NOTE: The environment should be setup in a few minutes but vscode command prompt becomes active when the container starts, NOT when openfisca finishes installing - so if the openfisca commands fail, give it some time.
+8.  Click on "View Log" to see the environment set-up progress. Full set-up can take a minute or two. Wait for the packages to install. The VScode command prompt becomes active as soon as the container starts, not when Openfisca finishes installing. If the Openfisca commands fail, wait a few seconds, and then try again.
 
 ## Run the OpenFisca Web API or tests from the dev container
 
