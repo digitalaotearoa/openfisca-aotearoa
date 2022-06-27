@@ -12,7 +12,7 @@ Please also read [the wiki](https://github.com/ServiceInnovationLab/openfisca-ao
 ### The Team's server
 
 An instance of Open Fisca is running at
-[https://rac.g0v.nz/](https://rac.rg0v.nz/)
+[https://rac.g0v.nz/](https://rac.g0v.nz/)
 
 
 ## Installing this Country Package (Aotearoa New Zealand)
