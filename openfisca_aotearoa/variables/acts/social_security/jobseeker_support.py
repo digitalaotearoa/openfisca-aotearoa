@@ -132,15 +132,23 @@ class jobseeker_support_reduction(variables.Variable):
         # Add documentation.
         income = people("income", period)
 
-        # Calculate `income_test_1` for each person's `income` at `period`.
-        income_test_1 = (
+        # Calculate `income_test_1_a` for each person's `income` at `period`.
+        income_test_1_a = (
             parameters(period)
             .jobseeker_support
-            .income_test_1
+            .income_test_1_a
+            .calc(income)
+            )
+
+        # Calculate `income_test_1_a` for each person's `income` at `period`.
+        income_test_1_b = (
+            parameters(period)
+            .jobseeker_support
+            .income_test_1_b
             .calc(income)
             )
 
         # Calculate total "reduction" for each person.
-        reduction = net_weekly_benefit - income * income_test_1
+        reduction = net_weekly_benefit - income * income_test_1_a - income * income_test_1_b
 
         return reduction
