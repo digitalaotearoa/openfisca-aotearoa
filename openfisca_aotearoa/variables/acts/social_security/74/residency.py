@@ -7,6 +7,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+## TODO: Review against the new 2018 act
 class social_security__meets_residential_requirements_for_certain_benefits(Variable):
     value_type = bool
     entity = Person
@@ -40,6 +41,7 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
             + (is_refugee_or_protected * enough_years_in_nz)
 
 
+## TODO: Review against the new 2018 act
 class social_security__is_ordinarily_resident_in_new_zealand(Variable):
     value_type = bool
     entity = Person
@@ -49,6 +51,7 @@ class social_security__is_ordinarily_resident_in_new_zealand(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html"
 
 
+## TODO: Review against the new 2018 act
 class social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time(Variable):
     value_type = bool
     entity = Person
