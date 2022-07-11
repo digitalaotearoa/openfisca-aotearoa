@@ -64,4 +64,6 @@ class social_security__eligible_for_jobseeker_support(Variable):
         is_available_for_work = persons("jobseeker_support__is_available_for_work", period)
         age_requirements = persons("jobseeker_support__meets_age_threshold", period)
         
+        ## TODO: Plus residency
+        
         return has_work_gap * is_available_for_work * age_requirements
