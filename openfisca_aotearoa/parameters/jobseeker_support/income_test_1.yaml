@@ -1,0 +1,40 @@
+description: Jobseeker Support income test 1
+metadata:
+  type: single_amount
+  reference:
+    2013-07-15:
+      title: Social Security Act 1964
+      href: TODO
+    2018-11-26:
+      title: Social Security Act 2018
+      href: TODO
+
+brackets:
+  - threshold:
+      2013-07-15:
+        value: 160
+        metadata:
+          reference:
+            title: Between $160 and $250 a week
+            href: TODO
+    amount:
+      2013-07-15:
+        value: .30
+        metadata:
+          reference:
+            title: $0.30 per $1 of income
+            href: TODO
+  - threshold:
+      2013-07-15:
+        value: 250
+        metadata:
+          reference:
+            title: More than $250 a week
+            href: TODO
+    amount:
+      2013-07-15:
+        value: .70
+        metadata:
+          reference:
+            title: $0.70 per $1 of income
+            href: TODO

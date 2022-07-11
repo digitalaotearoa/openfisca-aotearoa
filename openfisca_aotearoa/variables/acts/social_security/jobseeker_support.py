@@ -33,7 +33,7 @@ class jobseeker_support(variables.Variable):
     value_type = float
     entity = entities.Person
     definition_period = periods.DAY
-    label = "Jobseeker Support eligibility and amount"
+    label = "Jobseeker Support after reduction"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144"
 
     # Define how to calculate `jobseeker_support`.
@@ -45,6 +45,22 @@ class jobseeker_support(variables.Variable):
     # For more information on OpenFisca's formulas and their evolution:
     # https://openfisca.org/doc/coding-the-legislation/40_legislation_evolutions.html?highlight=dated#formula-evolution
     def formula_2013_07_15(people, period, parameters):
+        eligible = people("jobseeker_support_eligible", period)
+        net_weekly_benefit = people("jobseeker_support_net_weekly_benefit", period)
+        reduction = people("jobseeker_support_reduction", period)
+
+        # Calculate amount of Jobseeker Support.
+        return eligible * (net_weekly_benefit - reduction)
+
+
+class jobseeker_support_eligible(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.DAY
+    label = "Jobseeker Support eligibility"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144"
+
+    def formula_2018_11_26(people, period, parameters):
         # Calculate `work_gap` for each person in `people` at `period`.
         #
         # It is called `people` and not `person` because it actually contains
@@ -54,6 +70,21 @@ class jobseeker_support(variables.Variable):
         # https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html
         work_gap = people("work_gap", period)
 
+        # Add "available_for_work"
+        # Add "age_requirement"
+        # Add "residential_requirement"
+        # Add "no_or_minimum_income"
+        return people("work_gap", period)
+
+
+class jobseeker_support_net_weekly_benefit(variables.Variable):
+    value_type = float
+    entity = entities.Person
+    definition_period = periods.DAY
+    label = "Jobseeker Support amount before reduction"
+    reference = "TODO"
+
+    def formula_2013_07_15(people, period, parameters):
         # Get `age` for each person in `people` at `period`.
         #
         # The value of `period` can either be represent an `instant`, like
@@ -84,5 +115,32 @@ class jobseeker_support(variables.Variable):
             .calc(age)
             )
 
-        # Calculate eligibility and amount of Jobseeker Support.
-        return work_gap * net_weekly_benefit
+        return net_weekly_benefit
+
+
+class jobseeker_support_reduction(variables.Variable):
+    value_type = float
+    entity = entities.Person
+    definition_period = periods.DAY
+    label = "Jobseeker Support reduction amount"
+    reference = "TODO"
+
+    def formula_2018_11_26(people, period, parameters):
+        # Get "net_weekly_benefit" for each person.
+        net_weekly_benefit = people("jobseeker_support_net_weekly_benefit", period)
+
+        # Add documentation.
+        income = people("income", period)
+
+        # Calculate `income_test_1` for each person's `income` at `period`.
+        income_test_1 = (
+            parameters(period)
+            .jobseeker_support
+            .income_test_1
+            .calc(income)
+            )
+
+        # Calculate total "reduction" for each person.
+        reduction = net_weekly_benefit - income * income_test_1
+
+        return reduction
