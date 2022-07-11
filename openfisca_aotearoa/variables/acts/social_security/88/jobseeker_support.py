@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
+from openfisca_core.periods import MONTH, WEEK
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
@@ -40,10 +40,7 @@ class jobseeker_support__meets_age_threshold(Variable):
 class social_security__eligible_for_jobseeker_support(Variable):
     value_type = bool
     entity = Person
-    # We need week, but core doesn't support this yet
-    # https://github.com/openfisca/openfisca-core/issues/763
-    # definition_period = WEEK.
-    definition_period = MONTH
+    definition_period = WEEK
     label = "Eligible for Job Seeker Support"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
