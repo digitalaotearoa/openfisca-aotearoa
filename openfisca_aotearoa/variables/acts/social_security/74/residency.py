@@ -7,6 +7,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+## TODO: Review against the new 2018 act
 class social_security__meets_residential_requirements_for_certain_benefits(Variable):
     value_type = bool
     entity = Person
@@ -54,7 +55,6 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     #  (for example, a convention) signed by New Zealand and the Government of that country set out in a schedule of the order have force
     #   and effect so far as they relate to New Zealand."
     #
-
     #  (c) except in the case of a person who is recognised as a refugee or
     #      a protected person in New Zealand under
     #      the Immigration Act 2009, has resided continuously in New Zealand

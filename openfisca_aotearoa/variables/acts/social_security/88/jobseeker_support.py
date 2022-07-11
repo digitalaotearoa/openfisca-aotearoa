@@ -36,7 +36,8 @@ class jobseeker_support__meets_age_threshold(Variable):
         return over_age_threshold + over_age_threshold_with_dependent_child
 
 
-class eligible_for_jobseeker(Variable):
+# TODO: Review against the new 2018 act
+class social_security__eligible_for_jobseeker_support(Variable):
     value_type = bool
     entity = Person
     # We need week, but core doesn't support this yet
