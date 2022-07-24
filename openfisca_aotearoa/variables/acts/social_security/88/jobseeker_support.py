@@ -44,7 +44,7 @@ class social_security__eligible_for_jobseeker_support(Variable):
     label = "Eligible for Job Seeker Support"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
-    def formula_1964(persons, period, parameters):
+    def formula_1964_01_01(persons, period, parameters):
         # The applicant
         residency_requirements = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
 
@@ -58,12 +58,11 @@ class social_security__eligible_for_jobseeker_support(Variable):
 
         return age_requirement * income * prepared * residency_requirements
 
-    def formula_2018(persons, period, parameters):
+    def formula_2018_01_01(persons, period, parameters):
         
         has_work_gap = persons("jobseeker_support__has_work_gap", period)
         is_available_for_work = persons("jobseeker_support__is_available_for_work", period)
         age_requirements = persons("jobseeker_support__meets_age_threshold", period)
+        residency = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
         
-        ## TODO: Plus residency
-        
-        return has_work_gap * is_available_for_work * age_requirements
+        return has_work_gap * is_available_for_work * age_requirements * residency
