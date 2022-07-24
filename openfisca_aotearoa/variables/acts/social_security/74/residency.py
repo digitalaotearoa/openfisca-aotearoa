@@ -58,7 +58,7 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     #      a protected person in New Zealand under
     #      the Immigration Act 2009, has resided continuously in New Zealand
     #      for a period of at least 2 years at any one time,
-    def formula_2018_01_01(persons, period, parameters):
+    def formula_2018_11_26(persons, period, parameters):
 
         has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
             persons("immigration__is_recognised_refugee", period) + \

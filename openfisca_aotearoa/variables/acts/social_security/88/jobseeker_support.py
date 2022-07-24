@@ -61,7 +61,7 @@ class social_security__eligible_for_jobseeker_support(Variable):
 
         return age_requirement * income * prepared * residency_requirements
 
-    def formula_2018_01_01(persons, period, parameters):
+    def formula_2018_11_26(persons, period, parameters):
 
         has_work_gap = persons("jobseeker_support__has_work_gap", period)
         is_available_for_work = persons("jobseeker_support__is_available_for_work", period)
