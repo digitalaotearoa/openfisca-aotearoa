@@ -39,27 +39,25 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
         return (is_citizen_or_resident * ordinarily_lives_in_nz) \
             + (is_refugee_or_protected * enough_years_in_nz)
 
-    """
-    https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138
-    16 Residential requirement
-    (1) This section sets out the residential requirement that must be met by applicants for certain types of assistance under this Part.
-    (2) A person (P) meets the residential requirement if—
-        (a) P is a New Zealand citizen or holds a residence class visa under the Immigration Act 2009, and is ordinarily resident in New Zealand when P 
-     first applies for the benefit, and—
-            (i) has resided continuously in New Zealand for a period of at least 2 years at any one time after becoming a citizen or resident; or
-            (ii) is recognised as a refugee or a protected person in New Zealand under the Immigration Act 2009; or
-       (b) P is ordinarily resident in a country with which New Zealand has a reciprocity agreement, and P has resided continuously in New Zealand for a period of at least 2 years before applying for the benefit or before a decision on P’s claim for the benefit is made.
-    (3) For the purposes of subsection (2)(b), New Zealand has a reciprocity agreement with another country if there is in force under
-     section 380 an order declaring that the provisions contained in an agreement
-     (for example, a convention) signed by New Zealand and the Government of that country set out in a schedule of the order have force
-      and effect so far as they relate to New Zealand."
-        
+    # https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138
+    # 16 Residential requirement
+    # (1) This section sets out the residential requirement that must be met by applicants for certain types of assistance under this Part.
+    # (2) A person (P) meets the residential requirement if—
+    #     (a) P is a New Zealand citizen or holds a residence class visa under the Immigration Act 2009, and is ordinarily resident in New Zealand when P 
+    #  first applies for the benefit, and—
+    #         (i) has resided continuously in New Zealand for a period of at least 2 years at any one time after becoming a citizen or resident; or
+    #         (ii) is recognised as a refugee or a protected person in New Zealand under the Immigration Act 2009; or
+    #    (b) P is ordinarily resident in a country with which New Zealand has a reciprocity agreement, and P has resided continuously in New Zealand for a period of at least 2 years before applying for the benefit or before a decision on P’s claim for the benefit is made.
+    # (3) For the purposes of subsection (2)(b), New Zealand has a reciprocity agreement with another country if there is in force under
+    #  section 380 an order declaring that the provisions contained in an agreement
+    #  (for example, a convention) signed by New Zealand and the Government of that country set out in a schedule of the order have force
+    #   and effect so far as they relate to New Zealand."
+    #     
 
-     (c) except in the case of a person who is recognised as a refugee or
-         a protected person in New Zealand under
-         the Immigration Act 2009, has resided continuously in New Zealand
-         for a period of at least 2 years at any one time,
-    """
+    #  (c) except in the case of a person who is recognised as a refugee or
+    #      a protected person in New Zealand under
+    #      the Immigration Act 2009, has resided continuously in New Zealand
+    #      for a period of at least 2 years at any one time,
     def formula_2018_01_01(persons, period, parameters):
 
         has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
@@ -87,8 +85,6 @@ class social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2
     entity = Person
     label = "has resided continuously in New Zealand for a period of at least 2 years at any one time"
     definition_period = ETERNITY
-
-
 
 class social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement(Variable):
     value_type = bool
