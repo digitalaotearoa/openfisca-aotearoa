@@ -3,6 +3,7 @@
 import numpy
 
 from openfisca_core import periods, variables
+
 from openfisca_aotearoa import entities
 
 
