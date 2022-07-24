@@ -29,7 +29,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_community_services_card(Variable):
     value_type = bool
     entity = Person
@@ -76,7 +76,7 @@ class social_security__eligible_for_community_services_card(Variable):
 
 # TODO:
 # below are variables that still need to be implemented
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__received_orphans_benefit(Variable):
     value_type = bool
     entity = Person
@@ -85,7 +85,7 @@ class social_security__received_orphans_benefit(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5468365.html"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__received_unsupported_childs_benefit(Variable):
     value_type = bool
     entity = Person
@@ -94,7 +94,7 @@ class social_security__received_unsupported_childs_benefit(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361613.html"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__received_child_disability_allowance(Variable):
     value_type = bool
     entity = Person
@@ -103,7 +103,7 @@ class social_security__received_child_disability_allowance(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__received_residential_care_subsidy(Variable):
     value_type = bool
     entity = Person
@@ -150,7 +150,7 @@ class veterans_support__received_weekly_compensation(Variable):
     reference = "http://legislation.govt.nz/act/public/2014/0056/latest/link.aspx?id=DLM5602254"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__received_superannuation(Variable):
     value_type = bool
     entity = Person
@@ -159,7 +159,7 @@ class social_security__received_superannuation(Variable):
     reference = "http://legislation.govt.nz/act/public/1956/0047/latest/DLM446884.html"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_fulltime_student(Variable):
     value_type = bool
     entity = Person

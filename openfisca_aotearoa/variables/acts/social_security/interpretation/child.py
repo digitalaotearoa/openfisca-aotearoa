@@ -8,7 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__has_dependant_child(Variable):
     value_type = bool
     entity = Person
@@ -16,7 +16,7 @@ class social_security__has_dependant_child(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_a_child(Variable):
     value_type = bool
     entity = Person
@@ -45,7 +45,7 @@ class is_dependent_child(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_dependent_child(Variable):
     value_type = bool
     entity = Person
@@ -70,7 +70,7 @@ class social_security__is_dependent_child(Variable):
         return persons("social_security__is_a_child", period) * persons("is_dependent_child", period)
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__has_child_in_family(Variable):
     value_type = bool
     entity = Family

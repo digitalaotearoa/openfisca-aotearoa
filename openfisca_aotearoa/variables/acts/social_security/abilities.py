@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__child_with_serious_disability(Variable):
     value_type = bool
     entity = Person
@@ -20,7 +20,7 @@ class social_security__child_with_serious_disability(Variable):
         """
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_totally_blind(Variable):
     value_type = bool
     entity = Person
@@ -28,7 +28,7 @@ class social_security__is_totally_blind(Variable):
     label = "Person is totally blind"
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__has_severely_restricted_capacity_for_work(Variable):
     value_type = bool
     entity = Person
@@ -54,7 +54,7 @@ class social_security__has_severely_restricted_capacity_for_work(Variable):
     """
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__disability_was_self_inflicted(Variable):
     value_type = bool
     entity = Person

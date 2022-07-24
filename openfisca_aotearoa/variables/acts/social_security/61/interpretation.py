@@ -8,7 +8,7 @@ from openfisca_aotearoa.entities import Person
 # http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468373
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__has_accomodation_costs(Variable):
     value_type = bool
     entity = Person
@@ -34,7 +34,7 @@ class social_security__has_accomodation_costs(Variable):
     #     chief executive is satisfied the person is paying
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_a_beneficiary(Variable):
     value_type = bool
     entity = Person
@@ -57,7 +57,7 @@ class social_security__is_a_beneficiary(Variable):
             persons("veterans_support__is_being_paid_a_veterans_pension", period)
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_jobseeker_benefit(Variable):
     value_type = bool
     entity = Person
@@ -65,7 +65,7 @@ class social_security__is_being_paid_jobseeker_benefit(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_sole_parent_support(Variable):
     value_type = bool
     entity = Person
@@ -73,7 +73,7 @@ class social_security__is_being_paid_sole_parent_support(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_a_supported_living_payment(Variable):
     value_type = bool
     entity = Person
@@ -81,7 +81,7 @@ class social_security__is_being_paid_a_supported_living_payment(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_a_youth_payment(Variable):
     value_type = bool
     entity = Person
@@ -89,7 +89,7 @@ class social_security__is_being_paid_a_youth_payment(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_a_young_parent_payment(Variable):
     value_type = bool
     entity = Person
@@ -97,7 +97,7 @@ class social_security__is_being_paid_a_young_parent_payment(Variable):
     definition_period = MONTH
 
 
-## TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act
 class social_security__is_being_paid_an_emergency_benefit(Variable):
     value_type = bool
     entity = Person
