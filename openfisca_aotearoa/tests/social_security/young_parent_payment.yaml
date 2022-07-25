@@ -1,5 +1,5 @@
 - name: Young Parent Payment single young person
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
@@ -52,7 +52,7 @@
       - true
 
 - name: Young Parent Payment in a relationship
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
@@ -109,7 +109,7 @@
 
 
 - name: Young Parent Payment Residency
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
