@@ -37,7 +37,7 @@ class jobseeker_support__meets_age_threshold(Variable):
 
 
 # TODO: Review against the new 2018 act
-class jobseeker_is_eligible(Variable):
+class eligible_for_jobseeker(Variable):
     value_type = bool
     entity = Person
     # We need week, but core doesn't support this yet
