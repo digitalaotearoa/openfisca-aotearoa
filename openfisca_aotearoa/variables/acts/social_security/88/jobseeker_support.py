@@ -48,7 +48,7 @@ class eligible_for_jobseeker(Variable):
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
     # Note this is the date the 1964 act commenced, but jobseeker came later
-    def formula_1964_12_4(persons, period, parameters):
+    def formula_1964_12_04(persons, period, parameters):
         # The applicant
         residency_requirements = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
 
