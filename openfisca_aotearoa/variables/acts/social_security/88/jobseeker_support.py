@@ -37,7 +37,7 @@ class jobseeker_support__meets_age_threshold(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_jobseeker_support(Variable):
+class jobseeker_is_eligible(Variable):
     value_type = bool
     entity = Person
     # We need week, but core doesn't support this yet
@@ -61,6 +61,8 @@ class social_security__eligible_for_jobseeker_support(Variable):
 
         return age_requirement * income * prepared * residency_requirements
 
+    # Note the more people are eligible becuase there's no income test.
+    # but if the person's income is high the amount they get is zero
     def formula_2018_11_26(persons, period, parameters):
 
         has_work_gap = persons("jobseeker_support__has_work_gap", period)
