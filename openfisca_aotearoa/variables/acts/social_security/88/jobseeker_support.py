@@ -36,7 +36,6 @@ class jobseeker_support__meets_age_threshold(Variable):
         return over_age_threshold + over_age_threshold_with_dependent_child
 
 
-# TODO: Review against the new 2018 act
 class eligible_for_jobseeker(Variable):
     value_type = bool
     entity = Person
@@ -47,8 +46,9 @@ class eligible_for_jobseeker(Variable):
     label = "Eligible for Job Seeker Support"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
-    # Note this is the date the 1964 act commenced, but jobseeker came later
-    def formula_1964_12_04(persons, period, parameters):
+    # Note this is the commencement of an amendment (day after the 2013 amendment was assented)
+    # https://legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html?search=qs_act%40bill%40regulation%40deemedreg_jobseeker_resel_25_y&p=1
+    def formula_2013_04_17(persons, period, parameters):
         # The applicant
         residency_requirements = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
 
