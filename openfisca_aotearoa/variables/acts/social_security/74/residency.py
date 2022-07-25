@@ -14,7 +14,8 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     definition_period = MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363796.html"
 
-    def formula_1964_01_01(persons, period, parameters):
+    # Note this is the date the 1964 act commenced, but jobseeker came later
+    def formula_1964_12_4(persons, period, parameters):
         # (a) is a New Zealand citizen, or is a person who holds a residence
         # class visa under the Immigration Act 2009
         is_citizen_or_resident = persons("is_citizen_or_resident", period)
