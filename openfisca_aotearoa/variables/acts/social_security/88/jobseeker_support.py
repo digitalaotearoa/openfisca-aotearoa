@@ -43,7 +43,7 @@ class social_security__eligible_for_jobseeker_support(Variable):
     # We need week, but core doesn't support this yet
     # https://github.com/openfisca/openfisca-core/issues/763
     # definition_period = WEEK.
-    definition_period = DAY
+    definition_period = MONTH
     label = "Eligible for Job Seeker Support"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
