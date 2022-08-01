@@ -2,7 +2,7 @@
 
 import numpy
 
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
@@ -10,9 +10,10 @@ from openfisca_aotearoa import entities
 class fulltime_employment(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.WEEK
     label = "The person is not in full-time employment"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
+    set_input = holders.set_input_dispatch_by_period
 
 
 class hours_per_week_employed(variables.Variable):
@@ -25,15 +26,16 @@ class hours_per_week_employed(variables.Variable):
 class losing_earnings_from_health_injury(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.WEEK
     label = "The person is losing earnings from health injury"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
+    set_input = holders.set_input_dispatch_by_period
 
 
 class work_gap(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.WEEK
     label = "The person has a work gap"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
