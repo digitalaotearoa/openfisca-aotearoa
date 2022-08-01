@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
+from openfisca_core.periods import MONTH, WEEK
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
@@ -59,11 +59,11 @@ class social_security__eligible_for_jobseeker_support(Variable):
         return age_requirement * income * prepared * residency_requirements
 
     def formula_2018(persons, period, parameters):
-        
+
         has_work_gap = persons("jobseeker_support__has_work_gap", period)
         is_available_for_work = persons("jobseeker_support__is_available_for_work", period)
         age_requirements = persons("jobseeker_support__meets_age_threshold", period)
-        
+
         ## TODO: Plus residency
-        
+
         return has_work_gap * is_available_for_work * age_requirements

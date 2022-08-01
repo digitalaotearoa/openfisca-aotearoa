@@ -27,7 +27,7 @@ setup(
         ],
     install_requires = [
         "numpy",
-        "openfisca-core[web-api] >= 35.0.0, < 36.0.0",
+        "openfisca-core[dev] @ git+https://github.com/openfisca/openfisca-core.git#add-weeks",
         ],
     extras_require = {
         "dev": [

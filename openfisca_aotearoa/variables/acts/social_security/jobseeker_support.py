@@ -32,7 +32,7 @@ from openfisca_aotearoa import entities
 class jobseeker_support(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.WEEK
     label = "Jobseeker Support eligibility and amount"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144"
 
