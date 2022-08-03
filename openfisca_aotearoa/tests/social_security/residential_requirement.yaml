@@ -1,32 +1,64 @@
-# - name: 2018 — Residential requirement — Citizen
-#   input:
-#     citizen:
-#       day:2020-01-01:365: false # Leap year
-#       2022-12-31: true # 366th day of 2022
-#   output:
-#     residential_requirement:
-#       2022-12-30: false
-#       2022-12-31: true
+- name: 2018 — Residential requirement — Citizen
+  input:
+    citizen:
+      2022-12-31: [true, false]
+    resident:
+      2022-12-31: [false, false]
+    ordinarily_resident:
+      2022-12-31: [true, true]
+    first_application:
+      2022-12-31: [true, true]
+    continuous_residence:
+      2022-12-31: [true, true]
+  output:
+    residential_requirement:
+      2022-12-31: [true, false]
 
 
-# - name: 2018 — Residential requirement — Holds residence class visa
-#   input:
-#     resident:
-#       day:2020-01-01:365: false # Leap year
-#       2022-12-31: true # 366th day of 2022
-#   output:
-#     residential_requirement:
-#       2022-12-30: false
-#       2022-12-31: true
+- name: 2018 — Residential requirement — Holds residence class visa
+  input:
+    citizen:
+      2022-12-31: [false, false]
+    resident:
+      2022-12-31: [true, false]
+    ordinarily_resident:
+      2022-12-31: [true, true]
+    first_application:
+      2022-12-31: [true, true]
+    continuous_residence:
+      2022-12-31: [true, true]
+  output:
+    residential_requirement:
+      2022-12-31: [true, false]
 
 - name: 2018 — Residential requirement — Ordinary residence
   input:
     citizen:
-      day:2020-01-01:366: [true, true, true, true]
+      2022-12-31: [true, true, true, true]
+    resident:
+      2022-12-31: [false, false, false, false]
     ordinarily_resident:
-      day:2020-01-01:366: [true, true, false, false]
+      2022-12-31: [true, true, false, false]
     first_application:
-      2020-12-30: [true, false, true, false]
+      2022-12-31: [true, false, true, false]
+    continuous_residence:
+      2022-12-31: [true, true, true, true]
   output:
     residential_requirement:
-      2020-12-30: [true, true, false, true]
+      2022-12-31: [true, true, false, true]
+
+- name: 2018 — Residential requirement — Continuous residence in New Zealand
+  input:
+    citizen:
+      2022-12-31: [true, true]
+    resident:
+      2022-12-31: [false, false]
+    ordinarily_resident:
+      2022-12-31: [true, true]
+    first_application:
+      2022-12-31: [true, true]
+    continuous_residence:
+      2022-12-31: [true, false]
+  output:
+    residential_requirement:
+      2022-12-31: [true, false]
