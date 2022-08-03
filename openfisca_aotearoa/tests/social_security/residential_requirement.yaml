@@ -1,20 +1,32 @@
-- name: 2018 — Residential requirement — Citizen
+# - name: 2018 — Residential requirement — Citizen
+#   input:
+#     citizen:
+#       day:2020-01-01:365: false # Leap year
+#       2022-12-31: true # 366th day of 2022
+#   output:
+#     residential_requirement:
+#       2022-12-30: false
+#       2022-12-31: true
+
+
+# - name: 2018 — Residential requirement — Holds residence class visa
+#   input:
+#     resident:
+#       day:2020-01-01:365: false # Leap year
+#       2022-12-31: true # 366th day of 2022
+#   output:
+#     residential_requirement:
+#       2022-12-30: false
+#       2022-12-31: true
+
+- name: 2018 — Residential requirement — Ordinary residence
   input:
     citizen:
-      day:2020-01-01:365: false # Leap year
-      2022-12-31: true # 366th day of 2022
+      day:2020-01-01:366: [true, true, true, true]
+    ordinarily_resident:
+      day:2020-01-01:366: [true, true, false, false]
+    first_application:
+      2020-12-30: [true, false, true, false]
   output:
     residential_requirement:
-      2022-12-30: false
-      2022-12-31: true
-
-
-- name: 2018 — Residential requirement — Holds residence class visa
-  input:
-    resident:
-      day:2020-01-01:365: false # Leap year
-      2022-12-31: true # 366th day of 2022
-  output:
-    residential_requirement:
-      2022-12-30: false
-      2022-12-31: true
+      2020-12-30: [true, true, false, true]
