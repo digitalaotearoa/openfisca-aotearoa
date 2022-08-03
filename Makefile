@@ -9,7 +9,8 @@ clean:
 
 deps:
 	pip install --upgrade pip build twine
-	pip install -e .[dev] --use-deprecated=legacy-resolver
+	pip install --editable ".[dev]" --upgrade
+	pip install --editable git+https://github.com/openfisca/openfisca-core.git@add-weeks#egg=OpenFisca-Core[web-api]
 
 install: deps
 	@# Install OpenFisca-Aotearoa for development.
