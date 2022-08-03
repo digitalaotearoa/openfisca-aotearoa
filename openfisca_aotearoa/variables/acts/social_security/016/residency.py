@@ -57,8 +57,9 @@ class residential_requirement(Variable):
 
     def formula_2018_11_26(people, period, params):
         citizen = people("citizen", period)
+        resident = people("resident", period)
 
-        return citizen
+        return citizen + resident
 
         # has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
         #     persons("immigration__is_recognised_refugee", period) + \
@@ -147,6 +148,7 @@ class resident(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.DAY
+    set_input = holders.set_input_dispatch_by_period
 
 
 class ordinarily_resident(Variable):
@@ -163,18 +165,18 @@ class ordinarily_resident(Variable):
     definition_period = DateUnit.DAY
 
 
-class first_application(Variable):
-    label = "First application for the benefit"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
-    documentation = """
-        (a) P is a New Zealand citizen or holds a residence class visa
-            under the Immigration Act 2009, and is ordinarily resident in
-            New Zealand when P first applies for the benefit
-    """
-    entity = Person
-    value_type = bool
-    default_value = False
-    definition_period = DateUnit.ETERNITY
+# class first_application(Variable):
+#     label = "First application for the benefit"
+#     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
+#     documentation = """
+#         (a) P is a New Zealand citizen or holds a residence class visa
+#             under the Immigration Act 2009, and is ordinarily resident in
+#             New Zealand when P first applies for the benefit
+#     """
+#     entity = Person
+#     value_type = bool
+#     default_value = False
+#     definition_period = DateUnit.ETERNITY
 
 
 class continuous_residence_at_any_one_time(Variable):
