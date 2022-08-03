@@ -14,7 +14,8 @@ install: deps
 	@# Install OpenFisca-Aotearoa for development.
 	@# `make install` installs the editable version of OpenFisca-Aotearoa.
 	@# This allows contributors to test as they code.
-	pip install --upgrade --editable .[dev]
+	pip install --editable ".[dev]" --upgrade
+	pip install --editable git+https://github.com/openfisca/openfisca-core.git@add-weeks#egg=OpenFisca-Core[web-api]
 
 build: clean deps
 	@# Install OpenFisca-Aotearoa for deployment and publishing.
