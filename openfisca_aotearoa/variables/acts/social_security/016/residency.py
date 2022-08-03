@@ -1,10 +1,8 @@
 """This module refers to Social Security Act's "Residential requirement"."""
 
-import datetime
-
 import numpy
 
-from openfisca_core import holders, periods
+from openfisca_core import holders, populations
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
@@ -59,11 +57,12 @@ class residential_requirement(Variable):
 
     """
 
-    def formula_2018_11_26(people, period, params):
+    def formula_2018_11_26(people, period, parameters):
         citizen = people("citizen", period)
         resident = people("resident", period)
         ordinarily_resident = people("ordinarily_resident", period)
         first_application = people("first_application", period)
+        continuous_residence = people("continuous_residence", period)
 
         return (
             + (citizen + resident)
@@ -71,6 +70,7 @@ class residential_requirement(Variable):
                 + (ordinarily_resident * first_application)
                 + numpy.logical_not(first_application)
                 )
+            * continuous_residence
             )
 
         # has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
@@ -192,18 +192,18 @@ class first_application(Variable):
     definition_period = DateUnit.DAY
 
 
-class continuous_residence_at_any_one_time(Variable):
+class continuous_residence(Variable):
     label = "Continuous residence in New Zealand at any one time"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
     documentation = """
         (i)  has resided continuously in New Zealand for a period of at
              least 2 years at any one time after becoming a citizen or
-             resident; or
+             resident;
     """
     entity = Person
-    value_type = int
-    default_value = 0
-    definition_period = DateUnit.YEAR
+    value_type = bool
+    default_value = False
+    definition_period = DateUnit.ETERNITY
 
 
 class refugee(Variable):
@@ -211,7 +211,7 @@ class refugee(Variable):
     reference = "https://www.legislation.govt.nz/act/public/2009/0051/latest/DLM1440774.html"
     documentation = """
         (ii) is recognised as a refugee or a protected person in New
-             Zealand under the Immigration Act 2009; or
+             Zealand under the Immigration Act 2009;
     """
     entity = Person
     value_type = bool
@@ -224,28 +224,9 @@ class protected_person(Variable):
     reference = "https://www.legislation.govt.nz/act/public/2009/0051/latest/DLM1440774.html"
     documentation = """
         (ii) is recognised as a refugee or a protected person in New
-             Zealand under the Immigration Act 2009; or
+             Zealand under the Immigration Act 2009;
     """
     entity = Person
     value_type = bool
     default_value = False
     definition_period = DateUnit.DAY
-
-
-# class social_security__is_ordinarily_resident_in_new_zealand(Variable):
-#     value_type = bool
-#     entity = Person
-#     label = "is ordinarily resident in New Zealand"
-#     definition_period = DateUnit.WEEK
-#     set_input = holders.set_input_dispatch_by_period
-#     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html"
-
-
-# class social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time(Variable):
-#     value_type = bool
-#     entity = Person
-#     label = (
-#         "has resided continuously in New Zealand for a period of at least"
-#         "2 years at any one time"
-#         )
-#     definition_period = DateUnit.ETERNITY
