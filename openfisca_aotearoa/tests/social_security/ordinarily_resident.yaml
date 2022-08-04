@@ -1,0 +1,10 @@
+- name: 2018 — Residential requirement — Permanent place of residence
+  period: 2001-09-19
+  input:
+    absent:
+      month:2022-01:5: [true, true, true]
+      2022-06: [true, true, false]
+      2022-07: [true, false, false]
+  output:
+    permanent_place_of_residence:
+      2022-07: [false, true, true]
