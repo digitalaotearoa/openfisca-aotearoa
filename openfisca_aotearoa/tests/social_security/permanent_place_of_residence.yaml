@@ -99,3 +99,47 @@
       2022-12: [false, false, false, false, false]
       2023-01: [false, false, false, true, true]
       2023-02: [true, false, false, false, true]
+
+
+- name: 2001 — Permanent place of residence — Unlawful presence
+  period: 2001-09-19
+  input:
+    absent:
+      2022-01: [false, false, false]
+      month:2022-02:12: [true, true, true]
+    present:
+      day:2022-01-01:31: [false, false, false]
+      day:2022-02-01:20: [true, true, true]
+      day:2022-02-21:8: [false, false, false]
+      day:2022-03-01:20: [true, true, true]
+      day:2022-03-21:11: [false, false, false]
+      day:2022-04-01:20: [true, true, true]
+      day:2022-04-21:10: [false, false, false]
+      day:2022-05-01:20: [true, true, true]
+      day:2022-05-21:11: [false, false, false]
+      day:2022-06-01:20: [true, true, true]
+      day:2022-06-21:10: [false, false, false]
+      day:2022-07-01:20: [true, true, true]
+      day:2022-07-21:11: [false, false, false]
+      day:2022-08-01:20: [true, true, true]
+      day:2022-08-21:10: [false, false, false]
+      day:2022-09-01:20: [true, true, true]
+      day:2022-09-21:11: [false, false, false]
+      day:2022-10-01:20: [true, true, true]
+      day:2022-10-21:10: [false, false, false]
+      day:2022-11-01:20: [true, true, true]
+      day:2022-11-21:11: [false, false, false]
+      day:2022-12-01:20: [true, true, true]
+      day:2022-12-21:11: [false, false, false]
+      day:2023-01-01:27: [false, false, false]
+      2023-01-28: [true, true, true]
+      2023-01-29: [true, true, true]
+      2023-01-30: [true, true, false]
+      2023-01-31: [false, false, false]
+    present_unlawfully:
+      2023-01-30: [false, true, false]
+  output:
+    permanent_place_of_residence:
+      2022-12: [false, false, false]
+      2023-01: [false, false, false]
+      2023-02: [true, false, false]

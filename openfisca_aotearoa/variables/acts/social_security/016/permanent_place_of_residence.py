@@ -81,7 +81,11 @@ class permanent_place_of_residence(Variable):
             * on_work_duties
             )
 
-        return section_2 + section_3 + section_4
+        unlawful_last_12m = persons("present_unlawfully", last_12m, options = [populations.ADD])
+        lawful_last_12m = (presence_last_12m - unlawful_last_12m) >= 183
+        section_5 = lawful_last_12m
+
+        return section_2 + section_3 * section_5 + section_4
 
 
 class absent(Variable):
@@ -162,3 +166,19 @@ class absent_for_work_duties(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.MONTH
+
+
+class present_unlawfully(Variable):
+    label = "Present unlawfully in New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
+    documentation = """
+        (5) A person is not ordinarily resident in New Zealand if he or she is
+            in New Zealand unlawfully within the meaning of the Immigration Act
+            2009. Any period during which a person is in New Zealand unlawfully
+            is not counted as time spent in New Zealand for the purposes of
+            subsection (3).
+    """
+    entity = Person
+    value_type = bool
+    default_value = False
+    definition_period = DateUnit.DAY

@@ -1,8 +1,10 @@
 """This module refers to Social Security Act's "Residential requirement"."""
 
+import datetime
+
 import numpy
 
-from openfisca_core import holders, populations
+from openfisca_core import holders
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
@@ -57,20 +59,38 @@ class residential_requirement(Variable):
 
     """
 
-    def formula_2018_11_26(people, period, parameters):
-        citizen = people("citizen", period)
-        resident = people("resident", period)
-        ordinarily_resident = people("ordinarily_resident", period)
-        first_application = people("first_application", period)
-        continuous_residence = people("continuous_residence", period)
+    def formula_2018_11_26(persons, period, parameters):
+        citizen = persons("citizen", period)
+        residence_visa = persons("residence_visa", period)
+        ordinarily_resident = persons("ordinarily_resident", period)
+        first_application = persons("first_application", period)
+        continuously_resided_at_any_one_time = persons(
+            "continuously_resided_at_any_one_time",
+            period,
+            )
+        refugee = persons("refugee", period)
+        protected = persons("protected", period)
+        reciprocity_resident = persons("reciprocity_resident", period)
+        continuously_resided_before_application = persons(
+            "continuously_resided_before_application",
+            period,
+            )
 
         return (
-            + (citizen + resident)
+            + (citizen + residence_visa)
             * (
-                + (ordinarily_resident * first_application)
+                + ordinarily_resident * first_application
                 + numpy.logical_not(first_application)
                 )
-            * continuous_residence
+            * (
+                + continuously_resided_at_any_one_time
+                + refugee
+                + protected
+                )
+            + (
+                + reciprocity_resident
+                * continuously_resided_before_application
+                )
             )
 
         # has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
@@ -116,7 +136,7 @@ class residential_requirement(Variable):
     #      young parent payment, a supported living payment, jobseeker support,
     #      and sole parent support.
     #
-    def formula_1964_12_04(persons, period, parameters):
+    def formula_2007_05_27(persons, period, parameters):
         is_citizen_or_resident = persons("is_citizen_or_resident", period)
         ordinarily_lives_in_nz = persons(
             "social_security__is_ordinarily_resident_in_new_zealand", period)
@@ -148,24 +168,9 @@ class citizen(Variable):
     set_input = holders.set_input_dispatch_by_period
 
 
-class resident(Variable):
+class residence_visa(Variable):
     label = "Holds a residence class visa"
     reference = "https://www.legislation.govt.nz/act/public/2009/0051/latest/DLM1440685.html"
-    documentation = """
-        (a) P is a New Zealand citizen or holds a residence class visa
-            under the Immigration Act 2009, and is ordinarily resident in
-            New Zealand when P first applies for the benefit
-    """
-    entity = Person
-    value_type = bool
-    default_value = False
-    definition_period = DateUnit.DAY
-    set_input = holders.set_input_dispatch_by_period
-
-
-class ordinarily_resident(Variable):
-    label = "Ordinary residence in New Zealand"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
     documentation = """
         (a) P is a New Zealand citizen or holds a residence class visa
             under the Immigration Act 2009, and is ordinarily resident in
@@ -192,8 +197,8 @@ class first_application(Variable):
     definition_period = DateUnit.DAY
 
 
-class continuous_residence(Variable):
-    label = "Continuous residence in New Zealand at any one time"
+class continuously_resided_at_any_one_time(Variable):
+    label = "Continuously resided in New Zealand at any one time"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
     documentation = """
         (i)  has resided continuously in New Zealand for a period of at
@@ -203,7 +208,7 @@ class continuous_residence(Variable):
     entity = Person
     value_type = bool
     default_value = False
-    definition_period = DateUnit.ETERNITY
+    definition_period = DateUnit.DAY
 
 
 class refugee(Variable):
@@ -219,7 +224,7 @@ class refugee(Variable):
     definition_period = DateUnit.DAY
 
 
-class protected_person(Variable):
+class protected(Variable):
     label = "Protected person"
     reference = "https://www.legislation.govt.nz/act/public/2009/0051/latest/DLM1440774.html"
     documentation = """
@@ -230,3 +235,85 @@ class protected_person(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.DAY
+
+
+class reciprocity_resident(Variable):
+    label = "Ordinarily resident in country with reciprocity agreement"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
+    documentation = """
+        (b) P is ordinarily resident in a country with which New Zealand
+            has a reciprocity agreement, and P has resided continuously in
+            New Zealand for a period of at least 2 years before applying
+            for the benefit or before a decision on P’s claim for the
+            benefit is made.
+    """
+    entity = Person
+    value_type = bool
+    default_value = False
+    definition_period = DateUnit.DAY
+
+
+class continuously_resided_before_application(Variable):
+    label = "Continuously resided in New Zealand before application"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
+    documentation = """
+        (b) P is ordinarily resident in a country with which New Zealand
+            has a reciprocity agreement, and P has resided continuously in
+            New Zealand for a period of at least 2 years before applying
+            for the benefit or before a decision on P’s claim for the
+            benefit is made.
+    """
+    entity = Person
+    value_type = bool
+    default_value = False
+    definition_period = DateUnit.DAY
+
+
+class application(Variable):
+    label = "Date of application for the benefit"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
+    documentation = """
+        (b) P is ordinarily resident in a country with which New Zealand
+            has a reciprocity agreement, and P has resided continuously in
+            New Zealand for a period of at least 2 years before applying
+            for the benefit or before a decision on P’s claim for the
+            benefit is made.
+    """
+    entity = Person
+    value_type = datetime.date
+    definition_period = DateUnit.ETERNITY
+
+    def formula_2018_11_26(persons, period, parameters):
+        return period
+
+    # (i)  if subsection (1A) applies to the person,—
+    #      (A) before he or she applies for the benefit; or
+    #      (B) before a decision on his or her claim for the benefit
+    #          is made under section 12; and
+    def formula_2007_05_27(persons, period, parameters):
+        return period
+
+
+class claim_decesion(Variable):
+    label = "Date of decision on claim for the benefit"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
+    documentation = """
+        (b) P is ordinarily resident in a country with which New Zealand
+            has a reciprocity agreement, and P has resided continuously in
+            New Zealand for a period of at least 2 years before applying
+            for the benefit or before a decision on P’s claim for the
+            benefit is made.
+    """
+    entity = Person
+    value_type = datetime.date
+    definition_period = DateUnit.ETERNITY
+
+    def formula_2018_11_26(persons, period, parameters):
+        return period
+
+    # (i)  if subsection (1A) applies to the person,—
+    #      (A) before he or she applies for the benefit; or
+    #      (B) before a decision on his or her claim for the benefit
+    #          is made under section 12; and
+    def formula_2007_05_27(persons, period, parameters):
+        return period

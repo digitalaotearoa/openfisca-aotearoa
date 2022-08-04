@@ -76,26 +76,7 @@ class ordinarily_resident(Variable):
     def formula_2001_09_19(persons, period, parameters):
         this_month = period.first_month
         place_of_residence = persons("permanent_place_of_residence", this_month)
+        citizen = persons("citizen", period)
+        residence_visa = persons("residence_visa", period)
 
-        last_12m = Period((DateUnit.MONTH, period.start, 12)).offset(-12)
-        lawful_last_12m = persons("present", last_12m, options = [populations.ADD])
-        unlawful_last_12m = persons("present_unlawfully", last_12m, options = [populations.ADD])
-        lawfully_present_last_12m = (lawful_last_12m - unlawful_last_12m) >= 183
-
-        return place_of_residence * lawfully_present_last_12m
-
-
-class present_unlawfully(Variable):
-    label = "Present unlawfully in New Zealand"
-    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
-    documentation = """
-        (5) A person is not ordinarily resident in New Zealand if he or she is
-            in New Zealand unlawfully within the meaning of the Immigration Act
-            2009. Any period during which a person is in New Zealand unlawfully
-            is not counted as time spent in New Zealand for the purposes of
-            subsection (3).
-    """
-    entity = Person
-    value_type = bool
-    default_value = False
-    definition_period = DateUnit.DAY
+        return place_of_residence * (citizen + residence_visa)
