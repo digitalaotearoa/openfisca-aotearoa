@@ -52,6 +52,7 @@ class permanent_place_of_residence(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.MONTH
+    set_input = holders.set_input_dispatch_by_period
 
     def formula_2001_09_19(persons, period, parameters):
         last_6m = Period((DateUnit.MONTH, period.start, 6)).offset(-6)
