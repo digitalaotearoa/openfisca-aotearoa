@@ -1,0 +1,143 @@
+- name: 2001 — Residential requirement — Absence
+  period: 2001-09-19
+  input:
+    absent:
+      month:2022-01:5: [true, true, true]
+      2022-06: [true, true, false]
+      2022-07: [true, false, false]
+      2022-08: [false, true, true]
+  output:
+    permanent_place_of_residence:
+      2022-07: [false, true, true]
+      2022-08: [true, true, true]
+
+
+- name: 2001 — Residential requirement — Presence
+  period: 2001-09-19
+  input:
+    absent:
+      2022-01: [false, false]
+      month:2022-02:12: [true, true]
+    present:
+      day:2022-01-01:31: [false, false]
+      day:2022-02-01:20: [true, true]
+      day:2022-02-21:8: [false, false]
+      day:2022-03-01:20: [true, true]
+      day:2022-03-21:11: [false, false]
+      day:2022-04-01:20: [true, true]
+      day:2022-04-21:10: [false, false]
+      day:2022-05-01:20: [true, true]
+      day:2022-05-21:11: [false, false]
+      day:2022-06-01:20: [true, true]
+      day:2022-06-21:10: [false, false]
+      day:2022-07-01:20: [true, true]
+      day:2022-07-21:11: [false, false]
+      day:2022-08-01:20: [true, true]
+      day:2022-08-21:10: [false, false]
+      day:2022-09-01:20: [true, true]
+      day:2022-09-21:11: [false, false]
+      day:2022-10-01:20: [true, true]
+      day:2022-10-21:10: [false, false]
+      day:2022-11-01:20: [true, true]
+      day:2022-11-21:11: [false, false]
+      day:2022-12-01:20: [true, true]
+      day:2022-12-21:11: [false, false]
+      day:2023-01-01:27: [false, false]
+      2023-01-28: [true, true]
+      2023-01-29: [true, true]
+      2023-01-30: [true, false]
+      2023-01-31: [false, false]
+
+  output:
+    permanent_place_of_residence:
+      2022-12: [false, false]
+      2023-01: [false, false]
+      2023-02: [true, false]
+
+
+- name: 2001 — Residential requirement — Presence during absence
+  period: 2001-09-19
+  input:
+    absent:
+      2022-01: [false, false]
+      month:2022-02:12: [true, true]
+    present:
+      day:2022-01-01:31: [false, false]
+      day:2022-02-01:20: [true, true]
+      day:2022-02-21:8: [false, false]
+      day:2022-03-01:20: [true, true]
+      day:2022-03-21:11: [false, false]
+      day:2022-04-01:20: [true, true]
+      day:2022-04-21:10: [false, false]
+      day:2022-05-01:20: [true, true]
+      day:2022-05-21:11: [false, false]
+      day:2022-06-01:20: [true, true]
+      day:2022-06-21:10: [false, false]
+      day:2022-07-01:20: [true, true]
+      day:2022-07-21:11: [false, false]
+      day:2022-08-01:20: [true, true]
+      day:2022-08-21:10: [false, false]
+      day:2022-09-01:20: [true, true]
+      day:2022-09-21:11: [false, false]
+      day:2022-10-01:20: [true, true]
+      day:2022-10-21:10: [false, false]
+      day:2022-11-01:20: [true, true]
+      day:2022-11-21:11: [false, false]
+      day:2022-12-01:20: [true, true]
+      day:2022-12-21:11: [false, false]
+      day:2023-01-01:27: [false, false]
+      2023-01-28: [true, true]
+      2023-01-29: [true, true]
+      2023-01-30: [true, false]
+      2023-01-31: [false, false]
+
+  output:
+    permanent_place_of_residence:
+      2022-12: [false, false]
+      2023-01: [false, false]
+      2023-02: [true, false]
+
+
+- name: 2001 — Residential requirement — Absence for work duties
+  period: 2001-09-19
+  input:
+    absent:
+      2022-01: [false, false, false]
+      month:2022-02:12: [true, true, true]
+    present:
+      day:2022-01-01:31: [false, false, false]
+      day:2022-02-01:20: [true, true, true]
+      day:2022-02-21:8: [false, false, false]
+      day:2022-03-01:20: [true, true, true]
+      day:2022-03-21:11: [false, false, false]
+      day:2022-04-01:20: [true, true, true]
+      day:2022-04-21:10: [false, false, false]
+      day:2022-05-01:20: [true, true, true]
+      day:2022-05-21:11: [false, false, false]
+      day:2022-06-01:20: [true, true, true]
+      day:2022-06-21:10: [false, false, false]
+      day:2022-07-01:20: [true, true, true]
+      day:2022-07-21:11: [false, false, false]
+      day:2022-08-01:20: [true, true, true]
+      day:2022-08-21:10: [false, false, false]
+      day:2022-09-01:20: [true, true, true]
+      day:2022-09-21:11: [false, false, false]
+      day:2022-10-01:20: [true, true, true]
+      day:2022-10-21:10: [false, false, false]
+      day:2022-11-01:20: [true, true, true]
+      day:2022-11-21:11: [false, false, false]
+      day:2022-12-01:20: [true, true, true]
+      day:2022-12-21:11: [false, false, false]
+      day:2023-01-01:27: [false, false, false]
+      2023-01-28: [true, true, true]
+      2023-01-29: [true, true, true]
+      2023-01-30: [true, false, false]
+      2023-01-31: [false, false, false]
+    resumes_place_of_residence:
+      eternity: [false, false, true]
+
+  output:
+    permanent_place_of_residence:
+      2022-12: [false, false, false]
+      2023-01: [false, false, false]
+      2023-02: [true, false, false]
