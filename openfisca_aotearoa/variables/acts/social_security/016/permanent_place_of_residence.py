@@ -11,6 +11,7 @@ from openfisca_aotearoa.entities import Person
 
 class permanent_place_of_residence(Variable):
     label = "Permance place of residence in New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
     documentation = """
         (2) A person does not have a permanent place of residence in New
             Zealand if he or she has been and remains absent from New Zealand
@@ -57,22 +58,34 @@ class permanent_place_of_residence(Variable):
         absence_last_6m = persons("absent", last_6m, options = [populations.ADD])
         absent_last_6m = absence_last_6m >= 6
         absent_today = persons("absent", period)
+        section_2 = numpy.logical_not(absent_last_6m * absent_today)
 
         # This is a simplification assuming presence over the last 12 months,
         # but should be corrected to add "since the last absence".
         last_12m = Period((DateUnit.MONTH, period.start, 12)).offset(-12)
         presence_last_12m = persons("present", last_12m, options = [populations.ADD])
         present_last_12m = presence_last_12m >= 183
+        section_3 = absent_last_6m * absent_today * present_last_12m
 
-        return numpy.logical_not(
+        # Here we assume that the person being overseas for work duties at the
+        # 5th month suffices to fulfil both being and having been overseas for
+        # work duties.
+        resumes_place_of_residence = persons("resumes_place_of_residence", DateUnit.ETERNITY)
+        five_months_ago = Period((DateUnit.MONTH, period.start, 1)).offset(-5)
+        on_work_duties = persons("absent_for_work_duties", five_months_ago)
+        section_4 = (
             + absent_last_6m
             * absent_today
-            * numpy.logical_not(present_last_12m),
+            * resumes_place_of_residence
+            * on_work_duties
             )
+
+        return section_2 + section_3 + section_4
 
 
 class absent(Variable):
     label = "Absent from New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
     documentation = """
         (2) A person does not have a permanent place of residence in New
             Zealand if he or she has been and remains absent from New Zealand
@@ -89,6 +102,7 @@ class absent(Variable):
 
 class present(Variable):
     label = "Present in New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
     documentation = """
         (3) A person has a permanent place of residence in New Zealand if he
             or she, although absent from New Zealand, has been personally
@@ -107,6 +121,7 @@ class present(Variable):
 
 class resumes_place_of_residence(Variable):
     label = "Intends to resume a place of residence in New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
     documentation = """
         (4) A person must be treated as having New Zealand as the person’s
             permanent place of residence if—
@@ -128,6 +143,7 @@ class resumes_place_of_residence(Variable):
 
 class absent_for_work_duties(Variable):
     label = "Intends to resume a place of residence in New Zealand"
+    reference = "https://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100661.html"
     documentation = """
         (4) A person must be treated as having New Zealand as the person’s
             permanent place of residence if—
