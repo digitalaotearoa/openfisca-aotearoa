@@ -2,7 +2,24 @@
   period: 2001-09-19
   input:
     permanent_place_of_residence:
-      2021-01: [true, false]
+      2022-01: [true, false]
+    present:
+      day:2021-01-01:365: [true, false]
   output:
     ordinarily_resident:
-      2021-01-01: [true, false]
+      2022-01-01: [true, false]
+
+
+- name: 2001 — Ordinarily resident — Present unlawfully
+  period: 2001-09-19
+  input:
+    permanent_place_of_residence:
+      month:2021-01:13: [true, true]
+    present:
+      day:2021-01-01:183: [true, true]
+    present_unlawfully:
+      2021-12-01: [false, true]
+
+  output:
+    ordinarily_resident:
+      2022-01-01: [true, false]
