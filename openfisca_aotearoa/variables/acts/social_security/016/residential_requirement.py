@@ -197,20 +197,6 @@ class first_application(Variable):
     definition_period = DateUnit.ETERNITY
 
 
-class continuously_resided_at_any_one_time(Variable):
-    label = "Continuously resided in New Zealand at any one time"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
-    documentation = """
-        (i)  has resided continuously in New Zealand for a period of at
-             least 2 years at any one time after becoming a citizen or
-             resident;
-    """
-    entity = Person
-    value_type = bool
-    default_value = False
-    definition_period = DateUnit.ETERNITY
-
-
 class refugee(Variable):
     label = "Refugee"
     reference = "https://www.legislation.govt.nz/act/public/2009/0051/latest/DLM1440774.html"

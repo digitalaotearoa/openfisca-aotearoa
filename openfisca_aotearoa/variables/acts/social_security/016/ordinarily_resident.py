@@ -1,7 +1,7 @@
 """This module refers to Social Security Act's "Residential requirement"."""
 
-from openfisca_core import holders, populations
-from openfisca_core.periods import DateUnit, Period
+from openfisca_core import holders
+from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
