@@ -124,3 +124,24 @@ class resumes_place_of_residence(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.ETERNITY
+
+
+class absent_for_work_duties(Variable):
+    label = "Intends to resume a place of residence in New Zealand"
+    documentation = """
+        (4) A person must be treated as having New Zealand as the person’s
+            permanent place of residence if—
+            (a) the person—
+                (i)   intends to resume a place of residence in New Zealand;
+                      and
+                (ii)  is absent from New Zealand primarily in connection with
+                      the person’s employment duties (the remuneration for
+                      which is treated as income derived in New Zealand for New
+                      Zealand income tax purposes) or for up to 6 months
+                      following the completion of the person’s period of
+                      employment outside New Zealand;
+    """
+    entity = Person
+    value_type = bool
+    default_value = False
+    definition_period = DateUnit.MONTH
