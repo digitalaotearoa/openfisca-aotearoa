@@ -194,7 +194,7 @@ class first_application(Variable):
     entity = Person
     value_type = bool
     default_value = True
-    definition_period = DateUnit.DAY
+    definition_period = DateUnit.ETERNITY
 
 
 class continuously_resided_at_any_one_time(Variable):
@@ -208,7 +208,7 @@ class continuously_resided_at_any_one_time(Variable):
     entity = Person
     value_type = bool
     default_value = False
-    definition_period = DateUnit.DAY
+    definition_period = DateUnit.ETERNITY
 
 
 class refugee(Variable):
@@ -294,7 +294,7 @@ class application(Variable):
         return period
 
 
-class claim_decesion(Variable):
+class claim_decision(Variable):
     label = "Date of decision on claim for the benefit"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
     documentation = """

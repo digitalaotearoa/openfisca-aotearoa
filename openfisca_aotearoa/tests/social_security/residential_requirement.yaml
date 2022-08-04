@@ -2,14 +2,14 @@
   input:
     citizen:
       2022-12-31: [true, false]
-    resident:
+    residence_visa:
       2022-12-31: [false, false]
     ordinarily_resident:
       2022-12-31: [true, true]
     first_application:
-      2022-12-31: [true, true]
-    continuous_residence:
-      2022-12-31: [true, true]
+      eternity: [true, true]
+    continuously_resided_at_any_one_time:
+      eternity: [true, true]
   output:
     residential_requirement:
       2022-12-31: [true, false]
@@ -19,45 +19,47 @@
   input:
     citizen:
       2022-12-31: [false, false]
-    resident:
+    residence_visa:
       2022-12-31: [true, false]
     ordinarily_resident:
       2022-12-31: [true, true]
     first_application:
-      2022-12-31: [true, true]
-    continuous_residence:
-      2022-12-31: [true, true]
+      eternity: [true, true]
+    continuously_resided_at_any_one_time:
+      eternity: [true, true]
   output:
     residential_requirement:
       2022-12-31: [true, false]
 
-- name: 2018 — Residential requirement — Ordinary residence
+
+- name: 2018 — Residential requirement — Ordinarily resident
   input:
     citizen:
-      2022-12-31: [true, true, true, true]
-    resident:
-      2022-12-31: [false, false, false, false]
+      day:2022-01-01:365: [true, true, true, true]
+    residence_visa:
+      day:2022-01-01:365: [false, false, false, false]
     ordinarily_resident:
-      2022-12-31: [true, true, false, false]
+      2022-09-01: [true, true, false, false]
     first_application:
-      2022-12-31: [true, false, true, false]
-    continuous_residence:
-      2022-12-31: [true, true, true, true]
+      eternity: [true, false, true, false]
+    continuously_resided_at_any_one_time:
+      eternity: [true, true, true, true]
   output:
     residential_requirement:
-      2022-12-31: [true, true, false, true]
+      2022-09-01: [true, true, false, true]
 
-- name: 2018 — Residential requirement — Continuous residence in New Zealand
+
+- name: 2018 — Residential requirement — Continuous residence at any one time
   input:
     citizen:
       2022-12-31: [true, true]
-    resident:
+    residence_visa:
       2022-12-31: [false, false]
     ordinarily_resident:
       2022-12-31: [true, true]
     first_application:
       2022-12-31: [true, true]
-    continuous_residence:
+    continuously_resided_at_any_one_time:
       2022-12-31: [true, false]
   output:
     residential_requirement:
