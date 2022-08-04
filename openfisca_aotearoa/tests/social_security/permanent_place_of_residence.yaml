@@ -1,4 +1,4 @@
-- name: 2001 — Residential requirement — Absence
+- name: 2001 — Permanent place of residence — Absence
   period: 2001-09-19
   input:
     absent:
@@ -12,7 +12,7 @@
       2022-08: [true, true, true]
 
 
-- name: 2001 — Residential requirement — Presence during absence
+- name: 2001 — Permanent place of residence — Presence during absence
   period: 2001-09-19
   input:
     absent:
@@ -47,7 +47,6 @@
       2023-01-29: [true, true]
       2023-01-30: [true, false]
       2023-01-31: [false, false]
-
   output:
     permanent_place_of_residence:
       2022-12: [false, false]
@@ -55,7 +54,7 @@
       2023-02: [true, false]
 
 
-- name: 2001 — Residential requirement — Absence for work duties
+- name: 2001 — Permanent place of residence — Absence for work duties
   period: 2001-09-19
   input:
     absent:
@@ -95,7 +94,6 @@
     absent_for_work_duties:
       2022-08: [false, false, false, true, true]
       2022-09: [false, false, false, false, true]
-
   output:
     permanent_place_of_residence:
       2022-12: [false, false, false, false, false]
