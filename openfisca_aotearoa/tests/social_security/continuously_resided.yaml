@@ -9,7 +9,6 @@
       month:2016-01:23: [false, false, true, false]
       month:2017-12:1: [false, false, false, false]
       year:2018:2: [false, false, false, false]
-
     citizen:
       year:2010:2: [true, false, false, false]
       year:2012:2: [true, false, false, false]
@@ -21,3 +20,22 @@
   output:
     continuously_resided_at_any_one_time:
       2019-01-01: [true, true, false, true]
+
+
+- name: 2018 — Continuously resided in New Zealand the last two years
+  period: 2018-11-26
+  input:
+    present:
+      year:2017:1: [true, true, true, true]
+      month:2018-01:11: [true, true, true, true]
+      day:2018-12-01:30: [true, true, true, true]
+      2018-12-31: [true, true, true, false]
+    reciprocity_resident:
+      year:2017:1: [true, false, true, true]
+      month:2018-01:11: [true, true, true, true]
+      day:2018-12-01:30: [true, true, true, true]
+      2018-12-31: [true, false, false, true]
+
+  output:
+    continuously_resided_before_application:
+      2019-01-01: [true, false, false, false]

@@ -93,15 +93,6 @@ class residential_requirement(Variable):
                 )
             )
 
-        # has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
-        #     persons("immigration__is_recognised_refugee", period) + \
-        #     persons("immigration__is_protected_person", period)
-
-        # nz_eligible = persons("social_security__is_ordinarily_resident_in_new_zealand", period) * persons("social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time", period)
-        # reciprocal_eligible = persons("social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) > 2)
-
-        # return has_eligible_residency_class * (nz_eligible + reciprocal_eligible)
-
     # https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363796.html
     #
     # 74AA Residential requirements for certain benefits
@@ -237,22 +228,7 @@ class reciprocity_resident(Variable):
     value_type = bool
     default_value = False
     definition_period = DateUnit.DAY
-
-
-class continuously_resided_before_application(Variable):
-    label = "Continuously resided in New Zealand before application"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783138.html"
-    documentation = """
-        (b) P is ordinarily resident in a country with which New Zealand
-            has a reciprocity agreement, and P has resided continuously in
-            New Zealand for a period of at least 2 years before applying
-            for the benefit or before a decision on P’s claim for the
-            benefit is made.
-    """
-    entity = Person
-    value_type = bool
-    default_value = False
-    definition_period = DateUnit.DAY
+    set_input = holders.set_input_dispatch_by_period
 
 
 class application(Variable):
