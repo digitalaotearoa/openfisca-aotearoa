@@ -10,6 +10,10 @@
       eternity: [true, true]
     continuously_resided_at_any_one_time:
       2022-12-31: [true, true]
+    refugee:
+      2022-12-31: [false, false]
+    protected:
+      2022-12-31: [false, false]
   output:
     residential_requirement:
       2022-12-31: [true, false]
@@ -27,6 +31,10 @@
       eternity: [true, true]
     continuously_resided_at_any_one_time:
       2022-12-31: [true, true]
+    refugee:
+      2022-12-31: [false, false]
+    protected:
+      2022-12-31: [false, false]
   output:
     residential_requirement:
       2022-12-31: [true, false]
@@ -44,6 +52,10 @@
       eternity: [true, false, true, false]
     continuously_resided_at_any_one_time:
       2022-09-01: [true, true, true, true]
+    refugee:
+      2022-09-01: [false, false, false, false]
+    protected:
+      2022-09-01: [false, false, false, false]
   output:
     residential_requirement:
       2022-09-01: [true, true, false, true]
@@ -60,6 +72,52 @@
     first_application:
       2022-12-31: [true, true]
     continuously_resided_at_any_one_time:
+      2022-12-31: [true, false]
+    refugee:
+      2022-12-31: [false, false]
+    protected:
+      2022-12-31: [false, false]
+  output:
+    residential_requirement:
+      2022-12-31: [true, false]
+
+
+- name: 2018 — Residential requirement — Refugee
+  input:
+    citizen:
+      2022-12-31: [true, false]
+    residence_visa:
+      2022-12-31: [false, true]
+    ordinarily_resident:
+      2022-12-31: [true, true]
+    first_application:
+      2022-12-31: [true, true]
+    continuously_resided_at_any_one_time:
+      2022-12-31: [false, false]
+    refugee:
+      2022-12-31: [true, false]
+    protected:
+      2022-12-31: [false, false]
+  output:
+    residential_requirement:
+      2022-12-31: [true, false]
+
+
+- name: 2018 — Residential requirement — Protected
+  input:
+    citizen:
+      2022-12-31: [true, false]
+    residence_visa:
+      2022-12-31: [false, true]
+    ordinarily_resident:
+      2022-12-31: [true, true]
+    first_application:
+      2022-12-31: [true, true]
+    continuously_resided_at_any_one_time:
+      2022-12-31: [false, false]
+    refugee:
+      2022-12-31: [false, false]
+    protected:
       2022-12-31: [true, false]
   output:
     residential_requirement:
