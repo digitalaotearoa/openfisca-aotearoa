@@ -1,0 +1,23 @@
+- name: 2018 — Continuously resided in New Zealand at any time
+  period: 2018-11-26
+  input:
+    present:
+      year:2010:2: [true, true, true, true]
+      year:2012:2: [false, true, true, true]
+      month:2014-01:23: [false, false, true, true]
+      month:2015-12:1: [false, false, false, true]
+      month:2016-01:23: [false, false, true, false]
+      month:2017-12:1: [false, false, false, false]
+      year:2018:2: [false, false, false, false]
+
+    citizen:
+      year:2010:2: [true, false, false, false]
+      year:2012:2: [true, false, false, false]
+      year:2014:6: [true, false, true, true]
+    residence_visa:
+      year:2012:2: [false, true, false, false]
+      year:2014:6: [false, true, false, false]
+
+  output:
+    continuously_resided_at_any_one_time:
+      2019-01-01: [true, true, false, true]

@@ -9,7 +9,7 @@
     first_application:
       eternity: [true, true]
     continuously_resided_at_any_one_time:
-      eternity: [true, true]
+      2022-12-31: [true, true]
   output:
     residential_requirement:
       2022-12-31: [true, false]
@@ -26,7 +26,7 @@
     first_application:
       eternity: [true, true]
     continuously_resided_at_any_one_time:
-      eternity: [true, true]
+      2022-12-31: [true, true]
   output:
     residential_requirement:
       2022-12-31: [true, false]
@@ -43,7 +43,7 @@
     first_application:
       eternity: [true, false, true, false]
     continuously_resided_at_any_one_time:
-      eternity: [true, true, true, true]
+      2022-09-01: [true, true, true, true]
   output:
     residential_requirement:
       2022-09-01: [true, true, false, true]
