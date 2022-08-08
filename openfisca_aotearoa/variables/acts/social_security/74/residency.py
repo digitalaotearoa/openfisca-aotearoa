@@ -66,7 +66,7 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
             persons("immigration__is_protected_person", period)
 
         nz_eligible = persons("social_security__is_ordinarily_resident_in_new_zealand", period) * persons("social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time", period)
-        reciprocal_eligible = persons("social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) > 2)
+        reciprocal_eligible = persons("social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
 
         return has_eligible_residency_class * (nz_eligible + reciprocal_eligible)
 
