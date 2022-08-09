@@ -1,4 +1,4 @@
-- name: Social Security — Jobseeker Support — Eligibility
+- name: Social Security Act 2018 — Jobseeker Support — Eligibility
   period: 2018-11
   input:
     age:
@@ -11,7 +11,7 @@
     jobseeker_support__is_prepared_for_employment: [true, true, true, false, false]
 
   output:
-    social_security__eligible_for_jobseeker_support: [true, true, false, false, false]
+    eligible_for_jobseeker: [true, true, false, false, false]
 
 - name: Social Security — Jobseeker Support — Prior to commencement
   period: 2013-07-14

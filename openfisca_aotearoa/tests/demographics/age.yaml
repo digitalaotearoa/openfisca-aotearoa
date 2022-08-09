@@ -1,5 +1,5 @@
 - name: Calculating age from date of birth
-  period: "2018-10-01"
+  period: "2017-10-01"
   absolute_error_margin: 0
   input:
     date_of_birth: 1970-04-07

@@ -6,6 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_accommodation_supplement(Variable):
     value_type = bool
     entity = Person

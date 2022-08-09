@@ -6,6 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__is_financially_independent(Variable):
     value_type = bool
     entity = Person
@@ -28,6 +29,7 @@ class social_security__is_financially_independent(Variable):
         return in_full_employment + recieves_grant + recieves_gov_assisted_payments + recieves_benefit
 
 
+# TODO: Review against the new 2018 act
 class social_security__recieves_goverment_assisted_scheme_payments(Variable):
     value_type = bool
     entity = Person
@@ -36,6 +38,7 @@ class social_security__recieves_goverment_assisted_scheme_payments(Variable):
     label = "In receipt of payments under a Government-assisted scheme which the chief executive considers analogous to a main benefit under Socal Security Act"
 
 
+# TODO: Review against the new 2018 act
 class social_security__in_receipt_of_basic_grant(Variable):
     value_type = bool
     entity = Person
@@ -44,6 +47,7 @@ class social_security__in_receipt_of_basic_grant(Variable):
     label = "in receipt of a basic grant or an independent circumstances grant under the Student Allowances Regulations 1998 (SR 1998/277)"
 
 
+# TODO: Review against the new 2018 act
 class social_security__recieves_main_benefit(Variable):
     value_type = bool
     entity = Person
@@ -52,6 +56,7 @@ class social_security__recieves_main_benefit(Variable):
     label = "in receipt of a main benefit under Social Security Act"
 
 
+# TODO: Review against the new 2018 act
 class social_security__received_income_tested_benefit(Variable):
     value_type = bool
     entity = Person

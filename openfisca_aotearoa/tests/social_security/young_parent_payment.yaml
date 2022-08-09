@@ -1,5 +1,5 @@
 - name: Young Parent Payment single young person
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
@@ -7,7 +7,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 19
+          "2017-10-01": 19
         is_nz_citizen: true
         social_security__is_ordinarily_resident_in_new_zealand: true
         monthly_income: 80000.0
@@ -15,7 +15,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 16
+          "2017-10-01": 16
         is_nz_citizen: true
         social_security__is_ordinarily_resident_in_new_zealand: true
         monthly_income: 0.0
@@ -25,7 +25,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 17
+          "2017-10-01": 17
         is_permanent_resident: true
         social_security__is_ordinarily_resident_in_new_zealand: true
         monthly_income: 0.0
@@ -52,7 +52,7 @@
       - true
 
 - name: Young Parent Payment in a relationship
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
@@ -63,7 +63,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 19
+          "2017-10-01": 19
         is_nz_citizen: true
         monthly_income: 10.0
       Oliver:
@@ -72,7 +72,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 16
+          "2017-10-01": 16
         is_nz_citizen: true
         social_security__is_ordinarily_resident_in_new_zealand: true
         family_scheme__assessable_income_for_month: 10.0
@@ -82,7 +82,7 @@
         is_a_parent: true
         has_dependent_child: true
         age:
-          "2018-10-01": 17
+          "2017-10-01": 17
         is_permanent_resident: true
         social_security__is_ordinarily_resident_in_new_zealand: true
         family_scheme__assessable_income_for_month: 0.0
@@ -109,13 +109,13 @@
 
 
 - name: Young Parent Payment Residency
-  period: 2018-10
+  period: 2017-10
   absolute_error_margin: 0
   input:
     persons:
       Kiwi:
         age:
-          "2018-10-01": 19
+          "2017-10-01": 19
         has_dependent_child: true
         is_a_parent: true
         is_nz_citizen: true
@@ -123,7 +123,7 @@
         social_security__is_ordinarily_resident_in_new_zealand: true
       OE:
         age:
-          "2018-10-01": 19
+          "2017-10-01": 19
         has_dependent_child: true
         is_a_parent: true
         is_nz_citizen: true

@@ -8,6 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_orphans_benefit(Variable):
     value_type = bool
     entity = Person
@@ -43,6 +44,7 @@ class social_security__eligible_for_orphans_benefit(Variable):
         return resident_or_citizen * normally_in_nz * age_test * not_the_parent * one_year * is_principal_carer * has_orphaned_child_in_family
 
 
+# TODO: Review against the new 2018 act
 class social_security__has_orphaned_child_in_family(Variable):
     value_type = bool
     entity = Family
@@ -60,6 +62,7 @@ class social_security__has_orphaned_child_in_family(Variable):
         return families.any((children * orphaned * resident_or_citizen), role=Family.CHILD)
 
 
+# TODO: Review against the new 2018 act
 class social_security__is_orphaned(Variable):
     value_type = bool
     entity = Person

@@ -6,6 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_child_disability_allowance(Variable):
     value_type = bool
     entity = Person
@@ -54,6 +55,7 @@ class disability_allowance__family_has_eligible_child(Variable):
         return families.any(disabled_children, role=Family.CHILD)
 
 
+# TODO: Review against the new 2018 act
 class social_security__child_meets_child_disability_allowance_criteria(Variable):
     value_type = bool
     entity = Person
@@ -68,6 +70,7 @@ class social_security__child_meets_child_disability_allowance_criteria(Variable)
             (persons("social_security__medical_certification_months", period) >= med_cert_required_months)
 
 
+# TODO: Review against the new 2018 act
 class social_security__medical_certification_months(Variable):
     value_type = int
     entity = Person
@@ -75,6 +78,7 @@ class social_security__medical_certification_months(Variable):
     definition_period = MONTH
 
 
+# TODO: Review against the new 2018 act
 class social_security__requires_constant_care_and_attention(Variable):
     value_type = bool
     entity = Person

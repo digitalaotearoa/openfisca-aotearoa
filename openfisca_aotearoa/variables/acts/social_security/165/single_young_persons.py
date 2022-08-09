@@ -8,6 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__meets_young_parent_payment_single_persons_requirements(Variable):
     value_type = bool
     entity = Person
@@ -58,6 +59,7 @@ class social_security__meets_young_parent_payment_single_persons_requirements(Va
         return section_2 + section_3 + section_4
 
 
+# TODO: Review against the new 2018 act
 class social_security__family_income_under_young_parent_payment_threshold(Variable):
     value_type = bool
     entity = Person

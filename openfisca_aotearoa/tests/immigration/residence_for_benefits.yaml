@@ -1,5 +1,5 @@
 - name: Immigration Act
-  period: 2018-08
+  period: 2017-08
   absolute_error_margin: 0
   input:
     persons:
@@ -11,12 +11,12 @@
         social_security__is_ordinarily_resident_in_new_zealand: true
       Tama:
         age:
-          "2018-08-01": 5
+          "2017-08-01": 5
         is_nz_citizen: true
         social_security__is_ordinarily_resident_in_new_zealand: true
       Tamahine:
         age:
-          "2018-08-01": 19
+          "2017-08-01": 19
         is_nz_citizen: true
         social_security__is_ordinarily_resident_in_new_zealand: false
       Mary:

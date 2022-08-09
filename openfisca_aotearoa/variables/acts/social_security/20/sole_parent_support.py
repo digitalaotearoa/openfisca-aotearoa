@@ -16,6 +16,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_sole_parent_support(Variable):
     value_type = bool
     entity = Person

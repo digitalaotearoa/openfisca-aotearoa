@@ -16,6 +16,7 @@ from openfisca_aotearoa.entities import Person
 # then benefit.isSupportedLivingPayment is PERMITTED
 
 
+# TODO: Review against the new 2018 act
 class social_security__is_required_to_give_fulltime_care(Variable):
     value_type = bool
     entity = Person
@@ -34,6 +35,7 @@ class supported_living_payment__below_income_threshold(Variable):
     reference = "TODO"
 
 
+# TODO: Review against the new 2018 act
 class social_security__eligible_for_supported_living_payment(Variable):
     value_type = bool
     entity = Person
