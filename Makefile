@@ -9,13 +9,12 @@ clean:
 
 deps:
 	pip install --upgrade pip build twine
-	pip install -e .[dev] --use-deprecated=legacy-resolver
 
 install: deps
 	@# Install OpenFisca-Aotearoa for development.
 	@# `make install` installs the editable version of OpenFisca-Aotearoa.
 	@# This allows contributors to test as they code.
-	pip install --upgrade --editable .[dev] --use-deprecated=legacy-resolver
+	pip install --upgrade --editable .[dev]
 
 build: clean deps
 	@# Install OpenFisca-Aotearoa for deployment and publishing.
@@ -39,11 +38,6 @@ check-style:
 	flake8 `git ls-files | grep "\.py$$"`
 	pylint `git ls-files | grep "\.py$$"`
 
-dockerbuild:
-	docker build . -t openfisca
-
-dockerserve:
-	docker run -v ${PWD}:/openfisca -p 5000:5000 -t openfisca
 
 test: clean check-syntax-errors
 ifdef yaml
@@ -53,7 +47,7 @@ else
 endif
 
 serve:
-	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000
+	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000 --reload
 
 lint:
 	yamllint . && flake8
