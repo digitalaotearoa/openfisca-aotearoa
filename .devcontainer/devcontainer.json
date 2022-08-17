@@ -14,17 +14,18 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"#terminal.integrated.defaultProfile.linux#": "/bin/bash"
+		"#terminal.integrated.defaultProfile.linux#": "/bin/bash",
+		"python.defaultInterpreterPath": "/usr/local/bin/python"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [ "ms-python.python", "ms-vscode.makefile-tools" ]
+	"extensions": [ "ms-python.python", "ms-vscode.makefile-tools" ],
 
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
 	// "shutdownAction": "none",
 
 	// Uncomment the next line to use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "make install"
 
 	// Comment out to connect as root instead. To add a non-root user, see: https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
