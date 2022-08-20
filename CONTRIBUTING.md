@@ -129,6 +129,11 @@ To determine a name for a variable utilise the following strategy.
  2) If you determine it is a global input - add it to the `/variables/demographics` section in the most appropriate file with an explanatory name (also check it doesn't already exist).
  3) If you determine it's not a global input then you'll want to name it in the format `prefix__variable_name`. Note the two underscores seperating the prefix from the variable name. The variable name should be suitably explanatory to determine the concept it represents. The prefix should utilise one of the of the prefixes defined in `openfisca_aotearoa/structure.json`. If a suitable prefix doesn't exist add it to the `structure.json` file before utilising it.
 
+### Things to avoid
+
+Avoid using words like `has` and `is`. I.e. the bool `has_dependent_child` is more aptly named `dependent_child`.
+
+
 $~$
 <a name="structure"></a>
 
