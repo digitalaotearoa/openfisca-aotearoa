@@ -2,14 +2,24 @@ Thank you for wanting to contribute to OpenFisca Aotearoa! :smiley:
 
 TL;DR: [GitHub Flow](https://guides.github.com/introduction/flow/), [SemVer](http://semver.org/).
 
+## Contents:
+ - [Pull Requests](#pullrequests)
+ - [Advertising changes](#advertisingchanges)
+ - [Coding guide: naming, structure and patterns](#codingguide)
+   -  [Naming Variables](#namingvariables)
+   -  [Structure](#structure)
+   -  [Patterns](#patterns)
 
-## Pull requests
+$~$
+<a name="pullrequests"></a>
+
+# Pull requests
 
 We follow the [GitHub Flow](https://guides.github.com/introduction/flow/): all code contributions are submitted via a pull request towards the `master` branch.
 
 Opening a Pull Request means you want that code to be merged. If you want to only discuss it, send a link to your branch along with your questions through whichever communication channel you prefer.
 
-### Peer reviews
+## Peer reviews
 
 All pull requests must be reviewed by someone else than their original author.
 
@@ -21,28 +31,32 @@ In case of breaking changes, you **must** give details about what features were 
 
 > You must also provide guidelines to help users adapt their code to be compatible with the new version of the package.
 
+$~$
+<a name="advertisingchanges"></a>
 
-## Advertising changes
+# Advertising changes
 
-### Version number
+## Version number
 
 We follow the [semantic versioning](http://semver.org/) spec: any change impacts the version number, and the version number conveys API compatibility information **only**.
 
 Examples:
 
-#### Patch bump
+### Patch bump
 
 - Fixing or improving an already existing calculation.
 
-#### Minor bump
+### Minor bump
 
 - Adding a variable to the tax and benefit system.
 
-#### Major bump
+### Major bump
 
 - Renaming or removing a variable from the tax and benefit system.
 
-### Changelog
+$~$
+
+## Changelog
 
 OpenFisca-Aotearoa changes must be understood by users who don't necessarily work on the code. The Changelog must therefore be as explicit as possible.
 
@@ -92,3 +106,94 @@ Each change must be documented with the following elements:
 >      - All parameters are assumed to be valid until and end date is explicitely specified with an `<END>` tag
 
 When a Pull Request contains several disctincts changes, several paragraphs may be added to the Changelog. To be properly formatted in Markdown, these paragraphs must be separated by `<!-- -->`.
+
+$~$
+<a name="codingguide"></a>
+
+# Coding guide: naming, structure and patterns
+$~$
+<a name="namingvariables"></a>
+
+## Naming variables
+
+$~$
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.
+>
+>  -Phil Karlton
+
+$~$
+
+To determine a name for a variable utilise the following strategy.
+ 1) determine if the variable represents a global input beyond the scope of the body of legislation you're coding. Age is an excellent example of this, others are more unclear. If the concept is declared in the definitions/interpretation section of the Act then don't utilise a global input
+ 2) If you determine it is a global input - add it to the `/variables/demographics` section in the most appropriate file with an explanatory name (also check it doesn't already exist).
+ 3) If you determine it's not a global input then you'll want to name it in the format `prefix__variable_name`. Note the two underscores seperating the prefix from the variable name. The variable name should be suitably explanatory to determine the concept it represents. The prefix should utilise one of the of the prefixes defined in `openfisca_aotearoa/structure.json`. If a suitable prefix doesn't exist add it to the `structure.json` file before utilising it.
+
+$~$
+<a name="structure"></a>
+
+## Structure
+
+In order to facilitate understanding, navigation and future management of the openfisca-aotearoa code base, we're utilising the above naming convention which is supported by the added `structure.json` file (unique to the openfisca_aotearoa project).
+
+This allows us to map the extent and reach of the project. The `structure.json` file allows us to create a tree like map of the project utilising the `prefix` approach as described in the previous section.
+
+### structure.json
+
+An array of entries, one for each prefix utilised in the code base. In the format as follows:
+```
+{
+    "Title": "Accident Compensation Act 2001",
+    "Prefix": "acc",
+    "Type": "Act",
+    "Reference": "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM99494.html",
+    "Children": [
+        "acc_sched_1",
+        "acc_part_2",
+        "acc_part_4"
+    ]
+}
+```
+Title, Prefix, Type and Reference are all required.
+ - Title: The legal title of the legal artifact
+ - Prefix: The prefix utilised within the openfisca_aotearoa code base
+ - Type: One of the following: `Act`, `Schedule`, `Part`, `Section`, `Regulation`, `Policy`
+ - Reference: A url or otherwise description of the source material.
+
+
+### Folder structure
+
+The folder names refer to the prefix's created in the `structure.json` file.
+
+Code relating to acts as follows:
+ - `openfisca_aotearoa/variables/acts/{act prefix}/`
+ - `openfisca_aotearoa/variables/acts/{act prefix}/{section prefix}/`
+
+Code relating to regulations as follows:
+ - `openfisca_aotearoa/variables/regulation/{reg prefix}/`
+ - `openfisca_aotearoa/variables/regulation/{reg prefix}/{section prefix}/`
+
+Other legal instruments that don't fit the above:
+ - `openfisca_aotearoa/variables/other/`
+
+$~$
+<a name="patterns"></a>
+
+## Patterns
+
+The best approach when interpreting natural language law in code is to mimic the structure of the natural language text as closely as possible.
+
+This project currently utilises one specific pattern however for benefit calculations. The following is an example based on the `Social Security Act 2018` > `Job Seeker Support` benefit.
+
+- `jobseeker_support__entitled` (true/false)
+- `jobseeker_support__gross` (float)
+- `jobseeker_support__cutoff` (float)
+- `jobseeker_support__reduction` (float)
+- `jobseeker_support__net` (float)
+
+i.e. the formula for `jobseeker_support__net` would be:
+ ```
+ jobseeker_support__entitled * min(jobseeker_support__gross - jobseeker_support__reduction, jobseeker_support__cutoff)
+ ```
+
+
