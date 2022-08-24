@@ -75,7 +75,7 @@ class social_security__meets_young_parent_payment_basic_requirements(Variable):
 
         # (b) is a parent or step-parent of a dependent child or dependent children; and
         is_parent_of_dependent_children = (persons("is_a_parent", period) + persons(
-            "is_a_step_parent", period)) * persons("has_dependent_child", period)
+            "is_a_step_parent", period)) * persons("dependent_child", period)
 
         # (e) has no income or an income of less than the amount that would fully abate the young parent payment.
         income_test = persons(
