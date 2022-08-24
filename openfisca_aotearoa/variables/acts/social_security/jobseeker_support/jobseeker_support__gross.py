@@ -4,7 +4,7 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from openfisca_core import periods
+from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
 # We import the required `entities` corresponding to our formulas.
@@ -32,7 +32,7 @@ from openfisca_aotearoa.entities import Person
 class jobseeker_support__gross(Variable):
     value_type = float
     entity = Person
-    definition_period = periods.WEEK
+    definition_period = DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Jobseeker Support - Gross Amount"
     documentation = """
@@ -46,6 +46,10 @@ class jobseeker_support__gross(Variable):
         """
 
     def formula_2013_07_15(people, period, parameters):
+        # Get `single` for each person in `people` at `period`, where `period`
+        # is "forever", as in "Are you single now?"
+        single = people("single", DateUnit.ETERNITY)
+
         # Get `age` for each person in `people` at `period`, where `period` is
         # the last day of last week.
         #
@@ -53,17 +57,10 @@ class jobseeker_support__gross(Variable):
         # `yesterday`, `last month`, `two years ago`; or a `period`, like
         # `last year's first quarter` (which translates to last year's first
         # three months), `over the last three years`, etc.
-        #
-        # For more information on OpenFisca's `periods` and `instants`:
-        # https://openfisca.org/doc/key-concepts/periodsinstants.html
         age = people("age", period.first_day.offset(-1))
 
         # Get `living_with_parent_or_guardian` for each person in `people` at
-        # `period`, where `period` is the month corresponding to the
-        # last-day-of-last-week's month.
-        #
-        # For more information on OpenFisca's `periods` and `instants`:
-        # https://openfisca.org/doc/key-concepts/periodsinstants.html
+        # `period`, where `period` is the month of last day of last week.
         living_with_parent_or_guardian = people(
             "living_with_parent_or_guardian",
             period.first_day.offset(-1).first_month,
@@ -90,7 +87,8 @@ class jobseeker_support__gross(Variable):
         # Note: we're not calculating eligibility here, so the result of this
         # calculation is a "theoretical amount".
         return (
-            + (age < 20)
+            + single
+            * (age < 20)
             * living_with_parent_or_guardian
             * net_weekly_benefit
             )

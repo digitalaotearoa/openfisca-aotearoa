@@ -1,25 +1,27 @@
 - name: >
     Social Security Act 2018
     Jobseeker Support
-    Living with parent and younger than 20
+    Single, living with parent and younger than 20
   period: 2018-11-26
   input:
     age:
-      day:2018-12-24:7: [19, 20, 19, 20]
-      day:2019-12-23:7: [19, 20, 19, 20]
-      day:2020-12-28:7: [19, 20, 19, 20]
-      day:2021-12-27:7: [19, 20, 19, 20]
-      day:2022-12-26:7: [19, 20, 19, 20]
+      day:2018-12-24:7: [19, 20, 19, 20, 19, 20]
+      day:2019-12-23:7: [19, 20, 19, 20, 19, 20]
+      day:2020-12-28:7: [19, 20, 19, 20, 19, 20]
+      day:2021-12-27:7: [19, 20, 19, 20, 19, 20]
+      day:2022-12-26:7: [19, 20, 19, 20, 19, 20]
     living_with_parent_or_guardian:
-      2018-12: [true, true, false, false]
-      2019-12: [true, true, false, false]
-      2021-01: [true, true, false, false]
-      2022-01: [true, true, false, false]
-      2023-01: [true, true, false, false]
+      2018-12: [true, true, false, false, true, true]
+      2019-12: [true, true, false, false, true, true]
+      2021-01: [true, true, false, false, true, true]
+      2022-01: [true, true, false, false, true, true]
+      2023-01: [true, true, false, false, true, true]
+    single:
+      eternity: [true, true, true, true, false, false]
   output:
     jobseeker_support__gross:
-      2019-W01: [143.55, 0, 0, 0]
-      2020-W01: [145.98, 0, 0, 0]
-      2021-W01: [175.48, 0, 0, 0]
-      2022-W01: [200.91, 0, 0, 0]
-      2023-W01: [233.75, 0, 0, 0]
+      2019-W01: [143.55, 0, 0, 0, 0, 0]
+      2020-W01: [145.98, 0, 0, 0, 0, 0]
+      2021-W01: [175.48, 0, 0, 0, 0, 0]
+      2022-W01: [200.91, 0, 0, 0, 0, 0]
+      2023-W01: [233.75, 0, 0, 0, 0, 0]

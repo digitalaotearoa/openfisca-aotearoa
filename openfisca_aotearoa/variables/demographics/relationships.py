@@ -1,7 +1,7 @@
 """TODO: Add missing doctring."""
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core.periods import MONTH
+from openfisca_core import periods
 from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
@@ -13,7 +13,7 @@ class has_a_partner(Variable):
     value_type = bool
     entity = Person
     label = "Is this person in a relationship?"
-    definition_period = MONTH  # This variable changes over time.
+    definition_period = periods.MONTH  # This variable changes over time.
     reference = "TODO"
 
     def formula(persons, period, parameters):
@@ -28,7 +28,7 @@ class is_adequately_supported_by_partner(Variable):
     label = """Is adequately supported by their partner? (false if lost the regular support of
     their partner as their partner has been imprisoned or is subject to release or detention conditions that prevent employment)
     """
-    definition_period = MONTH
+    definition_period = periods.MONTH
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
     default_value = True
 
@@ -36,21 +36,21 @@ class is_adequately_supported_by_partner(Variable):
 class is_a_parent(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "Is a parent?"
 
 
 class is_a_step_parent(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "Is a step-parent?"
 
 
 class is_married(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "Is married?"
 
     def formula(persons, period, parameters):
@@ -60,7 +60,7 @@ class is_married(Variable):
 class is_in_civil_union(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "Is in a civil union?"
 
     def formula(persons, period, parameters):
@@ -70,7 +70,7 @@ class is_in_civil_union(Variable):
 class is_in_de_facto_relationship(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "Is in a de facto relationship?"
 
     def formula(persons, period, parameters):
@@ -80,15 +80,22 @@ class is_in_de_facto_relationship(Variable):
 class has_been_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "He or she is not married but has been married or in a civil union or de facto relationship"
 
 
 class is_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "He or she is married, or in a civil union or de facto relationship"
 
     def formula(persons, period, parameters):
         return persons("is_married", period) + persons("is_in_civil_union", period) + persons("is_in_de_facto_relationship", period)
+
+
+class single(Variable):
+    value_type = bool
+    entity = Person
+    definition_period = periods.ETERNITY
+    label = "Legally single"
