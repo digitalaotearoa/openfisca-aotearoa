@@ -1,5 +1,11 @@
 """This module provides gross amount for Jobseeker Support."""
 
+# We import numpy for performing calculations on collections of people.
+#
+# For more information on vectorial computing:
+# https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html
+import numpy
+
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
@@ -43,6 +49,9 @@ class jobseeker_support__gross(Variable):
                 (i)     living with a parent (as that term is defined in clause
                         8); and
                 (ii)    whose benefit commenced on or after 1 July 1998
+
+            (b) To any other single beneficiary under the age of 25 years
+                without dependent children (see clause 7)
         """
 
     def formula_2013_07_15(people, period, parameters):
@@ -63,6 +72,13 @@ class jobseeker_support__gross(Variable):
         # `period`, where `period` is the month of last day of last week.
         living_with_parent_or_guardian = people(
             "living_with_parent_or_guardian",
+            period.first_day.offset(-1).first_month,
+            )
+
+        # Get `dependent_child` for each person in `people` at `period`, where
+        # `period` is the month of last day of last week.
+        dependent_child = people(
+            "dependent_child",
             period.first_day.offset(-1).first_month,
             )
 
@@ -88,7 +104,9 @@ class jobseeker_support__gross(Variable):
         # calculation is a "theoretical amount".
         return (
             + single
-            * (age < 20)
-            * living_with_parent_or_guardian
+            * (
+                + (age < 20) * living_with_parent_or_guardian
+                + (age < 25) * numpy.logical_not(dependent_child)
+                )
             * net_weekly_benefit
             )
