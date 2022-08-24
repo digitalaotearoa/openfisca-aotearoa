@@ -5,7 +5,7 @@ from datetime import date
 from numpy import where
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core.periods import DAY, ETERNITY
+from openfisca_core import holders, periods
 from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
@@ -18,7 +18,7 @@ class date_of_birth(Variable):
     value_type = date
     entity = Person
     label = "Birth date"
-    definition_period = ETERNITY  # This variable cannot change over time.
+    definition_period = periods.ETERNITY  # Cannot change over time.
     reference = "https://en.wiktionary.org/wiki/birthdate"
 
 
@@ -27,17 +27,18 @@ class due_date_of_birth(Variable):
     value_type = date
     entity = Person
     label = "Birth due date"
-    definition_period = ETERNITY  # This variable cannot change over time.
+    definition_period = periods.ETERNITY  # Cannot change over time.
     reference = ""
 
 
 class age(Variable):
     value_type = int
     entity = Person
-    definition_period = DAY
+    definition_period = periods.DAY
     label = "The age of a Person (in years)"
     unit = "years"
     default_value = -9999
+    set_input = holders.set_input_dispatch_by_period
     # A person's age is computed according to their birth date.
 
     def formula(persons, period, parameters):
@@ -53,7 +54,7 @@ class age(Variable):
 class age_of_youngest(Variable):
     value_type = int
     entity = Family
-    definition_period = DAY
+    definition_period = periods.DAY
     unit = "years"
     label = "The age of the youngest member of a family"
     # A person's age is computed according to their birth date.
@@ -65,7 +66,7 @@ class age_of_youngest(Variable):
 class age_of_partner(Variable):
     value_type = int
     entity = Person
-    definition_period = DAY
+    definition_period = periods.DAY
     unit = "years"
     label = "The maximum age of partner in a family"
 
