@@ -52,6 +52,10 @@ class jobseeker_support__gross(Variable):
 
             (b) To any other single beneficiary under the age of 25 years
                 without dependent children (see clause 7)
+
+            …
+
+            (d) To any other single beneficiary without dependent children
         """
 
     def formula_2013_07_15(people, period, parameters):
@@ -107,6 +111,7 @@ class jobseeker_support__gross(Variable):
             * (
                 + (age < 20) * living_with_parent_or_guardian
                 + (age < 25) * numpy.logical_not(dependent_child)
+                + (age >= 25) * numpy.logical_not(dependent_child)
                 )
             * net_weekly_benefit
             )

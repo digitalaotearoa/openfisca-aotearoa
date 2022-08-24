@@ -30,7 +30,7 @@
 - name: >
     Social Security Act 2018
     Jobseeker Support
-    Single, without dependent child/ren, and under 25
+    Single, without dependent child/ren, and around 25
   period: 2018-11-26
   input:
     age:
@@ -49,8 +49,8 @@
       eternity: [true, true, true, true, false, false]
   output:
     jobseeker_support__gross:
-      2019-W01: [179.44, 0, 0, 0, 0, 0]
-      2020-W01: [182.47, 0, 0, 0, 0, 0]
-      2021-W01: [213.10, 0, 0, 0, 0, 0]
-      2022-W01: [239.70, 0, 0, 0, 0, 0]
-      2023-W01: [274.37, 0, 0, 0, 0, 0]
+      2019-W01: [179.44, 215.34, 0, 0, 0, 0]
+      2020-W01: [182.47, 218.98, 0, 0, 0, 0]
+      2021-W01: [213.10, 250.74, 0, 0, 0, 0]
+      2022-W01: [239.70, 278.50, 0, 0, 0, 0]
+      2023-W01: [274.37, 315.00, 0, 0, 0, 0]
