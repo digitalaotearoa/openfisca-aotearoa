@@ -1,12 +1,21 @@
-description: Jobseeker Support cut-out points
+description: >
+  Social Security Act
+  Jobseeker Support
+  Net Weekly Benefit
 metadata:
   type: single_amount
   reference:
     2013-07-15:
-      title: Social Security Act 1964
+      title: >
+        Social Security Act 1964
+        Jobseeker Support
+        Net Weekly Benefit
       href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
     2018-11-26:
-      title: Social Security Act 2018
+      title: >
+        Social Security Act 2018
+        Jobseeker Support
+        Net Weekly Benefit
       href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145
 
 brackets:
@@ -15,220 +24,364 @@ brackets:
         value: 18
         metadata:
           reference:
-            title: Social Security Act 1964
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
     amount:
       2013-07-15:
         value: 137.47
         metadata:
           reference:
-            title: Net weekly benefit
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-15-july-2013-01.html
       2014-04-01:
         value: 139.37
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2014-01.html
       2015-04-01:
         value: 140.08
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2015-01.html
       2016-04-01:
         value: 140.08
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2016-01.html
       2017-04-01:
         value: 141.62
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2017-01.html
       2018-04-01:
         value: 143.55
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2018-01.html
       2019-04-01:
         value: 145.98
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2019-01.html
       2020-04-01:
         value: 175.48
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2020-01.html
       2021-04-01:
         value: 180.91
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2021-01.html
       2021-07-01:
         value: 200.91
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-july-2021-01.html
       2022-04-01:
         value: 233.75
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/jobseeker-support-cut-out-points-current.html
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 18 years and on
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html#DLM6784850
   - threshold:
       2013-07-15:
         value: 20
         metadata:
           reference:
-            title: Social Security Act 1964
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
     amount:
       2013-07-15:
         value: 171.84
         metadata:
           reference:
-            title: Net weekly benefit
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-15-july-2013-01.html
       2014-04-01:
         value: 174.21
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2014-01.html
       2015-04-01:
         value: 175.10
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2015-01.html
       2016-04-01:
         value: 175.10
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2016-01.html
       2017-04-01:
         value: 177.03
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2017-01.html
       2018-04-01:
         value: 179.44
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2018-01.html
       2019-04-01:
         value: 182.47
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2019-01.html
       2020-04-01:
         value: 213.10
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2020-01.html
       2021-04-01:
         value: 219.70
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2021-01.html
       2021-07-01:
         value: 239.70
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-july-2021-01.html
       2022-04-01:
         value: 274.37
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/jobseeker-support-cut-out-points-current.html
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 20 years and on
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html#DLM6784850
   - threshold:
       2013-07-15:
         value: 25
         metadata:
           reference:
-            title: Social Security Act 1964
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
     amount:
       2013-07-15:
         value: 206.21
         metadata:
           reference:
-            title: Net weekly benefit
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-15-july-2013-01.html
       2014-04-01:
         value: 209.06
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2014-01.html
       2015-04-01:
         value: 210.13
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2015-01.html
       2016-04-01:
         value: 210.13
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2016-01.html
       2017-04-01:
         value: 212.45
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2017-01.html
       2018-04-01:
         value: 215.34
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 1964
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2018-01.html
       2019-04-01:
         value: 218.98
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2019-01.html
       2020-04-01:
         value: 250.74
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2020-01.html
       2021-04-01:
         value: 258.50
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-april-2021-01.html
       2021-07-01:
         value: 278.50
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
             href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/at-1-july-2021-01.html
       2022-04-01:
         value: 315.00
         metadata:
           reference:
-            title: Jobseeker Support cut-out points
-            href: https://www.workandincome.govt.nz/map/deskfile/main-benefits-cut-out-points/jobseeker-support-cut-out-points-current.html
+            title: >
+              Social Security Act 2018
+              Jobseeker Support
+              Net Weekly Benefit
+              From 25 years and on
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html#DLM6784850
