@@ -86,3 +86,11 @@ class jobseeker_support(variables.Variable):
 
         # Calculate eligibility and amount of Jobseeker Support.
         return work_gap * net_weekly_benefit
+
+
+class jobseeker_support__below_income_threshold(variables.Variable):
+    value_type = bool
+    default_value = True
+    entity = entities.Person
+    label = "Income is below Job Seeker Support threshold?"
+    definition_period = periods.MONTH
