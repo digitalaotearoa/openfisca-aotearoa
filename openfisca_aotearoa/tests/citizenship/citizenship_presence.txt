@@ -26,21 +26,21 @@
       "2022-01-01": true
       "2023-01-01": false
       "2024-01-01": false
-    citizenship__meets_minimum_presence_requirements:
+    citizenship__minimum_presence_requirements:
       "2019-01-01": false
       "2020-01-01": true
       "2021-01-01": true
       "2022-01-01": true
       "2023-01-01": false
       "2024-01-01": false
-    citizenship__meets_each_year_minimum_presence_requirements:
+    citizenship__each_year_minimum_presence_requirements:
       "2019-01-01": false
       "2020-01-01": true
       "2021-01-01": true
       "2022-01-01": true
       "2023-01-01": false
       "2024-01-01": false
-    citizenship__meets_5_year_presence_requirement:
+    citizenship__5_year_presence_requirement:
       "2019-01-01": true
       "2020-01-01": true
 
@@ -81,7 +81,7 @@
 
       # 2023
       "2023-01-01": 0
-    citizenship__meets_preceeding_single_year_minimum_presence_requirement:
+    citizenship__preceeding_single_year_minimum_presence_requirement:
       "2016-01-01": true
       "2016-01-02": true
       "2017-01-01": true

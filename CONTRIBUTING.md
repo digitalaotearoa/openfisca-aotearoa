@@ -164,19 +164,27 @@ Title, Prefix, Type and Reference are all required.
  - Prefix: The prefix utilised within the openfisca_aotearoa code base
  - Type: One of the following: `Act`, `Schedule`, `Part`, `Section`, `Regulation`, `Policy`
  - Reference: A url or otherwise description of the source material.
+ - Children is optional, an array and maps to other prefixes in the array.
 
 
 ### Folder structure
 
 The folder names refer to the prefix's created in the `structure.json` file.
 
-Code relating to acts as follows:
+Variables relating to acts as follows:
  - `openfisca_aotearoa/variables/acts/{act prefix}/`
  - `openfisca_aotearoa/variables/acts/{act prefix}/{section prefix}/`
 
-Code relating to regulations as follows:
+Variables relating to regulations as follows:
  - `openfisca_aotearoa/variables/regulation/{reg prefix}/`
  - `openfisca_aotearoa/variables/regulation/{reg prefix}/{section prefix}/`
+
+Parameters as follows:
+ - `openfisca_aotearoa/parameters/{prefix}/`
+ - `openfisca_aotearoa/parameters/{prefix}/{section prefix}/`
+
+Tests as follows:
+ - `openfisca_aotearoa/tests/{prefix}/`
 
 Other legal instruments that don't fit the above:
  - `openfisca_aotearoa/variables/other/`
@@ -190,7 +198,7 @@ The best approach when interpreting natural language law in code is to mimic the
 
 This project currently utilises one specific pattern however for benefit calculations. The following is an example based on the `Social Security Act 2018` > `Job Seeker Support` benefit.
 
-- `jobseeker_support__entitled` (true/false)
+- `jobseeker_support__entitled` (true/false) - or - `jobseeker_support__eligible` (true/false)
 - `jobseeker_support__gross` (float)
 - `jobseeker_support__cutoff` (float)
 - `jobseeker_support__reduction` (float)

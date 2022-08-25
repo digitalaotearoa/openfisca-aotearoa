@@ -46,7 +46,7 @@ class young_parent_payment__single_young_persons(Variable):
 
         family_income_under_threshold = persons("young_parent_payment__family_income_under_threshold", period)
 
-        exceptional_circumstances = persons("social_security__single_young_person_in_exceptional_circumstances", period)
+        exceptional_circumstances = persons("youth_payment__single_young_person_exceptional_circumstances", period)
 
         section_2 = sixteen_or_seventeen * not_(living_with_parent_or_guardian) * exceptional_circumstances
         section_3 = sixteen_or_seventeen * (living_with_parent_or_guardian + financially_supported_by_parent_or_guardian) * family_income_under_threshold

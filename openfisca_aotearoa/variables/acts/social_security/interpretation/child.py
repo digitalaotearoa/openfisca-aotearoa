@@ -37,15 +37,6 @@ class social_security__child(Variable):
         return under_16 + (under_18 * not_(financially_independent))
 
 
-# TODO: move to demographics
-class dependent_child(Variable):
-    value_type = bool
-    entity = Person
-    label = "Is a dependent child"
-    reference = ""
-    definition_period = MONTH
-
-
 # TODO: Review against the new 2018 act
 class social_security__dependent_child(Variable):
     value_type = bool

@@ -9,7 +9,7 @@ long_description = (this_directory / "README.md").read_text()  # pylint: disable
 
 setup(
     name = "OpenFisca-Aotearoa",
-    version = "12.1.0",
+    version = "13.0.0",
     author = "New Zealand Government, Service Innovation Lab",
     author_email = "brenda.wallace@dia.govt.nz,hamish.fraser@dia.govt.nz",
     description = "OpenFisca tax and benefit system for Aotearoa",

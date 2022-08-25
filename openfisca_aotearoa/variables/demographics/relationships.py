@@ -40,7 +40,7 @@ class person_is_parent(Variable):
     label = "Is a parent?"
 
 
-class is_a_step_parent(Variable):
+class person_is_step_parent(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

@@ -1,25 +1,38 @@
 """TODO: Add missing doctring."""
 
 from numpy import logical_not
-
-from openfisca_core.periods import ETERNITY
-from openfisca_core.variables import Variable
-
+from openfisca_core import periods, variables
 from openfisca_aotearoa.entities import Person
 
 
-class acc__earner(Variable):
+class acc__earner(variables.Variable):
     value_type = bool
     entity = Person
-    definition_period = ETERNITY
+    definition_period = periods.ETERNITY
     label = "A natural person who engages in employment"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100103.html#DLM100167"
 
 
-class acc__potential_earner(Variable):
+class acc__receiving_compensation(variables.Variable):
     value_type = bool
     entity = Person
-    definition_period = ETERNITY
+    definition_period = periods.MONTH
+    label = "Is receiving compensation payment through ACC"
+    reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM105404.html#DLM105404"
+
+
+class acc__cover(variables.Variable):
+    value_type = bool
+    entity = Person
+    definition_period = periods.DAY
+    label = "Has cover for a personal injury"
+    reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100605.html"
+
+
+class acc__potential_earner(variables.Variable):
+    value_type = bool
+    entity = Person
+    definition_period = periods.ETERNITY
     label = "Is a potential earner"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100103.html#DLM100322"
 

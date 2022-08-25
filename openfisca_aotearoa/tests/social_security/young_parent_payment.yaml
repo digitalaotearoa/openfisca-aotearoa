@@ -30,7 +30,7 @@
         social_security__ordinarily_resident_in_new_zealand: true
         monthly_income: 0.0
         living_with_parent_or_guardian: false
-        social_security__single_young_person_in_exceptional_circumstances: true
+        youth_payment__single_young_person_exceptional_circumstances: true
     families:
       One:
         principal_caregiver: Ruby
@@ -86,7 +86,7 @@
         immigration__permanent_resident: true
         social_security__ordinarily_resident_in_new_zealand: true
         family_scheme__assessable_income_for_month: 0.0
-        social_security__single_young_person_in_exceptional_circumstances: true
+        youth_payment__single_young_person_exceptional_circumstances: true
     families:
       One:
         principal_caregiver: Ruby
