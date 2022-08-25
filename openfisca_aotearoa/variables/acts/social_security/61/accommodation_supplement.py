@@ -7,7 +7,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_accommodation_supplement(Variable):
+class accommodation_supplement__eligible(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -41,11 +41,11 @@ class social_security__eligible_for_accommodation_supplement(Variable):
         # is not ordinarily resident in New Zealand;
 
         in_nz = persons(
-            "social_security__is_ordinarily_resident_in_new_zealand", period)
-        resident_or_citizen = persons("is_resident", period) + persons(
-            "is_permanent_resident", period) + persons("is_nz_citizen", period)
-        social_security__has_accomodation_costs = persons(
-            "social_security__has_accomodation_costs", period)
+            "social_security__ordinarily_resident_in_new_zealand", period)
+        resident_or_citizen = persons("immigration__resident", period) + persons(
+            "immigration__permanent_resident", period) + persons("citizenship__citizen", period)
+        social_security__accomodation_costs = persons(
+            "social_security__accomodation_costs", period)
         not_social_housing = (
             persons("eligible_for_social_housing", period) == 0)
 
@@ -54,9 +54,9 @@ class social_security__eligible_for_accommodation_supplement(Variable):
         cash = persons(
             "accommodation_supplement__below_cash_threshold", period)
 
-        return age_requirement * resident_or_citizen * in_nz * social_security__has_accomodation_costs * not_social_housing * income * cash
+        return age_requirement * resident_or_citizen * in_nz * social_security__accomodation_costs * not_social_housing * income * cash
 
-
+# Todo possibly needs renaming to social_security__eligible_for_social_housing or social_housing__eligible
 class eligible_for_social_housing(Variable):
     value_type = bool
     default_value = True
@@ -64,3 +64,19 @@ class eligible_for_social_housing(Variable):
     label = "Has social housing?"
     definition_period = MONTH
     reference = "Social Security Act 1964 - 61EA Accommodation supplement http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362856"
+
+
+class accommodation_supplement__below_income_threshold(Variable):
+    value_type = bool
+    default_value = True
+    entity = Person
+    label = "Income is below Accommodation Supplement threshold?"
+    definition_period = MONTH
+
+
+class accommodation_supplement__below_cash_threshold(Variable):
+    value_type = bool
+    default_value = True
+    entity = Person
+    label = "Cash is below Accommodation Supplement threshold?"
+    definition_period = MONTH

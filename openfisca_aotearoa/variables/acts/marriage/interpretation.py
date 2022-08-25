@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class marriage__is_married(Variable):
+class marriage__married(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

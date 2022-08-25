@@ -39,8 +39,8 @@ class social_security__eligible_for_community_services_card(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resident_or_citizen = persons("is_citizen_or_resident", period)
-        in_nz = persons("social_security__is_ordinarily_resident_in_new_zealand", period)
+        resident_or_citizen = persons("immigration__citizen_or_resident", period)
+        in_nz = persons("social_security__ordinarily_resident_in_new_zealand", period)
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
         age_requirement = persons("age", period.start) >= parameters(
@@ -48,9 +48,9 @@ class social_security__eligible_for_community_services_card(Variable):
         low_income = persons(
             "community_services_card__below_income_threshold", period)
         dependent_children = persons(
-            "social_security__has_dependant_child", period)
+            "social_security__person_has_dependant_child", period)
         is_fulltime_student = persons(
-            "social_security__is_fulltime_student", period)
+            "social_security__fulltime_student", period)
         received_superannuation = persons(
             "social_security__received_superannuation", period)
         eligible_for_wff = persons(
@@ -160,7 +160,7 @@ class social_security__received_superannuation(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_fulltime_student(Variable):
+class social_security__fulltime_student(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -168,9 +168,17 @@ class social_security__is_fulltime_student(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359124.html"
 
 
-class has_community_services_card(Variable):
+class community_services_card(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "Has a current Community Services Card"
     reference = "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"
+
+
+class community_services_card__below_income_threshold(Variable):
+    value_type = bool
+    default_value = True
+    entity = Person
+    label = "Income is below Community Services Card threshold?"
+    definition_period = MONTH

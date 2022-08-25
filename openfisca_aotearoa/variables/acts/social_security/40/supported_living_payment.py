@@ -17,7 +17,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_required_to_give_fulltime_care(Variable):
+class social_security__required_to_give_fulltime_care(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -55,9 +55,9 @@ class social_security__eligible_for_supported_living_payment(Variable):
 
     def formula(persons, period, parameters):
         # The 3 ways of being eligible
-        disabled = persons("social_security__has_severely_restricted_capacity_for_work", period)
-        blind = persons("social_security__is_totally_blind", period)
-        carer = persons("social_security__is_required_to_give_fulltime_care", period)
+        disabled = persons("social_security__severely_restricted_capacity_for_work", period)
+        blind = persons("social_security__totally_blind", period)
+        carer = persons("social_security__required_to_give_fulltime_care", period)
 
         # 40B (4) A person who is not both permanently and severely restricted in his or her capacity for
         # work must not be granted a supported living payment under this section, unless he or she is totally blind.
@@ -65,7 +65,7 @@ class social_security__eligible_for_supported_living_payment(Variable):
         # 40B (5) A person must not be granted a supported living payment under this section if the chief
         # executive is satisfied that the person's restricted capacity for work, or total blindness, was
         # self-inflicted and brought about by the person with a view to qualifying for a benefit.
-        not_self_inflicted = not_(persons("social_security__disability_was_self_inflicted", period))
+        not_self_inflicted = not_(persons("social_security__disability_self_inflicted", period))
 
         # 40B (1A) An applicant for the supported living payment under
         # this section must be aged at least 16 years.
@@ -73,11 +73,11 @@ class social_security__eligible_for_supported_living_payment(Variable):
 
         # 40B (1B) An applicant for the supported living payment under
         # this section must meet the residential requirements in section 74AA.
-        is_resident_or_citizen = persons("is_citizen_or_resident", period)
+        immigration__resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
         resides_in_nz = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
 
         # # income low enough?
         income = persons("supported_living_payment__below_income_threshold", period)
 
-        return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * is_resident_or_citizen * income
+        return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * immigration__resident_or_citizen * income

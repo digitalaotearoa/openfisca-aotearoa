@@ -4,14 +4,14 @@
   input:
     age:
       "2018-06-01": 30
-    is_resident: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: true
+    immigration__resident: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: true
     eligible_for_social_housing: false
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: true
+    accommodation_supplement__eligible: true
 
 - name: Accommodation Supplement for a permanent resident
   period: 2018-06
@@ -19,14 +19,14 @@
   input:
     age:
       "2018-06-01": 30
-    is_permanent_resident: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: true
+    immigration__permanent_resident: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: true
     eligible_for_social_housing: false
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: true
+    accommodation_supplement__eligible: true
 
 - name: Accommodation Supplement for a citizen
   period: 2018-06
@@ -34,14 +34,14 @@
   input:
     age:
       "2018-06-01": 30
-    is_nz_citizen: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: true
+    citizenship__citizen: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: true
     eligible_for_social_housing: false
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: true
+    accommodation_supplement__eligible: true
 
 - name: Tests Accommodation Supplement, when applicant has no costs
   period: 2018-06
@@ -49,14 +49,14 @@
   input:
     age:
       "2018-06-01": 30
-    is_resident: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: false
+    immigration__resident: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: false
     eligible_for_social_housing: false
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: false
+    accommodation_supplement__eligible: false
 
 - name: Tests Accommodation Supplement, when applicant is too young
   period: 2018-06
@@ -64,14 +64,14 @@
   input:
     age:
       "2018-06-01": 15
-    is_resident: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: true
+    immigration__resident: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: true
     eligible_for_social_housing: false
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: false
+    accommodation_supplement__eligible: false
 
 - name: Tests Accommodation Supplement, when applicant has social housing
   period: 2018-06
@@ -79,11 +79,11 @@
   input:
     age:
       "2018-06-01": 45
-    is_resident: true
-    social_security__is_ordinarily_resident_in_new_zealand: true
-    social_security__has_accomodation_costs: true
+    immigration__resident: true
+    social_security__ordinarily_resident_in_new_zealand: true
+    social_security__accomodation_costs: true
     eligible_for_social_housing: true
     accommodation_supplement__below_income_threshold: true
     accommodation_supplement__below_cash_threshold: true
   output:
-    social_security__eligible_for_accommodation_supplement: false
+    accommodation_supplement__eligible: false

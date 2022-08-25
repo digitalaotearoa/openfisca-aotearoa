@@ -8,7 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
-class is_attending_school(Variable):
+class attending_school(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -36,8 +36,8 @@ class social_security_regulation__eligible_for_childcare_subsidy(Variable):
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
 
     def formula(persons, period, parameters):
-        is_citizen_or_resident = persons("is_citizen_or_resident", period)
-        normally_in_nz = persons("social_security__is_ordinarily_resident_in_new_zealand", period)
+        immigration__citizen_or_resident = persons("immigration__citizen_or_resident", period)
+        normally_in_nz = persons("social_security__ordinarily_resident_in_new_zealand", period)
         income_below_threshold = persons.family("social_security_regulation__household_income_below_childcare_subsidy_threshold", period)
 
         is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
@@ -48,7 +48,7 @@ class social_security_regulation__eligible_for_childcare_subsidy(Variable):
             "social_security_regulation__family_has_resident_child_aged_5_who_will_be_enrolled_in_school", period)
         under_6_with_disability_allowance = persons.family(
             "social_security_regulation__family_has_child_eligible_for_disability_allowance_child_under_6", period)
-        return is_citizen_or_resident * normally_in_nz * is_principal_carer * income_below_threshold * \
+        return immigration__citizen_or_resident * normally_in_nz * is_principal_carer * income_below_threshold * \
             (under_5_years_28_days_not_attending_school
                 + is_5_and_will_be_enrolled + under_6_with_disability_allowance)
 
@@ -72,12 +72,12 @@ class social_security_regulation__family_has_resident_child_under_5_not_in_schoo
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__is_dependent_child", period)
+            "social_security__dependent_child", period)
         not_in_school = not_(families.members(
-            "is_attending_school", period))
+            "attending_school", period))
         under_5 = families.members("age", period.start) < 5
         citizens_and_residents = families.members(
-            "is_citizen_or_resident", period)
+            "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
         return families.any((dependent_children * citizens_and_residents * not_in_school * under_5 * meets_early_childcare_hours_threshold), role=Family.CHILD)
 
@@ -93,12 +93,12 @@ class social_security_regulation__family_has_resident_child_aged_5_who_will_be_e
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__is_dependent_child", period)
+            "social_security__dependent_child", period)
         children_to_be_enrolled = families.members(
             "will_be_enrolled_in_school", period)
         aged_5 = (families.members("age", period.start) == 5)
         citizens_and_residents = families.members(
-            "is_citizen_or_resident", period)
+            "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
         return families.any((dependent_children * citizens_and_residents * children_to_be_enrolled * aged_5 * meets_early_childcare_hours_threshold), role=Family.CHILD)
 
@@ -114,12 +114,12 @@ class social_security_regulation__family_has_child_eligible_for_disability_allow
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__is_dependent_child", period)
+            "social_security__dependent_child", period)
         eligible_children = families(
-            "disability_allowance__family_has_eligible_child", period)
+            "child_disability_allowance__family_has_eligible_child", period)
         under_6 = families.members("age", period.start) < 6
         citizens_and_residents = families.members(
-            "is_citizen_or_resident", period)
+            "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
         return families.any((dependent_children * citizens_and_residents * eligible_children * under_6 * meets_early_childcare_hours_threshold), role=Family.CHILD)
 

@@ -7,7 +7,7 @@ from openfisca_aotearoa.entities import Family, Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_child_disability_allowance(Variable):
+class child_disability_allowance__eligible(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -16,10 +16,10 @@ class social_security__eligible_for_child_disability_allowance(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resident_or_citizen = persons("is_citizen_or_resident", period)
+        resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
         is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
-        has_eligible_disabled_child = persons.family("disability_allowance__family_has_eligible_child", period)
+        has_eligible_disabled_child = persons.family("child_disability_allowance__family_has_eligible_child", period)
 
         # http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html
         # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
@@ -32,7 +32,7 @@ class social_security__eligible_for_child_disability_allowance(Variable):
         # is not ordinarily resident in New Zealand;
 
         resides_in_nz = persons(
-            "social_security__is_ordinarily_resident_in_new_zealand", period)
+            "social_security__ordinarily_resident_in_new_zealand", period)
 
         return resident_or_citizen * \
             resides_in_nz * \
@@ -40,7 +40,7 @@ class social_security__eligible_for_child_disability_allowance(Variable):
             has_eligible_disabled_child
 
 
-class disability_allowance__family_has_eligible_child(Variable):
+class child_disability_allowance__family_has_eligible_child(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH
@@ -48,7 +48,7 @@ class disability_allowance__family_has_eligible_child(Variable):
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
     def formula(families, period, parameters):
-        has_disability = families.members("social_security__child_meets_child_disability_allowance_criteria", period)
+        has_disability = families.members("child_disability_allowance__allowance_criteria", period)
         child_age_threshold = parameters(period).entitlements.social_security.child_disability_allowance.child_age_threshold
         children = families.members("age", period.start) <= child_age_threshold
         disabled_children = has_disability * children
@@ -56,7 +56,7 @@ class disability_allowance__family_has_eligible_child(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__child_meets_child_disability_allowance_criteria(Variable):
+class child_disability_allowance__allowance_criteria(Variable):
     value_type = bool
     entity = Person
     label = "Has serious disability"

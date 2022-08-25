@@ -4,30 +4,30 @@
   input:
     persons:
       Ruby:
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 19
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
         monthly_income: 80000.0
       Oliver:
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 16
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
         monthly_income: 0.0
         living_with_parent_or_guardian: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 17
-        is_permanent_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__permanent_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
         monthly_income: 0.0
         living_with_parent_or_guardian: false
         social_security__single_young_person_in_exceptional_circumstances: true
@@ -38,15 +38,15 @@
       Two:
         principal_caregiver: Oscar
   output:
-    social_security__income_under_young_parent_payment_threshold:
+    young_parent_payment__income_under_threshold:
       - false # Ruby earns too much
       - true
       - true
-    social_security__meets_young_parent_payment_basic_requirements:
+    young_parent_payment__basic_requirements:
       - false  # Ruby earns too much
       - true
       - true
-    social_security__eligible_for_young_parent_payment:
+    young_parent_payment__entitled:
       - false
       - true
       - true
@@ -57,34 +57,34 @@
   input:
     persons:
       Ruby:
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_married_or_in_a_civil_union_or_de_facto_relationship: false
+        social_security__ordinarily_resident_in_new_zealand: true
+        married_or_civil_union_or_de_facto_relationship: false
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: true
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 19
-        is_nz_citizen: true
+        citizenship__citizen: true
         monthly_income: 10.0
       Oliver:
-        is_married_or_in_a_civil_union_or_de_facto_relationship: false
+        married_or_civil_union_or_de_facto_relationship: false
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 16
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        is_married_or_in_a_civil_union_or_de_facto_relationship: true
+        married_or_civil_union_or_de_facto_relationship: true
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
-        is_a_parent: true
-        has_dependent_child: true
+        person_is_parent: true
+        person_has_dependent_child: true
         age:
           "2017-10-01": 17
-        is_permanent_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__permanent_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
         family_scheme__assessable_income_for_month: 0.0
         social_security__single_young_person_in_exceptional_circumstances: true
     families:
@@ -94,15 +94,15 @@
       Two:
         principal_caregiver: Oscar
   output:
-    social_security__meets_young_parent_payment_in_relationship_requirements:
+    young_parent_payment__relationship_requirements:
       - true # previously married
       - false # never married
       - true # still married
-    social_security__meets_young_parent_payment_basic_requirements:
+    young_parent_payment__basic_requirements:
       - true
       - true
       - true
-    social_security__eligible_for_young_parent_payment:
+    young_parent_payment__entitled:
       - true
       - false
       - true
@@ -116,25 +116,25 @@
       Kiwi:
         age:
           "2017-10-01": 19
-        has_dependent_child: true
-        is_a_parent: true
-        is_nz_citizen: true
+        person_has_dependent_child: true
+        person_is_parent: true
+        citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand: true
       OE:
         age:
           "2017-10-01": 19
-        has_dependent_child: true
-        is_a_parent: true
-        is_nz_citizen: true
+        person_has_dependent_child: true
+        person_is_parent: true
+        citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
-        social_security__is_ordinarily_resident_in_new_zealand: false
+        social_security__ordinarily_resident_in_new_zealand: false
     families:
       One:
         principal_caregiver: Kiwi
       Two:
         principal_caregiver: OE
   output:
-    social_security__eligible_for_young_parent_payment:
+    young_parent_payment__entitled:
       - true # Lives in NZ
       - false # doesn't live in NZ

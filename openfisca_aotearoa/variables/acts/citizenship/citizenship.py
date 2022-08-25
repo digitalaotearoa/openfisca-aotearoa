@@ -8,6 +8,14 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
+class citizenship__citizen(Variable):
+    value_type = bool
+    entity = Person
+    definition_period = ETERNITY
+    label = """New Zealand citizen means a person who has New Zealand citizenship as provided in the Citizenship Act 1977 or the Citizenship (Western Samoa) Act 1982"""
+    reference = "https://legislation.govt.nz/act/public/1977/0061/latest/whole.html","https://legislation.govt.nz/act/public/1982/0011/latest/whole.html"
+
+
 class citizenship__citizenship_by_grant_may_be_authorized(Variable):
     value_type = bool
     entity = Person
@@ -18,11 +26,11 @@ class citizenship__citizenship_by_grant_may_be_authorized(Variable):
     def formula_2005_04_20(persons, period, parameters):
 
         return (persons("age", period) >= parameters(period).citizenship.by_grant.minimum_age_threshold) * \
-            persons("is_of_full_capacity", period) * \
+            persons("full_capacity", period) * \
             persons("citizenship__meets_minimum_presence_requirements", period) * \
-            persons("citizenship__is_of_good_character", period) * \
-            persons("citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship", period) * \
-            persons("citizenship__has_sufficient_knowledge_of_the_english_language", period) * \
+            persons("citizenship__of_good_character", period) * \
+            persons("citizenship__sufficient_knowledge_responsibilities_and_privileges", period) * \
+            persons("citizenship__sufficient_knowledge_english_language", period) * \
             (persons("citizenship__intends_to_reside_in_nz", period) + persons("citizenship__intends_crown_service", period)
                 + persons("citizenship__intends_international_service", period) + persons("citizenship__intends_nz_employment", period))
 
@@ -184,7 +192,7 @@ class present_in_new_zealand(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
 
 
-class citizenship__is_of_good_character(Variable):
+class citizenship__of_good_character(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
@@ -192,7 +200,7 @@ class citizenship__is_of_good_character(Variable):
     reference = ["http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html", "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443872.html"]
 
 
-class citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship(Variable):
+class citizenship__sufficient_knowledge_responsibilities_and_privileges(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
@@ -200,7 +208,7 @@ class citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileg
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
 
 
-class citizenship__has_sufficient_knowledge_of_the_english_language(Variable):
+class citizenship__sufficient_knowledge_english_language(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY

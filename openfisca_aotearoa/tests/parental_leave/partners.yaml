@@ -5,15 +5,15 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
     families:
       "Happy solo family":
         principal_caregiver: "biological mother"
   output:
-    parental_leave__is_spouse_or_partner_of_the_biological_mother:
+    parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
         - false
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - true
 
@@ -22,20 +22,20 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
         parental_leave__transferred_her_entitlement_to_spouse: true
       "other mum":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "Happy family":
         principal_caregiver: "other mum"
         partners: ["biological mother"]
   output:
-    parental_leave__is_spouse_or_partner_of_the_biological_mother:
+    parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
         - false
         - true
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - false
         - true
@@ -45,21 +45,21 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
         parental_leave__transferred_her_entitlement_to_spouse: false
       "other mum":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "Happy family":
         principal_caregiver: "other mum"
         partners:
           - "biological mother"
   output:
-    parental_leave__is_spouse_or_partner_of_the_biological_mother:
+    parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
         - false
         - true
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - false
         - false
@@ -69,11 +69,11 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
       "adopting mother":
         parental_leave__taking_permanent_primary_responsibility_for_child: true
       "another adopting parent":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "one":
         principal_caregiver: "adopting mother"
@@ -88,7 +88,7 @@
         - false
         - true
         - true
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - false
         - true
@@ -99,9 +99,9 @@
   input:
     persons:
       "foster mother":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
       "another foster parent":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "one":
         principal_caregiver: "foster mother"
@@ -112,7 +112,7 @@
       2019-03:
         - true
         - true
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - false
         - false
@@ -122,21 +122,21 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
         parental_leave__transferred_her_entitlement_to_spouse: true # Doesn't make sense, as this person doesn't have  spouse
       "biological father":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "a family":
         principal_caregiver: "biological father"
         others:
           - "biological mother"
   output:
-    parental_leave__is_spouse_or_partner_of_the_biological_mother:
+    parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
         - false
         - false
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         - false
         - false
@@ -146,12 +146,12 @@
   input:
     persons:
       "biological mother":
-        parental_leave__is_the_biological_mother: true
+        parental_leave__biological_mother: true
         parental_leave__transferred_her_entitlement_to_spouse: true
       "co-parent":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
       "another co-parenting partner":
-        parental_leave__is_the_biological_mother: false
+        parental_leave__biological_mother: false
     families:
       "Happy family":
         principal_caregiver: "co-parent"
@@ -159,13 +159,13 @@
           - "biological mother"
           - "another co-parenting partner"
   output:
-    parental_leave__is_spouse_or_partner_of_the_biological_mother:
+    parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
         # the two partners of the bio mother
         - false
         - true
         - true
-    parental_leave__is_primary_carer:
+    parental_leave__primary_carer:
       2019-03:
         # but only one may be nominated as carer
         - false

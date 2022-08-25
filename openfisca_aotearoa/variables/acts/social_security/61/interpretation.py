@@ -9,7 +9,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__has_accomodation_costs(Variable):
+class social_security__accomodation_costs(Variable):
     value_type = bool
     entity = Person
     label = "Person has accommodation costs"
@@ -35,7 +35,7 @@ class social_security__has_accomodation_costs(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_a_beneficiary(Variable):
+class social_security__a_beneficiary(Variable):
     value_type = bool
     entity = Person
     label = "Person is a beneficiary"
@@ -47,18 +47,18 @@ class social_security__is_a_beneficiary(Variable):
     (b) New Zealand superannuation or a veteran's pension
     """
     def formula(persons, period, parameters):
-        return persons("social_security__is_being_paid_jobseeker_benefit", period) + \
-            persons("social_security__is_being_paid_sole_parent_support", period) + \
-            persons("social_security__is_being_paid_a_supported_living_payment", period) + \
-            persons("social_security__is_being_paid_a_youth_payment", period) + \
-            persons("social_security__is_being_paid_a_young_parent_payment", period) + \
-            persons("social_security__is_being_paid_an_emergency_benefit", period) + \
-            persons("super__is_being_paid_nz_superannuation", period) + \
-            persons("veterans_support__is_being_paid_a_veterans_pension", period)
+        return persons("social_security__paid_jobseeker_benefit", period) + \
+            persons("social_security__paid_sole_parent_support", period) + \
+            persons("social_security__paid_a_supported_living_payment", period) + \
+            persons("social_security__paid_a_youth_payment", period) + \
+            persons("social_security__paid_a_young_parent_payment", period) + \
+            persons("social_security__paid_an_emergency_benefit", period) + \
+            persons("super__being_paid_nz_superannuation", period) + \
+            persons("veterans_support__being_paid_a_veterans_pension", period)
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_jobseeker_benefit(Variable):
+class social_security__paid_jobseeker_benefit(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid Jobseeker"
@@ -66,7 +66,7 @@ class social_security__is_being_paid_jobseeker_benefit(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_sole_parent_support(Variable):
+class social_security__paid_sole_parent_support(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid sole parent support"
@@ -74,7 +74,7 @@ class social_security__is_being_paid_sole_parent_support(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_a_supported_living_payment(Variable):
+class social_security__paid_a_supported_living_payment(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid a supported living payment"
@@ -82,7 +82,7 @@ class social_security__is_being_paid_a_supported_living_payment(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_a_youth_payment(Variable):
+class social_security__paid_a_youth_payment(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid a a youth payment"
@@ -90,7 +90,7 @@ class social_security__is_being_paid_a_youth_payment(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_a_young_parent_payment(Variable):
+class social_security__paid_a_young_parent_payment(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid a a young parent payment"
@@ -98,7 +98,7 @@ class social_security__is_being_paid_a_young_parent_payment(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_being_paid_an_emergency_benefit(Variable):
+class social_security__paid_an_emergency_benefit(Variable):
     value_type = bool
     entity = Person
     label = "Is being paid a young parent payment"

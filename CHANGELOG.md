@@ -1,5 +1,98 @@
 # Changelog
 
+# 13.0.0 - [??](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/??)
+* Renamed variables:
+  - `is_nz_citizen` to `citizenship__citizen`
+  - `is_citizen_or_resident` to `citizen_or_resident`
+  - `is_resident` to `immigration__resident`
+  - `is_permanent_resident` to `immigration__permanent_resident`
+  - `is_dependent_child` to `dependent_child`
+  - `has_a_partner` to `person_has_partner`
+  - `is_of_full_capacity` to `full_capacity`
+  - `home_help__had_multiple_birth` to `home_help__multiple_birth`
+  - `has_dependent_child` to `person_has_dependent_child`
+  - `has_community_services_card` to `community_services_card`
+  - `married_or_in_a_civil_union_or_de_facto_relationship` to `married_or_civil_union_or_de_facto_relationship`
+  - `is_attending_school` to `attending_school`
+  - `is_a_parent` to `person_is_parent`
+  - `is_in_civil_union` to `civil_union`
+  - `is_married` to `married`
+  - `is_in_de_facto_relationship` to `de_facto_relationship`
+  - `student_allowance__is_married_or_partnered` to `student_allowance__married_or_partnered`
+  - `marriage__is_married` to `marriage__married`
+  - `social_security__is_dependent_child` to `social_security__dependent_child`
+  - `social_security__is_financially_independent` to `social_security__financially_independent`
+  - `social_security__is_in_full_employment` to `social_security__full_employment`
+  - `social_security__is_a_child` to `social_security__child`
+  - `social_security__is_dependent_child` to `social_security__dependent_child`
+  - `social_security__has_dependant_child` to `social_security__person_has_dependant_child`
+  - `social_security__is_the_parent_of_dependent_child` to `social_security__parent_of_dependent_child`
+  - `social_security__has_child_in_family` to `social_security__child_in_family`
+  - `social_security__is_fulltime_student` to `social_security__fulltime_student`
+  - `social_security__has_accomodation_costs` to `social_security__accomodation_costs`
+  - `social_security__is_a_beneficiary` to `social_security__a_beneficiary`
+  - `social_security__is_being_paid_jobseeker_benefit` to `social_security__paid_jobseeker_benefit`
+  - `social_security__is_being_paid_sole_parent_support` to `social_security__paid_sole_parent_support`
+  - `social_security__is_being_paid_a_supported_living_payment` to `social_security__paid_a_supported_living_payment`
+  - `social_security__is_being_paid_a_youth_payment` to `social_security__paid_a_youth_payment`
+  - `social_security__is_being_paid_a_young_parent_payment` to `social_security__paid_a_young_parent_payment`
+  - `social_security__is_being_paid_an_emergency_benefit` to `social_security__paid_an_emergency_benefit`
+  - `social_security__has_severely_restricted_capacity_for_work` to `social_security__severely_restricted_capacity_for_work`
+  - `social_security__is_totally_blind` to `social_security__totally_blind`
+  - `social_security__disability_was_self_inflicted` to `social_security__disability_self_inflicted`
+  - `social_security__is_principal_carer_for_one_year_from_application_date` to `social_security__principal_carer_for_one_year_from_application_date`
+  - `social_security__has_orphaned_child_in_family` to `social_security__orphaned_child_in_family`
+  - `social_security__is_orphaned` to `social_security__orphaned`
+  - `social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time`
+  - `social_security__is_ordinarily_resident_in_new_zealand` to `social_security__ordinarily_resident_in_new_zealand`
+  - `social_security__eligible_for_child_disability_allowance` to `child_disability_allowance__eligible`
+  - `disability_allowance__family_has_eligible_child` to `child_disability_allowance__family_has_eligible_child`
+  - `social_security__child_meets_child_disability_allowance_criteria` to `child_disability_allowance__allowance_criteria`
+  - `jobseeker_support__is_prepared_for_employment` to `jobseeker_support__prepared_for_employment`
+  - `social_security__eligible_for_accommodation_supplement` to `accommodation_supplement__eligible`
+  - `social_security__eligible_for_unsupported_childs_benefit` to `unsupported_child__entitled`
+  - `social_security__has_unsupported_child_in_family` to `unsupported_child__unsupported_child_in_family`
+  - `social_security__eligible_for_orphans_benefit` to `orphans_benefit__entitled`
+  - `social_security__eligible_for_sole_parent_support` to `sole_parent_support__entitled`
+  - `sole_parent_support__meets_age_threshold` to `sole_parent_support__age_threshold`
+  - `sole_parent_support__meets_years_in_nz_requirement` to `sole_parent_support__years_in_nz_requirement`
+  - `social_security__meets_young_parent_payment_in_relationship_requirements` to `young_parent_payment__relationship_requirements`
+  - `social_security__meets_young_parent_payment_single_persons_requirements` to `young_parent_payment__single_young_persons`
+  - `social_security__family_income_under_young_parent_payment_threshold` to `young_parent_payment__family_income_under_threshold`
+  - `social_security__eligible_for_young_parent_payment` to `young_parent_payment__entitled`
+  - `social_security__meets_young_parent_payment_basic_requirements` to `young_parent_payment__basic_requirements`
+  - `social_security__income_under_young_parent_payment_threshold` to `young_parent_payment__income_under_threshold`
+  - `social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement` to `social_security__ordinarily_resident_in_country_with_reciprocity_agreement`
+  - `family_scheme__has_dependent_children` to `family_scheme__dependent_children`
+  - `immigration__is_recognised_refugee` to `immigration__recognised_refugee`
+  - `immigration__is_protected_person` to `immigration__protected_person`
+  - `parental_leave__is_primary_carer` to `parental_leave__primary_carer`
+  - `parental_leave__is_the_biological_mother` to `parental_leave__biological_mother`
+  - `parental_leave__is_spouse_or_partner_of_the_biological_mother` to `parental_leave__spouse_or_partner_of_biological_mother`
+  - `civil_union__civil_union` to `civil_union__civil_union`
+  - `acc__is_receiving_compensation` to `acc__receiving_compensation`
+  - `veterans_support__is_entitled_to_be_paid_veterans_pension` to `veterans_support__entitled`
+  - `property_relationships__is_in_de_facto_relationship` to `property_relationships__de_facto_relationship`
+  - `student_allowance__is_tertiary_student` to `student_allowance__tertiary_student`
+  - `student_allowance__is_enrolled_fulltime` to `student_allowance__enrolled_fulltime`
+  - `student_allowance__is_secondary_student` to `student_allowance__secondary_student`
+  - `super__is_being_paid_nz_superannuation` to `super__being_paid_nz_superannuation`
+  - `social_security__is_required_to_give_fulltime_care` to `social_security__required_to_give_fulltime_care`
+  - `student_allowance__is_childless` to `student_allowance__childless`
+  - `student_allowance__is_a_dependent_student` to `student_allowance__dependent_student`
+  - `student_allowance__is_living_with_a_parent` to `student_allowance__living_with_a_parent`
+  - `student_allowance__is_a_student` to `student_allowance__student`
+  - `student_allowance__has_a_supported_child` to `student_allowance__supported_child`
+  - `veterans_support__is_being_paid_a_veterans_pension` to `veterans_support__being_paid_a_veterans_pension`
+  - `acc__has_cover` to `acc__cover`
+  - `acc__part_3__has_lodged_claim` to `acc_part_3__lodged_claim`
+  - `acc__has_a_covered_injury` to `acc__person_has_covered_injury`
+  - `student_allowance__has_a_spouse` to `student_allowance__person_has_spouse`
+  - `parental_leave__has_spouse_who_transferred_her_entitlement` to `parental_leave__spouse_who_transferred_her_entitlement`
+* Removed excess variable `immigration__holds_permanent_resident_visa`
+* Added `orphans_benefit`,`unsupported_child`,`child_disability_allowance`,`young_parent_payment` to structure.json
+
+
 # 12.1.0 [16](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/16)
 * Removal of some tests while underlying issue in openfisca core is resolved (see openfisca_core/holders/helpers.py and period days)
 * Adjustments to some tests to account for above issue
@@ -127,11 +220,11 @@
   - `days_present_in_new_zealand_in_preceeding_5_years`
   - `days_present_in_new_zealand_in_preceeding_year`
   - `present_in_new_zealand`
-  - `is_of_full_capacity`
+  - `full_capacity`
   - `immigration__holds_indefinite_stay_visa`
-  - `citizenship__is_of_good_character`
-  - `citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship`
-  - `citizenship__has_sufficient_knowledge_of_the_english_language`
+  - `citizenship__of_good_character`
+  - `citizenship__sufficient_knowledge_responsibilities_and_privileges`
+  - `citizenship__sufficient_knowledge_english_language`
   - `citizenship__intends_to_reside_in_nz`
   - `citizenship__intends_nz_employment`
   - `citizenship__intends_international_service`

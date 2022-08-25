@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class property_relationships__is_in_de_facto_relationship(Variable):
+class property_relationships__de_facto_relationship(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

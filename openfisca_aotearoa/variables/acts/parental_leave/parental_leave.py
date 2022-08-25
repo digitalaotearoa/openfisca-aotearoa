@@ -8,7 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Family, Person
 
 
-class parental_leave__is_primary_carer(Variable):
+class parental_leave__primary_carer(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -16,10 +16,10 @@ class parental_leave__is_primary_carer(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
     def formula_2002(persons, period, parameters):
-        biological_mother = persons("parental_leave__is_the_biological_mother", period)
+        biological_mother = persons("parental_leave__biological_mother", period)
 
-        her_spouse = persons("parental_leave__is_spouse_or_partner_of_the_biological_mother", period)
-        received_transferred_entitlement = persons("parental_leave__has_spouse_who_transferred_her_entitlement", period)
+        her_spouse = persons("parental_leave__spouse_or_partner_of_biological_mother", period)
+        received_transferred_entitlement = persons("parental_leave__spouse_who_transferred_her_entitlement", period)
 
         other = persons("parental_leave__a_person_other_than_biological_mother_or_her_spouse", period)
         permanent = persons("parental_leave__taking_permanent_primary_responsibility_for_child", period)
@@ -31,7 +31,7 @@ class parental_leave__is_primary_carer(Variable):
         return nominated * (biological_mother + (her_spouse * received_transferred_entitlement) + (other * permanent))
 
 
-class parental_leave__is_the_biological_mother(Variable):
+class parental_leave__biological_mother(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY
@@ -39,7 +39,7 @@ class parental_leave__is_the_biological_mother(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
 
-class parental_leave__is_spouse_or_partner_of_the_biological_mother(Variable):
+class parental_leave__spouse_or_partner_of_biological_mother(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -49,7 +49,7 @@ class parental_leave__is_spouse_or_partner_of_the_biological_mother(Variable):
     def formula_2002(persons, period, parameters):
         # true for people who are not the biological mother, but the biological mother is in their family with role of partner
         return persons.family("parental_leave__family_includes_biological_mother_as_partner", period) * \
-            not_(persons("parental_leave__is_the_biological_mother", period))
+            not_(persons("parental_leave__biological_mother", period))
 
 
 class parental_leave__family_includes_biological_mother_as_partner(Variable):
@@ -59,7 +59,7 @@ class parental_leave__family_includes_biological_mother_as_partner(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
     def formula(families, period, parameters):
-        biological_mothers = families.members("parental_leave__is_the_biological_mother", period)
+        biological_mothers = families.members("parental_leave__biological_mother", period)
         return families.any(biological_mothers, role=Family.PARTNER)
 
 
@@ -71,7 +71,7 @@ class parental_leave__transferred_her_entitlement_to_spouse(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
 
-class parental_leave__has_spouse_who_transferred_her_entitlement(Variable):
+class parental_leave__spouse_who_transferred_her_entitlement(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -79,7 +79,7 @@ class parental_leave__has_spouse_who_transferred_her_entitlement(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
     def formula_2002(persons, period, parameters):
-        is_spouse = persons("parental_leave__is_spouse_or_partner_of_the_biological_mother", period)
+        is_spouse = persons("parental_leave__spouse_or_partner_of_biological_mother", period)
         family_has_transferring_entitlement = persons.family.members("parental_leave__transferred_her_entitlement_to_spouse", period)
 
         return persons.family.any(family_has_transferring_entitlement) * is_spouse
@@ -93,7 +93,7 @@ class parental_leave__a_person_other_than_biological_mother_or_her_spouse(Variab
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120458.html"
 
     def formula_2002(persons, period, parameters):
-        biological_mother = persons.family.members("parental_leave__is_the_biological_mother", period)
+        biological_mother = persons.family.members("parental_leave__biological_mother", period)
         partner_is_biological_mother = persons.family.any(biological_mother, role=Family.PARTNER)
 
         return not_(biological_mother) * not_(partner_is_biological_mother)
@@ -131,6 +131,7 @@ class parental_leave__had_previous_parental_leave_in_last_six_months(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM120450.html"
 
 
+# TODO - Confirm that citizenship is a valid eligibility test here, the referenced act doesn't mention it
 class parental_leave__eligible_employee(Variable):
     value_type = bool
     entity = Person
@@ -139,9 +140,9 @@ class parental_leave__eligible_employee(Variable):
     reference = "http://www.legislation.govt.nz/act/public/1987/0129/latest/DLM121539.html"
 
     def formula(persons, period, parameters):
-        is_citizen = persons("is_nz_citizen", period)
+        is_citizen = persons("citizenship__citizen", period)
 
-        return is_citizen * persons("parental_leave__is_primary_carer", period) * \
+        return is_citizen * persons("parental_leave__primary_carer", period) * \
             persons("parental_leave__applied_for_leave_or_stopped_working", period) * \
             (persons("parental_leave__threshold_tests", period) >= 6) * \
             not_(persons("parental_leave__had_previous_parental_leave_in_last_six_months", period))

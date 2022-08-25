@@ -18,26 +18,26 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     def formula_1964_12_04(persons, period, parameters):
         # (a) is a New Zealand citizen, or is a person who holds a residence
         # class visa under the Immigration Act 2009
-        is_citizen_or_resident = persons("is_citizen_or_resident", period)
+        citizen_or_resident = persons("immigration__citizen_or_resident", period)
 
         # (b) is ordinarily resident in New Zealand when he or she first
         # applies for the benefit; and
         ordinarily_lives_in_nz = persons(
-            "social_security__is_ordinarily_resident_in_new_zealand", period)
+            "social_security__ordinarily_resident_in_new_zealand", period)
 
         # (c) except in the case of a person who is recognised as a refugee or
         #     a protected person in New Zealand under
         #     the Immigration Act 2009, has resided continuously in New Zealand
         #     for a period of at least 2 years at any one time,
         is_refugee_or_protected = \
-            persons("immigration__is_recognised_refugee", period) \
-            + persons("immigration__is_protected_person", period)
+            persons("immigration__recognised_refugee", period) \
+            + persons("immigration__protected_person", period)
 
         enough_years_in_nz = persons(
-            "social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time",
+            "social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time",
             period)
 
-        return (is_citizen_or_resident * ordinarily_lives_in_nz) \
+        return (citizen_or_resident * ordinarily_lives_in_nz) \
             + (is_refugee_or_protected * enough_years_in_nz)
 
     # https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138
@@ -61,18 +61,18 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
     #      for a period of at least 2 years at any one time,
     def formula_2018_11_26(persons, period, parameters):
 
-        has_eligible_residency_class = persons("is_citizen_or_resident", period) + \
-            persons("immigration__is_recognised_refugee", period) + \
-            persons("immigration__is_protected_person", period)
+        has_eligible_residency_class = persons("immigration__citizen_or_resident", period) + \
+            persons("immigration__recognised_refugee", period) + \
+            persons("immigration__protected_person", period)
 
-        nz_eligible = persons("social_security__is_ordinarily_resident_in_new_zealand", period) * persons("social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time", period)
-        reciprocal_eligible = persons("social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
+        nz_eligible = persons("social_security__ordinarily_resident_in_new_zealand", period) * persons("social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time", period)
+        reciprocal_eligible = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
 
         return has_eligible_residency_class * (nz_eligible + reciprocal_eligible)
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_ordinarily_resident_in_new_zealand(Variable):
+class social_security__ordinarily_resident_in_new_zealand(Variable):
     value_type = bool
     entity = Person
     label = "is ordinarily resident in New Zealand"
@@ -82,20 +82,21 @@ class social_security__is_ordinarily_resident_in_new_zealand(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time(Variable):
+class social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time(Variable):
     value_type = bool
     entity = Person
     label = "has resided continuously in New Zealand for a period of at least 2 years at any one time"
     definition_period = ETERNITY
 
 
-class social_security__is_ordinarily_resident_in_country_with_reciprocity_agreement(Variable):
+class social_security__ordinarily_resident_in_country_with_reciprocity_agreement(Variable):
     value_type = bool
     entity = Person
     label = "is ordinarily resident in a country with which New Zealand has a reciprocity agreement"
     definition_period = ETERNITY
 
 
+# TODO: move to demographics
 class years_resided_continuously_in_new_zealand(Variable):
     value_type = int
     entity = Person

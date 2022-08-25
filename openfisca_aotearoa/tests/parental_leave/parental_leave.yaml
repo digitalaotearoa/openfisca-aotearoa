@@ -6,36 +6,36 @@
   input:
     persons:
       Passes_employee_test:
-        is_nz_citizen: true
-        parental_leave__is_primary_carer: true
+        citizenship__citizen: true
+        parental_leave__primary_carer: true
         parental_leave__threshold_tests: 1
         parental_leave__applied_for_leave_or_stopped_working: true
         parental_leave__had_previous_parental_leave_in_last_six_months: false
 
       Non_Citizen:
-        is_nz_citizen: false
-        parental_leave__is_primary_carer: true
+        citizenship__citizen: false
+        parental_leave__primary_carer: true
         parental_leave__threshold_tests: 7
         parental_leave__applied_for_leave_or_stopped_working: true
         parental_leave__had_previous_parental_leave_in_last_six_months: false
 
       A_Primary_Carer:
-        is_nz_citizen: true
-        parental_leave__is_primary_carer: true
+        citizenship__citizen: true
+        parental_leave__primary_carer: true
         parental_leave__threshold_tests: 6
         parental_leave__applied_for_leave_or_stopped_working: true
         parental_leave__had_previous_parental_leave_in_last_six_months: false
 
       Not_A_Primary_Carer:
-        is_nz_citizen: true
-        parental_leave__is_primary_carer: false
+        citizenship__citizen: true
+        parental_leave__primary_carer: false
         parental_leave__threshold_tests: 6
         parental_leave__applied_for_leave_or_stopped_working: true
         parental_leave__had_previous_parental_leave_in_last_six_months: false
 
       Received_Parental_Leave:
-        is_nz_citizen: true
-        parental_leave__is_primary_carer: true
+        citizenship__citizen: true
+        parental_leave__primary_carer: true
         parental_leave__threshold_tests: 12
         parental_leave__applied_for_leave_or_stopped_working: true
         parental_leave__had_previous_parental_leave_in_last_six_months: false
