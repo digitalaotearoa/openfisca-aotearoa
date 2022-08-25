@@ -27,7 +27,7 @@
       Three:
         principal_caregiver: Mary
   output:
-    has_a_partner:
+    person_has_partner:
       - true # mama
       - true # papa
       - true # Bob

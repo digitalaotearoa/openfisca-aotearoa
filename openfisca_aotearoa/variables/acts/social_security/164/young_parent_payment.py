@@ -7,7 +7,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_young_parent_payment(Variable):
+class young_parent_payment__entitled(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -19,7 +19,7 @@ class social_security__eligible_for_young_parent_payment(Variable):
     (1) The basic qualifications for entitlement to a young parent payment are in subsection (2). The qualifications for a single person are in section 165.
         The qualifications for a young person who is or has been married, in a civil union, or in a de facto relationship are in section 166.
 
-    (2) <--  snip - see social_security__meets_young_parent_payment_basic_requirements -->
+    (2) <--  snip - see young_parent_payment__basic_requirements -->
 
     (3) Nothing in subsection (2)﻿(e) affects the entitlement of a young person to receive a young parent payment if, during a temporary period, the person
         has income sufficient to fully abate the payment but the person otherwise fulfils the conditions of entitlement to the payment.
@@ -29,12 +29,12 @@ class social_security__eligible_for_young_parent_payment(Variable):
 
     def formula(persons, period, parameters):
         basic_requirements = persons(
-            "social_security__meets_young_parent_payment_basic_requirements", period)
+            "young_parent_payment__basic_requirements", period)
 
         single_requirements = persons(
-            "social_security__meets_young_parent_payment_single_persons_requirements", period)
+            "young_parent_payment__single_young_persons", period)
         in_relationship_requirements = persons(
-            "social_security__meets_young_parent_payment_in_relationship_requirements", period)
+            "young_parent_payment__relationship_requirements", period)
 
         # 74AA (2)
         residency = persons(
@@ -44,7 +44,7 @@ class social_security__eligible_for_young_parent_payment(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__meets_young_parent_payment_basic_requirements(Variable):
+class young_parent_payment__basic_requirements(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -74,18 +74,18 @@ class social_security__meets_young_parent_payment_basic_requirements(Variable):
             (persons("age", period.start) < 20)
 
         # (b) is a parent or step-parent of a dependent child or dependent children; and
-        is_parent_of_dependent_children = (persons("is_a_parent", period) + persons(
-            "is_a_step_parent", period)) * persons("has_dependent_child", period)
+        is_parent_of_dependent_children = (persons("person_is_parent", period) + persons(
+            "is_a_step_parent", period)) * persons("person_has_dependent_child", period)
 
         # (e) has no income or an income of less than the amount that would fully abate the young parent payment.
         income_test = persons(
-            "social_security__income_under_young_parent_payment_threshold", period)
+            "young_parent_payment__income_under_threshold", period)
 
         return age_test * is_parent_of_dependent_children * income_test
 
 
 # TODO: Review against the new 2018 act
-class social_security__income_under_young_parent_payment_threshold(Variable):
+class young_parent_payment__income_under_threshold(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

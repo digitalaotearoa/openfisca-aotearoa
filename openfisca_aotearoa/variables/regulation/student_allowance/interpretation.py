@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class student_allowance__is_childless(Variable):
+class student_allowance__childless(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -22,7 +22,7 @@ class student_allowance__combined_income(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259377"
 
 
-class student_allowance__is_a_dependent_student(Variable):
+class student_allowance__dependent_student(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -45,7 +45,7 @@ class student_allowance__income_before_tax(Variable):
     label = """income before tax includes gains before tax and profits before tax"""
 
 
-class student_allowance__is_living_with_a_parent(Variable):
+class student_allowance__living_with_a_parent(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -53,7 +53,7 @@ class student_allowance__is_living_with_a_parent(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259900"
 
 
-class student_allowance__is_married_or_partnered(Variable):
+class student_allowance__married_or_partnered(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -66,10 +66,10 @@ class student_allowance__is_married_or_partnered(Variable):
     """
 
     def formula(persons, period, parameters):
-        return persons("student_allowance__has_a_spouse", period)
+        return persons("student_allowance__person_has_spouse", period)
 
 
-class student_allowance__has_a_supported_child(Variable):
+class student_allowance__supported_child(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -101,7 +101,7 @@ class student_allowance__partner_has_a_supported_child(Variable):
     reference = "www.legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM6530648"
 
 
-class student_allowance__has_a_spouse(Variable):
+class student_allowance__person_has_spouse(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -118,12 +118,12 @@ class student_allowance__has_a_spouse(Variable):
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
         part_a = (persons("age", period.start) >= 24) * (persons("age_of_partner", period.start) >= 24)
         part_b = ((persons("age", period.start) >= 24) + (persons("age_of_partner", period.start) >= 24)) * \
-            (persons("student_allowance__has_a_supported_child", period) + persons("student_allowance__partner_has_a_supported_child", period))
+            (persons("student_allowance__supported_child", period) + persons("student_allowance__partner_has_a_supported_child", period))
 
         return part_a + part_b
 
 
-class student_allowance__is_a_student(Variable):
+class student_allowance__student(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -131,4 +131,4 @@ class student_allowance__is_a_student(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259958"
 
     def formula(persons, period, parameters):
-        return persons("student_allowance__is_tertiary_student", period) + persons("student_allowance__is_secondary_student", period)
+        return persons("student_allowance__tertiary_student", period) + persons("student_allowance__secondary_student", period)

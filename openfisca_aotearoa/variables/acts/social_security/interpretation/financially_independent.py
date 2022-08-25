@@ -7,7 +7,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_financially_independent(Variable):
+class social_security__financially_independent(Variable):
     value_type = bool
     entity = Person
     label = """financially independent, in relation to a person, means—
@@ -21,7 +21,7 @@ class social_security__is_financially_independent(Variable):
     reference = """Interpretation section of Social Security Act 1964"""
 
     def formula(persons, period, parameters):
-        in_full_employment = persons("social_security__is_in_full_employment", period)
+        in_full_employment = persons("social_security__full_employment", period)
         recieves_grant = persons("social_security__in_receipt_of_basic_grant", period)
         recieves_gov_assisted_payments = persons("social_security__recieves_goverment_assisted_scheme_payments", period)
         recieves_benefit = persons("social_security__recieves_main_benefit", period)

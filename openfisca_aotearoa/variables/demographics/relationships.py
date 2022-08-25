@@ -9,7 +9,7 @@ from openfisca_aotearoa.entities import Family, Person
 
 
 # Re-usable variable for having a partner
-class has_a_partner(Variable):
+class person_has_partner(Variable):
     value_type = bool
     entity = Person
     label = "Is this person in a relationship?"
@@ -33,7 +33,7 @@ class is_adequately_supported_by_partner(Variable):
     default_value = True
 
 
-class is_a_parent(Variable):
+class person_is_parent(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -47,34 +47,34 @@ class is_a_step_parent(Variable):
     label = "Is a step-parent?"
 
 
-class is_married(Variable):
+class married(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "Is married?"
 
     def formula(persons, period, parameters):
-        return persons("marriage__is_married", period)
+        return persons("marriage__married", period)
 
 
-class is_in_civil_union(Variable):
+class civil_union(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "Is in a civil union?"
 
     def formula(persons, period, parameters):
-        return persons("civil_union__is_in_civil_union", period)
+        return persons("civil_union__civil_union", period)
 
 
-class is_in_de_facto_relationship(Variable):
+class de_facto_relationship(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "Is in a de facto relationship?"
 
     def formula(persons, period, parameters):
-        return persons("property_relationships__is_in_de_facto_relationship", period)
+        return persons("property_relationships__de_facto_relationship", period)
 
 
 class has_been_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
@@ -84,11 +84,11 @@ class has_been_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
     label = "He or she is not married but has been married or in a civil union or de facto relationship"
 
 
-class is_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
+class married_or_civil_union_or_de_facto_relationship(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "He or she is married, or in a civil union or de facto relationship"
 
     def formula(persons, period, parameters):
-        return persons("is_married", period) + persons("is_in_civil_union", period) + persons("is_in_de_facto_relationship", period)
+        return persons("married", period) + persons("civil_union", period) + persons("de_facto_relationship", period)

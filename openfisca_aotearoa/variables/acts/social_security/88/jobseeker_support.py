@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class jobseeker_support__is_prepared_for_employment(Variable):
+class jobseeker_support__prepared_for_employment(Variable):
     value_type = bool
     default_value = True
     entity = Person
@@ -30,12 +30,13 @@ class jobseeker_support__meets_age_threshold(Variable):
 
         # over the threshold for appliants with a dependent child
         jobseeker_age_with_dependent_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_with_dependent_child
-        has_dependent_child = persons("social_security__has_dependant_child", period)
+        has_dependent_child = persons("social_security__person_has_dependant_child", period)
         over_age_threshold_with_dependent_child = (persons("age", period.start) >= jobseeker_age_with_dependent_child) * has_dependent_child
 
         return over_age_threshold + over_age_threshold_with_dependent_child
 
 
+# TODO move contents into jobseeker_support__entitled and delete
 class eligible_for_jobseeker(Variable):
     value_type = bool
     entity = Person
@@ -58,7 +59,7 @@ class eligible_for_jobseeker(Variable):
         income = persons("jobseeker_support__below_income_threshold", period)
 
         # Prepared to work
-        prepared = persons("jobseeker_support__is_prepared_for_employment", period)
+        prepared = persons("jobseeker_support__prepared_for_employment", period)
 
         return age_requirement * income * prepared * residency_requirements
 
@@ -66,8 +67,8 @@ class eligible_for_jobseeker(Variable):
     # but if the person's income is high the amount they get is zero
     def formula_2018_11_26(persons, period, parameters):
 
-        has_work_gap = persons("jobseeker_support__has_work_gap", period)
-        is_available_for_work = persons("jobseeker_support__is_available_for_work", period)
+        has_work_gap = persons("jobseeker_support__work_gap", period)
+        is_available_for_work = persons("jobseeker_support__available_for_work", period)
         age_requirements = persons("jobseeker_support__meets_age_threshold", period)
         residency = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
 

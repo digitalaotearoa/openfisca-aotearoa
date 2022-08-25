@@ -7,7 +7,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_in_full_employment(Variable):
+class social_security__full_employment(Variable):
     value_type = bool
     entity = Person
     default_value = False

@@ -4,12 +4,12 @@
   absolute_error_margin: 0
   input:
     acc__earner: false
-    acc__has_cover:
+    acc__cover:
       "2010-08-03": true
       "2020-08-06": true
       "2020-09-06": true
     acc__part_2__suffered_personal_injury: true
-    acc__part_3__has_lodged_claim: true
+    acc_part_3__lodged_claim: true
     acc__sched_1__engaged_fulltime_study_or_training:
       "2020-09-01": false
       "2020-09-06": false
@@ -31,7 +31,7 @@
       "2020-09-06": true
     acc__part_2__suffered_personal_injury:
       "2020-08-06": true
-    acc__has_cover:
+    acc__cover:
       "2020-08-06": true
     age:
       "2020-08-06": 18
@@ -41,10 +41,10 @@
   absolute_error_margin: 0
   input:
     acc__earner: false
-    acc__has_cover:
+    acc__cover:
       "2020-09-01": true
     acc__part_2__suffered_personal_injury: true
-    acc__part_3__has_lodged_claim: true
+    acc_part_3__lodged_claim: true
     acc__sched_1__engaged_fulltime_study_or_training:
       "2020-09-01": false
     acc__sched_1__incapacitated_for_6_months: true
@@ -69,7 +69,7 @@
       "2020-01-01": false
       "2021-01-01": false
       "2022-01-01": false
-    acc__has_cover:
+    acc__cover:
       "2020-09-01": true
       "2018-01-01": true
       "2019-01-01": true
@@ -83,7 +83,7 @@
       "2020-01-01": true
       "2021-01-01": true
       "2022-01-01": true
-    acc__part_3__has_lodged_claim:
+    acc_part_3__lodged_claim:
       "2020-09-01": true
       "2018-01-01": true
       "2019-01-01": true
@@ -133,7 +133,7 @@
   absolute_error_margin: 0
   input:
     acc__earner: false
-    acc__has_cover:
+    acc__cover:
       "2018-01-01": false
       "2019-01-01": false
       "2020-01-01": false
@@ -141,7 +141,7 @@
       "2021-01-01": true
       "2022-01-01": true
     acc__part_2__suffered_personal_injury: true
-    acc__part_3__has_lodged_claim: true
+    acc_part_3__lodged_claim: true
     acc__sched_1__engaged_fulltime_study_or_training:
       "2018-01-01": false
       "2019-01-01": false

@@ -5,15 +5,15 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
-        is_nz_citizen: true
-        is_attending_school: false
+        citizenship__citizen: true
+        attending_school: false
     families:
       "Whanau":
         social_security_regulation__household_income_below_childcare_subsidy_threshold: true
@@ -36,15 +36,15 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
-        is_nz_citizen: true
-        is_attending_school: false
+        citizenship__citizen: true
+        attending_school: false
     families:
       "Whanau":
         social_security_regulation__household_income_below_childcare_subsidy_threshold: false
@@ -68,18 +68,18 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 5
         early_childcare_hours_participation_per_week: 3
         social_security__child_with_serious_disability: true
         social_security__requires_constant_care_and_attention: true
         social_security__medical_certification_months: 12
-        is_nz_citizen: true
-        is_attending_school: true
+        citizenship__citizen: true
+        attending_school: true
     families:
       "Whanau":
         social_security_regulation__household_income_below_childcare_subsidy_threshold: true
@@ -102,14 +102,14 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 5
         early_childcare_hours_participation_per_week: 3
-        is_nz_citizen: true
+        citizenship__citizen: true
         will_be_enrolled_in_school: true
     families:
       "Whanau":
@@ -134,15 +134,15 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
-        is_nz_citizen: true
-        is_attending_school: true
+        citizenship__citizen: true
+        attending_school: true
     families:
       "Whanau":
         principal_caregiver: "Mama"
@@ -159,15 +159,15 @@
   input:
     persons:
       "Mama":
-        is_nz_citizen: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        is_dependent_child: true
+        dependent_child: true
         age:
           "2018-08-01": 7
         early_childcare_hours_participation_per_week: 3
-        is_nz_citizen: true
-        is_attending_school: false
+        citizenship__citizen: true
+        attending_school: false
     families:
       "Whanau":
         principal_caregiver: "Mama"

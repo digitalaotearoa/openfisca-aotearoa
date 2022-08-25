@@ -29,7 +29,7 @@
         principal_caregiver: "Papatūānuku"
         children: ["Hemi"]
   output:
-    family_scheme__has_dependent_children:
+    family_scheme__dependent_children:
       2018-07: [1]
 - name: the number of dependent children a family has in relation to the family scheme
   period: 2018
@@ -51,5 +51,5 @@
         principal_caregiver: "Papatūānuku"
         children: ["Hemi", "Tāne", "Rongo", "Ikatere"]
   output:
-    family_scheme__has_dependent_children:
+    family_scheme__dependent_children:
       2018-07: [1]

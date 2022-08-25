@@ -6,16 +6,16 @@
   input:
     persons:
       Mama:
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
       Papa:
-        social_security__is_ordinarily_resident_in_new_zealand: true
-        is_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
       Tama_disabled_child:
         age:
           "2018-08-01": 5
         social_security__child_with_serious_disability: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand: true
         social_security__medical_certification_months: 12
         social_security__requires_constant_care_and_attention: true
       Tamahine_able_bodied_teenager:
@@ -27,7 +27,7 @@
         children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
         others: Papa
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - true  # mama (principal carer)
       - false  # papa
       - false  # Tama (disabled child)
@@ -39,13 +39,13 @@
   input:
     persons:
       Koro:
-        is_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
         social_security__child_with_serious_disability: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand: true
         social_security__medical_certification_months: 12
         social_security__requires_constant_care_and_attention: true
     families:
@@ -53,7 +53,7 @@
         children: [Tama_disabled_child]
         principal_caregiver: Koro
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - true # Koro
       - false # Tama
 
@@ -63,13 +63,13 @@
   input:
     persons:
       Koro:
-        is_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
         social_security__child_with_serious_disability: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand: true
         social_security__medical_certification_months: 12
         social_security__requires_constant_care_and_attention: false
     families:
@@ -77,7 +77,7 @@
         principal_caregiver: Koro
         children: [Tama_disabled_child]
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - false # Koro
       - false # Tama
 
@@ -88,8 +88,8 @@
   input:
     persons:
       Koro:
-        is_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
       Tama_disabled_child:
         age:
           "2018-08-01": 5
@@ -101,7 +101,7 @@
         children: [Tama_disabled_child]
         others: [Koro]
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - false # Koro
       - false # Tama
 
@@ -111,8 +111,8 @@
   input:
     persons:
       Koro:
-        is_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
       Tama_disabled_child:
         age:
           "2018-08-01": 19
@@ -124,7 +124,7 @@
         children: [Tama_disabled_child]
         principal_caregiver: Koro
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - false # Koro
       - false # Tama
 
@@ -135,8 +135,8 @@
   input:
     persons:
       Koro:
-        is_resident: true
-        social_security__is_ordinarily_resident_in_new_zealand: true
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
@@ -148,6 +148,6 @@
         children: [Tama_disabled_child]
         principal_caregiver: Koro
   output:
-    social_security__eligible_for_child_disability_allowance:
+    child_disability_allowance__eligible:
       - false # Koro
       - false # Tama

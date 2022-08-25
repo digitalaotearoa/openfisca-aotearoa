@@ -6,15 +6,15 @@
     persons:
       "Tahi":
         date_of_birth: "1998-01-01"
-        is_of_full_capacity: true
+        full_capacity: true
         # 242 days in NZ
         present_in_new_zealand:
           "2015-01-01": true
           "2021-08-29": false
         citizenship__intends_to_reside_in_nz: true
-        citizenship__has_sufficient_knowledge_of_the_english_language: true
-        citizenship__has_sufficient_knowledge_of_the_responsibilities_and_privileges_attaching_to_nz_citizenship: true
-        citizenship__is_of_good_character: true
+        citizenship__sufficient_knowledge_english_language: true
+        citizenship__sufficient_knowledge_responsibilities_and_privileges: true
+        citizenship__of_good_character: true
         immigration__entitled_to_indefinite_stay:
           "2015-01-01": true
           "2021-08-29": false

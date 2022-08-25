@@ -18,18 +18,18 @@ class student_allowance__eligible_for_certain_allowances(Variable):
         # (1) No student is eligible for an allowance continued by regulation 3(a) to (e) unless—
         #     (a) he or she—
         #         (i) is a New Zealand citizen; or
-        is_citizen = persons("is_nz_citizen", period)
+        is_citizen = persons("citizenship__citizen", period)
 
         #         (ii) satisfies the chief executive that he or she is ordinarily resident in New Zealand,
         #             as lived in New Zealand for at least 3 years, and has been entitled under the
         #             Immigration Act 2009 to reside indefinitely in New Zealand for at least 3 years; or
-        resides_in_nz = persons("social_security__is_ordinarily_resident_in_new_zealand", period)
+        resides_in_nz = persons("social_security__ordinarily_resident_in_new_zealand", period)
         lived_in_nz_3_years = persons("number_of_years_lived_in_nz", period) >= 3
 
         #         (iii) satisfies the chief executive that he or she is recognised under the Immigration
         #             Act 2009 as a refugee or a protected person and is entitled under the Immigration
         #             Act 2009 to reside indefinitely in New Zealand; or
-        refugee_or_protected = persons("immigration__is_recognised_refugee", period) + persons("immigration__is_protected_person", period)
+        refugee_or_protected = persons("immigration__recognised_refugee", period) + persons("immigration__protected_person", period)
 
         #         (iv) satisfies the chief executive that he or she is entitled under the Immigration Act
         #             2009 to reside indefinitely in New Zealand and was sponsored into New Zealand by a
@@ -53,7 +53,7 @@ class student_allowance__eligible_for_certain_allowances(Variable):
         #     (c) he or she either—
         #         (i) is enrolled in a full-time course at a tertiary provider or secondary school and meets
         #             the attendance and performance requirements of that provider or school for tuition; or
-        fulltime = persons("student_allowance__is_enrolled_fulltime", period)
+        fulltime = persons("student_allowance__enrolled_fulltime", period)
         attendance = persons("student_allowance__meets_attendance_and_performance_requirements", period)
 
         #         (ii) is approved to study overseas under regulation 26; or
@@ -65,7 +65,7 @@ class student_allowance__eligible_for_certain_allowances(Variable):
             * under_super_age * ((fulltime * attendance) + overseas + parttime)
 
 
-class student_allowance__is_enrolled_fulltime(Variable):
+class student_allowance__enrolled_fulltime(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

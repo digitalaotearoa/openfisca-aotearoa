@@ -16,7 +16,7 @@
       Ringo:
         age:
           "2018-08-01": 17
-        social_security__is_financially_independent:
+        social_security__financially_independent:
           "2018-08": true
       Derek:
         age:
@@ -25,7 +25,7 @@
         age:
           "2018-08-01": 17
   output:
-    social_security__is_a_child:
+    social_security__child:
       - false  # paul
       - false  # john
       - true  # george

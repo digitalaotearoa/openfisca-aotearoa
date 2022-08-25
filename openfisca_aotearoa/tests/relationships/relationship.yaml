@@ -3,34 +3,34 @@
   period: 2018-08
   absolute_error_margin: 0
   input:
-    marriage__is_married: true
+    marriage__married: true
   output:
-    is_married_or_in_a_civil_union_or_de_facto_relationship: true
-    is_married: true
+    married_or_civil_union_or_de_facto_relationship: true
+    married: true
 
 - name: "Civil Union"
   period: 2018-08
   absolute_error_margin: 0
   input:
-    civil_union__is_in_civil_union: true
+    civil_union__civil_union: true
   output:
-    is_married_or_in_a_civil_union_or_de_facto_relationship: true
-    is_in_civil_union: true
+    married_or_civil_union_or_de_facto_relationship: true
+    civil_union: true
 
 - name: "De facto relationship"
   period: 2018-08
   absolute_error_margin: 0
   input:
-    property_relationships__is_in_de_facto_relationship: true
+    property_relationships__de_facto_relationship: true
   output:
-    is_married_or_in_a_civil_union_or_de_facto_relationship: true
-    is_in_de_facto_relationship: true
+    married_or_civil_union_or_de_facto_relationship: true
+    de_facto_relationship: true
 
 - name: "Not Married"
   period: 2018-08
   absolute_error_margin: 0
   input:
-    is_married: false
+    married: false
   output:
-    is_married_or_in_a_civil_union_or_de_facto_relationship: false
-    is_married: false
+    married_or_civil_union_or_de_facto_relationship: false
+    married: false

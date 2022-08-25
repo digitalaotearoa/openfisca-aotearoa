@@ -8,7 +8,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class has_dependent_child(Variable):
+class person_has_dependent_child(Variable):
     value_type = bool
     entity = Person
     label = "has a dependent child or dependent children"

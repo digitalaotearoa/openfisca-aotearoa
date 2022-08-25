@@ -8,6 +8,7 @@
             "Children": [
                 "acc_sched_1",
                 "acc_part_2",
+                "acc_part_3",
                 "acc_part_4"
             ]
         },
@@ -22,6 +23,12 @@
             "Prefix": "acc_part_2",
             "Type": "Part",
             "Reference": "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100676.html"
+        },
+        {
+            "Title": "Accident Compensation Act 2001, Part 3",
+            "Prefix": "acc_part_3",
+            "Type": "Part",
+            "Reference": "https://www.legislation.govt.nz/act/public/2001/0049/latest/whole.html#DLM100959"
         },
         {
             "Title": "Accident Compensation Act 2001, Part 4",
@@ -154,7 +161,11 @@
                 "disability_allowance",
                 "jobseeker_support",
                 "accommodation_supplement",
-                "supported_living_payment"
+                "supported_living_payment",
+                "orphans_benefit",
+                "unsupported_child",
+                "child_disability_allowance",
+                "young_parent_payment"
             ]
         },
         {
@@ -168,6 +179,30 @@
             "Prefix": "sole_parent_support",
             "Type": "Section",
             "Reference": "http://www.legislation.govt.nz/act/public/1964/0136/358.0/DLM5468352.html"
+        },
+        {
+            "Title": "Young Parent Payment",
+            "Prefix": "young_parent_payment",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783218"
+        },
+        {
+            "Title": "Orphans Benefit",
+            "Prefix": "orphans_benefit",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS5957"
+        },
+        {
+            "Title": "Child Disability Allowance",
+            "Prefix": "child_disability_allowance",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266"
+        },
+        {
+            "Title": "Unsupported Child's Benefit",
+            "Prefix": "unsupported_child",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS5958"
         },
         {
             "Title": "Student Allowances Regulations 1998",

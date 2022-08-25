@@ -41,9 +41,9 @@ class acc__sched_1__lope_eligible(Variable):
 
     def formula(persons, period, parameters):
         suffered_personal_injury = persons("acc__part_2__suffered_personal_injury", period)
-        has_cover = persons("acc__has_cover", period)
+        has_cover = persons("acc__cover", period)
         incapacitated = persons("incapacity_for_employment__corporation_determination", period)
-        lodged_claim = persons("acc__part_3__has_lodged_claim", period)
+        lodged_claim = persons("acc_part_3__lodged_claim", period)
         by_injury = persons("acc__lope__incapacity_for_employment__by_covered_injury", period)
         potential_earner = persons("acc__potential_earner", period)
 

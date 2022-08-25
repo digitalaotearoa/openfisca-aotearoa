@@ -9,7 +9,7 @@ from openfisca_aotearoa.entities import Family, Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__has_dependant_child(Variable):
+class social_security__person_has_dependant_child(Variable):
     value_type = bool
     entity = Person
     label = "has a dependent child (or children)"
@@ -17,7 +17,7 @@ class social_security__has_dependant_child(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_a_child(Variable):
+class social_security__child(Variable):
     value_type = bool
     entity = Person
     label = """child means a single person under the age of 18 years, other than a person who is—
@@ -32,12 +32,13 @@ class social_security__is_a_child(Variable):
         under_18 = persons("age", period.start) < 18
 
         financially_independent = persons(
-            "social_security__is_financially_independent", period)
+            "social_security__financially_independent", period)
 
         return under_16 + (under_18 * not_(financially_independent))
 
 
-class is_dependent_child(Variable):
+# TODO: move to demographics
+class dependent_child(Variable):
     value_type = bool
     entity = Person
     label = "Is a dependent child"
@@ -46,7 +47,7 @@ class is_dependent_child(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__is_dependent_child(Variable):
+class social_security__dependent_child(Variable):
     value_type = bool
     entity = Person
     label = "Is a dependent child"
@@ -67,16 +68,16 @@ class social_security__is_dependent_child(Variable):
     # (f) for the purposes of clause 1(a) and (b) of Schedule 18A (rates of winter energy payment), has the meaning given to it by clause 2 of Schedule 18A
 
     def formula(persons, period, parameters):
-        return persons("social_security__is_a_child", period) * persons("is_dependent_child", period)
+        return persons("social_security__child", period) * persons("dependent_child", period)
 
 
-# TODO: Review against the new 2018 act
-class social_security__has_child_in_family(Variable):
+# TODO: Review against the new 2018 act, not referenced anywhere
+class social_security__child_in_family(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH
     label = "Family has a child"
 
     def formula(families, period, parameters):
-        children = families.members("social_security__is_a_child", period)
+        children = families.members("social_security__child", period)
         return families.any(children, role=Family.CHILD)

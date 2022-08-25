@@ -9,7 +9,7 @@ from openfisca_aotearoa.entities import Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__meets_young_parent_payment_single_persons_requirements(Variable):
+class young_parent_payment__single_young_persons(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -44,7 +44,7 @@ class social_security__meets_young_parent_payment_single_persons_requirements(Va
         living_with_parent_or_guardian = persons("living_with_parent_or_guardian", period)
         financially_supported_by_parent_or_guardian = persons("financially_supported_by_parent_or_guardian", period)
 
-        family_income_under_threshold = persons("social_security__family_income_under_young_parent_payment_threshold", period)
+        family_income_under_threshold = persons("young_parent_payment__family_income_under_threshold", period)
 
         exceptional_circumstances = persons("social_security__single_young_person_in_exceptional_circumstances", period)
 
@@ -60,7 +60,7 @@ class social_security__meets_young_parent_payment_single_persons_requirements(Va
 
 
 # TODO: Review against the new 2018 act
-class social_security__family_income_under_young_parent_payment_threshold(Variable):
+class young_parent_payment__family_income_under_threshold(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

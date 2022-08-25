@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class student_allowance__is_tertiary_student(Variable):
+class student_allowance__tertiary_student(Variable):
     value_type = bool
     entity = Person
     label = "is a tertiary student"
@@ -15,7 +15,7 @@ class student_allowance__is_tertiary_student(Variable):
     default_value = False
 
 
-class student_allowance__is_secondary_student(Variable):
+class student_allowance__secondary_student(Variable):
     value_type = bool
     entity = Person
     label = "is a secondary student"

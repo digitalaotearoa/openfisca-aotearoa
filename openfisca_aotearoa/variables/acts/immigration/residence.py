@@ -1,76 +1,67 @@
-"""TODO: Add missing doctring."""
+"""This module provides eligibility and amount for Jobseeker Support."""
 
-from openfisca_core.periods import ETERNITY, MONTH
-from openfisca_core.variables import Variable
+# We import the required OpenFisca modules needed to define a formula.
+#
+# For more information on OpenFisca's available modules:
+# https://openfisca.org/doc/openfisca-python-api/index.html
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+# We import the required `entities` corresponding to our formulas.
+#
+# Entities are an OpenFisca abstraction that allows us to model legislation's
+# `subjects of law`: person, couple, family, household, and so on.
+#
+# For more information on OpenFisca's `entities`:
+# https://openfisca.org/doc/key-concepts/person,_entities,_role.html
+from openfisca_aotearoa import entities
 
 
-class immigration__holds_resident_visa(Variable):
+class immigration__holds_resident_visa(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Holder of a resident visa"
 
 
-class immigration__holds_permanent_resident_visa(Variable):
+class immigration__permanent_resident(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = ETERNITY
+    entity = entities.Person
+    definition_period = periods.ETERNITY
     label = "Holder of a permanent resident visa"
+    reference = "http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
 
-class is_resident(Variable):
+class immigration__resident(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = ETERNITY
+    entity = entities.Person
+    definition_period = periods.ETERNITY
     label = "Holder of a permanent resident visa or a resident visa"
-    reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
+    reference = "http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
     def formula(persons, period, parameters):
-        return persons("immigration__holds_resident_visa", period) + persons("immigration__holds_permanent_resident_visa", period)
+        return persons("immigration__holds_resident_visa", period) + persons("immigration__permanent_resident", period)
 
 
-class is_permanent_resident(Variable):
+class immigration__citizen_or_resident(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = ETERNITY
-    label = "Holder of a permanent resident visa"
-    reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
-
-    def formula(persons, period, parameters):
-        return persons("immigration__holds_permanent_resident_visa", period)
-
-
-class is_nz_citizen(Variable):
-    value_type = bool
-    entity = Person
-    definition_period = ETERNITY
-    label = """New Zealand citizen means a person who has New Zealand citizenship as provided in
-        the Citizenship Act 1977 or the Citizenship (Western Samoa) Act 1982"""
-    reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
-
-
-class is_citizen_or_resident(Variable):
-    value_type = bool
-    entity = Person
-    definition_period = ETERNITY
+    entity = entities.Person
+    definition_period = periods.ETERNITY
     label = "NZ Citizen or Resident"
-    reference = "Immigration Act 2009 (interpretation) http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
+    reference = "http://legislation.govt.nz/act/public/2009/0051/latest/whole.html#DLM1440311"
 
     def formula(persons, period, parameters):
-        return persons("is_nz_citizen", period) + persons("is_permanent_resident", period) + persons("is_resident", period)
+        return persons("citizenship__citizen", period) + persons("immigration__permanent_resident", period) + persons("immigration__resident", period)
 
 
-class immigration__is_recognised_refugee(Variable):
+class immigration__recognised_refugee(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "is recognised as a refugee"
 
 
-class immigration__is_protected_person(Variable):
+class immigration__protected_person(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "is recognised as a a protected person in New Zealand"

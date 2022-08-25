@@ -6,7 +6,7 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
+    citizenship__citizen: true
   output:
     social_security__eligible_for_supported_living_payment: false
 
@@ -16,8 +16,8 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
-    social_security__is_totally_blind: true
+    citizenship__citizen: true
+    social_security__totally_blind: true
     supported_living_payment__below_income_threshold: true
     social_security__meets_residential_requirements_for_certain_benefits: true
   output:
@@ -31,8 +31,8 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
-    social_security__has_severely_restricted_capacity_for_work: true
+    citizenship__citizen: true
+    social_security__severely_restricted_capacity_for_work: true
     supported_living_payment__below_income_threshold: true
     social_security__meets_residential_requirements_for_certain_benefits: true
   output:
@@ -45,10 +45,10 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
-    social_security__has_severely_restricted_capacity_for_work: true
+    citizenship__citizen: true
+    social_security__severely_restricted_capacity_for_work: true
     supported_living_payment__below_income_threshold: true
-    social_security__disability_was_self_inflicted: true
+    social_security__disability_self_inflicted: true
     social_security__meets_residential_requirements_for_certain_benefits: true
   output:
     social_security__eligible_for_supported_living_payment: false
@@ -59,8 +59,8 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
-    social_security__is_required_to_give_fulltime_care: true
+    citizenship__citizen: true
+    social_security__required_to_give_fulltime_care: true
     supported_living_payment__below_income_threshold: true
     social_security__meets_residential_requirements_for_certain_benefits: true
   output:
@@ -73,8 +73,8 @@
   input:
     age:
       "2018-10-01": 25
-    is_nz_citizen: true
-    social_security__is_required_to_give_fulltime_care: true
+    citizenship__citizen: true
+    social_security__required_to_give_fulltime_care: true
     supported_living_payment__below_income_threshold: true
     social_security__meets_residential_requirements_for_certain_benefits: false
   output:

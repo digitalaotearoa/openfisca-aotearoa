@@ -42,7 +42,7 @@ class family_scheme__qualifies_as_principal_carer(Variable):
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518480.html"
 
     def formula(persons, period, parameters):
-        return persons.has_role(Family.PRINCIPAL_CAREGIVER) * persons.family("family_scheme__has_dependent_children", period)
+        return persons.has_role(Family.PRINCIPAL_CAREGIVER) * persons.family("family_scheme__dependent_children", period)
 
 
 class family_scheme__full_time_earner(Variable):
@@ -53,7 +53,7 @@ class family_scheme__full_time_earner(Variable):
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518419.html"
 
     def formula(persons, period, parameters):
-        has_partner = (persons("has_a_partner", period) > 0)
+        has_partner = (persons("person_has_partner", period) > 0)
         hours_per_week_threshold = parameters(period).entitlements.social_security.family_scheme.hours_per_week_threshold
         hours_per_week_threshold_with_partner = parameters(period).entitlements.social_security.family_scheme.hours_per_week_threshold_with_partner
 
@@ -90,7 +90,7 @@ class family_scheme__assessable_income_for_month(Variable):
         return persons("family_scheme__assessable_income", period, options=[DIVIDE])
 
 
-class family_scheme__has_dependent_children(Variable):
+class family_scheme__dependent_children(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH

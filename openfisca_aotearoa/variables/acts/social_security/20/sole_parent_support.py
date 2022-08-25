@@ -17,7 +17,7 @@ from openfisca_aotearoa.entities import Family, Person
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_sole_parent_support(Variable):
+class sole_parent_support__entitled(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
@@ -27,10 +27,10 @@ class social_security__eligible_for_sole_parent_support(Variable):
     def formula(persons, period, parameters):
         # The applicant
         resides_in_nz = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
-        resident_or_citizen = persons("is_citizen_or_resident", period)
+        resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
-        years_in_nz = persons("sole_parent_support__meets_years_in_nz_requirement", period)
-        age_requirement = persons("sole_parent_support__meets_age_threshold", period)
+        years_in_nz = persons("sole_parent_support__years_in_nz_requirement", period)
+        age_requirement = persons("sole_parent_support__age_threshold", period)
         child_age_requirement = persons.family("sole_parent_support__family_has_child_under_age_limit", period)
 
         relationship_test = persons("sole_parent_support__meets_relationship_qualification", period)
@@ -65,7 +65,7 @@ class sole_parent_support__meets_relationship_qualification(Variable):
     """
     def formula(persons, period, parameters):
         # Do they have a partner
-        no_partners = (persons("has_a_partner", period) == 0)
+        no_partners = (persons("person_has_partner", period) == 0)
         not_supported = (persons("is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported
@@ -83,7 +83,7 @@ class sole_parent_support__family_has_child_under_age_limit(Variable):
         return youngest_ages < youngest_child_age_threshold
 
 
-class sole_parent_support__meets_age_threshold(Variable):
+class sole_parent_support__age_threshold(Variable):
     value_type = bool
     default_value = True
     entity = Person
@@ -97,7 +97,7 @@ class sole_parent_support__meets_age_threshold(Variable):
         return persons("age", period.start) >= age_threshold
 
 
-class sole_parent_support__meets_years_in_nz_requirement(Variable):
+class sole_parent_support__years_in_nz_requirement(Variable):
     value_type = bool
     default_value = True
     entity = Person
@@ -110,3 +110,11 @@ class sole_parent_support__meets_years_in_nz_requirement(Variable):
         min_years = parameters(period).entitlements.social_security.sole_parent_support.minumum_continuous_time_in_nz
         years_in_nz = persons("number_of_years_lived_in_nz", period)
         return years_in_nz >= min_years
+
+
+class sole_parent_support__below_income_threshold(Variable):
+    value_type = bool
+    default_value = True
+    entity = Person
+    label = "Income is below Sole Parent Support threshold?"
+    definition_period = MONTH
