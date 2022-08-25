@@ -157,15 +157,17 @@
             "Type": "Act",
             "Reference": "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359107.html",
             "Children": [
-                "sole_parent_support",
+                "accommodation_supplement",
+                "child_disability_allowance",
+                "community_services_card",
                 "disability_allowance",
                 "jobseeker_support",
-                "accommodation_supplement",
-                "supported_living_payment",
                 "orphans_benefit",
+                "sole_parent_support",
+                "supported_living_payment",
                 "unsupported_child",
-                "child_disability_allowance",
-                "young_parent_payment"
+                "young_parent_payment",
+                "youth_payment"
             ]
         },
         {
@@ -185,6 +187,18 @@
             "Prefix": "young_parent_payment",
             "Type": "Section",
             "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783218"
+        },
+        {
+            "Title": "Youth Payment",
+            "Prefix": "youth_payment",
+            "Type": "Section",
+            "Reference": "https://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686071"
+        },
+        {
+            "Title": "Community Services Card",
+            "Prefix": "community_services_card",
+            "Type": "Section",
+            "Reference": "http://www.legislation.govt.nz/regulation/public/1993/0169/latest/DLM176710.html"
         },
         {
             "Title": "Orphans Benefit",

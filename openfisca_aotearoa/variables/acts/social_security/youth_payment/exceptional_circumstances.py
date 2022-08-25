@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-# TODO: Review against the new 2018 act
+# TODO: Rename to youth_payment__single_young_person_in_exceptional_circumstances against the new 2018 act
 class social_security__single_young_person_in_exceptional_circumstances(Variable):
     value_type = bool
     entity = Person

@@ -28,3 +28,11 @@ class financially_supported_by_parent_or_guardian(Variable):
     entity = Person
     label = "is being financially supported by a parent or guardian"
     definition_period = MONTH
+
+
+class dependent_child(Variable):
+    value_type = bool
+    entity = Person
+    label = "Is a dependent child"
+    reference = ""
+    definition_period = MONTH

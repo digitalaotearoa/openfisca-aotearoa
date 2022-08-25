@@ -1,17 +1,37 @@
-"""TODO: Add missing doctring."""
+"""This module provides eligibility and amount for Jobseeker Support."""
 
+# We import the required OpenFisca modules needed to define a formula.
+#
+# For more information on OpenFisca's available modules:
+# https://openfisca.org/doc/openfisca-python-api/index.html
+from xmlrpc.client import boolean
+from openfisca_core import periods, variables
 from openfisca_core.holders import set_input_dispatch_by_period
-from openfisca_core.periods import ETERNITY, MONTH
-from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person
+# We import the required `entities` corresponding to our formulas.
+#
+# Entities are an OpenFisca abstraction that allows us to model legislation's
+# `subjects of law`: person, couple, family, household, and so on.
+#
+# For more information on OpenFisca's `entities`:
+# https://openfisca.org/doc/key-concepts/person,_entities,_role.html
+from openfisca_aotearoa import entities
 
 
-class social_security__meets_residential_requirements_for_certain_benefits(Variable):
+# TODO this was added but is it the same as the one below
+class social_security__residential_requirement(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
+    definition_period = periods.DAY
+    label = "Calculates if a the person meets the Residential Requirement of the Social Security Act 2018"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138"
+
+
+class social_security__meets_residential_requirements_for_certain_benefits(variables.Variable):
+    value_type = bool
+    entity = entities.Person
     label = "Residential requirements for certain benefits"
-    definition_period = MONTH
+    definition_period = periods.MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363796.html"
 
     # Note this is the date the 1964 act commenced, but jobseeker came later
@@ -72,33 +92,33 @@ class social_security__meets_residential_requirements_for_certain_benefits(Varia
 
 
 # TODO: Review against the new 2018 act
-class social_security__ordinarily_resident_in_new_zealand(Variable):
+class social_security__ordinarily_resident_in_new_zealand(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = "is ordinarily resident in New Zealand"
-    definition_period = MONTH
+    definition_period = periods.MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html"
 
 
 # TODO: Review against the new 2018 act
-class social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time(Variable):
+class social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = "has resided continuously in New Zealand for a period of at least 2 years at any one time"
-    definition_period = ETERNITY
+    definition_period = periods.ETERNITY
 
 
-class social_security__ordinarily_resident_in_country_with_reciprocity_agreement(Variable):
+class social_security__ordinarily_resident_in_country_with_reciprocity_agreement(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = "is ordinarily resident in a country with which New Zealand has a reciprocity agreement"
-    definition_period = ETERNITY
+    definition_period = periods.ETERNITY
 
 
 # TODO: move to demographics
-class years_resided_continuously_in_new_zealand(Variable):
+class years_resided_continuously_in_new_zealand(variables.Variable):
     value_type = int
-    entity = Person
+    entity = entities.Person
     label = "has resided continuously in New Zealand for a period of at least 2 years before applying for the benefit or before a decision on P’s claim for the benefit is made"
-    definition_period = MONTH
+    definition_period = periods.MONTH
