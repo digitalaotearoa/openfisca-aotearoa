@@ -1,7 +1,11 @@
 # Changelog
 
-# 13.0.0 - [??](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/??)
-* Renamed variables:
+# 13.0.0 - [29](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/29)
+* Large restructure and renaming exercise to lay groundwork for social security act work.
+* Switch away from using act numbers for folders to using prefixes. New version of social security act forced this.
+* Added documentation on coding, structuring project
+* Currently dependant on Openfisca Core branch for weeks/days features
+* Breaking changes, Renamed variables:
   - `is_nz_citizen` to `citizenship__citizen`
   - `is_citizen_or_resident` to `citizen_or_resident`
   - `is_resident` to `immigration__resident`
