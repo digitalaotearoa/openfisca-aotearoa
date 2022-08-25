@@ -4,7 +4,6 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from xmlrpc.client import boolean
 from openfisca_core import periods, variables
 from openfisca_core.holders import set_input_dispatch_by_period
 
