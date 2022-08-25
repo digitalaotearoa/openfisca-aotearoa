@@ -16,10 +16,10 @@ class super___eligibility_age(Variable):
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM114223.html"
 
     def formula(persons, period, parameters):
-        return persons("super__eligibility", period) * parameters(period).entitlements.superannuation.age_qualification
+        return persons("super__eligible", period) * parameters(period).entitlements.superannuation.age_qualification
 
 
-class super__eligibility(Variable):
+class super__eligible(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH

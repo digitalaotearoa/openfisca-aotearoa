@@ -174,7 +174,16 @@
             "Title": "Social Security (Childcare Assistance) Regulations 2004",
             "Prefix": "social_security_regulation",
             "Type": "Regulation",
-            "Reference": "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html"
+            "Reference": "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html",
+            "Children": [
+                "childcare_assistance"
+            ]
+        },
+        {
+            "Title": "Childcare Assistance",
+            "Prefix": "childcare_assistance",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html"
         },
         {
             "Title": "Sole Parent Support",

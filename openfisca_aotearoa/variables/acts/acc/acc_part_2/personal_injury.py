@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class acc__part_2__suffered_personal_injury(Variable):
+class acc_part_2__suffered_personal_injury(Variable):
     value_type = bool
     entity = Person
     definition_period = ETERNITY

@@ -86,9 +86,30 @@
   - `veterans_support__is_being_paid_a_veterans_pension` to `veterans_support__being_paid_a_veterans_pension`
   - `acc__has_cover` to `acc__cover`
   - `acc__part_3__has_lodged_claim` to `acc_part_3__lodged_claim`
+  - `acc__part_2__suffered_personal_injury` to `acc_part_2__suffered_personal_injury`
   - `acc__has_a_covered_injury` to `acc__person_has_covered_injury`
+  - `acc__sched_1__engaged_fulltime_study_or_training` to `acc_sched_1__engaged_fulltime_study_or_training`
+  - `acc__sched_1__incapacitated_for_6_months` to `acc_sched_1__incapacitated_for_6_months`
+  - `acc__sched_1__weekly_earnings` to `acc_sched_1__weekly_earnings`
+  - `acc__sched_1__lope_eligible` to `acc_sched_1__lope_eligible`
+  - `acc__sched_1__minimum_weekly_earnings` to `acc_sched_1__minimum_weekly_earnings`
+  - `acc__sched_1__lope_weekly_compensation` to `acc_sched_1__lope_weekly_compensation`
+  - `acc__lope__incapacity_for_employment__by_covered_injury` to `incapacity_for_employment__caused_covered_injury`
+  - `acc__sched_1__loe_more_than_lope` to `acc_sched_1__loe_more_than_lope`
   - `student_allowance__has_a_spouse` to `student_allowance__person_has_spouse`
   - `parental_leave__has_spouse_who_transferred_her_entitlement` to `parental_leave__spouse_who_transferred_her_entitlement`
+  - `social_security__single_young_person_in_exceptional_circumstances` to `youth_payment__single_young_person_exceptional_circumstances`
+  - `citizenship__meets_minimum_presence_requirements` to `citizenship__minimum_presence_requirements`
+  - `citizenship__meets_each_year_minimum_presence_requirements` to `citizenship__each_year_minimum_presence_requirements`
+  - `citizenship__meets_preceeding_single_year_minimum_presence_requirement` to `citizenship__preceeding_single_year_minimum_presence_requirement`
+  - `citizenship__meets_5_year_presence_requirement` to `citizenship__5_year_presence_requirement`
+  - `super__eligibility` to `super__eligible`
+  - `is_a_step_parent` to `person_is_step_parent`
+  - `social_security_regulation__family_has_resident_child_under_5_not_in_school` to `childcare_assistance__family_has_resident_child_under_5_not_in_school`
+  - `social_security_regulation__eligible_for_childcare_subsidy` to `childcare_assistance__eligible_childcare_subsidy`
+  - `social_security_regulation__family_has_resident_child_aged_5_who_will_be_enrolled_in_school` to `childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school`
+  - `social_security_regulation__family_has_child_eligible_for_disability_allowance_child_under_6` to `childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6`
+  - `social_security_regulation__household_income_below_childcare_subsidy_threshold` to `childcare_assistance__household_income_below_childcare_subsidy_threshold`
 * Removed excess variable `immigration__holds_permanent_resident_visa`
 * Added `orphans_benefit`,`unsupported_child`,`child_disability_allowance`,`young_parent_payment` to structure.json
 
@@ -184,11 +205,11 @@
 
 # 7.0.0 - [#124](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/124)
 * Renamed variables:
-  - `social_security__eligible_for_childcare_subsidy` to `social_security_regulation__eligible_for_childcare_subsidy`
+  - `social_security__eligible_for_childcare_subsidy` to `childcare_assistance__eligible_childcare_subsidy`
   - `sole_parent__family_has_child_under_age_limit` to `sole_parent_support__family_has_child_under_age_limit`
-  - `family_has_resident_child_under_5_not_in_school` to `social_security_regulation__family_has_resident_child_under_5_not_in_school`
-  - `family_has_resident_child_aged_5_who_will_be_enrolled_in_school` to `social_security_regulation__family_has_resident_child_aged_5_who_will_be_enrolled_in_school`
-  - `family_has_child_eligible_for_disability_allowance_child_under_6` to `social_security_regulation__family_has_child_eligible_for_disability_allowance_child_under_6`
+  - `family_has_resident_child_under_5_not_in_school` to `childcare_assistance__family_has_resident_child_under_5_not_in_school`
+  - `family_has_resident_child_aged_5_who_will_be_enrolled_in_school` to `childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school`
+  - `family_has_child_eligible_for_disability_allowance_child_under_6` to `childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6`
 * New variables:
   - `family_scheme__full_time_earner`
   - `hours_per_week_employed`
@@ -207,7 +228,7 @@
 # 6.1.1 - [#115](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/115)
 
 * New variable
-  - `citizenship__meets_preceeding_single_year_minimum_presence_requirement`
+  - `citizenship__preceeding_single_year_minimum_presence_requirement`
 
 # 6.1.0 - [#101](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/101)
 
@@ -216,7 +237,7 @@
 * Uses `day` branch from Open Fisca
 * New Variables
   - `citizenship__citizenship_by_grant_may_be_authorized`
-  - `citizenship__meets_minimum_presence_requirements`
+  - `citizenship__minimum_presence_requirements`
   - `days_present_in_new_zealand_in_preceeding_5_years`
   - `days_present_in_new_zealand_in_preceeding_year`
   - `present_in_new_zealand`
