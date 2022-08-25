@@ -56,6 +56,7 @@ class accommodation_supplement__eligible(Variable):
 
         return age_requirement * resident_or_citizen * in_nz * social_security__accomodation_costs * not_social_housing * income * cash
 
+
 # Todo possibly needs renaming to social_security__eligible_for_social_housing or social_housing__eligible
 class eligible_for_social_housing(Variable):
     value_type = bool

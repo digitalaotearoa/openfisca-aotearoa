@@ -35,7 +35,8 @@ class jobseeker_support__meets_age_threshold(Variable):
 
         return over_age_threshold + over_age_threshold_with_dependent_child
 
-#TODO move contents into jobseeker_support__entitled and delete
+
+# TODO move contents into jobseeker_support__entitled and delete
 class eligible_for_jobseeker(Variable):
     value_type = bool
     entity = Person

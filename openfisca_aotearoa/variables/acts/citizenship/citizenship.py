@@ -13,7 +13,7 @@ class citizenship__citizen(Variable):
     entity = Person
     definition_period = ETERNITY
     label = """New Zealand citizen means a person who has New Zealand citizenship as provided in the Citizenship Act 1977 or the Citizenship (Western Samoa) Act 1982"""
-    reference = "https://legislation.govt.nz/act/public/1977/0061/latest/whole.html","https://legislation.govt.nz/act/public/1982/0011/latest/whole.html"
+    reference = "https://legislation.govt.nz/act/public/1977/0061/latest/whole.html", "https://legislation.govt.nz/act/public/1982/0011/latest/whole.html"
 
 
 class citizenship__citizenship_by_grant_may_be_authorized(Variable):

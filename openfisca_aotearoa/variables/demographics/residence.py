@@ -16,7 +16,6 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 
 
-
 class number_of_years_lived_in_nz(variables.Variable):
     value_type = int
     entity = entities.Person
