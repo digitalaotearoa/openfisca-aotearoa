@@ -5,7 +5,7 @@
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
 from openfisca_core import periods, variables
-
+from openfisca_core.holders import set_input_dispatch_by_period
 from datetime import timedelta
 
 # We import the required `entities` corresponding to our formulas.
@@ -113,3 +113,4 @@ class present_in_new_zealand(variables.Variable):
     default_value = False
     label = "was present in New Zealand on this day"
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
+    set_input = set_input_dispatch_by_period

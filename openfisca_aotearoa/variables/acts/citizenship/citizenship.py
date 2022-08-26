@@ -1,5 +1,5 @@
 """TODO: Add missing doctring."""
-from openfisca_core.periods import DAY, ETERNITY
+from openfisca_core.periods import DAY, ETERNITY, DateUnit
 from openfisca_core.variables import Variable
 from openfisca_aotearoa.variables.demographics.residence import days_since_n_years_ago
 from openfisca_aotearoa.entities import Person
@@ -23,13 +23,13 @@ class citizenship__citizenship_by_grant_may_be_authorized(Variable):
     def formula_2005_04_20(persons, period, parameters):
 
         return (persons("age", period) >= parameters(period).citizenship.by_grant.minimum_age_threshold) * \
-            persons("full_capacity", period) * \
+            persons("full_capacity", DateUnit.ETERNITY) * \
             persons("citizenship__minimum_presence_requirements", period) * \
-            persons("citizenship__of_good_character", period) * \
-            persons("citizenship__sufficient_knowledge_responsibilities_and_privileges", period) * \
-            persons("citizenship__sufficient_knowledge_english_language", period) * \
-            (persons("citizenship__intends_to_reside_in_nz", period) + persons("citizenship__intends_crown_service", period)
-                + persons("citizenship__intends_international_service", period) + persons("citizenship__intends_nz_employment", period))
+            persons("citizenship__of_good_character", DateUnit.ETERNITY) * \
+            persons("citizenship__sufficient_knowledge_responsibilities_and_privileges", DateUnit.ETERNITY) * \
+            persons("citizenship__sufficient_knowledge_english_language", DateUnit.ETERNITY) * \
+            (persons("citizenship__intends_to_reside_in_nz", DateUnit.ETERNITY) + persons("citizenship__intends_crown_service", DateUnit.ETERNITY)
+                + persons("citizenship__intends_international_service", DateUnit.ETERNITY) + persons("citizenship__intends_nz_employment", DateUnit.ETERNITY))
 
 
 class citizenship__minimum_presence_requirements(Variable):
@@ -74,7 +74,7 @@ class citizenship__each_year_minimum_presence_requirements(Variable):
             # print("days present on rolling year ending at", day_n_years_ago, "is", days_present)
 
             meets_presence_n_years_ago = (days_present >= required_days)
-            # print("Meets rquirement??", meets_presence_n_years_ago)
+            # print("Meets requirement??", meets_presence_n_years_ago)
 
             # Accumulate the each year
             meets_presence = meets_presence_n_years_ago * meets_presence
