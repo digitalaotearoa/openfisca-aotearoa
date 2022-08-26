@@ -1,5 +1,8 @@
 # Changelog
 
+# 13.0.1 - [30](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/30)
+* Restoration of Citizen and Immigration tests to utilise functionality added in OpenFisca core.
+
 # 13.0.0 - [29](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/29)
 * Large restructure and renaming exercise to lay groundwork for social security act work.
 * Switch away from using act numbers for folders to using prefixes. New version of social security act forced this.
