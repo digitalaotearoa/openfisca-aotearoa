@@ -29,12 +29,27 @@ from openfisca_aotearoa import entities
 #
 # For more information on OpenFisca's `variables`:
 # https://openfisca.org/doc/key-concepts/variables.html
-class jobseeker_support(variables.Variable):
+class jobseeker_support__entitled(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.WEEK
     label = "Jobseeker Support eligibility and amount"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144"
+
+    # Old Job Seeker formula for 1964 Act
+    def formula_2013_04_17(persons, period, parameters):
+        # The applicant
+        residency_requirements = persons("social_security__residential_requirements", period)
+
+        age_requirement = persons("jobseeker_support__meets_age_threshold", period)
+
+        # income low enough?
+        income = persons("jobseeker_support__below_income_threshold", period)
+
+        # Prepared to work
+        prepared = persons("jobseeker_support__prepared_for_employment", period)
+
+        return age_requirement * income * prepared * residency_requirements
 
     # Define how to calculate `jobseeker_support`.
     #
