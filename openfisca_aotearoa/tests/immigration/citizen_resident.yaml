@@ -1,0 +1,27 @@
+- name: Test for immigration__citizen_or_resident
+  period: 2020-08
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        citizenship__citizen: true
+        immigration__resident: false
+        immigration__permanent_resident: false
+      Papa:
+        citizenship__citizen: false
+        immigration__resident: true
+        immigration__permanent_resident: false
+      Tama:
+        citizenship__citizen: false
+        immigration__resident: false
+        immigration__permanent_resident: true
+      Kiri:
+        citizenship__citizen: false
+        immigration__resident: false
+        immigration__permanent_resident: false
+  output:
+    immigration__citizen_or_resident:
+      - true # mama
+      - true # papa
+      - true # Tama
+      - false # Kiri

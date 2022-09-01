@@ -51,7 +51,7 @@ class eligible_for_jobseeker(Variable):
     # https://legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html?search=qs_act%40bill%40regulation%40deemedreg_jobseeker_resel_25_y&p=1
     def formula_2013_04_17(persons, period, parameters):
         # The applicant
-        residency_requirements = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
+        residency_requirements = persons("social_security__residential_requirements", period)
 
         age_requirement = persons("jobseeker_support__meets_age_threshold", period)
 
@@ -70,6 +70,6 @@ class eligible_for_jobseeker(Variable):
         has_work_gap = persons("jobseeker_support__work_gap", period)
         is_available_for_work = persons("jobseeker_support__available_for_work", period)
         age_requirements = persons("jobseeker_support__meets_age_threshold", period)
-        residency = persons("social_security__meets_residential_requirements_for_certain_benefits", period)
+        residency = persons("social_security__residential_requirements", period)
 
         return has_work_gap * is_available_for_work * age_requirements * residency

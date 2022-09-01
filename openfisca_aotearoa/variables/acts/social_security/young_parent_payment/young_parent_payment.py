@@ -38,7 +38,7 @@ class young_parent_payment__entitled(Variable):
 
         # 74AA (2)
         residency = persons(
-            "social_security__meets_residential_requirements_for_certain_benefits", period)
+            "social_security__residential_requirements", period)
 
         return basic_requirements * (single_requirements + in_relationship_requirements) * residency
 

@@ -19,7 +19,7 @@
     citizenship__citizen: true
     social_security__totally_blind: true
     supported_living_payment__below_income_threshold: true
-    social_security__meets_residential_requirements_for_certain_benefits: true
+    social_security__residential_requirements: true
   output:
     social_security__eligible_for_supported_living_payment:
       2018-10:
@@ -34,7 +34,7 @@
     citizenship__citizen: true
     social_security__severely_restricted_capacity_for_work: true
     supported_living_payment__below_income_threshold: true
-    social_security__meets_residential_requirements_for_certain_benefits: true
+    social_security__residential_requirements: true
   output:
     social_security__eligible_for_supported_living_payment: true
 
@@ -49,7 +49,7 @@
     social_security__severely_restricted_capacity_for_work: true
     supported_living_payment__below_income_threshold: true
     social_security__disability_self_inflicted: true
-    social_security__meets_residential_requirements_for_certain_benefits: true
+    social_security__residential_requirements: true
   output:
     social_security__eligible_for_supported_living_payment: false
 
@@ -62,7 +62,7 @@
     citizenship__citizen: true
     social_security__required_to_give_fulltime_care: true
     supported_living_payment__below_income_threshold: true
-    social_security__meets_residential_requirements_for_certain_benefits: true
+    social_security__residential_requirements: true
   output:
     social_security__eligible_for_supported_living_payment: true
 
@@ -76,6 +76,6 @@
     citizenship__citizen: true
     social_security__required_to_give_fulltime_care: true
     supported_living_payment__below_income_threshold: true
-    social_security__meets_residential_requirements_for_certain_benefits: false
+    social_security__residential_requirements: false
   output:
     social_security__eligible_for_supported_living_payment: false
