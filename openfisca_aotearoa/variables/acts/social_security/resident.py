@@ -55,7 +55,7 @@ class social_security__residential_requirements(variables.Variable):
     # Note this is the date the 2018 act commenced
     def formula_2018_11_26(persons, period, parameters):
 
-        # ssa16_1 -
+        # ssa16_1 - Descriptive, not requiring coding.
 
         ssa16_2_a = persons("immigration__citizen_or_resident", period) * \
             persons("social_security__ordinarily_resident_in_new_zealand", period)
@@ -67,9 +67,10 @@ class social_security__residential_requirements(variables.Variable):
 
         ssa16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
 
-        # ssa16_3 - Useful would be a list of countrys this applies to...
+        # ssa16_3 - TODO Useful would be a list of countrys this applies to... we could make country an input.
         # ssa16_4 - MSD can refuse or cancel benefit if person not ordinarily in NZ...
-        # ssa16_5 - Note the content of the list in this section is identical to the list in 421_1_c
+        # ssa16_5 - The Governer-General may by Order in Council make regulations for the purposes of section 16 that specify circumstances in which:...
+        #           Note the content of the list in this section is identical to the list in 421_1_c
 
         return (ssa16_2_a * (ssa16_2_a_i + ssa16_2_a_ii)) + ssa16_2_b
 
