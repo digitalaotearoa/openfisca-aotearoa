@@ -1,4 +1,16 @@
 # Changelog
+# 14.0.0 - [??](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/??)
+* Added support for Social Security Act 2018 residency requirements
+* Added Job Seeker Support entitlement for Social Security Act 2018
+* Breaking changes, Renamed variables:
+  - `social_security__meets_residential_requirements_for_certain_benefits` to `social_security__residential_requirements`
+  - `jobseeker_support` to `jobseeker_support__entitled`
+  - `social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
+  - `social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
+* Breaking changes, Periods changed:
+  - `jobseeker_support__below_income_threshold` changed from `MONTH` to `WEEK`
+* Breaking changes, variable calculation changed:
+ - `social_security__residential_requirements`
 
 # 13.0.0 - [29](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/29)
 * Large restructure and renaming exercise to lay groundwork for social security act work.
@@ -47,7 +59,7 @@
   - `social_security__is_principal_carer_for_one_year_from_application_date` to `social_security__principal_carer_for_one_year_from_application_date`
   - `social_security__has_orphaned_child_in_family` to `social_security__orphaned_child_in_family`
   - `social_security__is_orphaned` to `social_security__orphaned`
-  - `social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time`
+  - `social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
   - `social_security__is_ordinarily_resident_in_new_zealand` to `social_security__ordinarily_resident_in_new_zealand`
   - `social_security__eligible_for_child_disability_allowance` to `child_disability_allowance__eligible`
   - `disability_allowance__family_has_eligible_child` to `child_disability_allowance__family_has_eligible_child`

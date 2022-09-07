@@ -8,6 +8,7 @@
         age:
           "2018-10-01": 81
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         sole_parent_support__below_income_threshold: true
         sole_parent_support__years_in_nz_requirement: true
       Tamaiti:
@@ -62,6 +63,7 @@
         age:
           "2018-10-01": 21
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         sole_parent_support__below_income_threshold: true
         sole_parent_support__years_in_nz_requirement: true
         is_adequately_supported_by_partner: false
@@ -119,6 +121,7 @@
         age:
           "2018-10-01": 81
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         sole_parent_support__below_income_threshold: true
         sole_parent_support__years_in_nz_requirement: true
       Tahi:
