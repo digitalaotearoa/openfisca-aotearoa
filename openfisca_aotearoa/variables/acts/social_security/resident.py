@@ -76,7 +76,7 @@ class social_security__ordinarily_resident_in_new_zealand(variables.Variable):
     label = "is ordinarily resident in New Zealand"
     definition_period = periods.MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784616", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM360407"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784616", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM360407", "https://www.openlaw.nz/case/2014NZCA611"
 
 
 class social_security__resided_continuously_nz_2_years_citizen_or_resident(variables.Variable):
