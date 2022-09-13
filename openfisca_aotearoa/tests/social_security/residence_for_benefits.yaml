@@ -1,0 +1,131 @@
+
+- name: Test for residence status appropriate for recieving benefits for 1964 ACT
+  period: 2017-08
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+      Papa:
+        immigration__permanent_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+      Tama:
+        age:
+          "2017-08-01": 5
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+      Tamahine:
+        age:
+          "2017-08-01": 19
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: false
+      Mary:
+        immigration__recognised_refugee: true
+        social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time: true
+      Barry:
+        immigration__protected_person: true
+        social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time: true
+      Larry:
+        immigration__protected_person: true
+        social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time: false
+  output:
+    citizenship__citizen:
+      - false # mama
+      - false # papa
+      - true # Tama
+      - true # tamahine
+      - false # Mary
+      - false # Barry
+      - false # Larry
+    immigration__citizen_or_resident:
+      - true # mama
+      - true # papa
+      - true # Tama
+      - true # tamahine
+      - false # Mary
+      - false # Barry
+      - false # Larry
+    social_security__residential_requirements:
+      - true # mama
+      - true # papa
+      - true # Tama
+      - false # tamahine
+      - true # Mary
+      - true # Barry
+      - false # Larry
+- name: Test for residence status appropriate for recieving benefits for 2018 ACT
+  period: 2020-08
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        immigration__resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: true
+      Papa:
+        immigration__permanent_resident: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: true
+      Tama:
+        age:
+          "2020-08-01": 5
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: true
+      Tamahine:
+        age:
+          "2020-08-01": 19
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: false
+      TamahineRua:
+        age:
+          "2020-08-01": 19
+        immigration__permanent_resident: true
+        social_security__ordinarily_resident_in_new_zealand: false
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: false
+      Mary:
+        immigration__recognised_refugee: false
+        immigration__resident: false
+        social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
+        years_resided_continuously_in_new_zealand: 3
+      Barry:
+        immigration__resident: true
+        immigration__protected_person: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident: false
+      Larry:
+        immigration__recognised_refugee: false
+        immigration__resident: false
+        social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
+        years_resided_continuously_in_new_zealand: 1
+  output:
+    citizenship__citizen:
+      - false # mama
+      - false # papa
+      - true # Tama
+      - true # tamahine
+      - false # TamahineRua
+      - false # Mary
+      - false # Barry
+      - false # Larry
+    immigration__citizen_or_resident:
+      - true # mama
+      - true # papa
+      - true # Tama
+      - true # tamahine
+      - true # TamahineRua
+      - false # Mary
+      - true # Barry
+      - false # Larry
+    social_security__residential_requirements:
+      - true # mama
+      - true # papa
+      - true # Tama
+      - false # tamahine
+      - false # TamahineRua
+      - true # Mary
+      - true # Barry
+      - false # Larry
+
