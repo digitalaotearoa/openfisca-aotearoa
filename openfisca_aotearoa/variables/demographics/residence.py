@@ -119,5 +119,5 @@ class present_in_new_zealand(variables.Variable):
 class years_resided_continuously_in_new_zealand(variables.Variable):
     value_type = int
     entity = entities.Person
-    label = "has resided continuously in New Zealand for a period of at least 2 years before applying for the benefit or before a decision on P’s claim for the benefit is made"
+    label = "number of years resided continuously in New Zealand"
     definition_period = periods.MONTH

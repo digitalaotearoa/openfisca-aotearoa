@@ -19,9 +19,18 @@
         citizenship__citizen: false
         immigration__resident: false
         immigration__permanent_resident: false
+      John:
+        citizenship__citizen: true
+      Tony:
+        immigration__resident: true
+      Claire:
+        immigration__permanent_resident: true
   output:
     immigration__citizen_or_resident:
       - true # mama
       - true # papa
       - true # Tama
       - false # Kiri
+      - true # John
+      - true # Tony
+      - true # Claire

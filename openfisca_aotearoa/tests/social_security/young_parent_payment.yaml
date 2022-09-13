@@ -10,6 +10,7 @@
           "2017-10-01": 19
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 80000.0
       Oliver:
         person_is_parent: true
@@ -18,6 +19,7 @@
           "2017-10-01": 16
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 0.0
         living_with_parent_or_guardian: true
         family_scheme__assessable_income_for_month: 10.0
@@ -28,6 +30,7 @@
           "2017-10-01": 17
         immigration__permanent_resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 0.0
         living_with_parent_or_guardian: false
         youth_payment__single_young_person_exceptional_circumstances: true
@@ -58,6 +61,7 @@
     persons:
       Ruby:
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         married_or_civil_union_or_de_facto_relationship: false
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: true
         person_is_parent: true
@@ -75,6 +79,7 @@
           "2017-10-01": 16
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
         married_or_civil_union_or_de_facto_relationship: true
@@ -85,6 +90,7 @@
           "2017-10-01": 17
         immigration__permanent_resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 0.0
         youth_payment__single_young_person_exceptional_circumstances: true
     families:
@@ -121,6 +127,7 @@
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
         social_security__ordinarily_resident_in_new_zealand: true
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
       OE:
         age:
           "2017-10-01": 19
@@ -129,6 +136,7 @@
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
         social_security__ordinarily_resident_in_new_zealand: false
+        social_security__resided_continuously_nz_2_years_citizen_or_resident: true
     families:
       One:
         principal_caregiver: Kiwi
