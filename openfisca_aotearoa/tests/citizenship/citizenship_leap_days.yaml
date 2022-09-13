@@ -6,9 +6,9 @@
     persons:
       "Tahi":
         present_in_new_zealand:
-          "2001-01-01": true
+          "day:2013-01-01:1522": true
         immigration__entitled_to_indefinite_stay:
-          "2001-01-01": true
+          "day:2013-01-01:1522": true
   output:
     days_present_in_new_zealand_in_preceeding_year:
       "2014-02-28": 365

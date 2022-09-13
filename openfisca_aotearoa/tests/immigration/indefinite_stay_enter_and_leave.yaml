@@ -5,17 +5,16 @@
     persons:
       "Tahi":
         present_in_new_zealand:
-          "2001-01-01": true
-          "2013-03-31": false
-          "2013-05-05": true
-          "2015-06-20": false
+          "day:2001-01-01:4472": true
+          "day:2013-03-31:35": false
+          "day:2013-05-05:776": true
+          "day:2015-06-20:11": false
           "2015-07-01": true
-
         immigration__entitled_to_indefinite_stay:
-          "2001-01-01": true
-          "2013-03-31": false
-          "2013-05-05": true
-          "2015-06-20": false
+          "day:2001-01-01:4472": true
+          "day:2013-03-31:35": false
+          "day:2013-05-05:776": true
+          "day:2015-06-20:11": false
           "2015-07-01": true
   output:
     was_present_in_nz_and_entitled_to_indefinite_stay:

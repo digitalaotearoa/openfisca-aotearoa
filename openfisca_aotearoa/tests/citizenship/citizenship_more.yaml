@@ -9,33 +9,33 @@
         full_capacity: true
         # 242 days in NZ
         present_in_new_zealand:
-          "2013-02-04": true
-          "2014-03-10": false
-          "2014-03-15": true
-          "2015-08-30": true
-          "2016-03-10": false
-          "2016-03-15": true
-          "2016-08-27": false
-          "2016-11-02": false
-          "2016-11-16": true
-          "2017-05-27": false
-          "2017-06-20": true
-          "2018-01-21": false
-          "2018-02-12": true
+          "day:2013-02-04:399": true
+          "day:2014-03-10:5": false
+          "day:2014-03-15:533": true
+          "day:2015-08-30:193": true
+          "day:2016-03-10:5": false
+          "day:2016-03-15:165": true
+          "day:2016-08-27:67": false
+          "day:2016-11-02:14": false
+          "day:2016-11-16:192": true
+          "day:2017-05-27:24": false
+          "day:2017-06-20:215": true
+          "day:2018-01-21:22": false
+          "day:2018-02-12": true
         immigration__entitled_to_indefinite_stay:
-          "2013-02-04": true
-          "2014-03-10": false
-          "2014-03-15": true
-          "2015-08-30": true
-          "2016-03-10": false
-          "2016-03-15": true
-          "2016-08-27": false
-          "2016-11-02": false
-          "2016-11-16": true
-          "2017-05-27": false
-          "2017-06-20": true
-          "2018-01-21": false
-          "2018-02-12": true
+          "day:2013-02-04:399": true
+          "day:2014-03-10:5": false
+          "day:2014-03-15:533": true
+          "day:2015-08-30:193": true
+          "day:2016-03-10:5": false
+          "day:2016-03-15:165": true
+          "day:2016-08-27:67": false
+          "day:2016-11-02:14": false
+          "day:2016-11-16:192": true
+          "day:2017-05-27:24": false
+          "day:2017-06-20:215": true
+          "day:2018-01-21:22": false
+          "day:2018-02-12": true
   output:
     # citizenship__minimum_presence_requirements:
     #   "2017-10-01": true
