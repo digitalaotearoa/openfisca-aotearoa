@@ -34,7 +34,7 @@ from openfisca_core import holders
 # For more information on OpenFisca's `variables`:
 # https://openfisca.org/doc/key-concepts/variables.html
 class jobseeker_support__entitled(variables.Variable):
-    value_type = float
+    value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Jobseeker Support eligibility and amount"
