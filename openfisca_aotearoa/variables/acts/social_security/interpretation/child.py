@@ -17,6 +17,7 @@ class social_security__person_has_dependant_child(Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS7234"
     set_input = holders.set_input_dispatch_by_period
 
+
 class social_security__child(Variable):
     value_type = bool
     entity = Person

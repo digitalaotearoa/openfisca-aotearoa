@@ -19,6 +19,7 @@ import numpy
 
 from openfisca_core import holders
 
+
 # We define the `jobseeker_support` variable.
 #
 # Please note that by itself a `variable` is not a rule but just a
@@ -50,7 +51,7 @@ class jobseeker_support__entitled(variables.Variable):
 
         ssa64_88B_1_a_iii = persons("jobseeker_support__willing_and_able", period)
 
-        ssa64_88B_1_a_iv  = persons("jobseeker_support__taken_reasonable_steps", period)
+        ssa64_88B_1_a_iv = persons("jobseeker_support__taken_reasonable_steps", period)
 
         ssa64_88B_1_a = ssa64_88B_1_a * ssa64_88B_1_a_iii * ssa64_88B_1_a_iv
 
@@ -68,14 +69,13 @@ class jobseeker_support__entitled(variables.Variable):
 
         # ssa64_88B_5 temporary period makes income sufficient to fully abate benefit...
 
-        ssa64_88B_6  = persons("jobseeker_support__receiving", period) * \
+        ssa64_88B_6 = persons("jobseeker_support__receiving", period) * \
             persons("social_security__full_employment", period) * persons("jobseeker_support__full_employment_temporary", period) * \
             persons("jobseeker_support__income_52_week_period_less_than", period)
 
         # ssa64_88B_7 loss of earnings by payment to substitute due to sickness or injury
 
-        return ((ssa64_88B_1_a + ssa64_88B_6) + (ssa64_88B_1_a + ssa64_88B_1_c +  ssa64_88B_1_d)) * ssa64_88B_2 * ssa64_88B_3 * (ssa64_88B_4 + ssa64_88B_6)
-
+        return ((ssa64_88B_1_a + ssa64_88B_6) + (ssa64_88B_1_a + ssa64_88B_1_c + ssa64_88B_1_d)) * ssa64_88B_2 * ssa64_88B_3 * (ssa64_88B_4 + ssa64_88B_6)
 
     def formula_2018_11_26(persons, period, parameters):
 
