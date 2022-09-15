@@ -7,7 +7,7 @@ from numpy import where
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core.periods import DAY, ETERNITY
 from openfisca_core.variables import Variable
-
+from openfisca_core import holders
 # Import the entities specifically defined for this tax and benefit system
 from openfisca_aotearoa.entities import Family, Person
 
@@ -38,6 +38,7 @@ class age(Variable):
     label = "The age of a Person (in years)"
     unit = "years"
     default_value = -9999
+    set_input = holders.set_input_dispatch_by_period
     # A person's age is computed according to their birth date.
 
     def formula(persons, period, parameters):

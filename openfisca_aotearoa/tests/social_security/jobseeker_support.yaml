@@ -1,77 +1,62 @@
 - name: Social Security Act 2018 — Jobseeker Support — Eligibility
-  period: 2018-11
+  period: 2019-W05
   input:
+    jobseeker_support__work_gap: [true, true]
+    jobseeker_support__available_for_work: [true, true]
+    jobseeker_support__age_requirement: [true, false]
+    social_security__residential_requirement:
+      month:2019-01:2: [true, true]
+    jobseeker_support__minimum_income: [true, true]
+  output:
+    jobseeker_support__entitled: [true, false]
+- name: Social Security Act 2018 — Jobseeker Support — Eligibility with jobseeker_support__age_requirement computed
+  period: 2019-W05
+  input:
+# age_requirement dependancies extended
     age:
-      2018-11-01: [21, 18, 6, 99, 50]
-    social_security__ordinarily_resident_in_new_zealand: [true, true, true, true, true]
-    immigration__resident: [true, true, true, true, true]
-    number_of_years_lived_in_nz: [10, 10, 2, 5, 50]
-    social_security__person_has_dependant_child: [false, true, false, false, false]
-    jobseeker_support__below_income_threshold: [true, true, true, true, false]
-    jobseeker_support__prepared_for_employment: [true, true, true, false, false]
-
+      day:2019-01-01:60: [21, 17, 19, 19]
+    social_security__person_has_dependant_child:
+      month:2019-01:2: [false, false, false, true]
+# age_requirement dependancies extended
+    jobseeker_support__work_gap: [true, true, true, true]
+    jobseeker_support__available_for_work: [true, true, true, true]
+    social_security__residential_requirement:
+      month:2019-01:2: [true, true, true, true]
+    jobseeker_support__minimum_income: [true, true, true, true]
   output:
-    eligible_for_jobseeker: [true, true, false, false, false]
-
-- name: Social Security — Jobseeker Support — Prior to commencement
-  period: 2013-07-14
-  description: |
-    Jobseeker Support commenced on 15 July 2013.
-    Consequently, any scenario before this date outputs zero.
+    jobseeker_support__age_requirement: [true, false, true, false]
+    jobseeker_support__entitled: [true, false, true, false]
+- name: Social Security Act 2018 — Jobseeker Support — Work gap computed
+  period: 2019-W05
   input:
-    fulltime_employment: [false, false, false, false, false, false, false]
-    age: [17, 18, 19, 20, 21, 24, 25]
+# work_gap dependancies extended
+    social_security__full_employment: [false, true, false, true, true, true, true, true, true, true, true]
+    social_security__employment: [false, false, true, true, true, true, true, true, true, true, true]
+    jobseeker_support__losing_earnings: [false, false, true, false, true, true, false, false, false, false, false]
+    jobseeker_support__receiving: [false, false, true, true, true, false, false, true, true, true, false]
+    jobseeker_support__full_employment_temporary: [false, false, false, false, false, false, false, false, true, true, true]
+    jobseeker_support__income_52_week_period_less_than: [false, false, true, true, false, false, false, false, false, true, true]
+# work_gap dependancies extended
+    jobseeker_support__available_for_work: [true, true, true, true, true, true, true, true, true, true, true]
+    jobseeker_support__age_requirement: [true, true,true, true, true, true, true, true, true, true, true]
+    social_security__residential_requirement:
+      month:2019-01:2: [true, true, true, true, true, true, true, true, true, true, true]
+    jobseeker_support__minimum_income: [true, true, true, true, true, true, true, true, true, true, true]
   output:
-    jobseeker_support__entitled: [false, false, false, false, false, false, false]
-
-- name: Social Security — Jobseeker Support — Not in full-time employment
-  period: 2013-07-15
-  description: |
-    A person not in full-time employment could be entitled to Jobseeker Support.
+    jobseeker_support__work_gap: [true, false, true, false, true, true, false, false, false, true, false]
+    jobseeker_support__entitled: [true, false, true, false, true, true, false, false, false, true, false]
+- name: Social Security Act 2018 — Jobseeker Support — Availability for work computed
+  period: 2019-W05
   input:
-    fulltime_employment: [false, false, false, false, false, false, false]
-    age: [17, 18, 19, 20, 21, 24, 25]
+# available_for_work dependancies extended
+    jobseeker_support__willing_and_able: [true, false, true, true, false, false, false]
+    jobseeker_support__taken_reasonable_steps: [true, false, true, false, true, true, false]
+    jobseeker_support__limited_in_capacity: [true, false, false, false, false, true, true]
+# available_for_work dependancies extended
+    jobseeker_support__work_gap: [true, true, true, true, true, true, true]
+    jobseeker_support__age_requirement: [true, true, true, true, true, true, true]
+    social_security__residential_requirement:
+      month:2019-01:2: [true, true, true, true, true, true, true]
+    jobseeker_support__minimum_income: [true, true, true, true, true, true, true]
   output:
-    jobseeker_support__entitled: [false, 137.47, 137.47, 171.84, 171.84, 171.84, 206.21]
-
-- name: Social Security — Jobseeker Support — Not in full-time employment
-  period: 2018-11-25
-  description: |
-    A person not in full-time employment could be entitled to Jobseeker Support.
-  input:
-    fulltime_employment: [false, false, false, false, false, false, false]
-    age: [17, 18, 19, 20, 21, 24, 25]
-  output:
-    jobseeker_support__entitled: [false, 143.55, 143.55, 179.44, 179.44, 179.44, 215.34]
-
-- name: Social Security — Jobseeker Support — Not in full-time employment
-  period: 2018-11-26
-  description: |
-    A person not in full-time employment could be entitled to Jobseeker Support.
-  input:
-    fulltime_employment: [false, false, false, false, false, false, false]
-    age: [17, 18, 19, 20, 21, 24, 25]
-  output:
-    jobseeker_support__entitled: [false, 143.55, 143.55, 179.44, 179.44, 179.44, 215.34]
-
-- name: Social Security — Jobseeker Support — Not in full-time employment
-  period: 2022-04-01
-  description: |
-    A person not in full-time employment could be entitled to Jobseeker Support.
-  input:
-    fulltime_employment: [false, false, false, false, false, false, false]
-    age: [17, 18, 19, 20, 21, 24, 25]
-  output:
-    jobseeker_support__entitled: [false, 233.75, 233.75, 274.37, 274.37, 274.37, 315.00]
-
-- name: Social Security — Jobseeker Support — In full-time employment but losing earnings from health injury
-  period: 2022-04-01
-  description: |
-    A person in full-time employment but losing earnings from health injury
-    could be entitled to Jobseeker Support.
-  input:
-    fulltime_employment: [true, true, true, true, true, true, true]
-    losing_earnings_from_health_injury: [true, true, true, true, true, true, true]
-    age: [17, 18, 19, 20, 21, 24, 25]
-  output:
-    jobseeker_support__entitled: [false, 233.75, 233.75, 274.37, 274.37, 274.37, 315.00]
+    jobseeker_support__entitled: [true, false, true, false, false, true, true]

@@ -55,7 +55,7 @@
       - true # Mary
       - true # Barry
       - true # Larry
-    social_security__residential_requirements:
+    social_security__residential_requirement:
       - true # mama
       - true # papa
       - true # Tama
@@ -128,7 +128,7 @@
       - false # Mary
       - true # Barry
       - false # Larry
-    social_security__residential_requirements:
+    social_security__residential_requirement:
       - true # mama
       - true # papa
       - true # Tama

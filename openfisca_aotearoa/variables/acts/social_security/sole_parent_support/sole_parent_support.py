@@ -26,7 +26,7 @@ class sole_parent_support__entitled(Variable):
 
     def formula(persons, period, parameters):
         # The applicant
-        resides_in_nz = persons("social_security__residential_requirements", period)
+        resides_in_nz = persons("social_security__residential_requirement", period)
         resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
         years_in_nz = persons("sole_parent_support__years_in_nz_requirement", period)

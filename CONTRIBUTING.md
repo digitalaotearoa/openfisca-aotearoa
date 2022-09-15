@@ -145,11 +145,11 @@ The goal of the approach outlined is to aid future people studying the variable 
 
 Take a look at the `/variables/acts/social_security/residency.py` and considered it a __"best practice"__ approach.
 
-The variable `social_security__residential_requirements` in this file that we will be referring to is supporting both the 1964 and the 2018 Social Security Acts.
+The variable `social_security__residential_requirement` in this file that we will be referring to is supporting both the 1964 and the 2018 Social Security Acts.
 It's declaration looks like this:
 
 ```
-class social_security__residential_requirements(variables.Variable):
+class social_security__residential_requirement(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Residential requirements for certain benefits, calculates for the 1964 and the 2018 Social Security Acts"

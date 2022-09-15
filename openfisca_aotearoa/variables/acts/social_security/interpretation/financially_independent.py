@@ -21,7 +21,7 @@ class social_security__financially_independent(Variable):
     reference = """Interpretation section of Social Security Act 1964"""
 
     def formula(persons, period, parameters):
-        in_full_employment = persons("social_security__full_employment", period)
+        in_full_employment = persons("social_security__full_employment", period.first_week)
         recieves_grant = persons("social_security__in_receipt_of_basic_grant", period)
         recieves_gov_assisted_payments = persons("social_security__recieves_goverment_assisted_scheme_payments", period)
         recieves_benefit = persons("social_security__recieves_main_benefit", period)
