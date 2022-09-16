@@ -1,4 +1,42 @@
 # Changelog
+# 14.0.0 - [31](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/31)
+* Added support for Social Security Act 2018 residency requirements
+* Added Job Seeker Support entitlement for Social Security Act 2018
+* Breaking changes, Renamed variables:
+  - `social_security__meets_residential_requirements_for_certain_benefits` to `social_security__residential_requirement`
+  - `jobseeker_support` to `jobseeker_support__entitled`
+  - `eligible_for_jobseeker` to `jobseeker_support__entitled`
+  - `jobseeker_support__meets_age_threshold` to `jobseeker_support__age_requirement`
+  - `jobseeker_support__below_income_threshold` to `jobseeker_support__minimum_income`
+  - `jobseeker_support__prepared_for_employment` to `jobseeker_support__willing_and_able`
+  - `jobseeker_support__age_requirement` to `jobseeker_support__age_requirement`
+  - `social_security__residential_requirements` to `social_security__residential_requirement`
+  - `social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
+  - `social_security__resided_continuously_in_nz_at_least_2_years_after_becoming_citizen_or_resident` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
+* Breaking changes, variable calculation changed:
+ - `social_security__residential_requirement`
+ - `age` (added set_input_dispatch_by_period)
+ - `social_security__financially_independent` (adjusted to allow for social_security__full_employment WEEK period)
+ - `social_security__full_employment` (adjusted from month to week, added reference)
+ - `social_security__person_has_dependant_child` (added set_input_dispatch_by_period and reference)
+ - `social_security__residential_requirement` (added set_input_dispatch_by_period)
+ - `social_security__ordinarily_resident_in_new_zealand` (added set_input_dispatch_by_period)
+ - `jobseeker_support__entitled` extensively changed
+ - `jobseeker_support__age_requirement`
+ - `jobseeker_support__minimum_income` changed from `MONTH` to `WEEK`, default_value set to false (from true), set_input_dispatch_by_period added along with reference
+* New variables added:
+ - `social_security__employment`
+ - `jobseeker_support__work_gap`
+ - `jobseeker_support__available_for_work`
+ - `jobseeker_support__losing_earnings`
+ - `jobseeker_support__receiving`
+ - `jobseeker_support__full_employment_temporary`
+ - `jobseeker_support__income_52_week_period_less_than`
+ - `jobseeker_support__taken_reasonable_steps`
+ - `jobseeker_support__limited_in_capacity`
+* Parameters renamed:
+ - `age_threshold` to `age_threshold_without_dependant_child`
+ - `age_threshold_with_dependant_child` to `age_threshold_other`
 
 # 13.0.1 - [30](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/30)
 * Restoration of Citizen and Immigration tests to utilise functionality added in OpenFisca core.
@@ -50,12 +88,12 @@
   - `social_security__is_principal_carer_for_one_year_from_application_date` to `social_security__principal_carer_for_one_year_from_application_date`
   - `social_security__has_orphaned_child_in_family` to `social_security__orphaned_child_in_family`
   - `social_security__is_orphaned` to `social_security__orphaned`
-  - `social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_in_nz_for_at_least_2_years_at_any_one_time`
+  - `social_security__has_resided_continuously_in_nz_for_a_period_of_at_least_2_years_at_any_one_time` to `social_security__resided_continuously_nz_2_years_citizen_or_resident`
   - `social_security__is_ordinarily_resident_in_new_zealand` to `social_security__ordinarily_resident_in_new_zealand`
   - `social_security__eligible_for_child_disability_allowance` to `child_disability_allowance__eligible`
   - `disability_allowance__family_has_eligible_child` to `child_disability_allowance__family_has_eligible_child`
   - `social_security__child_meets_child_disability_allowance_criteria` to `child_disability_allowance__allowance_criteria`
-  - `jobseeker_support__is_prepared_for_employment` to `jobseeker_support__prepared_for_employment`
+  - `jobseeker_support__is_prepared_for_employment` to `jobseeker_support__willing_and_able`
   - `social_security__eligible_for_accommodation_supplement` to `accommodation_supplement__eligible`
   - `social_security__eligible_for_unsupported_childs_benefit` to `unsupported_child__entitled`
   - `social_security__has_unsupported_child_in_family` to `unsupported_child__unsupported_child_in_family`

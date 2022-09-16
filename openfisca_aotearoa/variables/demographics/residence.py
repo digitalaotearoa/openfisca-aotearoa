@@ -114,3 +114,10 @@ class present_in_new_zealand(variables.Variable):
     label = "was present in New Zealand on this day"
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
     set_input = set_input_dispatch_by_period
+
+
+class years_resided_continuously_in_new_zealand(variables.Variable):
+    value_type = int
+    entity = entities.Person
+    label = "number of years resided continuously in New Zealand"
+    definition_period = periods.MONTH

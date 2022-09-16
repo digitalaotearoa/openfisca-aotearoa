@@ -7,6 +7,7 @@ TL;DR: [GitHub Flow](https://guides.github.com/introduction/flow/), [SemVer](htt
  - [Advertising changes](#advertisingchanges)
  - [Coding guide: naming, structure and patterns](#codingguide)
    -  [Naming Variables](#namingvariables)
+   -  [Coding Variables](#codingvariables)
    -  [Structure](#structure)
    -  [Patterns](#patterns)
 
@@ -132,6 +133,79 @@ To determine a name for a variable utilise the following strategy.
 ### Things to avoid
 
 Avoid using words like `has` and `is`. I.e. the bool `has_dependent_child` is more aptly named `dependent_child`.
+
+<a name="codingvariables"></a>
+
+## Coding variables
+
+$~$
+
+The goal of the approach outlined is to aid future people studying the variable you're coding in matching it to how you interpreted the natural language rules.
+
+
+Take a look at the `/variables/acts/social_security/residency.py` and considered it a __"best practice"__ approach.
+
+The variable `social_security__residential_requirement` in this file that we will be referring to is supporting both the 1964 and the 2018 Social Security Acts.
+It's declaration looks like this:
+
+```
+class social_security__residential_requirement(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    label = "Residential requirements for certain benefits, calculates for the 1964 and the 2018 Social Security Acts"
+    definition_period = periods.MONTH
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
+```
+- Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
+- Note the descriptive label
+- Note the naming convention as described in [Naming Variables](#namingvariables)
+
+The variable has two formulas:
+```
+    def formula_1964_12_04(persons, period, parameters):
+```
+```
+    def formula_2018_11_26(persons, period, parameters):
+```
+This is an OpenFisca feature that ensures the correct formula will be automatically applied depending on the date supplied with the scenario.
+
+What is unique to this project is how we intend to code the content of these formulas.
+
+_At the time of writing variables within this project ARE NOT coded this way save for the example we will refer to below._
+
+This approach is designed to aid the person coding the interpretation and more especially those coming after them (or their future selves) who need to review it, update it or add to it. We will just be looking at the 2018 formula.
+
+The first thing to recognise is it references the `section 16` of the Social Security Act. Section 16 in the natural language is ordered into 5 parts with parts 2 and 5 further seperated into sub parts.
+
+We choose to structure the code accordingly. This looks like this:
+
+```
+# ssa16_1 - Descriptive, not requiring coding.
+
+ssa16_2_a = persons("immigration__citizen_or_resident", period) * \
+    persons("social_security__ordinarily_resident_in_new_zealand", period)
+
+ssa16_2_a_i = persons("social_security__resided_continuously_nz_2_years_citizen_or_resident", periods.ETERNITY)
+
+ssa16_2_a_ii = persons("immigration__recognised_refugee", period) + \
+    persons("immigration__protected_person", period)
+
+ssa16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
+
+# ssa16_3 - TODO Useful would be a list of countrys this applies to... we could make country an input.
+# ssa16_4 - MSD can refuse or cancel benefit if person not ordinarily in NZ...
+# ssa16_5 - The Governer-General may by Order in Council make regulations for the purposes of section 16 that specify circumstances in which:...
+#           Note the content of the list in this section is identical to the list in 421_1_c
+
+return (ssa16_2_a * (ssa16_2_a_i + ssa16_2_a_ii)) + ssa16_2_b
+
+```
+ - Firstly create local variables based on the structure that enable a person reading it to understand the reference - see `ssa16_1`
+ - Comment out the ones not coded and supply a comment as to why.
+ - List **ALL** the possible local variables as just described as it helps future people to understand how what's interpreted and how.
+ - Order them on the page in the same order as the natural language text
+ - Introduce the OpenFisca variables that make up the concepts strictly within the sections as they appear.
+ - Finally handle the `and` and `or` and other language of the natural language text to return the final computation utilising those local variables.
 
 
 $~$

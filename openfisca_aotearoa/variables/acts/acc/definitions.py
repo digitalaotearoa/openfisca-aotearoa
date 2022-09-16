@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not
+import numpy
 from openfisca_core import periods, variables
 from openfisca_aotearoa.entities import Person
 
@@ -62,6 +62,6 @@ class acc__potential_earner(variables.Variable):
                                   + ((injury_year == finish_year) * (injury_month == finish_month) * (injury_day <= finish_day))
                                   ) > 0
 
-        injured_over_18_in_study = logical_not(injured_under_18) * injured_while_studying
+        injured_over_18_in_study = numpy.logical_not(injured_under_18) * injured_while_studying
 
         return (injured_under_18 + injured_over_18_in_study) > 0

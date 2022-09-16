@@ -28,30 +28,12 @@ class social_security__totally_blind(Variable):
     label = "Person is totally blind"
 
 
-# TODO: Review against the new 2018 act
 class social_security__severely_restricted_capacity_for_work(Variable):
     value_type = bool
     entity = Person
     definition_period = MONTH
     label = "Is incapable of regularly working 15 or more hours a week in open employment"
-    reference = """
-        http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367
-        40A Supported living payment: purpose
-        (a) people who have, and are likely to have in the future, a severely restricted
-            capacity to support themselves through open employment because of sickness, injury, or disability:
-        40B (2) A person is permanently restricted in his or her capacity
-              for work if the chief executive is satisfied that
-        (a) the restricting sickness, injury, or disability is expected to
-              continue for at least the period set out in regulations made
-              under this Act for the purposes of this section; or
-        (b) the person is not expected to live for the period set out in
-              those regulations, because the person's sickness, injury, or
-              disability is terminal.
-
-        40B (3) A person is severely restricted in his or her capacity for work if
-        the chief executive is satisfied that the person is incapable of regularly
-        working 15 or more hours a week in open employment.
-    """
+    reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367"
 
 
 # TODO: Review against the new 2018 act

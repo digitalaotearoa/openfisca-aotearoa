@@ -1,0 +1,6 @@
+---
+description: Minimum age to recieve Jobseeker Support (in any other case)
+reference: "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783152"
+values:
+  "2018":
+    value: 20

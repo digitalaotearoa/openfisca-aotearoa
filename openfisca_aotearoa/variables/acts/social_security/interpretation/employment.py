@@ -1,24 +1,19 @@
-"""TODO: Add missing doctring."""
-
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
-
-from openfisca_aotearoa.entities import Person
+from openfisca_core import periods, variables
+from openfisca_aotearoa import entities
 
 
-# TODO: Review against the new 2018 act
-class social_security__full_employment(Variable):
+class social_security__employment(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "The definition of employment from Schedule 2 (Dictionary)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784486"
+
+
+class social_security__full_employment(variables.Variable):
+    value_type = bool
+    entity = entities.Person
     default_value = False
-    label = "Is in full employment or full-time employment"
-    definition_period = MONTH
-    reference = """
-        full employment or full-time employment, in relation to any person, means
-        (a) employment under a contract of service or apprenticeship which requires the person to work, whether on time or piece rates,
-            no less than an average of 30 hours each week; or
-        (b) self-employment of the person in any business, profession, trade, manufacture, or undertaking carried on for pecuniary profit
-            for no less than an average of 30 hours each week; or
-        (c) employment of the person for any number of hours which is regarded as full-time employment for the purposes of any award,
-            agreement, or contract relating to that employment
-        """
+    definition_period = periods.WEEK
+    label = "The definition of full employment or full-time employment from Schedule 2 (Dictionary)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784514"
