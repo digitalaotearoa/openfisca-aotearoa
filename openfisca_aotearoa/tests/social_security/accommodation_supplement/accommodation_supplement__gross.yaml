@@ -18,11 +18,14 @@
         weekly_accommodation_costs:
           2022-W27: 500
       Piedad:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Srko:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Ash:
-        dependent: false
+        dependent_child:
+          2022-07: false
     family:
       principal_caregiver: Vranda
       partner: Jarmich
@@ -54,11 +57,14 @@
         weekly_accommodation_costs:
           2022-W27: 500
       Piedad:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Srko:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Ash:
-        dependent: true
+        dependent_child:
+          2022-07: true
     family:
       principal_caregiver: Vranda
       other: Jarmich
@@ -89,11 +95,14 @@
         weekly_accommodation_costs:
           2022-W27: 500
       Piedad:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Srko:
-        dependent: false
+        dependent_child:
+          2022-07: false
       Ash:
-        dependent: true
+        dependent_child:
+          2022-07: true
     family:
       principal_caregiver: Vranda
       partner: Jarmich
@@ -125,11 +134,14 @@
         weekly_accommodation_costs:
           2022-W27: 500
       Piedad:
-        dependent: true
+        dependent_child:
+          2022-07: true
       Srko:
-        dependent: true
+        dependent_child:
+          2022-07: true
       Ash:
-        dependent: true
+        dependent_child:
+          2022-07: true
     family:
       principal_caregiver: Vranda
       partner: Jarmich
