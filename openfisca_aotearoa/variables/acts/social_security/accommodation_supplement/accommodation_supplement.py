@@ -1,5 +1,7 @@
 """TODO: Add missing doctring."""
 
+from openfisca_core import holders
+from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
@@ -132,3 +134,69 @@ class accommodation_supplement__base_rate(Variable):
     value_type = float
     default_value = 0
     definition_period = DateUnit.WEEK
+
+
+class accommodation_supplement__cutoff(Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = float
+    default_value = 0
+    definition_period = DateUnit.WEEK
+
+    def formula(people, period, _params):
+        last_week = period.last_week
+        this_month = last_week.first_month
+        dependent_children = sum(people.family.members("dependent_child", this_month))
+        partners = people.family.nb_persons(Family.PARTNER)
+        lieu_of_residence = people("accommodation_supplement__lieu_of_residence", last_week)
+
+        ssa_sched_4_part_7_1 = (
+            + (
+                + (dependent_children >= 1) * (partners >= 1)
+                + (dependent_children >= 2) * (partners == 0)
+                )
+            * (
+                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_1) * 305
+                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_2) * 220
+                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_3) * 160
+                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_4) * 120
+                )
+            )
+
+        ssa_sched_4_part_7_2 = False  # TODO
+        ssa_sched_4_part_7_3 = False  # TODO
+        ssa_sched_4_part_7_4 = False  # TODO
+        ssa_sched_4_part_7_5 = False  # TODO
+        ssa_sched_4_part_7_6 = False  # TODO
+
+        return (
+            + ssa_sched_4_part_7_1
+            + ssa_sched_4_part_7_2
+            + ssa_sched_4_part_7_3
+            + ssa_sched_4_part_7_4
+            + ssa_sched_4_part_7_5
+            + ssa_sched_4_part_7_6
+            )
+
+
+class AccommodationSupplement__LieuOfResidence(Enum):
+    area_1 = "Area 1"
+    area_2 = "Area 2"
+    area_3 = "Area 3"
+    area_4 = "Area 4"
+    other = "Somewhere else"
+    n_a = "We have no idea"
+
+
+class accommodation_supplement__lieu_of_residence(Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = Enum
+    possible_values = AccommodationSupplement__LieuOfResidence
+    default_value = AccommodationSupplement__LieuOfResidence.n_a
+    definition_period = DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period
