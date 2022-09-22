@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
+from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
 from openfisca_aotearoa.entities import Person
@@ -10,7 +10,7 @@ from openfisca_aotearoa.entities import Person
 class accommodation_supplement__eligible(Variable):
     value_type = bool
     entity = Person
-    definition_period = MONTH
+    definition_period = DateUnit.MONTH
     label = "Eligible for Accommodation Supplement"
 
     reference = """
@@ -63,7 +63,7 @@ class eligible_for_social_housing(Variable):
     default_value = True
     entity = Person
     label = "Has social housing?"
-    definition_period = MONTH
+    definition_period = DateUnit.MONTH
     reference = "Social Security Act 1964 - 61EA Accommodation supplement http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362856"
 
 
@@ -72,7 +72,7 @@ class accommodation_supplement__below_income_threshold(Variable):
     default_value = True
     entity = Person
     label = "Income is below Accommodation Supplement threshold?"
-    definition_period = MONTH
+    definition_period = DateUnit.MONTH
 
 
 class accommodation_supplement__below_cash_threshold(Variable):
@@ -80,4 +80,14 @@ class accommodation_supplement__below_cash_threshold(Variable):
     default_value = True
     entity = Person
     label = "Cash is below Accommodation Supplement threshold?"
-    definition_period = MONTH
+    definition_period = DateUnit.MONTH
+
+
+class accommodation_supplement__base_rate(Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = float
+    default_value = 0
+    definition_period = DateUnit.WEEK
