@@ -10,7 +10,7 @@
     persons:
       Vranda:
         weekly_accommodation_costs:
-          2022-W26: 500
+          2022-W26: 1000
         accommodation_supplement__base_rate:
           2022-W26: 1000
       Jarmich:
@@ -48,7 +48,7 @@
     persons:
       Vranda:
         weekly_accommodation_costs:
-          2022-W26: 500
+          2022-W26: 1000
         accommodation_supplement__base_rate:
           2022-W26: 1000
       Jarmich:
@@ -85,7 +85,7 @@
     persons:
       Vranda:
         weekly_accommodation_costs:
-          2022-W26: 500
+          2022-W26: 1000
         accommodation_supplement__base_rate:
           2022-W26: 1000
       Jarmich:
@@ -123,7 +123,7 @@
     persons:
       Vranda:
         weekly_accommodation_costs:
-          2022-W26: 500
+          2022-W26: 1000
         accommodation_supplement__base_rate:
           2022-W26: 1000
       Jarmich:

@@ -3,7 +3,7 @@
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa.entities import Family, Person
 
 
 # TODO: Review against the new 2018 act
@@ -91,6 +91,35 @@ class accommodation_supplement__gross(Variable):
     value_type = float
     default_value = 0
     definition_period = DateUnit.WEEK
+
+    def formula(people, period, _params):
+        last_week = period.last_week
+        this_month = last_week.first_month
+        dependent_children = sum(people.family.members("dependent_child", this_month))
+        partners = people.family.nb_persons(Family.PARTNER)
+        weekly_accommodation_costs = people("weekly_accommodation_costs", last_week)
+        base_rate = people("accommodation_supplement__base_rate", last_week)
+
+        ssa_sched_4_part_7_1 = (
+            + (dependent_children >= 1)
+            * (partners >= 1)
+            * 0.70 * (weekly_accommodation_costs - 0.25 * base_rate)
+            )
+
+        ssa_sched_4_part_7_2 = False  # TODO
+        ssa_sched_4_part_7_3 = False  # TODO
+        ssa_sched_4_part_7_4 = False  # TODO
+        ssa_sched_4_part_7_5 = False  # TODO
+        ssa_sched_4_part_7_6 = False  # TODO
+
+        return (
+            + ssa_sched_4_part_7_1
+            + ssa_sched_4_part_7_2
+            + ssa_sched_4_part_7_3
+            + ssa_sched_4_part_7_4
+            + ssa_sched_4_part_7_5
+            + ssa_sched_4_part_7_6
+            )
 
 
 class accommodation_supplement__base_rate(Variable):
