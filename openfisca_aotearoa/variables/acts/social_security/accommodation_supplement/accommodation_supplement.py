@@ -101,8 +101,10 @@ class accommodation_supplement__gross(Variable):
         base_rate = people("accommodation_supplement__base_rate", last_week)
 
         ssa_sched_4_part_7_1 = (
-            + (dependent_children >= 1)
-            * (partners >= 1)
+            + (
+                + (dependent_children >= 1) * (partners >= 1)
+                + (dependent_children >= 2) * (partners == 0)
+                )
             * 0.70 * (weekly_accommodation_costs - 0.25 * base_rate)
             )
 
