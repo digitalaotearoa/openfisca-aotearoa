@@ -85,7 +85,17 @@ class accommodation_supplement__below_cash_threshold(Variable):
     definition_period = DateUnit.MONTH
 
 
-class accommodation_supplement__gross(Variable):
+class accommodation_supplement__base(Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = float
+    default_value = 0
+    definition_period = DateUnit.WEEK
+
+
+class accommodation_supplement__rebate(Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""
@@ -96,18 +106,20 @@ class accommodation_supplement__gross(Variable):
 
     def formula(people, period, _params):
         last_week = period.last_week
-        this_month = last_week.first_month
-        dependent_children = sum(people.family.members("dependent_child", this_month))
+        dependent_children = sum(people.family.members("social_security__dependent_child", last_week))
         partners = people.family.nb_persons(Family.PARTNER)
         weekly_accommodation_costs = people("weekly_accommodation_costs", last_week)
-        base_rate = people("accommodation_supplement__base_rate", last_week)
+        base_rate = people("accommodation_supplement__base", last_week)
 
         ssa_sched_4_part_7_1 = (
             + (
                 + (dependent_children >= 1) * (partners >= 1)
                 + (dependent_children >= 2) * (partners == 0)
                 )
-            * 0.70 * (weekly_accommodation_costs - 0.25 * base_rate)
+            * (
+                + weekly_accommodation_costs
+                - 0.70 * (weekly_accommodation_costs - 0.25 * base_rate)
+                )
             )
 
         ssa_sched_4_part_7_2 = False  # TODO
@@ -126,17 +138,7 @@ class accommodation_supplement__gross(Variable):
             )
 
 
-class accommodation_supplement__base_rate(Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = Person
-    value_type = float
-    default_value = 0
-    definition_period = DateUnit.WEEK
-
-
-class accommodation_supplement__cutoff(Variable):
+class accommodation_supplement__cutout(Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""
@@ -147,8 +149,7 @@ class accommodation_supplement__cutoff(Variable):
 
     def formula(people, period, _params):
         last_week = period.last_week
-        this_month = last_week.first_month
-        dependent_children = sum(people.family.members("dependent_child", this_month))
+        dependent_children = sum(people.family.members("social_security__dependent_child", last_week))
         partners = people.family.nb_persons(Family.PARTNER)
         lieu_of_residence = people("accommodation_supplement__lieu_of_residence", last_week)
 

@@ -1,7 +1,7 @@
 - name: >
     Social Security Act 2018 -
     Jobseeker Support -
-    Cutoff point -
+    Cut-out point -
     Person who has 1 or more dependent children and who is in a relationship
   period: 2018-11-26
   input:
@@ -18,22 +18,22 @@
         accommodation_supplement__lieu_of_residence:
           week:1998-W01:1234: other
       Piedad:
-        dependent_child:
-          month:2022-06:2: false
+        social_security__dependent_child:
+          week:2022-W26:9: false
       Srko:
-        dependent_child:
-         month:2022-06:2: false
+        social_security__dependent_child:
+         week:2022-W26:9: false
       Ash:
-        dependent_child:
-          month:2022-06:2: true
+        social_security__dependent_child:
+          week:2022-W26:9: true
     family:
-      principal_caregiver: Vranda
+      principal: Vranda
       partners: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
       Vranda:
-        accommodation_supplement__cutoff:
+        accommodation_supplement__cutout:
           2022-W27: 305
           2022-W28: 220
           2022-W29: 160
@@ -45,7 +45,7 @@
 - name: >
     Social Security Act 2018 -
     Jobseeker Support -
-    Cutoff point -
+    Cut-out point -
     Sole parent with 2 or more dependent children
   period: 2018-11-26
   input:
@@ -62,22 +62,22 @@
         accommodation_supplement__lieu_of_residence:
           week:1998-W01:1234: n_a
       Piedad:
-        dependent_child:
-          month:2022-06:2: false
+        social_security__dependent_child:
+          week:2022-W26:9: false
       Srko:
-        dependent_child:
-          month:2022-06:2: true
+        social_security__dependent_child:
+          week:2022-W26:9: true
       Ash:
-        dependent_child:
-          month:2022-06:2: true
+        social_security__dependent_child:
+          week:2022-W26:9: true
     family:
-      principal_caregiver: Vranda
+      principal: Vranda
       others: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
       Vranda:
-        accommodation_supplement__cutoff:
+        accommodation_supplement__cutout:
           2022-W27: 305
           2022-W28: 220
           2022-W29: 160
