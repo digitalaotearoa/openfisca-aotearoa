@@ -83,6 +83,16 @@ class accommodation_supplement__below_cash_threshold(Variable):
     definition_period = DateUnit.MONTH
 
 
+class accommodation_supplement__gross(Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = float
+    default_value = 0
+    definition_period = DateUnit.WEEK
+
+
 class accommodation_supplement__base_rate(Variable):
     label = "TODO"
     reference = "TODO"

@@ -1,12 +1,11 @@
 - name: >
-    Social Security Act 2018
-    Jobseeker Support
-    Gross amount (pre any reduction and/or cutoff)
-    1) Person who has 1 or more dependent children and who is in a relationship
-  description: >
+    Social Security Act 2018 -
+    Jobseeker Support -
+    Gross amount (pre any reduction and/or cutoff) -
+    Person who has 1 or more dependent children and who is in a relationship -
     Case 1:
     Has no dependent child
-  period: 2022-W27
+  period: 2018-11-26
   input:
     persons:
       Vranda:
@@ -16,19 +15,19 @@
           2022-W26: 1000
       Jarmich:
         weekly_accommodation_costs:
-          2022-W27: 500
+          2022-W26: 500
       Piedad:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Srko:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Ash:
         dependent_child:
-          2022-07: false
+          2022-06: false
     family:
       principal_caregiver: Vranda
-      partner: Jarmich
+      partners: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
@@ -38,14 +37,13 @@
 
 
 - name: >
-    Social Security Act 2018
-    Jobseeker Support
-    Gross amount (pre any reduction and/or cutoff)
-    1) Person who has 1 or more dependent children and who is in a relationship
-  description: >
+    Social Security Act 2018 -
+    Jobseeker Support -
+    Gross amount (pre any reduction and/or cutoff) -
+    Person who has 1 or more dependent children and who is in a relationship -
     Case 2:
     Is not in a relationship
-  period: 2022-W27
+  period: 2018-11-26
   input:
     persons:
       Vranda:
@@ -55,19 +53,19 @@
           2022-W26: 1000
       Jarmich:
         weekly_accommodation_costs:
-          2022-W27: 500
+          2022-W26: 500
       Piedad:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Srko:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Ash:
         dependent_child:
-          2022-07: true
+          2022-06: true
     family:
       principal_caregiver: Vranda
-      other: Jarmich
+      others: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
@@ -76,14 +74,13 @@
           2022-W27: 0
 
 - name: >
-    Social Security Act 2018
-    Jobseeker Support
-    Gross amount (pre any reduction and/or cutoff)
-    1) Person who has 1 or more dependent children and who is in a relationship
-  description: >
+    Social Security Act 2018 -
+    Jobseeker Support -
+    Gross amount (pre any reduction and/or cutoff) -
+    Person who has 1 or more dependent children and who is in a relationship -
     Case 3:
     Has 1 dependent child and is in a relationship
-  period: 2022-W27
+  period: 2018-11-26
   input:
     persons:
       Vranda:
@@ -93,19 +90,19 @@
           2022-W26: 1000
       Jarmich:
         weekly_accommodation_costs:
-          2022-W27: 500
+          2022-W26: 500
       Piedad:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Srko:
         dependent_child:
-          2022-07: false
+          2022-06: false
       Ash:
         dependent_child:
-          2022-07: true
+          2022-06: true
     family:
       principal_caregiver: Vranda
-      partner: Jarmich
+      partners: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
@@ -115,14 +112,13 @@
 
 
 - name: >
-    Social Security Act 2018
-    Jobseeker Support
-    Gross amount (pre any reduction and/or cutoff)
-    1) Person who has 1 or more dependent children and who is in a relationship
-  description: >
+    Social Security Act 2018 -
+    Jobseeker Support -
+    Gross amount (pre any reduction and/or cutoff) -
+    Person who has 1 or more dependent children and who is in a relationship -
     Case 4:
     Has n dependent children and is in a relationship
-  period: 2022-W27
+  period: 2018-11-26
   input:
     persons:
       Vranda:
@@ -132,19 +128,19 @@
           2022-W26: 1000
       Jarmich:
         weekly_accommodation_costs:
-          2022-W27: 500
+          2022-W26: 500
       Piedad:
         dependent_child:
-          2022-07: true
+          2022-06: true
       Srko:
         dependent_child:
-          2022-07: true
+          2022-06: true
       Ash:
         dependent_child:
-          2022-07: true
+          2022-06: true
     family:
       principal_caregiver: Vranda
-      partner: Jarmich
+      partners: [Jarmich]
       children: [Piedad, Srko, Ash]
   output:
     persons:
