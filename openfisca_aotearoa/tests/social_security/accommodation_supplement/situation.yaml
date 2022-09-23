@@ -1,0 +1,166 @@
+- name: >
+    Social Security Act 2018 -
+    Acommodation Supplement -
+    Situation -
+    Person who has 1 or more dependent children and who is in a relationship
+  period: 2018-11-26
+  input:
+    persons:
+      Vranda: {}
+      Jarmich: {}
+      Piedad:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: true
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Srko:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Ash:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: false
+          week:2022-W13:4: true
+    family:
+      principal: Vranda
+      partners: [Jarmich]
+      children: [Piedad, Srko, Ash]
+  output:
+    persons:
+      Vranda:
+        accommodation_supplement__situation:
+          2022-W02: 2
+          2022-W07: 1
+          2022-W11: 1
+          2022-W15: 1
+
+
+- name: >
+    Social Security Act 2018 -
+    Acommodation Supplement -
+    Situation -
+    Sole parent with 2 or more dependent children
+  period: 2018-11-26
+  input:
+    persons:
+      Vranda: {}
+      Jarmich: {}
+      Piedad:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: true
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Srko:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Ash:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: false
+          week:2022-W13:4: true
+    family:
+      principal: Vranda
+      others: [Jarmich]
+      children: [Piedad, Srko, Ash]
+  output:
+    persons:
+      Vranda:
+        accommodation_supplement__situation:
+          2022-W02: 0
+          2022-W07: 2
+          2022-W11: 1
+          2022-W15: 1
+
+
+- name: >
+    Social Security Act 2018 -
+    Acommodation Supplement -
+    Situation -
+    Person who has no dependent children and who is in a relationship
+  period: 2018-11-26
+  input:
+    persons:
+      Vranda: {}
+      Jarmich: {}
+      Piedad:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: true
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Srko:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Ash:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: false
+          week:2022-W13:4: true
+    family:
+      principal: Vranda
+      partners: [Jarmich]
+      children: [Piedad, Srko, Ash]
+  output:
+    persons:
+      Vranda:
+        accommodation_supplement__situation:
+          2022-W02: 2
+          2022-W07: 1
+          2022-W11: 1
+          2022-W15: 1
+
+
+- name: >
+    Social Security Act 2018 -
+    Acommodation Supplement -
+    Situation -
+    Sole parent with 1 dependent child
+  period: 2018-11-26
+  input:
+    persons:
+      Vranda: {}
+      Jarmich: {}
+      Piedad:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: true
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Srko:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: true
+          week:2022-W13:4: true
+      Ash:
+        social_security__dependent_child:
+          week:2022-W01:4: false
+          week:2022-W05:4: false
+          week:2022-W09:4: false
+          week:2022-W13:4: true
+    family:
+      principal: Vranda
+      others: [Jarmich]
+      children: [Piedad, Srko, Ash]
+  output:
+    persons:
+      Vranda:
+        accommodation_supplement__situation:
+          2022-W02: 0
+          2022-W07: 2
+          2022-W11: 1
+          2022-W15: 1

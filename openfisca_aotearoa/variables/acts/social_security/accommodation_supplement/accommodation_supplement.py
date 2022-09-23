@@ -95,6 +95,96 @@ class accommodation_supplement__base(Variable):
     definition_period = DateUnit.WEEK
 
 
+class AccommodationSupplement__Situation(Enum):
+    unknown = """
+        We have no idea
+        """
+    situation_1 = """
+        To a person who has 1 or more dependent children and who is in a
+        relationship, or a sole parent with 2 or more dependent children,
+        whose accommodation costs are rent or payments for board and lodgings
+        """
+    situation_2 = """
+        To a person who has no dependent children and who is in a relationship,
+        or a sole parent with 1 dependent child, whose accommodation costs are
+        rent or payments for board and lodgings
+        """
+    situation_3 = """
+        To any other person whose accommodation costs are rent or payments for
+        board and lodgings
+        """
+    situation_4 = """
+        To a person who has 1 or more dependent children and who is in a
+        relationship, or a sole parent with 2 or more dependent children, whose
+        accommodation costs are the sum of payments required under any mortgage
+        security, and other payments that the chief executive is satisfied are
+        reasonably required to be made in respect of the person’s home
+        """
+    situation_5 = """
+        To a person who has no dependent children and who is in a relationship,
+        or a sole parent with 1 dependent child, whose accommodation costs are
+        the sum of payments required under any mortgage security, and other
+        payments that the chief executive is satisfied are reasonably required
+        to be made in respect of the person’s home
+        """
+    situation_6 = """
+        To any other person whose accommodation costs are the sum of payments
+        required under any mortgage security, and other payments that the chief
+        executive is satisfied are reasonably required to be made in respect of
+        the person’s home
+        """
+
+
+class accommodation_supplement__situation(Variable):
+    label = "TODO"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
+    documentation = """TODO"""
+    entity = Person
+    value_type = Enum
+    possible_values = AccommodationSupplement__Situation
+    default_value = AccommodationSupplement__Situation.unknown
+    definition_period = DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period
+
+    def formula_2018_11_26(people, period, _params):
+        families = people.family
+        last_week = period.last_week
+        family_members = families.members("social_security__dependent_child", last_week)
+        dependent_children = sum(family_members)
+        partners = families.nb_persons(Family.PARTNER)
+
+        ssa_sched_4_part_7_1 = (
+            + (
+                + (dependent_children >= 1) * (partners >= 1)
+                + (dependent_children >= 2) * (partners == 0)
+                )
+            * AccommodationSupplement__Situation.situation_1.index
+            )
+
+        ssa_sched_4_part_7_2 = (
+            + (
+                + (dependent_children == 0) * (partners >= 1)
+                + (dependent_children == 1) * (partners == 0)
+                )
+            * AccommodationSupplement__Situation.situation_2.index
+            )
+
+        ssa_sched_4_part_7_3 = False  # TODO: Add "for board and rent"
+        ssa_sched_4_part_7_4 = False  # TODO: Add "for sum of mortgage"
+        ssa_sched_4_part_7_5 = False  # TODO: Add "for sum of mortgage"
+        ssa_sched_4_part_7_6 = False  # TODO: Add "for sum of mortgage"
+
+        return (
+            + ssa_sched_4_part_7_1
+            + ssa_sched_4_part_7_2
+            + ssa_sched_4_part_7_3
+            + ssa_sched_4_part_7_4
+            + ssa_sched_4_part_7_5
+            + ssa_sched_4_part_7_6
+            + AccommodationSupplement__Situation.unknown.index
+            )
+
+
 class accommodation_supplement__rebate(Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
@@ -104,21 +194,15 @@ class accommodation_supplement__rebate(Variable):
     default_value = 0
     definition_period = DateUnit.WEEK
 
-    def formula(people, period, params):
-        families = people.family
+    def formula_2018_11_26(people, period, params):
         last_week = period.last_week
-        family_members = families.members("social_security__dependent_child", last_week)
-        dependent_children = sum(family_members)
-        partners = families.nb_persons(Family.PARTNER)
+        situation = people("accommodation_supplement__situation", last_week)
         accommodation_costs = people("accommodation_costs", last_week)
-        base_rate = people("accommodation_supplement__base", last_week)
         rebate = params(period).acts.social_security.accommodation_supplement.rebate
+        base_rate = people("accommodation_supplement__base", last_week)
 
         ssa_sched_4_part_7_1 = (
-            + (
-                + (dependent_children >= 1) * (partners >= 1)
-                + (dependent_children >= 2) * (partners == 0)
-                )
+            + (situation == AccommodationSupplement__Situation.situation_1)
             * (
                 + accommodation_costs
                 - (
@@ -128,11 +212,60 @@ class accommodation_supplement__rebate(Variable):
                 )
             )
 
-        ssa_sched_4_part_7_2 = False  # TODO
-        ssa_sched_4_part_7_3 = False  # TODO
-        ssa_sched_4_part_7_4 = False  # TODO
-        ssa_sched_4_part_7_5 = False  # TODO
-        ssa_sched_4_part_7_6 = False  # TODO
+        ssa_sched_4_part_7_2 = (
+            + (situation == AccommodationSupplement__Situation.situation_2)
+            * (
+                + accommodation_costs
+                - (
+                    + rebate["section_2"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_2"]["base_rate"] * base_rate)
+                    )
+                )
+            )
+
+        ssa_sched_4_part_7_3 = (
+            + (situation == AccommodationSupplement__Situation.situation_3)
+            * (
+                + accommodation_costs
+                - (
+                    + rebate["section_3"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_3"]["base_rate"] * base_rate)
+                    )
+                )
+            )
+
+        ssa_sched_4_part_7_4 = (
+            + (situation == AccommodationSupplement__Situation.situation_4)
+            * (
+                + accommodation_costs
+                - (
+                    + rebate["section_4"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_4"]["base_rate"] * base_rate)
+                    )
+                )
+            )
+
+        ssa_sched_4_part_7_5 = (
+            + (situation == AccommodationSupplement__Situation.situation_5)
+            * (
+                + accommodation_costs
+                - (
+                    + rebate["section_5"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_5"]["base_rate"] * base_rate)
+                    )
+                )
+            )
+
+        ssa_sched_4_part_7_6 = (
+            + (situation == AccommodationSupplement__Situation.situation_6)
+            * (
+                + accommodation_costs
+                - (
+                    + rebate["section_6"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_6"]["base_rate"] * base_rate)
+                    )
+                )
+            )
 
         return (
             + ssa_sched_4_part_7_1
@@ -144,37 +277,71 @@ class accommodation_supplement__rebate(Variable):
             )
 
 
-class accommodation_supplement__cutout(Variable):
+class AccommodationSupplement__AreaOfResidence(Enum):
+    unknown = "We have no idea"
+    area_1 = "Area 1"
+    area_2 = "Area 2"
+    area_3 = "Area 3"
+    area_4 = "Area 4"
+
+
+class accommodation_supplement__area_of_residence(Variable):
     label = "TODO"
     reference = "TODO"
+    documentation = """TODO"""
+    entity = Person
+    value_type = Enum
+    possible_values = AccommodationSupplement__AreaOfResidence
+    default_value = AccommodationSupplement__AreaOfResidence.unknown
+    definition_period = DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period
+
+
+class accommodation_supplement__cutout(Variable):
+    label = "TODO"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
     entity = Person
     value_type = float
     default_value = 0
     definition_period = DateUnit.WEEK
 
-    def formula(people, period, params):
-        families = people.family
+    def formula_2018_11_26(people, period, params):
         last_week = period.last_week
-        family_members = families.members("social_security__dependent_child", last_week)
-        dependent_children = sum(family_members)
-        partners = families.nb_persons(Family.PARTNER)
-        lieu_of_residence = people("accommodation_supplement__lieu_of_residence", last_week)
+        last_week = period.last_week
+        situation = people("accommodation_supplement__situation", last_week)
+        area_of_residence = people("accommodation_supplement__area_of_residence", last_week)
         cutout = params(period).acts.social_security.accommodation_supplement.cutout
 
         ssa_sched_4_part_7_1 = (
-            + (
-                + (dependent_children >= 1) * (partners >= 1)
-                + (dependent_children >= 2) * (partners == 0)
-                )
-            * cutout["section_1"][lieu_of_residence]
+            + (situation == AccommodationSupplement__Situation.situation_1)
+            * cutout["section_1"][area_of_residence]
             )
 
-        ssa_sched_4_part_7_2 = False  # TODO
-        ssa_sched_4_part_7_3 = False  # TODO
-        ssa_sched_4_part_7_4 = False  # TODO
-        ssa_sched_4_part_7_5 = False  # TODO
-        ssa_sched_4_part_7_6 = False  # TODO
+        ssa_sched_4_part_7_2 = (
+            + (situation == AccommodationSupplement__Situation.situation_2)
+            * cutout["section_2"][area_of_residence]
+            )
+
+        ssa_sched_4_part_7_3 = (
+            + (situation == AccommodationSupplement__Situation.situation_3)
+            * cutout["section_3"][area_of_residence]
+            )
+
+        ssa_sched_4_part_7_4 = (
+            + (situation == AccommodationSupplement__Situation.situation_4)
+            * cutout["section_4"][area_of_residence]
+            )
+
+        ssa_sched_4_part_7_5 = (
+            + (situation == AccommodationSupplement__Situation.situation_5)
+            * cutout["section_5"][area_of_residence]
+            )
+
+        ssa_sched_4_part_7_6 = (
+            + (situation == AccommodationSupplement__Situation.situation_6)
+            * cutout["section_6"][area_of_residence]
+            )
 
         return (
             + ssa_sched_4_part_7_1
@@ -184,24 +351,3 @@ class accommodation_supplement__cutout(Variable):
             + ssa_sched_4_part_7_5
             + ssa_sched_4_part_7_6
             )
-
-
-class AccommodationSupplement__LieuOfResidence(Enum):
-    area_1 = "Area 1"
-    area_2 = "Area 2"
-    area_3 = "Area 3"
-    area_4 = "Area 4"
-    other = "Somewhere else"
-    n_a = "We have no idea"
-
-
-class accommodation_supplement__lieu_of_residence(Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = Person
-    value_type = Enum
-    possible_values = AccommodationSupplement__LieuOfResidence
-    default_value = AccommodationSupplement__LieuOfResidence.n_a
-    definition_period = DateUnit.WEEK
-    set_input = holders.set_input_dispatch_by_period

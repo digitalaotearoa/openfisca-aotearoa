@@ -1,0 +1,25 @@
+- name: >
+    Social Security Act 2018 -
+    Accommodation Supplement -
+    Cut-out point
+  period: 2018-11-26
+  input:
+    accommodation_supplement__situation:
+      2022-W26: [unknown, situation_1, situation_2, situation_3, situation_4, situation_5, situation_6]
+      2022-W27: [unknown, situation_1, situation_2, situation_3, situation_4, situation_5, situation_6]
+      2022-W28: [unknown, situation_1, situation_2, situation_3, situation_4, situation_5, situation_6]
+      2022-W29: [unknown, situation_1, situation_2, situation_3, situation_4, situation_5, situation_6]
+      2022-W30: [unknown, situation_1, situation_2, situation_3, situation_4, situation_5, situation_6]
+    accommodation_supplement__area_of_residence:
+      2022-W26: [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
+      2022-W27: [area_1, area_1, area_1, area_1, area_1, area_1, area_1]
+      2022-W28: [area_2, area_2, area_2, area_2, area_2, area_2, area_2]
+      2022-W29: [area_3, area_3, area_3, area_3, area_3, area_3, area_3]
+      2022-W30: [area_4, area_4, area_4, area_4, area_4, area_4, area_4]
+  output:
+    accommodation_supplement__cutout:
+      2022-W27: [0, 0, 0, 0, 0, 0, 0]
+      2022-W28: [0, 305, 235, 165, 305, 235, 165]
+      2022-W29: [0, 220, 155, 105, 220, 155, 105]
+      2022-W30: [0, 160, 105, 80, 160, 105, 80]
+      2022-W31: [0, 120, 80, 70, 120, 80, 70]

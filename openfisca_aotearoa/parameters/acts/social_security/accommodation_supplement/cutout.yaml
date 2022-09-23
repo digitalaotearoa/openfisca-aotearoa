@@ -16,6 +16,10 @@ section_1:
     To a person who has 1 or more dependent children and who is in a
     relationship, or a sole parent with 2 or more dependent children, whose
     accommodation costs are rent or payments for board and lodgings.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -32,21 +36,16 @@ section_1:
     values:
       2018-11-26:
         value: 120
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
-
 
 section_2:
   description: >
     To a person who has no dependent children and who is in a relationship, or
     a sole parent with 1 dependent child, whose accommodation costs are rent or
     payments for board and lodgings.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -63,19 +62,15 @@ section_2:
     values:
       2018-11-26:
         value: 80
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
 
 section_3:
   description: >
     To any other person whose accommodation costs are rent or payments for
     board and lodgings.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -92,14 +87,6 @@ section_3:
     values:
       2018-11-26:
         value: 70
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
 
 section_4:
   description: >
@@ -108,6 +95,10 @@ section_4:
     accommodation costs are the sum of payments required under any mortgage
     security, and other payments that the chief executive is satisfied are
     reasonably required to be made in respect of the person’s home.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -124,14 +115,6 @@ section_4:
     values:
       2018-11-26:
         value: 120
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
 
 section_5:
   description: >
@@ -140,6 +123,10 @@ section_5:
       the sum of payments required under any mortgage security, and other
       payments that the chief executive is satisfied are reasonably required to
       be made in respect of the person’s home.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -156,14 +143,6 @@ section_5:
     values:
       2018-11-26:
         value: 80
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
 
 section_6:
   description: >
@@ -171,6 +150,10 @@ section_6:
       required under any mortgage security, and other payments that the chief
       executive is satisfied are reasonably required to be made in respect of
       the person’s home.
+  unknown:
+    values:
+      1000-01-01:
+        value: 0.0
   area_1:
     values:
       2018-11-26:
@@ -187,11 +170,3 @@ section_6:
     values:
       2018-11-26:
         value: 70
-  other:
-    values:
-      1000-01-01:
-        value: 0.0
-  n_a:
-    values:
-      1000-01-01:
-        value: 0.0
