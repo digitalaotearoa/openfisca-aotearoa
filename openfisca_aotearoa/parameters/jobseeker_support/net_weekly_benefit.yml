@@ -2,12 +2,42 @@ description: Jobseeker Support cut-out points
 metadata:
   type: single_amount
   reference:
+# TODO ?
     2013-07-15:
       title: Social Security Act 1964
       href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527
+# TODO
+    2018-02-26:
+      title: Social Security (Rates of Benefits and Allowances) Order 2018
+      href: https://www.legislation.govt.nz/regulation/public/2018/0019/latest/whole.html
+# TODO ?
     2018-11-26:
       title: Social Security Act 2018
       href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145
+# TODO
+    2019-02-25:
+      title: Social Security (Rates of Benefits and Allowances) Order 2019
+      href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+# TODO
+    2020-02-24:
+      title: Social Security (Rates of Benefits and Allowances) Order 2020
+      href: https://www.legislation.govt.nz/regulation/public/2020/0013/latest/whole.html
+# TODO
+    2020-03-23:
+      title: Social Security (Rates of Benefits and Allowances) (COVID-19 Recovery Package) Amendment Order 2020
+      href: https://www.legislation.govt.nz/regulation/public/2020/0049/latest/whole.html
+# TODO
+    2021-02-22:
+      title: Social Security (Rates of Benefits and Allowances) Order 2021
+      href: https://www.legislation.govt.nz/regulation/public/2021/0015/latest/whole.html
+# TODO
+    2021-05-24:
+      title: Social Security (Rates of Main Benefits) Order 2021
+      href: https://www.legislation.govt.nz/regulation/public/2021/0120/latest/whole.html
+# TODO
+    2022-02-21:
+      title: Social Security (Rates of Benefits and Allowances) Order 2022
+      href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
 
 brackets:
   - threshold:
