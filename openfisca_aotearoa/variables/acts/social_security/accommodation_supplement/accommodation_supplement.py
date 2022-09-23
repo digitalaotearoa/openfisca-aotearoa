@@ -97,19 +97,22 @@ class accommodation_supplement__base(Variable):
 
 class accommodation_supplement__rebate(Variable):
     label = "TODO"
-    reference = "TODO"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
     entity = Person
     value_type = float
     default_value = 0
     definition_period = DateUnit.WEEK
 
-    def formula(people, period, _params):
+    def formula(people, period, params):
+        families = people.family
         last_week = period.last_week
-        dependent_children = sum(people.family.members("social_security__dependent_child", last_week))
-        partners = people.family.nb_persons(Family.PARTNER)
-        weekly_accommodation_costs = people("weekly_accommodation_costs", last_week)
+        family_members = families.members("social_security__dependent_child", last_week)
+        dependent_children = sum(family_members)
+        partners = families.nb_persons(Family.PARTNER)
+        accommodation_costs = people("accommodation_costs", last_week)
         base_rate = people("accommodation_supplement__base", last_week)
+        rebate = params(period).acts.social_security.accommodation_supplement.rebate
 
         ssa_sched_4_part_7_1 = (
             + (
@@ -117,8 +120,11 @@ class accommodation_supplement__rebate(Variable):
                 + (dependent_children >= 2) * (partners == 0)
                 )
             * (
-                + weekly_accommodation_costs
-                - 0.70 * (weekly_accommodation_costs - 0.25 * base_rate)
+                + accommodation_costs
+                - (
+                    + rebate["section_1"]["accommodation_costs"]
+                    * (accommodation_costs - rebate["section_1"]["base_rate"] * base_rate)
+                    )
                 )
             )
 

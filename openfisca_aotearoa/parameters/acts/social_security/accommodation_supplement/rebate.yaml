@@ -1,0 +1,124 @@
+description: >
+  Social Security Act 2018 -
+  423 Regulations: accommodation supplement -
+  Schedule 4: Rates of benefits -
+  Part 7: Accommodation supplement
+
+metadata:
+  unit: /1
+  reference:
+    2018-11-26:
+      title: Social Security Act 2018
+      href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877
+
+section_1:
+  description: >
+    To a person who has 1 or more dependent children and who is in a
+    relationship, or a sole parent with 2 or more dependent children, whose
+    accommodation costs are rent or payments for board and lodgings.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .25
+
+section_2:
+  description: >
+    To a person who has no dependent children and who is in a relationship, or
+    a sole parent with 1 dependent child, whose accommodation costs are rent or
+    payments for board and lodgings.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .25
+
+section_3:
+  description: >
+    To any other person whose accommodation costs are rent or payments for
+    board and lodgings.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .25
+
+section_4:
+  description: >
+    To a person who has 1 or more dependent children and who is in a
+    relationship, or a sole parent with 2 or more dependent children, whose
+    accommodation costs are the sum of payments required under any mortgage
+    security, and other payments that the chief executive is satisfied are
+    reasonably required to be made in respect of the person’s home.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .30
+
+section_5:
+  description: >
+      To a person who has no dependent children and who is in a relationship,
+      or a sole parent with 1 dependent child, whose accommodation costs are
+      the sum of payments required under any mortgage security, and other
+      payments that the chief executive is satisfied are reasonably required to
+      be made in respect of the person’s home.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .30
+
+section_6:
+  description: >
+      o any other person whose accommodation costs are the sum of payments
+      required under any mortgage security, and other payments that the chief
+      executive is satisfied are reasonably required to be made in respect of
+      the person’s home.
+  accommodation_costs:
+    description: >
+      x% of the amount by which an applicant’s weekly accommodation costs…
+    values:
+      2018-11-26:
+        value: .70
+  base_rate:
+    description: >
+      …exceeds y% of the base rate.
+    values:
+      2018-11-26:
+        value: .30

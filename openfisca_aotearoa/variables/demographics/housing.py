@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class weekly_accommodation_costs(Variable):
+class accommodation_costs(Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""

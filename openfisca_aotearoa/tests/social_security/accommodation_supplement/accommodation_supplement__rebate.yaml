@@ -9,12 +9,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -47,12 +47,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -84,12 +84,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -122,12 +122,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -160,12 +160,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -198,12 +198,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -235,12 +235,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
@@ -273,12 +273,12 @@
   input:
     persons:
       Vranda:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 1000
         accommodation_supplement__base:
           2022-W26: 1000
       Jarmich:
-        weekly_accommodation_costs:
+        accommodation_costs:
           2022-W26: 500
       Piedad:
         social_security__dependent_child:
