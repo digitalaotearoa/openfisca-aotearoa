@@ -153,23 +153,21 @@ class accommodation_supplement__cutout(Variable):
     default_value = 0
     definition_period = DateUnit.WEEK
 
-    def formula(people, period, _params):
+    def formula(people, period, params):
+        families = people.family
         last_week = period.last_week
-        dependent_children = sum(people.family.members("social_security__dependent_child", last_week))
-        partners = people.family.nb_persons(Family.PARTNER)
+        family_members = families.members("social_security__dependent_child", last_week)
+        dependent_children = sum(family_members)
+        partners = families.nb_persons(Family.PARTNER)
         lieu_of_residence = people("accommodation_supplement__lieu_of_residence", last_week)
+        cutout = params(period).acts.social_security.accommodation_supplement.cutout
 
         ssa_sched_4_part_7_1 = (
             + (
                 + (dependent_children >= 1) * (partners >= 1)
                 + (dependent_children >= 2) * (partners == 0)
                 )
-            * (
-                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_1) * 305
-                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_2) * 220
-                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_3) * 160
-                + (lieu_of_residence == AccommodationSupplement__LieuOfResidence.area_4) * 120
-                )
+            * cutout["section_1"][lieu_of_residence]
             )
 
         ssa_sched_4_part_7_2 = False  # TODO
