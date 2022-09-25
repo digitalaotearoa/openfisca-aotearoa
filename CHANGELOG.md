@@ -1,4 +1,15 @@
 # Changelog
+# 15.0.0 - [34](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/34)
+* Resolve issues with dependant child concepts within the Social Security Act
+* Updated spelling of dependant to dependent when used as an adjective
+* Breaking changes, Removed variables:
+  - `dependent_child` utilise `social_security__dependent_child` instead
+  - `social_security__person_has_dependant_child` (bool) replaced with `social_security__dependent_children` (float)
+  - `person_has_dependent_child` (bool) replaced with `social_security__dependent_children` (float)
+  - `person_has_dependent_child` also had a default value of `True` which affected one test in home_help
+  - `openfisca_aotearoa/parameters/entitlements/social_security/jobseeker_support/age_threshold_without_dependant_child.yaml` renamed to `.../age_threshold_without_dependent_child.yaml`
+  - remmoved the formula associated with `social_security__dependent_child`
+
 # 14.0.0 - [31](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/31)
 * Added support for Social Security Act 2018 residency requirements
 * Added Job Seeker Support entitlement for Social Security Act 2018

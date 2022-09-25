@@ -15,8 +15,8 @@
 # age_requirement dependancies extended
     age:
       day:2019-01-01:60: [21, 17, 19, 19]
-    social_security__person_has_dependant_child:
-      month:2019-01:2: [false, false, false, true]
+    social_security__dependent_children:
+      month:2019-01:2: [0, 0, 0, 1]
 # age_requirement dependancies extended
     jobseeker_support__work_gap: [true, true, true, true]
     jobseeker_support__available_for_work: [true, true, true, true]

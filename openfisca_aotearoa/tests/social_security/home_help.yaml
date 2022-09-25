@@ -56,6 +56,7 @@
     persons:
       "NZ-Citizen":
         citizenship__citizen: true
+        social_security__dependent_children: 1
         home_help__no_immediate_family: true
         community_services_card: true
         social_security__ordinarily_resident_in_new_zealand: true

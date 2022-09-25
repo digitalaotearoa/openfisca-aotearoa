@@ -9,13 +9,16 @@ from openfisca_core import holders
 from openfisca_aotearoa.entities import Family, Person
 
 
-class social_security__person_has_dependant_child(Variable):
-    value_type = bool
+class social_security__dependent_children(Variable):
+    value_type = float
     entity = Person
     label = "has a dependent child (or children)"
     definition_period = MONTH
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS7234"
     set_input = holders.set_input_dispatch_by_period
+
+    def formula(persons, period, parameters):
+        return sum(persons.family.members("social_security__dependent_child", period))
 
 
 class social_security__child(Variable):
@@ -41,9 +44,6 @@ class social_security__dependent_child(Variable):
     label = "Is a dependent child as defined in Schedule 2, Dictionary"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS7234"
     definition_period = MONTH
-
-    def formula(persons, period, parameters):
-        return persons("social_security__child", period) * persons("dependent_child", period)
 
 
 # TODO: Review against the new 2018 act, not referenced anywhere

@@ -8,7 +8,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
@@ -39,7 +39,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
@@ -71,7 +71,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 5
         early_childcare_hours_participation_per_week: 3
@@ -105,7 +105,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 5
         early_childcare_hours_participation_per_week: 3
@@ -137,7 +137,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 4
         early_childcare_hours_participation_per_week: 3
@@ -162,7 +162,7 @@
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
       "Child":
-        dependent_child: true
+        social_security__dependent_child: true
         age:
           "2018-08-01": 7
         early_childcare_hours_participation_per_week: 3
