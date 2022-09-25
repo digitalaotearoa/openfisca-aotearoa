@@ -214,11 +214,11 @@ class jobseeker_support__age_requirement(variables.Variable):
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2013_04_17(persons, period, parameters):
-        jobseeker_age_without_dependant_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependant_child
+        jobseeker_age_without_dependent_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependent_child
         jobseeker_age_other = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_other
-        without_dependent_child = numpy.logical_not(persons("social_security__person_has_dependant_child", period.first_month))
+        without_dependent_child = (persons("social_security__dependent_children", period.first_month) == 0)
 
-        ssa64_84B_2_a = (persons("age", period.start) >= jobseeker_age_without_dependant_child) * without_dependent_child
+        ssa64_84B_2_a = (persons("age", period.start) >= jobseeker_age_without_dependent_child) * without_dependent_child
 
         ssa64_84B_2_b = (persons("age", period.start) >= jobseeker_age_other) * numpy.logical_not(without_dependent_child)
 
@@ -226,11 +226,11 @@ class jobseeker_support__age_requirement(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
 
-        jobseeker_age_without_dependant_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependant_child
+        jobseeker_age_without_dependent_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependent_child
         jobseeker_age_other = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_other
-        without_dependent_child = numpy.logical_not(persons("social_security__person_has_dependant_child", period.first_month))
+        without_dependent_child = (persons("social_security__dependent_children", period.first_month) == 0)
 
-        ssa23_a = (persons("age", period.start) >= jobseeker_age_without_dependant_child) * without_dependent_child
+        ssa23_a = (persons("age", period.start) >= jobseeker_age_without_dependent_child) * without_dependent_child
         ssa23_b = (persons("age", period.start) >= jobseeker_age_other) * numpy.logical_not(without_dependent_child)
 
         return ssa23_a + ssa23_b

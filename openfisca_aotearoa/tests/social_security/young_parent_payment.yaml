@@ -5,7 +5,7 @@
     persons:
       Ruby:
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 19
         citizenship__citizen: true
@@ -14,7 +14,7 @@
         monthly_income: 80000.0
       Oliver:
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 16
         citizenship__citizen: true
@@ -25,7 +25,7 @@
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
@@ -65,7 +65,7 @@
         married_or_civil_union_or_de_facto_relationship: false
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: true
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 19
         citizenship__citizen: true
@@ -74,7 +74,7 @@
         married_or_civil_union_or_de_facto_relationship: false
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 16
         citizenship__citizen: true
@@ -85,7 +85,7 @@
         married_or_civil_union_or_de_facto_relationship: true
         has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
         person_is_parent: true
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
@@ -122,7 +122,7 @@
       Kiwi:
         age:
           "2017-10-01": 19
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         person_is_parent: true
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
@@ -131,7 +131,7 @@
       OE:
         age:
           "2017-10-01": 19
-        person_has_dependent_child: true
+        social_security__dependent_children: 1
         person_is_parent: true
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0

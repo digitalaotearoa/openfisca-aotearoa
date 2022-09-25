@@ -8,14 +8,6 @@ from openfisca_core.variables import Variable
 from openfisca_aotearoa.entities import Person
 
 
-class person_has_dependent_child(Variable):
-    value_type = bool
-    entity = Person
-    label = "has a dependent child or dependent children"
-    definition_period = MONTH
-    default_value = True
-
-
 class living_with_parent_or_guardian(Variable):
     value_type = bool
     entity = Person
@@ -27,12 +19,4 @@ class financially_supported_by_parent_or_guardian(Variable):
     value_type = bool
     entity = Person
     label = "is being financially supported by a parent or guardian"
-    definition_period = MONTH
-
-
-class dependent_child(Variable):
-    value_type = bool
-    entity = Person
-    label = "Is a dependent child"
-    reference = ""
     definition_period = MONTH

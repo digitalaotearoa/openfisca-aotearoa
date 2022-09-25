@@ -287,7 +287,7 @@
           "2018-08-01": 28
         community_services_card__below_income_threshold: true
         immigration__citizen_or_resident: false
-        social_security__person_has_dependant_child: true
+        social_security__dependent_children: 1
         social_security__ordinarily_resident_in_new_zealand: true
         family_scheme__qualifies_for_working_for_families:
           2018-08:
@@ -310,7 +310,7 @@
           "2018-08-01": 28
         community_services_card__below_income_threshold: true
         immigration__citizen_or_resident: true
-        social_security__person_has_dependant_child: false
+        social_security__dependent_children: 0
         social_security__ordinarily_resident_in_new_zealand: true
         family_scheme__qualifies_for_working_for_families:
           2018-08:

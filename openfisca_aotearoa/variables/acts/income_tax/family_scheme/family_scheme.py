@@ -94,7 +94,7 @@ class family_scheme__dependent_children(Variable):
     value_type = bool
     entity = Family
     definition_period = MONTH
-    label = "A family has one or more people who qualify as financially dependant children"
+    label = "A family has one or more people who qualify as financially dependent children"
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518480.html"
 
     def formula(families, period, parameters):
