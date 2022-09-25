@@ -1,0 +1,11 @@
+- name: >
+    Social Security Act 2018 -
+    Accommodation Supplement -
+    Area of residence
+  period: 2018-11-26
+  input:
+    accommodation_supplement__part_of_nz:
+      2022-W01: [Arrowtown urban area, Amberley urban area, Alexandra urban area, Riverton, Paris]
+  output:
+    accommodation_supplement__area_of_residence:
+      2022-W02: [area_1, area_2, area_3, area_4, area_4]

@@ -1,6 +1,10 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core import holders
+from pathlib import Path
+
+import numpy
+import pandas
+
 from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
@@ -144,7 +148,6 @@ class accommodation_supplement__situation(Variable):
     possible_values = AccommodationSupplement__Situation
     default_value = AccommodationSupplement__Situation.unknown
     definition_period = DateUnit.WEEK
-    set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(people, period, _params):
         families = people.family
@@ -277,6 +280,16 @@ class accommodation_supplement__rebate(Variable):
             )
 
 
+class accommodation_supplement__part_of_nz(Variable):
+    label = "TODO"
+    reference = "https://datafinder.stats.govt.nz/layer/27780-urban-area-2017-generalised-version/"
+    documentation = """TODO"""
+    entity = Person
+    value_type = str
+    default_value = "Other"
+    definition_period = DateUnit.WEEK
+
+
 class AccommodationSupplement__AreaOfResidence(Enum):
     unknown = "We have no idea"
     area_1 = "Area 1"
@@ -287,14 +300,35 @@ class AccommodationSupplement__AreaOfResidence(Enum):
 
 class accommodation_supplement__area_of_residence(Variable):
     label = "TODO"
-    reference = "TODO"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
     entity = Person
     value_type = Enum
     possible_values = AccommodationSupplement__AreaOfResidence
     default_value = AccommodationSupplement__AreaOfResidence.unknown
     definition_period = DateUnit.WEEK
-    set_input = holders.set_input_dispatch_by_period
+
+    def formula(people, period, _params):
+        params_path = "openfisca_aotearoa/parameters"
+        file_path = "acts/social_security/accommodation_supplement"
+        area_path = Path(f"{params_path}/{file_path}/area.csv").resolve()
+        last_week = period.last_week
+        part_of_nz = people("accommodation_supplement__part_of_nz", last_week)
+        area_of_nz = pandas.read_csv(area_path, sep = ";")
+
+        parts_of_residence = (
+            numpy.flatnonzero(area_of_nz["UA2017_NAME"].isin([part_of_nz]))
+            for part_of_nz in part_of_nz
+            )
+
+        areas_of_residence = (
+            AccommodationSupplement__AreaOfResidence[area_of_nz.at[index[0], "SSA2018_AREA"]].index
+            if len(index) > 0
+            else AccommodationSupplement__AreaOfResidence.area_4.index
+            for index in parts_of_residence
+            )
+
+        return numpy.fromiter(areas_of_residence, dtype = int)
 
 
 class accommodation_supplement__cutout(Variable):
@@ -307,7 +341,6 @@ class accommodation_supplement__cutout(Variable):
     definition_period = DateUnit.WEEK
 
     def formula_2018_11_26(people, period, params):
-        last_week = period.last_week
         last_week = period.last_week
         situation = people("accommodation_supplement__situation", last_week)
         area_of_residence = people("accommodation_supplement__area_of_residence", last_week)

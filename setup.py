@@ -26,6 +26,7 @@ setup(
         ],
     install_requires = [
         "openfisca-core[web-api] @ git+https://github.com/openfisca/openfisca-core.git@add-weeks",
+        "pandas >= 1.5.0, < 1.6.0",
         ],
     extras_require = {
         "dev": [
