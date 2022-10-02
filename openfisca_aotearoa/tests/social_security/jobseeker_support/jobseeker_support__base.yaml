@@ -1,0 +1,100 @@
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Single, living with parent, and under 20
+  period: 2019-11-26
+  input:
+    jobseeker_support__entitled:
+      2020-W01: [true, true, true, true, true]
+      2021-W01: [true, true, true, true, true]
+      2021-W23: [true, true, true, true, true]
+      2022-W01: [true, true, true, true, true]
+      2023-W01: [true, true, true, true, true]
+    social_security__in_a_relationship:
+      2019-12: [false, false, false, false, false]
+      2021-01: [false, false, false, false, false]
+      2021-07: [false, false, false, false, false]
+      2022-01: [false, false, false, false, false]
+      2023-01: [false, false, false, false, false]
+    age:
+      day:2019-12-30:7: [19, 20, 19, 20, 19]
+      day:2021-01-04:7: [19, 20, 19, 20, 19]
+      day:2021-06-07:7: [19, 20, 19, 20, 19]
+      day:2022-01-03:7: [19, 20, 19, 20, 19]
+      day:2023-01-02:7: [19, 20, 19, 20, 19]
+    jobseeker_support__living_with_parent:
+      2020-W01: [true, true, false, false, true]
+      2021-W01: [true, true, false, false, true]
+      2021-W23: [true, true, false, false, true]
+      2022-W01: [true, true, false, false, true]
+      2023-W01: [true, true, false, false, true]
+    social_security__dependent_children:
+      2019-12: [0, 0, 0, 0, 1]
+      2021-01: [0, 0, 0, 0, 1]
+      2021-07: [0, 0, 0, 0, 1]
+      2022-01: [0, 0, 0, 0, 1]
+      2023-01: [0, 0, 0, 0, 1]
+    jobseeker_support__transferred_15_july_2013: [false, false, false, false, false]
+    social_security__age_youngest_dependant_child:
+      day:2019-12-23:7: [0, 0, 0, 0, 2]
+      day:2020-12-28:7: [0, 0, 0, 0, 2]
+      day:2021-06-07:7: [0, 0, 0, 0, 2]
+      day:2021-12-27:7: [0, 0, 0, 0, 2]
+      day:2022-12-26:7: [0, 0, 0, 0, 2]
+  output:
+    jobseeker_support__base:
+      2020-W01: [145.98, 182.47, 182.47, 182.47, 145.98]
+      2021-W01: [175.48, 213.10, 213.10, 213.10, 175.48]
+      2021-W23: [180.91, 219.70, 219.70, 219.70, 180.91]
+      2022-W01: [200.91, 239.70, 239.70, 239.70, 200.91]
+      2023-W01: [233.75, 274.37, 274.37, 274.37, 233.75]
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Single, without dependent children, and around 25
+  period: 2019-11-26
+  input:
+    jobseeker_support__entitled:
+      2020-W01: [true, true, true, true, true]
+      2021-W01: [true, true, true, true, true]
+      2021-W23: [true, true, true, true, true]
+      2022-W01: [true, true, true, true, true]
+      2023-W01: [true, true, true, true, true]
+    social_security__in_a_relationship:
+      2019-12: [false, false, false, false, false]
+      2021-01: [false, false, false, false, false]
+      2021-07: [false, false, false, false, false]
+      2022-01: [false, false, false, false, false]
+      2023-01: [false, false, false, false, false]
+    age:
+      day:2019-12-30:7: [24, 25, 24, 25, 24]
+      day:2021-01-04:7: [24, 25, 24, 25, 24]
+      day:2021-06-07:7: [24, 25, 24, 25, 24]
+      day:2022-01-03:7: [24, 25, 24, 25, 24]
+      day:2023-01-02:7: [24, 25, 24, 25, 24]
+    jobseeker_support__living_with_parent:
+      2020-W01: [true, true, false, false, true]
+      2021-W01: [true, true, false, false, true]
+      2021-W23: [true, true, false, false, true]
+      2022-W01: [true, true, false, false, true]
+      2023-W01: [true, true, false, false, true]
+    social_security__dependent_children:
+      2019-12: [0, 0, 0, 0, 1]
+      2021-01: [0, 0, 0, 0, 1]
+      2021-07: [0, 0, 0, 0, 1]
+      2022-01: [0, 0, 0, 0, 1]
+      2023-01: [0, 0, 0, 0, 1]
+    jobseeker_support__transferred_15_july_2013: [false, false, false, false, false]
+    social_security__age_youngest_dependant_child:
+      day:2019-12-23:7: [0, 0, 0, 0, 2]
+      day:2020-12-28:7: [0, 0, 0, 0, 2]
+      day:2021-06-07:7: [0, 0, 0, 0, 2]
+      day:2021-12-27:7: [0, 0, 0, 0, 2]
+      day:2022-12-26:7: [0, 0, 0, 0, 2]
+  output:
+    jobseeker_support__base:
+      2020-W01: [182.47, 218.98, 182.47, 218.98, 339.69]
+      2021-W01: [213.10, 250.74, 213.10, 250.74, 375.17]
+      2021-W23: [219.70, 258.50, 219.70, 258.50, 219.70]
+      2022-W01: [239.70, 278.50, 239.70, 278.50, 406.78]
+      2023-W01: [274.37, 315.00, 274.37, 315.00, 440.96]

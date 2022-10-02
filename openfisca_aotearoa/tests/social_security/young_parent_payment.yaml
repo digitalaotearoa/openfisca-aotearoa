@@ -62,8 +62,8 @@
       Ruby:
         social_security__ordinarily_resident_in_new_zealand: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        married_or_civil_union_or_de_facto_relationship: false
-        has_been_married_or_in_a_civil_union_or_de_facto_relationship: true
+        social_security__in_a_relationship: false
+        social_security__been_married_or_civil_union_or_de_facto_relationship: true
         person_is_parent: true
         social_security__dependent_children: 1
         age:
@@ -71,8 +71,8 @@
         citizenship__citizen: true
         monthly_income: 10.0
       Oliver:
-        married_or_civil_union_or_de_facto_relationship: false
-        has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
+        social_security__in_a_relationship: false
+        social_security__been_married_or_civil_union_or_de_facto_relationship: false
         person_is_parent: true
         social_security__dependent_children: 1
         age:
@@ -82,8 +82,8 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        married_or_civil_union_or_de_facto_relationship: true
-        has_been_married_or_in_a_civil_union_or_de_facto_relationship: false
+        social_security__in_a_relationship: true
+        social_security__been_married_or_civil_union_or_de_facto_relationship: false
         person_is_parent: true
         social_security__dependent_children: 1
         age:

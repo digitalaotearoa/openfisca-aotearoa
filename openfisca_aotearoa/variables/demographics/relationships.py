@@ -77,13 +77,6 @@ class de_facto_relationship(Variable):
         return persons("property_relationships__de_facto_relationship", period)
 
 
-class has_been_married_or_in_a_civil_union_or_de_facto_relationship(Variable):
-    value_type = bool
-    entity = Person
-    definition_period = MONTH
-    label = "He or she is not married but has been married or in a civil union or de facto relationship"
-
-
 class married_or_civil_union_or_de_facto_relationship(Variable):
     value_type = bool
     entity = Person
