@@ -8,7 +8,7 @@
       "2018-10-01": 25
     citizenship__citizen: true
   output:
-    social_security__eligible_for_supported_living_payment: false
+    supported_living_payment__entitled: false
 
 - name: Supported Living Payment - totally blind
   period: 2018-10
@@ -17,11 +17,11 @@
     age:
       "2018-10-01": 25
     citizenship__citizen: true
-    social_security__totally_blind: true
+    totally_blind: true
     supported_living_payment__below_income_threshold: true
     social_security__residential_requirement: true
   output:
-    social_security__eligible_for_supported_living_payment:
+    supported_living_payment__entitled:
       2018-10:
         - true
 
@@ -32,11 +32,11 @@
     age:
       "2018-10-01": 25
     citizenship__citizen: true
-    social_security__severely_restricted_capacity_for_work: true
+    supported_living_payment__restricted_work_capacity: true
     supported_living_payment__below_income_threshold: true
     social_security__residential_requirement: true
   output:
-    social_security__eligible_for_supported_living_payment: true
+    supported_living_payment__entitled: true
 
 
 - name: Supported Living Payment - self inflicted injury
@@ -46,12 +46,12 @@
     age:
       "2018-10-01": 25
     citizenship__citizen: true
-    social_security__severely_restricted_capacity_for_work: true
+    supported_living_payment__restricted_work_capacity: true
     supported_living_payment__below_income_threshold: true
     social_security__disability_self_inflicted: true
     social_security__residential_requirement: true
   output:
-    social_security__eligible_for_supported_living_payment: false
+    supported_living_payment__entitled: false
 
 - name: Supported Living Payment - Carer looking after another person
   period: 2018-10
@@ -60,11 +60,11 @@
     age:
       "2018-10-01": 25
     citizenship__citizen: true
-    social_security__required_to_give_fulltime_care: true
+    supported_living_payment__caring_for_another_person: true
     supported_living_payment__below_income_threshold: true
     social_security__residential_requirement: true
   output:
-    social_security__eligible_for_supported_living_payment: true
+    supported_living_payment__entitled: true
 
 
 - name: Supported Living Payment - Carer looking after another person, not in NZ
@@ -74,8 +74,8 @@
     age:
       "2018-10-01": 25
     citizenship__citizen: true
-    social_security__required_to_give_fulltime_care: true
+    supported_living_payment__caring_for_another_person: true
     supported_living_payment__below_income_threshold: true
     social_security__residential_requirement: false
   output:
-    social_security__eligible_for_supported_living_payment: false
+    supported_living_payment__entitled: false

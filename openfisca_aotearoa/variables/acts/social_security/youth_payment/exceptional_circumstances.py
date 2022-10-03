@@ -1,15 +1,23 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person
+from openfisca_core import periods, variables
+from openfisca_aotearoa import entities
 
 
-class youth_payment__single_young_person_exceptional_circumstances(Variable):
+class youth_payment__granted(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently granted the youth payment benefit"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
+
+
+class youth_payment__single_young_person_exceptional_circumstances(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "a young person in exceptional circumstances"
     reference = """
     (2) For the purposes of subsection (1), a young person is in exceptional circumstances if—

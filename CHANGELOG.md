@@ -2,15 +2,28 @@
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 * Change to contributing.md and coding patterns
 * Updated spelling of dependant to dependent when used as an adjective
+* Added section: `emergency_benefit`
 * Added variables:
   - `social_security__in_a_relationship`
   - `social_security__been_married_or_civil_union_or_de_facto_relationship`
   - `social_security__age_youngest_dependant_child`
   - `jobseeker_support__transferred_15_july_2013`
+  - `emergency_benefit__granted`
+  - `social_security__granted_main_benefit`
+  - `jobseeker_benefit__granted`
+  - `sole_parent_support__granted`
+  - `supported_living_payment__granted`
+  - `young_parent_payment__granted`
+  - `youth_payment__granted`
 * Breaking changes, Removed variables:
   - `jobseeker_support__net` (float) replaced with `jobseeker_support__benefit` (float)
   - `jobseeker_support__gross` (float) replaced with `jobseeker_support__base` (float)
   - `jobseeker_support__living_with_parent` (float) changed to `jobseeker_support__living_with_parent` (bool)
+* Renamed variables:
+  - `social_security__eligible_for_supported_living_payment` to `supported_living_payment__entitled`
+  - `social_security__totally_blind` to `totally_blind`
+  - `social_security__severely_restricted_capacity_for_work` to `supported_living_payment__restricted_work_capacity`
+  - `social_security__required_to_give_fulltime_care` to `supported_living_payment__caring_for_another_person`
 * Other changes
   - Rewrote `young_parent_payment__relationship_requirements` formula
   - Removed `has_been_married_or_in_a_civil_union_or_de_facto_relationship`
@@ -149,7 +162,7 @@
   - `student_allowance__is_enrolled_fulltime` to `student_allowance__enrolled_fulltime`
   - `student_allowance__is_secondary_student` to `student_allowance__secondary_student`
   - `super__is_being_paid_nz_superannuation` to `super__being_paid_nz_superannuation`
-  - `social_security__is_required_to_give_fulltime_care` to `social_security__required_to_give_fulltime_care`
+  - `social_security__is_required_to_give_fulltime_care` to `supported_living_payment__caring_for_another_person`
   - `student_allowance__is_childless` to `student_allowance__childless`
   - `student_allowance__is_a_dependent_student` to `student_allowance__dependent_student`
   - `student_allowance__is_living_with_a_parent` to `student_allowance__living_with_a_parent`

@@ -1,16 +1,14 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
-
-from openfisca_aotearoa.entities import Person
+from openfisca_core import periods, variables
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class social_security__child_with_serious_disability(Variable):
+class social_security__child_with_serious_disability(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Child has serious disability"
     reference = """Social Security Act 1964 Part 1D Child disability allowance 39A
         (1)For the purposes of this section and of sections 39B to 39E, child with a serious disability means a dependent child who
@@ -21,26 +19,10 @@ class social_security__child_with_serious_disability(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__totally_blind(Variable):
+class social_security__disability_self_inflicted(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
-    label = "Person is totally blind"
-
-
-class social_security__severely_restricted_capacity_for_work(Variable):
-    value_type = bool
-    entity = Person
-    definition_period = MONTH
-    label = "Is incapable of regularly working 15 or more hours a week in open employment"
-    reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367"
-
-
-# TODO: Review against the new 2018 act
-class social_security__disability_self_inflicted(Variable):
-    value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = """The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by
     the person with a view to qualifying for a benefit"""
     reference = """

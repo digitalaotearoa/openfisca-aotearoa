@@ -159,6 +159,15 @@ class jobseeker_support__receiving(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
+class jobseeker_benefit__granted(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently granted the Jobseeker benefit"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
+
+
 class jobseeker_support__full_employment_temporary(variables.Variable):
     value_type = bool
     default_value = False
