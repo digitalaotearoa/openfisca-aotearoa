@@ -225,7 +225,7 @@ class jobseeker_support__age_requirement(variables.Variable):
     def formula_2013_04_17(persons, period, parameters):
         jobseeker_age_without_dependent_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependent_child
         jobseeker_age_other = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_other
-        without_dependent_child = (persons("social_security__dependent_children", period.first_month) == 0)
+        without_dependent_child = (persons("social_security__dependent_children", period) == 0)
 
         ssa64_84B_2_a = (persons("age", period.start) >= jobseeker_age_without_dependent_child) * without_dependent_child
 
@@ -237,7 +237,7 @@ class jobseeker_support__age_requirement(variables.Variable):
 
         jobseeker_age_without_dependent_child = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_without_dependent_child
         jobseeker_age_other = parameters(period).entitlements.social_security.jobseeker_support.age_threshold_other
-        without_dependent_child = (persons("social_security__dependent_children", period.first_month) == 0)
+        without_dependent_child = (persons("social_security__dependent_children", period) == 0)
 
         ssa23_a = (persons("age", period.start) >= jobseeker_age_without_dependent_child) * without_dependent_child
         ssa23_b = (persons("age", period.start) >= jobseeker_age_other) * numpy.logical_not(without_dependent_child)

@@ -6,9 +6,11 @@
     persons:
       "biological mother":
         parental_leave__biological_mother: true
+        income_tax__principal_caregiver:
+          2019-03: true
     families:
       "Happy solo family":
-        principal_caregiver: "biological mother"
+        principal: "biological mother"
   output:
     parental_leave__spouse_or_partner_of_biological_mother:
       2019-03:
@@ -26,9 +28,10 @@
         parental_leave__transferred_her_entitlement_to_spouse: true
       "other mum":
         parental_leave__biological_mother: false
+        income_tax__principal_caregiver: true
     families:
       "Happy family":
-        principal_caregiver: "other mum"
+        principal: "other mum"
         partners: ["biological mother"]
   output:
     parental_leave__spouse_or_partner_of_biological_mother:
@@ -49,9 +52,10 @@
         parental_leave__transferred_her_entitlement_to_spouse: false
       "other mum":
         parental_leave__biological_mother: false
+        income_tax__principal_caregiver: true
     families:
       "Happy family":
-        principal_caregiver: "other mum"
+        principal: "other mum"
         partners:
           - "biological mother"
   output:
@@ -72,11 +76,12 @@
         parental_leave__biological_mother: true
       "adopting mother":
         parental_leave__taking_permanent_primary_responsibility_for_child: true
+        income_tax__principal_caregiver: true
       "another adopting parent":
         parental_leave__biological_mother: false
     families:
       "one":
-        principal_caregiver: "adopting mother"
+        principal: "adopting mother"
         partners:
           - "another adopting parent"
       "two":
@@ -100,11 +105,12 @@
     persons:
       "foster mother":
         parental_leave__biological_mother: false
+        income_tax__principal_caregiver: true
       "another foster parent":
         parental_leave__biological_mother: false
     families:
       "one":
-        principal_caregiver: "foster mother"
+        principal: "foster mother"
         partners:
           - "another foster parent"
   output:
@@ -126,9 +132,10 @@
         parental_leave__transferred_her_entitlement_to_spouse: true # Doesn't make sense, as this person doesn't have  spouse
       "biological father":
         parental_leave__biological_mother: false
+        income_tax__principal_caregiver: true
     families:
       "a family":
-        principal_caregiver: "biological father"
+        principal: "biological father"
         others:
           - "biological mother"
   output:
@@ -150,11 +157,12 @@
         parental_leave__transferred_her_entitlement_to_spouse: true
       "co-parent":
         parental_leave__biological_mother: false
+        income_tax__principal_caregiver: true
       "another co-parenting partner":
         parental_leave__biological_mother: false
     families:
       "Happy family":
-        principal_caregiver: "co-parent"
+        principal: "co-parent"
         partners:
           - "biological mother"
           - "another co-parenting partner"

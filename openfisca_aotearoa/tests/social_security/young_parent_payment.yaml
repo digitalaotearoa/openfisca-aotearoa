@@ -4,8 +4,9 @@
   input:
     persons:
       Ruby:
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 19
         citizenship__citizen: true
@@ -13,8 +14,9 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 80000.0
       Oliver:
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 16
         citizenship__citizen: true
@@ -24,8 +26,9 @@
         living_with_parent_or_guardian: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
@@ -36,10 +39,10 @@
         youth_payment__single_young_person_exceptional_circumstances: true
     families:
       One:
-        principal_caregiver: Ruby
+        principal: Ruby
         others: [Oliver]
       Two:
-        principal_caregiver: Oscar
+        principal: Oscar
   output:
     young_parent_payment__income_under_threshold:
       - false # Ruby earns too much
@@ -62,19 +65,23 @@
       Ruby:
         social_security__ordinarily_resident_in_new_zealand: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        social_security__in_a_relationship: false
+        social_security__in_a_relationship:
+          "week:2017-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: true
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 19
         citizenship__citizen: true
         monthly_income: 10.0
       Oliver:
-        social_security__in_a_relationship: false
+        social_security__in_a_relationship:
+          "week:2017-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 16
         citizenship__citizen: true
@@ -82,10 +89,12 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        social_security__in_a_relationship: true
+        social_security__in_a_relationship:
+          "week:2017-W01:52": true
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
-        person_is_parent: true
-        social_security__dependent_children: 1
+        social_security__parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
@@ -95,10 +104,10 @@
         youth_payment__single_young_person_exceptional_circumstances: true
     families:
       One:
-        principal_caregiver: Ruby
+        principal: Ruby
         others: [Oliver]
       Two:
-        principal_caregiver: Oscar
+        principal: Oscar
   output:
     young_parent_payment__relationship_requirements:
       - true # previously married
@@ -122,8 +131,9 @@
       Kiwi:
         age:
           "2017-10-01": 19
-        social_security__dependent_children: 1
-        person_is_parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
+        social_security__parent: true
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
         social_security__ordinarily_resident_in_new_zealand: true
@@ -131,17 +141,18 @@
       OE:
         age:
           "2017-10-01": 19
-        social_security__dependent_children: 1
-        person_is_parent: true
+        social_security__dependent_children:
+          "week:2017-W01:52": 1
+        social_security__parent: true
         citizenship__citizen: true
         family_scheme__assessable_income_for_month: 300.0
         social_security__ordinarily_resident_in_new_zealand: false
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
     families:
       One:
-        principal_caregiver: Kiwi
+        principal: Kiwi
       Two:
-        principal_caregiver: OE
+        principal: OE
   output:
     young_parent_payment__entitled:
       - true # Lives in NZ

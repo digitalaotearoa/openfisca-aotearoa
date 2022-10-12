@@ -29,7 +29,7 @@
         date_of_birth: 2000-12-10
     families:
       "Whanau":
-        principal_caregiver: "NZ-Citizen"
+        principal: "NZ-Citizen"
   output:
     home_help__eligible_for_home_help: true
 
@@ -46,7 +46,7 @@
         date_of_birth: 2000-12-10
     families:
       "Whanau":
-        principal_caregiver: "Non-Citizen"
+        principal: "Non-Citizen"
   output:
     home_help__eligible_for_home_help: false
 
@@ -56,14 +56,15 @@
     persons:
       "NZ-Citizen":
         citizenship__citizen: true
-        social_security__dependent_children: 1
+        social_security__dependent_children:
+          "week:2018-W01:52": 1
         home_help__no_immediate_family: true
         community_services_card: true
         social_security__ordinarily_resident_in_new_zealand: true
         date_of_birth: 2000-12-10
     families:
       "Whanau":
-        principal_caregiver: "NZ-Citizen"
+        principal: "NZ-Citizen"
   output:
     home_help__eligible_for_home_help: true
 

@@ -15,6 +15,9 @@
   - `supported_living_payment__granted`
   - `young_parent_payment__granted`
   - `youth_payment__granted`
+  - `income_tax__principal_caregiver` (to replace the previous dependancy on the role `principal_caregiver` which has been renamed to the more generic `principal`)
+  - `oranga_tamariki__child` (not yet utilised by referred to in social_security__dependent_child)
+  - `oranga_tamariki__parent` (not yet utilised by referred to in social_security__dependent_child)
 * Breaking changes, Removed variables:
   - `jobseeker_support__net` (float) replaced with `jobseeker_support__benefit` (float)
   - `jobseeker_support__gross` (float) replaced with `jobseeker_support__base` (float)
@@ -24,9 +27,30 @@
   - `social_security__totally_blind` to `totally_blind`
   - `social_security__severely_restricted_capacity_for_work` to `supported_living_payment__restricted_work_capacity`
   - `social_security__required_to_give_fulltime_care` to `supported_living_payment__caring_for_another_person`
+  - `person_is_parent` to `social_security__parent`
+* Removed variables:
+  - `married` (see marriage__married)
+  - `civil_union` (see civil_union__civil_union)
+  - `de_facto_relationship` (see property_relationships__de_facto_relationship)
+  - `married_or_civil_union_or_de_facto_relationship` (see person_has_partner)
+* Entities and roles:
+  - `principal_caregiver` to `principal`,
+  - Removed the `parent` role as it wasn't utilised
 * Other changes
   - Rewrote `young_parent_payment__relationship_requirements` formula
   - Removed `has_been_married_or_in_a_civil_union_or_de_facto_relationship`
+  - Removed `social_security__child_in_family`
+  - Improved `minimum_family_tax_credit` tests
+  - Adapted `family_scheme__qualifies_as_principal_carer` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Adapted `parental_leave__primary_carer` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Adapted `child_disability_allowance__eligible` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Adapted `orphans_benefit__entitled` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Adapted `unsupported_child__entitled` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Adapted `childcare_assistance__eligible_childcare_subsidy` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
+  - Changed `social_security__dependent_children`, `social_security__child`, `social_security__dependent_child`, `social_security__financially_independent`, `social_security__in_a_relationship` from month to week period
+  - Added formula to `social_security__dependent_child`
+  - Added additional clauses to `jobseeker_support__base`
+  - Improved `person_has_partner` formula
 
 # 15.0.0 - [34](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/34)
 * Resolve issues with dependant child concepts within the Social Security Act

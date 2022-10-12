@@ -6,19 +6,20 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: true
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
         social_security__parents_unable_to_provide_sufficient_care: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -32,19 +33,20 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: true
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: false
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
         social_security__parents_unable_to_provide_sufficient_care: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -58,19 +60,20 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: true
         social_security__parent_of_dependent_child: true
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
         social_security__parents_unable_to_provide_sufficient_care: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -84,19 +87,20 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: false
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
         social_security__parents_unable_to_provide_sufficient_care: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -111,18 +115,19 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: true
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -136,19 +141,20 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 17
+          "day:2018-07-30:28": 17
         immigration__resident: true
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:28": 5
         social_security__parents_unable_to_provide_sufficient_care: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
         children:
           - "Tama"
   output:
@@ -163,14 +169,15 @@
     persons:
       "Mama":
         age:
-          "2018-08-01": 21
+          "day:2018-07-30:28": 21
         immigration__resident: true
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
     families:
       "Whanau tahi":
-        principal_caregiver: "Mama"
+        principal: "Mama"
   output:
     unsupported_child__entitled:
       - false # mama (principal carer)

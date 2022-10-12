@@ -8,6 +8,7 @@
       Mama:
         social_security__ordinarily_resident_in_new_zealand: true
         immigration__resident: true
+        income_tax__principal_caregiver: true
       Papa:
         social_security__ordinarily_resident_in_new_zealand: true
         immigration__resident: true
@@ -23,7 +24,7 @@
           "2018-08-01": 19
     families:
       Whanau_tahi:
-        principal_caregiver: Mama
+        principal: Mama
         children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
         others: Papa
   output:
@@ -41,6 +42,7 @@
       Koro:
         immigration__resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
@@ -51,7 +53,7 @@
     families:
       Whanau:
         children: [Tama_disabled_child]
-        principal_caregiver: Koro
+        principal: Koro
   output:
     child_disability_allowance__eligible:
       - true # Koro
@@ -65,6 +67,7 @@
       Koro:
         immigration__resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
@@ -74,7 +77,7 @@
         social_security__requires_constant_care_and_attention: false
     families:
       Whanau:
-        principal_caregiver: Koro
+        principal: Koro
         children: [Tama_disabled_child]
   output:
     child_disability_allowance__eligible:
@@ -113,6 +116,7 @@
       Koro:
         immigration__resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       Tama_disabled_child:
         age:
           "2018-08-01": 19
@@ -122,7 +126,7 @@
     families:
       Whanau:
         children: [Tama_disabled_child]
-        principal_caregiver: Koro
+        principal: Koro
   output:
     child_disability_allowance__eligible:
       - false # Koro
@@ -137,6 +141,7 @@
       Koro:
         immigration__resident: true
         social_security__ordinarily_resident_in_new_zealand: true
+        income_tax__principal_caregiver: true
       Tama_disabled_child:
         age:
           "2018-08-01": 17
@@ -146,7 +151,7 @@
     families:
       Whanau:
         children: [Tama_disabled_child]
-        principal_caregiver: Koro
+        principal: Koro
   output:
     child_disability_allowance__eligible:
       - false # Koro

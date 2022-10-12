@@ -6,16 +6,48 @@
     persons:
       "Rakinui":
         date_of_birth: 2000-01-01
-        income_tax__residence: true
+        income_tax__residence: True
+        income_tax__principal_caregiver: True
+        family_scheme__full_time_earner: True
         veterans_support__received_parents_allowance: True
         veterans_support__received_childrens_pension: False
         social_security__received_income_tested_benefit:
           2018: False
       "Tāne":
         date_of_birth: 2012-01-01
+        income_tax__dependent_child: True
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         children: ["Tāne"]
   output:
+    family_scheme__qualifies_as_principal_carer: [True, False]
+    family_scheme__caregiver_age_qualifies: [True, False]
+    family_scheme__base_qualifies: [True, False]
     family_scheme__qualifies_for_minimum_family_tax_credit: [False, False]
+- name: A Person qualifies for the working for the minumum family tax credit
+  period: 2018-08
+  absolute_error_margin: 0
+  input:
+    persons:
+      "Rakinui":
+        date_of_birth: 2000-01-01
+        income_tax__residence: True
+        income_tax__principal_caregiver: True
+        family_scheme__full_time_earner: True
+        veterans_support__received_parents_allowance: False
+        veterans_support__received_childrens_pension: False
+        social_security__received_income_tested_benefit:
+          2018: False
+      "Tāne":
+        date_of_birth: 2012-01-01
+        income_tax__dependent_child: True
+    families:
+      Whanau:
+        principal: "Rakinui"
+        children: ["Tāne"]
+  output:
+    family_scheme__base_qualifies: [True, False]
+    family_scheme__qualifies_as_principal_carer: [True, False]
+    family_scheme__caregiver_age_qualifies: [True, False]
+    family_scheme__qualifies_for_minimum_family_tax_credit: [True, False]

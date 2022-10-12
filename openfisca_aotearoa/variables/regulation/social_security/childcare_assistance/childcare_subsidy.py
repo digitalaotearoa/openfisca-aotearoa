@@ -20,7 +20,7 @@ class childcare_assistance__eligible_childcare_subsidy(Variable):
         normally_in_nz = persons("social_security__ordinarily_resident_in_new_zealand", period)
         income_below_threshold = persons.family("childcare_assistance__household_income_below_childcare_subsidy_threshold", period)
 
-        is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
+        is_principal_carer = persons("income_tax__principal_caregiver", period)
 
         under_5_years_28_days_not_attending_school = persons.family(
             "childcare_assistance__family_has_resident_child_under_5_not_in_school", period)
@@ -44,7 +44,7 @@ class childcare_assistance__family_has_resident_child_under_5_not_in_school(Vari
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__dependent_child", period)
+            "social_security__dependent_child", period.first_week)
         not_in_school = not_(families.members(
             "attending_school", period))
         under_5 = families.members("age", period.start) < 5
@@ -65,7 +65,7 @@ class childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school(Var
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__dependent_child", period)
+            "social_security__dependent_child", period.first_week)
         children_to_be_enrolled = families.members(
             "will_be_enrolled_in_school", period)
         aged_5 = (families.members("age", period.start) == 5)
@@ -86,7 +86,7 @@ class childcare_assistance__family_has_child_eligible_for_disability_allowance_c
         minimum_hours_participating = parameters(period).entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare
 
         dependent_children = families.members(
-            "social_security__dependent_child", period)
+            "social_security__dependent_child", period.first_week)
         eligible_children = families(
             "child_disability_allowance__family_has_eligible_child", period)
         under_6 = families.members("age", period.start) < 6

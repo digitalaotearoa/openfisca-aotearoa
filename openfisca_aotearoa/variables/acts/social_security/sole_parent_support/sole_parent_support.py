@@ -14,7 +14,8 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 
 
-# TODO: Review against the new 2018 act
+# TODO: Review against the new 2018 act,  also assess utilising the test for dependent child: https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/dependent-child-01.html
+# social_security__dependent_child appears to describe the origins of the above workandincome definition of dependent child.
 class sole_parent_support__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person

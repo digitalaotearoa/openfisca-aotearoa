@@ -47,7 +47,7 @@ class social_security__eligible_for_community_services_card(Variable):
             period).entitlements.social_security.community_services_card.age_threshold
         low_income = persons(
             "community_services_card__below_income_threshold", period)
-        dependent_children = persons("social_security__dependent_children", period) > 0
+        dependent_children = persons("social_security__dependent_children", period.first_week) > 0
         is_fulltime_student = persons(
             "social_security__fulltime_student", period)
         received_superannuation = persons(

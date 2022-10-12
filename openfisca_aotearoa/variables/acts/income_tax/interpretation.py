@@ -1,19 +1,18 @@
 """TODO: Add missing doctring."""
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core.periods import DAY
-from openfisca_core.variables import Variable
-
-# Import the entities specifically defined for this tax and benefit system
-from openfisca_aotearoa.entities import Person
+from openfisca_core import periods, variables
+from openfisca_aotearoa import entities
+from openfisca_core import holders
 
 
-class income_tax__dependent_child(Variable):
+class income_tax__dependent_child(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = DAY
+    entity = entities.Person
+    definition_period = periods.DAY
     label = "Determines if a Person is classified as financially dependant"
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1520575.html#DLM1520883"
+    set_input = holders.set_input_dispatch_by_period
 
     def formula(person, period, parameters):
         # NOTE: using the age at the start of the month
@@ -25,3 +24,12 @@ class income_tax__dependent_child(Variable):
         # or 16 and 17 and not financially independant
         # is 18 and many conditions (see act)
         return age <= 18
+
+
+class income_tax__principal_caregiver(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.MONTH
+    label = "Is the person the principal caregiver"
+    reference = "https://legislation.govt.nz/act/public/2007/0097/latest/DLM1520575.html#DLM1522335"
+    set_input = holders.set_input_dispatch_by_period

@@ -18,7 +18,7 @@ class child_disability_allowance__eligible(Variable):
         # The applicant
         resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
-        is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
+        is_principal_carer = persons("income_tax__principal_caregiver", period)
         has_eligible_disabled_child = persons.family("child_disability_allowance__family_has_eligible_child", period)
 
         # http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html

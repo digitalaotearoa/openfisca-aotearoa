@@ -42,7 +42,7 @@ class family_scheme__qualifies_as_principal_carer(Variable):
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518480.html"
 
     def formula(persons, period, parameters):
-        return persons.has_role(Family.PRINCIPAL_CAREGIVER) * persons.family("family_scheme__dependent_children", period)
+        return persons("income_tax__principal_caregiver", period) * persons.family("family_scheme__dependent_children", period)
 
 
 class family_scheme__full_time_earner(Variable):

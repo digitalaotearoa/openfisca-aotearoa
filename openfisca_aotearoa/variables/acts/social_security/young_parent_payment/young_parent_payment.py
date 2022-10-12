@@ -81,8 +81,8 @@ class young_parent_payment__basic_requirements(variables.Variable):
             (persons("age", period.start) < 20)
 
         # (b) is a parent or step-parent of a dependent child or dependent children; and
-        is_parent_of_dependent_children = (persons("person_is_parent", period) + persons(
-            "person_is_step_parent", period)) * (persons("social_security__dependent_children", period) > 0)
+        is_parent_of_dependent_children = (persons("social_security__parent", period) + persons(
+            "person_is_step_parent", period)) * (persons("social_security__dependent_children", period.first_week) > 0)
 
         # (e) has no income or an income of less than the amount that would fully abate the young parent payment.
         income_test = persons(

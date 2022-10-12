@@ -235,6 +235,12 @@
             "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS5958"
         },
         {
+            "Title": "Oranga Tamariki Act 1989",
+            "Prefix": "oranga_tamariki",
+            "Type": "Act",
+            "Reference": "https://www.legislation.govt.nz/act/public/1989/0024/latest/DLM147094.html"
+        },
+        {
             "Title": "Student Allowances Regulations 1998",
             "Prefix": "student_allowance",
             "Type": "Regulation",

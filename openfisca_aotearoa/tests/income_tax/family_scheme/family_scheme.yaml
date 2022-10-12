@@ -6,11 +6,12 @@
     persons:
       "Papatūānuku":
         date_of_birth: 2003-01-01
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 2002-01-01
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
   output:
     family_scheme__caregiver_age_qualifies:
@@ -22,11 +23,13 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1988-01-01
+        income_tax__principal_caregiver:
+          2018-07: true
       "Hemi":
         date_of_birth: 2002-01-01
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         children: ["Hemi"]
   output:
     family_scheme__dependent_children:
@@ -38,6 +41,8 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1988-01-01
+        income_tax__principal_caregiver:
+          2018-07: true
       "Hemi":
         date_of_birth: 2002-01-01
       "Tāne":
@@ -48,7 +53,7 @@
         date_of_birth: 2012-03-08
     families:
       Whanau:
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         children: ["Hemi", "Tāne", "Rongo", "Ikatere"]
   output:
     family_scheme__dependent_children:

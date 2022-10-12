@@ -36,7 +36,7 @@ class orphans_benefit__entitled(Variable):
         one_year = persons(
             "social_security__principal_carer_for_one_year_from_application_date", period)
 
-        is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
+        is_principal_carer = persons("income_tax__principal_caregiver", period)
 
         has_orphaned_child_in_family = persons.family(
             "social_security__orphaned_child_in_family", period)
@@ -54,7 +54,7 @@ class social_security__orphaned_child_in_family(Variable):
 
     def formula(families, period, parameters):
         children = families.members(
-            "social_security__child", period)
+            "social_security__child", period.first_week)
         orphaned = families.members("social_security__orphaned", period)
         resident_or_citizen = families.members(
             "immigration__citizen_or_resident", period)
