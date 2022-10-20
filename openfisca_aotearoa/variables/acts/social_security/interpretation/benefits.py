@@ -39,6 +39,7 @@ class social_security__granted_main_benefit(variables.Variable):
     label = "Person is granted a main benefit"
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784575"
+
     def formula(persons, period, parameters):
         a = persons("jobseeker_benefit__granted", period) + \
             persons("sole_parent_support__granted", period) + \
@@ -68,6 +69,7 @@ class social_security__a_beneficiary(variables.Variable):
     label = "Person is a beneficiary"
     definition_period = periods.MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM362802.html#DLM362810"
+
     def formula(persons, period, parameters):
         return persons("social_security__paid_jobseeker_benefit", period) + \
             persons("social_security__paid_sole_parent_support", period) + \

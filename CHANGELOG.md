@@ -18,6 +18,30 @@
   - `income_tax__principal_caregiver` (to replace the previous dependancy on the role `principal_caregiver` which has been renamed to the more generic `principal`)
   - `oranga_tamariki__child` (not yet utilised by referred to in social_security__dependent_child)
   - `oranga_tamariki__parent` (not yet utilised by referred to in social_security__dependent_child)
+  - `social_security__income`
+  - `schedule_4__part1_1_a`
+  - `schedule_4__part1_1_b`
+  - `schedule_4__part1_1_c`
+  - `schedule_4__part1_1_d`
+  - `schedule_4__part1_1_e`
+  - `schedule_4__part1_1_f`
+  - `schedule_4__part1_1_g`
+  - `schedule_4__part1_1_g_i`
+  - `schedule_4__part1_1_g_ii`
+  - `schedule_4__part1_1_h`
+  - `schedule_4__part1_1_h_i`
+  - `schedule_4__part1_1_h_ii`
+  - `schedule_4__part1_1_i`
+  - `schedule_4__part1_1_i_i`
+  - `schedule_4__part1_1_i_ii`
+  - `schedule_4__part1_1_j`
+  - `schedule_4__part1_1_j_i`
+  - `schedule_4__part1_1_j_ii`
+* Added parameters
+  - `social_security/income_test_1.yml`
+  - `social_security/income_test_2.yml`
+  - `social_security/income_test_3.yml`
+  - `social_security/income_test_4.yml`
 * Breaking changes, Removed variables:
   - `jobseeker_support__net` (float) replaced with `jobseeker_support__benefit` (float)
   - `jobseeker_support__gross` (float) replaced with `jobseeker_support__base` (float)
@@ -51,6 +75,7 @@
   - Added formula to `social_security__dependent_child`
   - Added additional clauses to `jobseeker_support__base`
   - Improved `person_has_partner` formula
+  - Add section `schedule_4` to `structure.json`
 
 # 15.0.0 - [34](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/34)
 * Resolve issues with dependant child concepts within the Social Security Act

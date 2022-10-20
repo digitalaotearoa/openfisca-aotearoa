@@ -168,8 +168,15 @@
                 "supported_living_payment",
                 "unsupported_child",
                 "young_parent_payment",
-                "youth_payment"
+                "youth_payment",
+                "schedule_4"
             ]
+        },
+        {
+            "Title": "Schedule 4",
+            "Prefix": "schedule_4",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/59.0/whole.html#DLM6784849"
         },
         {
             "Title": "Social Security (Childcare Assistance) Regulations 2004",

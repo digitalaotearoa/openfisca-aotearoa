@@ -1,7 +1,5 @@
 """TODO: Add missing doctring."""
 
-import numpy
-
 from openfisca_core import periods, variables
 from openfisca_core import holders
 

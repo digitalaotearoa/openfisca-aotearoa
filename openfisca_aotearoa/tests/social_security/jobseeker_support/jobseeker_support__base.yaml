@@ -169,6 +169,12 @@
           2022-W01: true
           2023-W01: true
         date_of_birth: 1997-01-01
+        social_security__income:
+          2020-W01: 290
+          2021-W01: 160
+          2021-W23: 0
+          2022-W01: 300
+          2023-W01: 150
         jobseeker_support__living_with_parent:
           2020-W01: false
           2021-W01: false
@@ -177,6 +183,12 @@
           2023-W01: false
         jobseeker_support__transferred_15_july_2013: false
       "Papa":
+        social_security__income:
+          2020-W01: 200
+          2021-W01: 100
+          2021-W23: 0
+          2022-W01: 256
+          2023-W01: 100
         date_of_birth: 1996-01-01
         social_security__granted_main_benefit:
           2020-W01: true
@@ -198,3 +210,21 @@
       2021-W23: [220.65, 0, 0]
       2022-W01: [240.65, 0, 0]
       2023-W01: [283.00, 0, 0]
+    jobseeker_support__reduction:
+      2020-W01: [143.5, 0, 0]
+      2021-W01: [59.5, 0, 0]
+      2021-W23: [0, 0, 0]
+      2022-W01: [138.6, 0, 0]
+      2023-W01: [31.5, 0, 0]
+    jobseeker_support__benefit:
+      2020-W01: [52, 0, 0]
+      2021-W01: [154.53, 0, 0]
+      2021-W23: [220.65, 0, 0]
+      2022-W01: [102.04999, 0, 0]
+      2023-W01: [251.5, 0, 0]
+    jobseeker_support__cutoff:
+      2020-W01: [490.7143, 0, 0]
+      2021-W01: [517.1857, 0, 0]
+      2021-W23: [526.6428, 0, 0]
+      2022-W01: [555.2143, 0, 0]
+      2023-W01: [615.7143, 0, 0]

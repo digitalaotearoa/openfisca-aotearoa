@@ -37,7 +37,7 @@
     jobseeker_support__income_52_week_period_less_than: [false, false, true, true, false, false, false, false, false, true, true]
 # work_gap dependancies extended
     jobseeker_support__available_for_work: [true, true, true, true, true, true, true, true, true, true, true]
-    jobseeker_support__age_requirement: [true, true,true, true, true, true, true, true, true, true, true]
+    jobseeker_support__age_requirement: [true, true, true, true, true, true, true, true, true, true, true]
     social_security__residential_requirement:
       month:2019-01:2: [true, true, true, true, true, true, true, true, true, true, true]
     jobseeker_support__minimum_income: [true, true, true, true, true, true, true, true, true, true, true]
