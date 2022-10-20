@@ -29,23 +29,6 @@ class jobseeker_support__benefit(variables.Variable):
         return people("jobseeker_support__entitled", period) * numpy.clip(people("jobseeker_support__base", period) - people("jobseeker_support__reduction", period), 0, people("jobseeker_support__base", period))
 
 
-# TODO Does Openfisca Core have a function for this, we're computing the level of income that the benefit diminishes to zero
-# Scale parameters currently hard coded below - but same as found in: parameters(period).social_security.income_test_1
-class jobseeker_support__cutoff(variables.Variable):
-    value_type = float
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "The amount of earnings where the benefit is reduced to zero"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
-
-    def formula_2018_11_26(people, period, parameters):
-
-        return people("jobseeker_support__entitled", period) * \
-            (
-                ((people("jobseeker_support__base", period) - ((250 - 160) * 0.3)) / 0.7) + 250
-            )
-
-
 class jobseeker_support__reduction(variables.Variable):
     value_type = float
     entity = entities.Person
@@ -69,26 +52,42 @@ class jobseeker_support__reduction(variables.Variable):
             people("schedule_4__part1_1_i", period) + \
             people("schedule_4__part1_1_j", period)
 
-        # Note schedule_4__part1_1_i has no impact after 2020_11_09
-
         test_4 = people("schedule_4__part1_1_g", period) + \
             people("schedule_4__part1_1_h", period)
 
         scale_1 = parameters(period).social_security.income_test_1
-        scale_3 = parameters(period).social_security.income_test_3
+        scale_3 = parameters(period).social_security.income_test_3b
         scale_4 = parameters(period).social_security.income_test_4
         return people("jobseeker_support__entitled", period) * \
             (
                 (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
             )
 
+    def formula_2020_11_09(people, period, parameters):
+        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
 
-class jobseeker_support__clause(variables.Variable):
-    value_type = str
-    entity = entities.Person
-    definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
-    label = "Jobseeker Support - Base Amount, (this is taxed and the amounts are supplied after tax, i.e. net)"
+        # numpy.floor required for income tests as it's "35c for every $1"
+        family_income = numpy.floor(family_income)
+
+        test_1 = people("schedule_4__part1_1_c", period) + \
+            people("schedule_4__part1_1_e", period) + \
+            people("schedule_4__part1_1_f", period)
+
+        test_3 = people("schedule_4__part1_1_a", period) + \
+            people("schedule_4__part1_1_b", period) + \
+            people("schedule_4__part1_1_d", period) + \
+            people("schedule_4__part1_1_j", period)
+
+        test_4 = people("schedule_4__part1_1_g", period) + \
+            people("schedule_4__part1_1_h", period)
+
+        scale_1 = parameters(period).social_security.income_test_1
+        scale_3 = parameters(period).social_security.income_test_3b
+        scale_4 = parameters(period).social_security.income_test_4
+        return people("jobseeker_support__entitled", period) * \
+            (
+                (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
+            )
 
 
 class jobseeker_support__base(variables.Variable):

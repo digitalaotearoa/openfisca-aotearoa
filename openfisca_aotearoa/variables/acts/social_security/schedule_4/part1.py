@@ -201,14 +201,11 @@ class schedule_4__part1_1_i(variables.Variable):
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)"
+    end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
         return people("social_security__in_a_relationship", period) * \
             people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
-
-    # TODO what is the correct method to stop a variable after a particular date
-    def formula_2020_11_09(people, period, parameters):
-        return 0 * people("social_security__in_a_relationship", period)
 
 
 class schedule_4__part1_1_i_i(variables.Variable):
@@ -217,6 +214,7 @@ class schedule_4__part1_1_i_i(variables.Variable):
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)(i)"
+    end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
         return people("schedule_4__part1_1_i", period) * \
@@ -229,6 +227,7 @@ class schedule_4__part1_1_i_ii(variables.Variable):
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)(ii)"
+    end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
         return people("schedule_4__part1_1_i", period) * \
