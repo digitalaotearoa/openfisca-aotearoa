@@ -40,7 +40,8 @@
 * Added parameters
   - `social_security/income_test_1.yml`
   - `social_security/income_test_2.yml`
-  - `social_security/income_test_3.yml`
+  - `social_security/income_test_3a.yml`
+  - `social_security/income_test_3b.yml`
   - `social_security/income_test_4.yml`
 * Breaking changes, Removed variables:
   - `jobseeker_support__net` (float) replaced with `jobseeker_support__benefit` (float)
