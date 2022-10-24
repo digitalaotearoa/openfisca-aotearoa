@@ -16,7 +16,7 @@
           "2018-10-01": 5
     families:
       Whanau:
-        principal_caregiver: Koro
+        principal: Koro
         children: Tamaiti
   output:
     sole_parent_support__entitled:
@@ -43,7 +43,7 @@
           "2018-10-01": 5
     families:
       Whanau:
-        principal_caregiver: Papa
+        principal: Papa
         partners: Mama
         children: Matilda
   output:
@@ -75,7 +75,7 @@
           "2018-10-01": 5
     families:
       Whanau:
-        principal_caregiver: Papa
+        principal: Papa
         partners: Mama
         children: Matilda
   output:
@@ -102,7 +102,7 @@
           "2018-10-01": 14
     families:
       Whanau:
-        principal_caregiver: Koro
+        principal: Koro
         children:
           - Tamaiti
   output:
@@ -135,7 +135,7 @@
           "2018-10-01": 13
     families:
       Whanau:
-        principal_caregiver: Koro
+        principal: Koro
         children: [Tahi, Rua, Toru]
   output:
     sole_parent_support__entitled:

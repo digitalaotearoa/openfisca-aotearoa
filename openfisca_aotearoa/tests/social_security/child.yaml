@@ -1,29 +1,28 @@
 ---
 - name: Child status as per the Social Security Act
-  period: "2018-08"
+  period: "2018-W32"
   absolute_error_margin: 0
   input:
     persons:
       Paul:
         age:
-          "2018-08-01": 21
+          "day:2018-08-06:7": 21
       John:
         age:
-          "2018-08-01": 18
+          "day:2018-08-06:7": 18
       George:
         age:
-          "2018-08-01": 6
+          "day:2018-08-06:7": 6
       Ringo:
         age:
-          "2018-08-01": 17
-        social_security__financially_independent:
-          "2018-08": true
+          "day:2018-08-06:7": 17
+        social_security__financially_independent: true
       Derek:
         age:
-          "2018-08-01": 16
+          "day:2018-08-06:7": 16
       Neil:
         age:
-          "2018-08-01": 17
+          "day:2018-08-06:7": 17
   output:
     social_security__child:
       - false  # paul

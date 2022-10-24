@@ -273,14 +273,14 @@ The best approach when interpreting natural language law in code is to mimic the
 This project currently utilises one specific pattern however for benefit calculations. The following is an example based on the `Social Security Act 2018` > `Job Seeker Support` benefit.
 
 - `jobseeker_support__entitled` (true/false) - or - `jobseeker_support__eligible` (true/false)
-- `jobseeker_support__gross` (float)
+- `jobseeker_support__base` (float)
 - `jobseeker_support__cutoff` (float)
 - `jobseeker_support__reduction` (float)
-- `jobseeker_support__net` (float)
+- `jobseeker_support__benefit` (float)
 
-i.e. the formula for `jobseeker_support__net` would be:
+i.e. the formula for `jobseeker_support__benefit` would be:
  ```
- jobseeker_support__entitled * min(jobseeker_support__gross - jobseeker_support__reduction, jobseeker_support__cutoff)
+ jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
  ```
 
 

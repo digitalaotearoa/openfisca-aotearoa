@@ -2,10 +2,8 @@
 
 from numpy import logical_not as not_
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
-
-from openfisca_aotearoa.entities import Person
+from openfisca_core import periods, variables, holders
+from openfisca_aotearoa import entities
 
 # Benefit: Part 1E Supported Living Payment (eligible self applicant):
 # If applicant.isNZResident
@@ -16,30 +14,46 @@ from openfisca_aotearoa.entities import Person
 # then benefit.isSupportedLivingPayment is PERMITTED
 
 
-# TODO: Review against the new 2018 act
-class social_security__required_to_give_fulltime_care(Variable):
+class supported_living_payment__granted(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently granted the supported living benefit"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
+
+
+class supported_living_payment__caring_for_another_person(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment."
-    reference = """40A (1)(c) People who are required to give full-time care and attention
-                at home to some other person (other than their spouse or partner) who is a
-                patient requiring care."""
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
+    set_input = holders.set_input_dispatch_by_period
 
 
-class supported_living_payment__below_income_threshold(Variable):
+class supported_living_payment__below_income_threshold(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Income below threshold for supported living payment"
     reference = "TODO"
 
 
-# TODO: Review against the new 2018 act
-class social_security__eligible_for_supported_living_payment(Variable):
+class supported_living_payment__restricted_work_capacity(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is incapable of regularly working 15 or more hours a week in open employment"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176", "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367"
+    set_input = holders.set_input_dispatch_by_period
+
+
+# TODO: Review against the new 2018 act
+class supported_living_payment__entitled(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Eligible for Supported Living Payment."
     reference = """
         http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367
@@ -55,9 +69,9 @@ class social_security__eligible_for_supported_living_payment(Variable):
 
     def formula(persons, period, parameters):
         # The 3 ways of being eligible
-        disabled = persons("social_security__severely_restricted_capacity_for_work", period)
-        blind = persons("social_security__totally_blind", period)
-        carer = persons("social_security__required_to_give_fulltime_care", period)
+        disabled = persons("supported_living_payment__restricted_work_capacity", period.first_week)
+        blind = persons("totally_blind", period)
+        carer = persons("supported_living_payment__caring_for_another_person", period.first_week)
 
         # 40B (4) A person who is not both permanently and severely restricted in his or her capacity for
         # work must not be granted a supported living payment under this section, unless he or she is totally blind.

@@ -20,13 +20,14 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1996-01-01
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 1996-01-01
       "Tāne":
         date_of_birth: 2006-01-01
     families:
       Whanau:
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne"]
   output:
@@ -61,6 +62,7 @@
       "Rakinui":
         date_of_birth: 1996-01-01
         income_tax__residence: true
+        income_tax__principal_caregiver: true
         veterans_support__received_parents_allowance: False
         veterans_support__received_childrens_pension: False
         social_security__received_income_tested_benefit:
@@ -69,7 +71,7 @@
         date_of_birth: 2006-01-01
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         partners: ["Papatūānuku"]
         children: ["Tāne"]
     titled_properties:
@@ -84,6 +86,7 @@
     persons:
       "Rakinui":
         date_of_birth: 1996-01-01
+        income_tax__principal_caregiver: true
         income_tax__residence: true
         veterans_support__received_parents_allowance: False
         veterans_support__received_childrens_pension: False
@@ -93,7 +96,7 @@
         date_of_birth: 2012-01-01
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         children: ["Tāne"]
   output:
     family_scheme__qualifies_for_working_for_families: [True, False]
@@ -104,6 +107,7 @@
     persons:
       "Rakinui":
         date_of_birth: 1996-01-01
+        income_tax__principal_caregiver: true
         income_tax__residence: true
         veterans_support__received_parents_allowance: True
         veterans_support__received_childrens_pension: False
@@ -113,7 +117,7 @@
         date_of_birth: 2012-01-01
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         children: ["Tāne"]
   output:
     family_scheme__qualifies_for_working_for_families: [False, False]
@@ -125,6 +129,7 @@
       "Rakinui":
         date_of_birth: 2000-01-01
         income_tax__residence: true
+        income_tax__principal_caregiver: true
         veterans_support__received_parents_allowance: False
         veterans_support__received_childrens_pension: True
         social_security__received_income_tested_benefit:
@@ -133,7 +138,7 @@
         date_of_birth: 2012-01-01
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         children: ["Tāne"]
   output:
     family_scheme__qualifies_for_working_for_families: [False, False]
@@ -144,6 +149,7 @@
     persons:
       "Rakinui":
         date_of_birth: 2000-01-01
+        income_tax__principal_caregiver: true
         income_tax__residence: true
         veterans_support__received_parents_allowance: False
         veterans_support__received_childrens_pension: False
@@ -153,7 +159,7 @@
         date_of_birth: 2012-01-01
     families:
       Whanau:
-        principal_caregiver: "Rakinui"
+        principal: "Rakinui"
         children: ["Tāne"]
   output:
     family_scheme__qualifies_for_in_work_tax_credit: [False, False]

@@ -6,6 +6,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: true
@@ -24,7 +25,7 @@
         date_of_birth: 2012-03-08
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne", "Rongo", "Ikatere"]
   output:
@@ -36,6 +37,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: true
@@ -50,7 +52,7 @@
         date_of_birth: 2005-01-24
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne"]
   output:
@@ -62,6 +64,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: false
@@ -80,7 +83,7 @@
         date_of_birth: 2012-03-08
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne", "Rongo", "Ikatere"]
   output:
@@ -92,6 +95,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: true
@@ -110,7 +114,7 @@
         date_of_birth: 2012-03-08
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne", "Rongo", "Ikatere"]
   output:
@@ -122,6 +126,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: true
@@ -134,7 +139,7 @@
         income_tax__residence: true
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
   output:
     family_scheme__qualifies_for_in_work_tax_credit: [false, false]
@@ -145,6 +150,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1999-01-01
+        income_tax__principal_caregiver: true
         family_scheme__assessable_income:
           2018: 20000
         family_scheme__in_work_tax_credit_income_under_threshold: true
@@ -159,7 +165,7 @@
         date_of_birth: 2005-01-24
     families:
       "Whanau":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne"]
   output:

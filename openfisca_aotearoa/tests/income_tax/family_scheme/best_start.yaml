@@ -6,6 +6,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1979-08-30
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 1977-10-13
       "Tāne":
@@ -19,8 +20,10 @@
       "Papatūānuku-2":
         date_of_birth: 1979-08-30
         family_scheme__assessable_income: 41000
+        income_tax__principal_caregiver: true
       "Papatūānuku-3":
         date_of_birth: 1979-08-30
+        income_tax__principal_caregiver: true
       "Hemi":
         date_of_birth: 1977-10-13
         family_scheme__assessable_income: 40000
@@ -37,15 +40,15 @@
         date_of_birth: 2016-03-08
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Tāne", "Rongo", "Ikatere", "Tāwhirimātea"]
       "Second family":
-        principal_caregiver: "Papatūānuku-2"
+        principal: "Papatūānuku-2"
         partners: ["Hemi"]
         children: ["Tāne-2", "Rongo-2", "Hemi-junior"]
       "Third family":
-        principal_caregiver: "Papatūānuku-3"
+        principal: "Papatūānuku-3"
         partners: ["Samuel"]
         children: ["Hemi-junior-early"]
   output:
@@ -66,6 +69,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1979-08-30
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 1977-10-13
       "Hemi-junior-early":
@@ -73,7 +77,7 @@
         due_date_of_birth: 2018-07-03
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Hemi-junior-early"]
   output:
@@ -88,6 +92,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1979-08-30
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 1977-10-13
         family_scheme__assessable_income: 60000
@@ -98,7 +103,7 @@
         due_date_of_birth: 2018-07-03
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Hemi-junior", "Hemi-junior-early"]
   output:
@@ -114,6 +119,7 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1979-08-30
+        income_tax__principal_caregiver: true
       "Rakinui":
         date_of_birth: 1977-10-13
         family_scheme__assessable_income:
@@ -126,7 +132,7 @@
         due_date_of_birth: 2018-07-03
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Hemi-junior", "Hemi-junior-early"]
   output:
@@ -142,6 +148,12 @@
     persons:
       "Papatūānuku":
         date_of_birth: 1979-02-01
+        income_tax__principal_caregiver:
+          2018: true
+          2019: true
+          2020: true
+          2021: true
+          2022: true
       "Rakinui":
         date_of_birth: 1977-10-13
         family_scheme__assessable_income:
@@ -157,7 +169,7 @@
         due_date_of_birth: 2018-07-03
     families:
       "First family":
-        principal_caregiver: "Papatūānuku"
+        principal: "Papatūānuku"
         partners: ["Rakinui"]
         children: ["Hemi-junior", "Hemi-junior-early"]
   output:

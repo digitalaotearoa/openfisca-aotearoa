@@ -3,6 +3,88 @@
 # This file defines the entities needed by our legislation.
 from openfisca_core.entities import build_entity
 
+# General note about how to consider roles as they are utilised in OpenFisca Aotearoa
+#
+# Best practice would be to not utilise roles as legal definitions, instead as a framework for structuring scenarios.
+#
+# For instance, a person in the role of child (family entity) should not be assumed to be a social_security__dependent_child
+# or even a social_security__child. Those legal concepts should be required of the persons put in the child role.
+#
+# In some more generic situations the role can be used to imply a more general concept. For an example of this see: person_has_partner which will return true if the person occupys the role of partner in a scenario.
+# The decision to lean on this variable should be carefully considered in light of the definitions within the instrument of law being interpreted.
+# If the instrument has it's own definition for partner - it's probably better to fashion a variable that includes the appropriate tests to that use case.
+
+
+Person = build_entity(
+    key="person",
+    plural="persons",
+    label="Person",
+    doc="""
+    A Person represents an individual, the minimal legal entity on which a legislation might be applied.
+
+    Example:
+    The "salary" and "income_tax" variables are usually defined for the entity "Person".
+
+    Usage:
+    Calculate a variable applied to a "Person" (e.g. access the "salary" of a specific month with person("salary", "2017-05")).
+    Check the role of a "Person" in a group entity (e.g. check if a the "Person" is a "owner" in a "Titled_Property" entity with person.has_role(Titled_Property.owner)).
+
+    For more information on entities, see: http://openfisca.org/doc/coding-the-legislation/50_entities.html
+    """,
+    is_person=True
+    )
+
+Family = build_entity(
+    key="family",
+    plural="families",
+    label="Family",
+    doc="""
+    A Family represents a collection of related persons.
+
+    Family entities are a way of making calculations across a number of entitlements including for example "Working for families" and "Paid Parental Leave"
+
+    A family can contain a number of roles, such as "principal", "partner" & "child".
+
+    For more information on entities, see: http://openfisca.org/doc/coding-the-legislation/50_entities.html
+
+    Families can be used to make calculations for the principal; as each entitlement is calculated in relation to the Principal it is recommended for modelling to create multiple family sets for each principal if needing to describe scenarios for different family members
+
+    """,
+    roles=[
+        {
+            "key": "principal",
+            "label": "Principal",
+            "doc": "The one person who is the focus of a calculation in a family context. This is not to be confused with 'principal caregiver' and other such legal terms",
+            "max": 1,
+            },
+        {
+            "key": "partner",
+            "plural": "partners",
+            "label": "Partners",
+            "doc": """
+            The one or more persons who are partners of the principal.
+            Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
+            In the case of the Social Security Act this can be considered an alternative to "social_security__in_a_relationship"
+            """
+            },
+        {
+            "key": "child",
+            "plural": "children",
+            "label": "Children",
+            "doc": """
+            The children of a family, in relation to the principal. This is a not a legally defined role but is instead representative of the relationship.
+            Utilise variables to further define if a person fits the legal definition of a child as it differs between legal instruments.
+              """,
+            },
+        {
+            "key": "other",
+            "plural": "others",
+            "label": "Other",
+            "doc": "All other members of a family/whānau.",
+            },
+        ],
+    )
+
 
 Titled_Property = build_entity(
     key="titled_property",
@@ -33,72 +115,5 @@ Titled_Property = build_entity(
         ],
     )
 
-Person = build_entity(
-    key="person",
-    plural="persons",
-    label="Person",
-    doc="""
-    A Person represents an individual, the minimal legal entity on which a legislation might be applied.
-
-    Example:
-    The "salary" and "income_tax" variables are usually defined for the entity "Person".
-
-    Usage:
-    Calculate a variable applied to a "Person" (e.g. access the "salary" of a specific month with person("salary", "2017-05")).
-    Check the role of a "Person" in a group entity (e.g. check if a the "Person" is a "owner" in a "Titled_Property" entity with person.has_role(Titled_Property.owner)).
-
-    For more information on entities, see: http://openfisca.org/doc/coding-the-legislation/50_entities.html
-    """,
-    is_person=True,
-    )
-
-Family = build_entity(
-    key="family",
-    plural="families",
-    label="Family",
-    doc="""
-    A Family represents a collection of related persons.
-
-    Family entities are required for calculations across a number of entitlements including for example "Working for families" and "Paid Parental Leave"
-
-    A family can contain a number of roles, such as "principal_caregiver", "partner" & "child".
-
-    For more information on entities, see: http://openfisca.org/doc/coding-the-legislation/50_entities.html
-
-    Families can have multiple principle_caregivers but as each entitlement is calculated in relation to the Principle Caregiver it is recommended for modelling to create multiple family sets per caregiver to describe each scenario
-    """,
-    roles=[
-        {
-            "key": "principal_caregiver",
-            "label": "Principal caregiver",
-            "doc": "The one person who is the principal caregiver of a family.",
-            "max": 1,
-            },
-        {
-            "key": "parent",
-            "plural": "parents",
-            "label": "Parent",
-            "doc": "Parent of children in the whānau",
-            },
-        {
-            "key": "partner",
-            "plural": "partners",
-            "label": "Partners",
-            "doc": "The one or more persons who are partners of a family principal caregiver.",
-            },
-        {
-            "key": "child",
-            "plural": "children",
-            "label": "Children",
-            "doc": "The children of a family.",
-            },
-        {
-            "key": "other",
-            "plural": "others",
-            "label": "Other",
-            "doc": "All other members of a family/whānau.",
-            },
-        ],
-    )
 
 entities = [Titled_Property, Person, Family]

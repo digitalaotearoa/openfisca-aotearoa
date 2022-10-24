@@ -1,0 +1,224 @@
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Single, living with parent, and under 20
+  period: 2019-11-26
+  input:
+    jobseeker_support__entitled:
+      2020-W01: [true, true, true, true, true]
+      2021-W01: [true, true, true, true, true]
+      2021-W23: [true, true, true, true, true]
+      2022-W01: [true, true, true, true, true]
+      2023-W01: [true, true, true, true, true]
+    social_security__in_a_relationship:
+      2020-W01: [false, false, false, false, false]
+      2021-W01: [false, false, false, false, false]
+      2021-W23: [false, false, false, false, false]
+      2022-W01: [false, false, false, false, false]
+      2023-W01: [false, false, false, false, false]
+    age:
+      day:2019-12-30:7: [19, 20, 19, 20, 19]
+      day:2021-01-04:7: [19, 20, 19, 20, 19]
+      day:2021-06-07:7: [19, 20, 19, 20, 19]
+      day:2022-01-03:7: [19, 20, 19, 20, 19]
+      day:2023-01-02:7: [19, 20, 19, 20, 19]
+    jobseeker_support__living_with_parent:
+      2020-W01: [true, true, false, false, true]
+      2021-W01: [true, true, false, false, true]
+      2021-W23: [true, true, false, false, true]
+      2022-W01: [true, true, false, false, true]
+      2023-W01: [true, true, false, false, true]
+    social_security__dependent_children:
+      2020-W01: [0, 0, 0, 0, 1]
+      2021-W01: [0, 0, 0, 0, 1]
+      2021-W23: [0, 0, 0, 0, 1]
+      2022-W01: [0, 0, 0, 0, 1]
+      2023-W01: [0, 0, 0, 0, 1]
+    jobseeker_support__transferred_15_july_2013: [false, false, false, false, false]
+    social_security__age_youngest_dependant_child:
+      day:2019-12-23:7: [0, 0, 0, 0, 2]
+      day:2020-12-28:7: [0, 0, 0, 0, 2]
+      day:2021-06-07:7: [0, 0, 0, 0, 2]
+      day:2021-12-27:7: [0, 0, 0, 0, 2]
+      day:2022-12-26:7: [0, 0, 0, 0, 2]
+  output:
+    jobseeker_support__base:
+      2020-W01: [145.98, 182.47, 182.47, 182.47, 145.98]
+      2021-W01: [175.48, 213.10, 213.10, 213.10, 175.48]
+      2021-W23: [180.91, 219.70, 219.70, 219.70, 180.91]
+      2022-W01: [200.91, 239.70, 239.70, 239.70, 200.91]
+      2023-W01: [233.75, 274.37, 274.37, 274.37, 233.75]
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Single, without dependent children, and around 25
+  period: 2019-11-26
+  input:
+    jobseeker_support__entitled:
+      2020-W01: [true, true, true, true, true]
+      2021-W01: [true, true, true, true, true]
+      2021-W23: [true, true, true, true, true]
+      2022-W01: [true, true, true, true, true]
+      2023-W01: [true, true, true, true, true]
+    social_security__in_a_relationship:
+      2020-W01: [false, false, false, false, false]
+      2021-W01: [false, false, false, false, false]
+      2021-W23: [false, false, false, false, false]
+      2022-W01: [false, false, false, false, false]
+      2023-W01: [false, false, false, false, false]
+    age:
+      day:2019-12-30:7: [24, 25, 24, 25, 24]
+      day:2021-01-04:7: [24, 25, 24, 25, 24]
+      day:2021-06-07:7: [24, 25, 24, 25, 24]
+      day:2022-01-03:7: [24, 25, 24, 25, 24]
+      day:2023-01-02:7: [24, 25, 24, 25, 24]
+    jobseeker_support__living_with_parent:
+      2020-W01: [true, true, false, false, true]
+      2021-W01: [true, true, false, false, true]
+      2021-W23: [true, true, false, false, true]
+      2022-W01: [true, true, false, false, true]
+      2023-W01: [true, true, false, false, true]
+    social_security__dependent_children:
+      2020-W01: [0, 0, 0, 0, 1]
+      2021-W01: [0, 0, 0, 0, 1]
+      2021-W23: [0, 0, 0, 0, 1]
+      2022-W01: [0, 0, 0, 0, 1]
+      2023-W01: [0, 0, 0, 0, 1]
+    jobseeker_support__transferred_15_july_2013: [false, false, false, false, false]
+    social_security__age_youngest_dependant_child:
+      day:2019-12-23:7: [0, 0, 0, 0, 2]
+      day:2020-12-28:7: [0, 0, 0, 0, 2]
+      day:2021-06-07:7: [0, 0, 0, 0, 2]
+      day:2021-12-27:7: [0, 0, 0, 0, 2]
+      day:2022-12-26:7: [0, 0, 0, 0, 2]
+  output:
+    jobseeker_support__base:
+      2020-W01: [182.47, 218.98, 182.47, 218.98, 339.69]
+      2021-W01: [213.10, 250.74, 213.10, 250.74, 375.17]
+      2021-W23: [219.70, 258.50, 219.70, 258.50, 386.78]
+      2022-W01: [239.70, 278.50, 239.70, 278.50, 406.78]
+      2023-W01: [274.37, 315.00, 274.37, 315.00, 440.96]
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Has partner and dependent child
+  period: 2019-11-26
+  input:
+    persons:
+      "Mama":
+        jobseeker_support__entitled:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+        date_of_birth: 1997-01-01
+        jobseeker_support__living_with_parent:
+          2020-W01: false
+          2021-W01: false
+          2021-W23: false
+          2022-W01: false
+          2023-W01: false
+        jobseeker_support__transferred_15_july_2013: false
+      "Papa":
+        date_of_birth: 1996-01-01
+      "Bubba":
+        date_of_birth: 2015-01-24
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+        children: ["Bubba"]
+  output:
+    social_security__child:
+      2020-W01: [0, 0, 1]
+      2021-W01: [0, 0, 1]
+      2021-W23: [0, 0, 1]
+      2022-W01: [0, 0, 1]
+      2023-W01: [0, 0, 1]
+    social_security__dependent_children:
+      2020-W01: [1, 1, 0]
+      2021-W01: [1, 1, 0]
+      2021-W23: [1, 1, 0]
+      2022-W01: [1, 1, 0]
+      2023-W01: [1, 1, 0]
+    social_security__in_a_relationship:
+      2020-W01: [true, true, false]
+      2021-W01: [true, true, false]
+      2021-W23: [true, true, false]
+      2022-W01: [true, true, false]
+      2023-W01: [true, true, false]
+    jobseeker_support__base:
+      2020-W01: [391.00, 0, 0]
+      2021-W01: [428.06, 0, 0]
+      2021-W23: [441.30, 0, 0]
+      2022-W01: [481.30, 0, 0]
+      2023-W01: [566.00, 0, 0]
+- name: >
+    Social Security Act 2018
+    Jobseeker Support
+    Has partner with benefit and dependent child
+  period: 2019-11-26
+  input:
+    persons:
+      "Mama":
+        jobseeker_support__entitled:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+        date_of_birth: 1997-01-01
+        social_security__income:
+          2020-W01: 290
+          2021-W01: 160
+          2021-W23: 0
+          2022-W01: 300
+          2023-W01: 150
+        jobseeker_support__living_with_parent:
+          2020-W01: false
+          2021-W01: false
+          2021-W23: false
+          2022-W01: false
+          2023-W01: false
+        jobseeker_support__transferred_15_july_2013: false
+      "Papa":
+        social_security__income:
+          2020-W01: 200
+          2021-W01: 100
+          2021-W23: 0
+          2022-W01: 256
+          2023-W01: 100
+        date_of_birth: 1996-01-01
+        social_security__granted_main_benefit:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+      "Bubba":
+        date_of_birth: 2015-01-24
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+        children: ["Bubba"]
+  output:
+    jobseeker_support__base:
+      2020-W01: [195.50, 0, 0]
+      2021-W01: [214.03, 0, 0]
+      2021-W23: [220.65, 0, 0]
+      2022-W01: [240.65, 0, 0]
+      2023-W01: [283.00, 0, 0]
+    jobseeker_support__reduction:
+      2020-W01: [143.5, 0, 0]
+      2021-W01: [59.5, 0, 0]
+      2021-W23: [0, 0, 0]
+      2022-W01: [138.6, 0, 0]
+      2023-W01: [31.5, 0, 0]
+    jobseeker_support__benefit:
+      2020-W01: [52, 0, 0]
+      2021-W01: [154.53, 0, 0]
+      2021-W23: [220.65, 0, 0]
+      2022-W01: [102.04999, 0, 0]
+      2023-W01: [251.5, 0, 0]

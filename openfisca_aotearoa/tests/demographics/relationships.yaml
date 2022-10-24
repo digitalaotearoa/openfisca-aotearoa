@@ -20,12 +20,12 @@
           "2017-10-01": 30
     families:
       One:
-        principal_caregiver: Mama
+        principal: Mama
         partners: Papa
       Two:
         partners: [Bob, Fred]
       Three:
-        principal_caregiver: Mary
+        principal: Mary
   output:
     person_has_partner:
       - true # mama

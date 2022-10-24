@@ -1,0 +1,33 @@
+description: Social Security Income Test 3a
+metadata:
+# currency or /1 (rate) or year (never used)
+  unit: currency
+# single_amount or marginal_rate or marginal_amount or value?
+  type: value
+  reference:
+    2018-11-26:
+      title: Social Security Act 2018 (as enacted)
+      href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784375.html#DLM6784557
+    2020-04-01:
+      title: Social Security Act 2018
+      href: https://www.legislation.govt.nz/regulation/public/2020/0014/latest/whole.html#LMS311980
+    2021-04-01:
+      title: Social Security Act 2018
+      href: https://www.legislation.govt.nz/regulation/public/2021/0016/latest/whole.html#LMS453381
+brackets:
+  - rate:
+      2018-11-26:
+        value: 0
+    threshold:
+      2018-11-26:
+        value: 0
+  - rate:
+      2018-11-26:
+        value: 0.7
+    threshold:
+      2018-11-26:
+        value: 100
+      2020-04-01:
+        value: 115
+      2021-04-01:
+        value: 160

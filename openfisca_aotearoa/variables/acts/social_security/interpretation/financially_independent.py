@@ -1,15 +1,15 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH, YEAR
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
+from openfisca_core import holders
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class social_security__financially_independent(Variable):
+class social_security__financially_independent(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = """financially independent, in relation to a person, means—
         (a) in full employment; or
         (b) in receipt of a basic grant or an independent circumstances grant under the Student Allowances Regulations 1998 (SR 1998/277); or
@@ -17,49 +17,50 @@ class social_security__financially_independent(Variable):
         (d) in receipt of a main benefit under this Act
         """
 
-    definition_period = MONTH
+    definition_period = periods.WEEK
     reference = """Interpretation section of Social Security Act 1964"""
+    set_input = holders.set_input_dispatch_by_period
 
     def formula(persons, period, parameters):
-        in_full_employment = persons("social_security__full_employment", period.first_week)
-        recieves_grant = persons("social_security__in_receipt_of_basic_grant", period)
-        recieves_gov_assisted_payments = persons("social_security__recieves_goverment_assisted_scheme_payments", period)
-        recieves_benefit = persons("social_security__recieves_main_benefit", period)
+        in_full_employment = persons("social_security__full_employment", period)
+        recieves_grant = persons("social_security__in_receipt_of_basic_grant", period.first_month)
+        recieves_gov_assisted_payments = persons("social_security__recieves_goverment_assisted_scheme_payments", period.first_month)
+        recieves_benefit = persons("social_security__recieves_main_benefit", period.first_month)
 
         return in_full_employment + recieves_grant + recieves_gov_assisted_payments + recieves_benefit
 
 
 # TODO: Review against the new 2018 act
-class social_security__recieves_goverment_assisted_scheme_payments(Variable):
+class social_security__recieves_goverment_assisted_scheme_payments(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     default_value = False
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "In receipt of payments under a Government-assisted scheme which the chief executive considers analogous to a main benefit under Socal Security Act"
 
 
 # TODO: Review against the new 2018 act
-class social_security__in_receipt_of_basic_grant(Variable):
+class social_security__in_receipt_of_basic_grant(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     default_value = False
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "in receipt of a basic grant or an independent circumstances grant under the Student Allowances Regulations 1998 (SR 1998/277)"
 
 
 # TODO: Review against the new 2018 act
-class social_security__recieves_main_benefit(Variable):
+class social_security__recieves_main_benefit(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     default_value = False
-    definition_period = MONTH
+    definition_period = periods.MONTH
     label = "in receipt of a main benefit under Social Security Act"
 
 
 # TODO: Review against the new 2018 act
-class social_security__received_income_tested_benefit(Variable):
+class social_security__received_income_tested_benefit(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = YEAR  # Questioning if there's a reason this is a year.
+    entity = entities.Person
+    definition_period = periods.YEAR  # Questioning if there's a reason this is a year.
     label = "Boolean for if a Person is classified as receiving an income tested benefit"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359124.html#DLM360353"

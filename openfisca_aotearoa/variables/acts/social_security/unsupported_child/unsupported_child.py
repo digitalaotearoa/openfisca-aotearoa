@@ -40,7 +40,7 @@ class unsupported_child__entitled(Variable):
         one_year = persons(
             "social_security__principal_carer_for_one_year_from_application_date", period)
 
-        is_principal_carer = persons.has_role(Family.PRINCIPAL_CAREGIVER)
+        is_principal_carer = persons("income_tax__principal_caregiver", period)
 
         has_unsupported_child_in_family = persons.family(
             "unsupported_child__unsupported_child_in_family", period)
@@ -57,7 +57,7 @@ class unsupported_child__unsupported_child_in_family(Variable):
     label = "Family has an unsupported child"
 
     def formula(families, period, parameters):
-        children = families.members("social_security__child", period)
+        children = families.members("social_security__child", period.first_week)
         parents_unable = families.members(
             "social_security__parents_unable_to_provide_sufficient_care", period)
         resident_or_citizen = families.members(

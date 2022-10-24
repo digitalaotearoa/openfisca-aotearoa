@@ -1,16 +1,23 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
+from openfisca_aotearoa import entities
 
-from openfisca_aotearoa.entities import Person
+
+class young_parent_payment__granted(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently granted the young parent benefit"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
 # TODO: Review against the new 2018 act
-class young_parent_payment__entitled(Variable):
+class young_parent_payment__entitled(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Eligible for Young Parent Payment"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -44,10 +51,10 @@ class young_parent_payment__entitled(Variable):
 
 
 # TODO: Review against the new 2018 act
-class young_parent_payment__basic_requirements(Variable):
+class young_parent_payment__basic_requirements(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Meets young parent payment basic requirements"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -74,8 +81,8 @@ class young_parent_payment__basic_requirements(Variable):
             (persons("age", period.start) < 20)
 
         # (b) is a parent or step-parent of a dependent child or dependent children; and
-        is_parent_of_dependent_children = (persons("person_is_parent", period) + persons(
-            "person_is_step_parent", period)) * (persons("social_security__dependent_children", period) > 0)
+        is_parent_of_dependent_children = (persons("social_security__parent", period) + persons(
+            "person_is_step_parent", period)) * (persons("social_security__dependent_children", period.first_week) > 0)
 
         # (e) has no income or an income of less than the amount that would fully abate the young parent payment.
         income_test = persons(
@@ -85,10 +92,10 @@ class young_parent_payment__basic_requirements(Variable):
 
 
 # TODO: Review against the new 2018 act
-class young_parent_payment__income_under_threshold(Variable):
+class young_parent_payment__income_under_threshold(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.MONTH
     label = "Is their income under the Young Parent Payment threshold?"
 
     def formula(persons, period, parameters):
