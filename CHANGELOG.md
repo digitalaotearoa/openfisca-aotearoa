@@ -49,6 +49,8 @@
   - `youth_payment__receiving`
 * Renamed variables:
   - `jobseeker_benefit__granted` to `jobseeker_support__granted`
+# 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+* Change to variable `person_has_partner` - time period switched from month to week
 
 ### 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 
