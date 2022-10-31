@@ -10,7 +10,7 @@ class person_has_partner(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Common definition of 'in a relationship', note can also be set to true through use of the partner role in a family"
-    definition_period = periods.MONTH  # This variables.variable changes over time.
+    definition_period = periods.WEEK  # This variables.variable changes over time.
     reference = "This is a common definition utilsed in at least both the Social Security Act 2018 and the Income Tax Act 2007"
 
     def formula(persons, period, parameters):
