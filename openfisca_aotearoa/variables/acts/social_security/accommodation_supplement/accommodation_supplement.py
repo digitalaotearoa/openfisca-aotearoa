@@ -1,10 +1,12 @@
 """TODO: Add missing doctring."""
 
 from pathlib import Path
+import string
 
 import numpy
 import pandas
 
+from openfisca_core.experimental import MemoryConfig
 from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
@@ -90,13 +92,75 @@ class accommodation_supplement__below_cash_threshold(Variable):
 
 
 class accommodation_supplement__base(Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
+    label = "Social Security Regulations 2018 §17 Base rate"
+    reference = "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/LMS96264.html"
+    documentation = """
+        (1) In this regulation,—
+
+            beneficiary means a person who is being paid—
+            (a) a main benefit; or
+            (b) New Zealand superannuation or a veteran’s pension
+
+            benefit, in subclause (2), means a benefit referred to in paragraph
+            (a) or (b) of the definition in this subclause of beneficiary
+
+            non-beneficiary means a person who is not a beneficiary (as defined
+            in this regulation).
+    """
     entity = Person
     value_type = float
     default_value = 0
     definition_period = DateUnit.WEEK
+
+    def formula_2018_11_26(people, period, _params):
+        # (2) The base rate is as follows:
+
+        # Beneficiaries who are single
+
+        # (a) for a single beneficiary under the age of 25 years, the maximum
+        #     weekly rate of a benefit that the beneficiary would have been
+        #     entitled to receive, before any abatement or deduction, if the
+        #     beneficiary had attained the age of 25 years:
+
+        # We assume age on Monday
+        monday = period.start
+
+        # We assume single as in "no partner"
+        mingled = people("social_security__in_a_relationship", period)
+        singles = numpy.logical_not(mingled)
+
+        # We assume beneficiary of jobseeker support.
+        beneficiaries = people("social_security__beneficiary", period)
+
+        # We assume under 25 years by Monday
+        age = people("age", monday)
+        under_25y = age < 25
+
+        # We need to create a new simulation to calculate a benefit, where
+        # people would be 25 years by Monday this week. We assume jobseeker.
+        #
+        # 1. We clone the current simulation:
+        simulation = people.simulation.clone()
+
+        # 2. We delete the actual result of jobseeker base rate:
+        simulation.delete_arrays("jobseeker_support__base", period)
+
+        # 3. We make everybody 25 years old:
+        simulation.delete_arrays("age", monday)
+        simulation.set_input("age", monday, numpy.repeat(25, len(people.ids)))
+
+        # 4. Finally, we delete the result of any other variable we need to
+        # recalculate (in our case those related to single beneficiaries):
+        for letter in string.ascii_lowercase[0:6]:
+            simulation.delete_arrays(f"schedule_4__part1_1_{letter}", period)
+
+        # Then, we recalculate jobseeker base rate as if having 25 years.
+        base_if_25y = simulation.calculate("jobseeker_support__base", period)
+
+        # And apply all the conditions.
+        ssr17_2_a = singles * beneficiaries * under_25y * base_if_25y
+
+        return ssr17_2_a
 
 
 class AccommodationSupplement__Situation(Enum):

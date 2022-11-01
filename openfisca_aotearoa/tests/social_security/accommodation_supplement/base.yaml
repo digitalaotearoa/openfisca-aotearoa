@@ -1,0 +1,17 @@
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate
+  period: 2018-11-26
+  input:
+    age:
+      day:2019-12-30:7: [24, 24, 24, 25, 25, 25]
+    jobseeker_support__entitled:
+      2020-W01: [true, true, false, true, true, false]
+    social_security__beneficiary:
+      2020-W01: [true, false, true, true, true, false]
+  output:
+    jobseeker_support__base:
+      2020-W01: [182.47, 182.47, 0, 218.98, 218.98, 0]
+    accommodation_supplement__base:
+      2020-W01: [218.98, 0, 0, 0, 0, 0]
