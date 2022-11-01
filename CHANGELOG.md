@@ -1,4 +1,16 @@
 # Changelog
+# 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
+* Added variables:
+  - `social_security__recieving_main_benefit`
+  - `emergency_benefit__receiving`
+  - `sole_parent_support__receiving`
+  - `supported_living_payment__receiving`
+  - `young_parent_payment__receiving`
+  - `youth_payment__receiving`
+* Renamed variables:
+  - `jobseeker_benefit__granted` to `jobseeker_support__granted`
+
+# Changelog
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 * Change to contributing.md and coding patterns
 * Updated spelling of dependant to dependent when used as an adjective

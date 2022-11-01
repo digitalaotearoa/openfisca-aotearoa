@@ -222,3 +222,9 @@
       2021-W23: [220.65, 0, 0]
       2022-W01: [102.04999, 0, 0]
       2023-W01: [251.5, 0, 0]
+    social_security__recieving_main_benefit:
+      2020-W01: false
+      2021-W01: false
+      2021-W23: false
+      2022-W01: false
+      2023-W01: false

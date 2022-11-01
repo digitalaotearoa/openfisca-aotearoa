@@ -13,6 +13,15 @@ class young_parent_payment__granted(variables.Variable):
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
+class young_parent_payment__receiving(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently recieving/being paid the young parent payment"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
+
+
 # TODO: Review against the new 2018 act
 class young_parent_payment__entitled(variables.Variable):
     value_type = bool
