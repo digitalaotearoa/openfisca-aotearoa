@@ -160,7 +160,19 @@ class accommodation_supplement__base(Variable):
         # And apply all the conditions.
         ssr17_2_a = singles * beneficiaries * under_25y * base_if_25y
 
-        return ssr17_2_a
+        # (c) for any other single beneficiary, the maximum weekly rate of a
+        #     benefit that the beneficiary would be entitled to receive before
+        #     any abatement or deduction:
+
+        # We get the reminder of the beneficiaries.
+        at_least_25y = numpy.logical_not(under_25y)
+
+        # And the regular jobseeker base rate.
+        jobseeker_base = people("jobseeker_support__base", period)
+
+        ssr17_2_c = singles * beneficiaries * at_least_25y * jobseeker_base
+
+        return ssr17_2_a + ssr17_2_c
 
 
 class AccommodationSupplement__Situation(Enum):
