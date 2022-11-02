@@ -113,12 +113,23 @@ class accommodation_supplement__base(Variable):
     definition_period = DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
+        # (2) The base rate is as follows:
+        #
+        # Beneficiaries who are single
+
         # We assume beneficiary of jobseeker support.
         beneficiaries = people("social_security__beneficiary", period)
+        rate = people("jobseeker_support__base", period)
 
-        # (2) The base rate is as follows:
+        # We assume single as in "no partner"
+        mingled = people("social_security__in_a_relationship", period)
+        singles = numpy.logical_not(mingled)
 
-        # Beneficiaries who are single
+        # We calculate the number of dependent children.
+        f_members = people.family.members
+        dependent = sum(f_members("social_security__dependent_child", period))
+        children = dependent >= 1
+        no_child = numpy.logical_not(children)
 
         # (a) for a single beneficiary under the age of 25 years, the maximum
         #     weekly rate of a benefit that the beneficiary would have been
@@ -126,15 +137,11 @@ class accommodation_supplement__base(Variable):
         #     beneficiary had attained the age of 25 years:
 
         # We assume age on Monday
-        monday = period.start
-
-        # We assume single as in "no partner"
-        mingled = people("social_security__in_a_relationship", period)
-        singles = numpy.logical_not(mingled)
+        monday = period.first_day
 
         # We assume under 25 years by Monday
         age = people("age", monday)
-        under_25y = age < 25
+        under25y = age < 25
 
         # We need to create a new simulation to calculate a benefit, where
         # people would be 25 years by Monday this week. We assume jobseeker.
@@ -155,24 +162,40 @@ class accommodation_supplement__base(Variable):
             simulation.delete_arrays(f"schedule_4__part1_1_{letter}", period)
 
         # Then, we recalculate jobseeker base rate as if having 25 years.
-        base_if_25y = simulation.calculate("jobseeker_support__base", period)
+        base25y = simulation.calculate("jobseeker_support__base", period)
 
         # And apply all the conditions.
-        ssr17_2_a = singles * beneficiaries * under_25y * base_if_25y
+        ssr17_2_a = singles * beneficiaries * no_child * under25y * base25y
+
+        # (b) for a single beneficiary with 1 or more dependent children,—
+        #     (i)   the maximum weekly rate of a benefit that the beneficiary
+        #           is entitled to receive, before any abatement or deduction;
+        #           plus
+        #     (ii)  the maximum annual rate of family tax credit (divided by
+        #           52) that is payable in respect of an eldest dependent child
+        #           who is under 16 years old under subparts MA to MF and MZ of
+        #           the Income Tax Act 2007:
+
+        # We calculate the maximum amount of tax credit for the eldest.
+        this_year = period.this_year
+        tax_credit = people("family_tax_credit__eldest", this_year, "add") / 52
+
+        print(rate, tax_credit)
+
+        # And apply all the conditions.
+        ssr17_2_b = singles * beneficiaries * children * (rate + tax_credit)
 
         # (c) for any other single beneficiary, the maximum weekly rate of a
         #     benefit that the beneficiary would be entitled to receive before
         #     any abatement or deduction:
 
         # We get the reminder of the beneficiaries.
-        at_least_25y = numpy.logical_not(under_25y)
+        leastwise25y = numpy.logical_not(under25y)
 
-        # And the regular jobseeker base rate.
-        jobseeker_base = people("jobseeker_support__base", period)
+        # And apply all the conditions.
+        ssr17_2_c = singles * beneficiaries * no_child * leastwise25y * rate
 
-        ssr17_2_c = singles * beneficiaries * at_least_25y * jobseeker_base
-
-        return ssr17_2_a + ssr17_2_c
+        return ssr17_2_a + ssr17_2_b + ssr17_2_c
 
 
 class AccommodationSupplement__Situation(Enum):

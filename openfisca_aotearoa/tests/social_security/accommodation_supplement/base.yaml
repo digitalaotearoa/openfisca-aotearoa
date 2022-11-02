@@ -6,20 +6,23 @@
     (a) for a single beneficiary under the age of 25 years, the maximum weekly
         rate of a benefit that the beneficiary would have been entitled to
         receive, before any abatement or deduction, if the beneficiary had
-        attained the age of 25 years:
+        attained the age of 25 years: [...]
+    (c) for any other single beneficiary, the maximum weekly rate of a
+    benefit that the beneficiary would be entitled to receive before
+    any abatement or deduction:
   period: 2018-11-26
   input:
     age:
       day:2019-12-30:7: [24, 24, 24, 25, 25, 25]
     jobseeker_support__entitled:
       2020-W01: [true, true, false, true, true, false]
+    social_security__beneficiary:
+      2020-W01: [true, false, true, true, false, true]
+  output:
     jobseeker_support__base:
       2020-W01: [182.47, 182.47, 0, 218.98, 218.98, 0]
-    social_security__beneficiary:
-      2020-W01: [true, false, true, true, true, false]
-  output:
     accommodation_supplement__base:
-      2020-W01: [218.98, 0, 0, 218.98, 218.98, 0]
+      2020-W01: [218.98, 0, 0, 218.98, 0, 0]
 
 - name: >
     Social Security Regulations 2018 -
@@ -34,41 +37,44 @@
               16 years old under subparts MA to MF and MZ of the Income Tax Act
               2007:
   period: 2018-11-26
+  absolute_error_margin: 0.005
   input:
     persons:
       Vranda:
         age:
-          day:2022-01-03:7: 24
+          day:2022-01-01:10: 24
           2022-01-10: 24
           2022-01-11: 25
           2022-01-12: 25
-          day:2022-01-13:5: 25
-        family_scheme__eligible:
-          2022-W02: false
-          2022-W03: true
-          2022-W04: true
+          day:2022-01-13:353: 25
         jobseeker_support__entitled:
+          2022-W01: true
           2022-W02: true
           2022-W03: true
-          2022-W04: true
+        social_security__beneficiary:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
       Piedad:
         age:
-          day:2022-01-03:7: 15
+          day:2022-01-01:10: 15
           2022-01-10: 16
           2022-01-11: 16
           2022-01-12: 16
-          day:2022-01-13:5: 16
+          day:2022-01-13:353: 16
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true
           2022-W03: false
       Srko:
         age:
-          day:2022-01-03:7: 15
+          day:2022-01-01:10: 15
           2022-01-10: 15
           2022-01-11: 16
           2022-01-12: 16
-          day:2022-01-13:5: 16
+          day:2022-01-13:353: 16
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true
@@ -79,7 +85,7 @@
           2022-01-10: 15
           2022-01-11: 15
           2022-01-12: 16
-          day:2022-01-13:5: 16
+          day:2022-01-13:353: 16
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true
@@ -88,18 +94,15 @@
       principal: Vranda
       children: [Piedad, Srko, Ash]
   output:
-    family_tax_credit:
-      2022-W02: 0
-      2022-W03: 51.22  # $6,642 x 2 / 365 + $5,412 x 1 / 365
-      2022-W04: 0
     family_tax_credit__eldest:
-      2022-W02: 0
-      2022-W03: 36.39  # $6,642 x 2 / 365
+      2022-W02-1: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
+      2022-W02-2: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
+      2022-W02-3: [0, 0, 0, 0]
     jobseeker_support__base:
-      2022-W01: 0
+      2022-W01: [239.70, 0, 0, 0]
       2022-W02: [406.78, 0, 0, 0]
       2022-W03: [406.78, 0, 0, 0]
     accommodation_supplement__base:
-      2022-W01: 0
-      2022-W02: [443.17, 0, 0, 0]
-      2022-W03: [406.78, 0, 0, 0]
+      2022-W01: [278.50, 0, 0, 0]   # (c) for any other single beneficiary...
+      2022-W02: [407.48, 0, 0, 0]   # 406,78 + ($6,642 x 2 / 365) / 52
+      2022-W03: [407.48, 0, 0, 0]   # 406,78 + ($6,642 x 2 / 365) / 52
