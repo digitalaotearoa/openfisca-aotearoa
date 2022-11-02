@@ -47,15 +47,33 @@ class disability_allowance_entitled(variables.Variable):
     def formula_2018_11_26(persons, period, parameters):
 
         ssa2018_85_2_a_i = persons('disability_allowance__needs_ongoing_support', period)
+        ssa2018_85_2_a_ii = persons('disability_allowance__needs_ongoing_treatment', period)
+        ssa2018_85_2_b = persons('disability_allowance__continuing_disability', period)
+        ssa2018_85_2_c_i = persons('disability_allowance__receives_main_benefit', period)
+        ssa2018_85_2_c_ii = persons('disability_allowance__below_income_threshold', period)
+        ssa2018_85_2_d = persons('disability_allowance__ongoing_additional_expenses', period)
+        ssa2018_87_a = numpy.logical_not(persons('disability_allowance__receiving_disablement_pension' , period))
+        ssa2018_87_b = numpy.logical_not(persons('disability_allowance__receiving_accident_compensation_entitlement', period))
+        ssa2018_87_c_i_to_iii = numpy.logical_not(persons('disability_allowance__receiving_any_other_disability_allowance', period))
 
-        return (ssa2018_85_2_a_i + ssa_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d * ssa2018_85_3
+        return (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d \
+        * ssa2018_87_a * ssa2018_87_b * ssa2018_87_c_i_to_iii
 
 class disability_allowance__needs_ongoing_support(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
-    label = "Does the person need ongoing support to undertake the everyday functions of life"
+    label = "Does the person need ongoing support to undertake the everyday functions of life?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__receives_main_benefit(variables.Variable): # need to re-factor
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
@@ -65,6 +83,15 @@ class disability_allowance__needs_ongoing_treatment(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Does the person need ongoing supervision or treatment by a health practitioner?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__ongoing_additional_expenses(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Does the person have additional expenses of an ongoing kind arising from the person’s disability?"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
@@ -197,6 +224,19 @@ class disability_allowance__current_income(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"   
 
 
+class disability_allowance__family_income(variables.Variable): # Copied from social security job_seeker formulas
+    value_type = float
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "How much does the family earn per week?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"   
+
+    def formula(people, period, parameters):
+        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + \
+        people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL) 
+        return family_income
+
+
 class disability_allowance__benefit_amount(variables.Variable):
     value_type = int
     default_value = -9999
@@ -260,6 +300,18 @@ class disability_allowance__person_has_children(variables.Variable):
     definition_period = periods.WEEK
     label = "Does the person have children?"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+# class test_b(variables.Variable):
+#     value_type = bool
+#     default_value = False
+#     entity = entities.Person
+#     definition_period = periods.MONTH
+#     label = "Does the person need ongoing support to undertake the everyday functions of life"
+#     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+#     def formula(persons, period, parameters):
+#         return persons('person_has_partner' , period)
 
 # 	For a single person aged 16 or 17 years without dependent children		$588.98
 # 11	For any other single person without dependent children		$733.72

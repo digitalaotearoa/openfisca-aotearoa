@@ -5,12 +5,13 @@
     persons:
       "Mama":
         date_of_birth: 1997-01-01
+        disability_allowance__needs_ongoing_support: false
         disability_allowance__current_income: 288
-        disability_allowance__needs_ongoing_support: true
         disability_allowance__needs_ongoing_treatment: false
       "Papa":
         date_of_birth: 1996-01-01
         disability_allowance__needs_ongoing_treatment: false
+        disability_allowance__needs_ongoing_support: true
       "Bubba":
         date_of_birth: 2015-01-24
     families:
@@ -23,7 +24,33 @@
       "2022-02-20": [25, 26, 7]
     social_security__in_a_relationship: 
       "2020-W01": [true, true, false]
-    # disability_allowance__income_limit_clause_10: true
+- name: Disability allowance - family income
+  period: 2022-W07
+  input:
+    persons:
+      "Mama":
+        social_security__income:
+          2020-W01: 200
+          2020-W02: 300
+          2020-W03: 400
+          2020-W04: 500
+      "Papa":
+        social_security__income:
+          2020-W01: 300
+          2020-W02: 200
+          2020-W03: 600
+          2020-W04: 150
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+  output:
+    disability_allowance__family_income: 
+      2020-W01: 500
+      2020-W02: 500
+      2020-W03: 1000
+      2020-W04: 650
+# disability_allowance__income_limit_clause_10: true
 # - name: Disability allowance - single person without dep children, age not b/w 16-17 years, meets income limits set in clause 11
 #   period: 2022-W07
 #   absolute_error_margin: 0
