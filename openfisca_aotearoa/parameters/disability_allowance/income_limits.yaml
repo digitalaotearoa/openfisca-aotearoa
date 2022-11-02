@@ -1,0 +1,24 @@
+description: Income threshold for getting access to disability allowance
+reference: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784880.html?search=sw_096be8ed81c90476_disability+allowance_25_se&p=4
+single_person:
+  no_children:
+    within_age_limit:
+      values:
+        2018-11-26:
+          value: 588.98
+    outside_age_limit:
+      values:
+        2018-11-26:
+          value: 733.72
+  sole_parent_with_one_dep_child:
+    values:
+      2018-11-26:
+        value: 821.43
+  any_other_sole_parent:
+    values:
+      2018-11-26:
+        value: 865.46
+in_a_relationship:
+  values:
+    2018-11-26:
+      value: 1092.55

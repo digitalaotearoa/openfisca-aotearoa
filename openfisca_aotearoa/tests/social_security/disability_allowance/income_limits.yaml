@@ -1,0 +1,74 @@
+- name: Disability allowance - single person without dep children, age b/w 16-17 years, meets income limits set in clause 10
+  period: 2022-W07
+  absolute_error_margin: 0
+  input:
+    persons:
+      "Mama":
+        date_of_birth: 1997-01-01
+        disability_allowance__current_income: 288
+        disability_allowance__needs_ongoing_support: true
+        disability_allowance__needs_ongoing_treatment: false
+      "Papa":
+        date_of_birth: 1996-01-01
+        disability_allowance__needs_ongoing_treatment: false
+      "Bubba":
+        date_of_birth: 2015-01-24
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+        children: ["Bubba"]
+  output:
+    age:
+      "2022-02-20": [25, 26, 7]
+    social_security__in_a_relationship: 
+      "2020-W01": [true, true, false]
+    # disability_allowance__income_limit_clause_10: true
+# - name: Disability allowance - single person without dep children, age not b/w 16-17 years, meets income limits set in clause 11
+#   period: 2022-W07
+#   absolute_error_margin: 0
+#   input:
+#      date_of_birth: 2001-09-01
+#      disability_allowance__person_has_partner: false
+#      disability_allowance__person_has_dependant_child: false
+#      disability_allowance__current_income: 650
+#   output:
+#     age: 
+#       "2022-02-20": 20
+#     disability_allowance__income_limit_clause_11: true
+# - name: Disability allowance - in relationship with dep children, meets income limits set in clause 12
+#   period: 2022-W07
+#   absolute_error_margin: 0
+#   input:
+#      date_of_birth: 2001-09-01
+#      disability_allowance__person_has_partner: true
+#      disability_allowance__person_has_dependant_child: true
+#      disability_allowance__current_income: 900
+#   output:
+#     age: 
+#       "2022-02-20": 20
+#     disability_allowance__income_limit_clause_12: true
+# - name: Disability allowance - in relationship without dep children, meets income limits set in clause 12
+#   period: 2022-W07
+#   absolute_error_margin: 0
+#   input:
+#      date_of_birth: 2001-09-01
+#      disability_allowance__person_has_partner: true
+#      disability_allowance__person_has_dependant_child: false
+#      disability_allowance__current_income: 900
+#   output:
+#     age: 
+#       "2022-02-20": 20
+#     disability_allowance__income_limit_clause_12: true
+# - name: Disability allowance - sole parent with one child, meets income limits set in clause 13
+#   period: 2022-W12
+#   absolute_error_margin: 0
+#   input:
+#      date_of_birth: 2001-09-01
+#      disability_allowance__person_has_partner: true
+#      disability_allowance__person_has_dependant_child: true
+#      disability_allowance__current_income: 900
+#   output:
+#     age: 
+#       "2022-02-20": 20
+#     disability_allowance__income_limit_clause_13: true
