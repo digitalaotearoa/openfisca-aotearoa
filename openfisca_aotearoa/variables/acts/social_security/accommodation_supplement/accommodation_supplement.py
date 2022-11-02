@@ -113,6 +113,9 @@ class accommodation_supplement__base(Variable):
     definition_period = DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
+        # We assume beneficiary of jobseeker support.
+        beneficiaries = people("social_security__beneficiary", period)
+
         # (2) The base rate is as follows:
 
         # Beneficiaries who are single
@@ -128,9 +131,6 @@ class accommodation_supplement__base(Variable):
         # We assume single as in "no partner"
         mingled = people("social_security__in_a_relationship", period)
         singles = numpy.logical_not(mingled)
-
-        # We assume beneficiary of jobseeker support.
-        beneficiaries = people("social_security__beneficiary", period)
 
         # We assume under 25 years by Monday
         age = people("age", monday)
