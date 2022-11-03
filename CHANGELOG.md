@@ -1,4 +1,10 @@
 # Changelog
+# 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
+* Other changes:
+  - `social_security__residential_requirement` period changed from monthly to weekly
+  - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
+
+# Changelog
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 * Change to contributing.md and coding patterns
 * Updated spelling of dependant to dependent when used as an adjective

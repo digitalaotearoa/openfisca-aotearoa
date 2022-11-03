@@ -1,5 +1,5 @@
 - name: Test for residence status appropriate for recieving benefits for 1964 ACT
-  period: 2017-08
+  period: 2017-W32
   absolute_error_margin: 0
   input:
     persons:
@@ -25,17 +25,20 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
       Mary:
         citizenship__citizen: true
-        immigration__recognised_refugee: true
+        immigration__recognised_refugee:
+          2017-08: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
       Barry:
         immigration__permanent_resident: true
-        immigration__protected_person: true
+        immigration__protected_person:
+          2017-08: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         social_security__ordinarily_resident_in_new_zealand: true
       Larry:
         immigration__resident: true
-        immigration__protected_person: true
+        immigration__protected_person:
+          2017-08: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: false
         social_security__ordinarily_resident_in_new_zealand: false
   output:
@@ -56,15 +59,16 @@
       - true # Barry
       - true # Larry
     social_security__residential_requirement:
-      - true # mama
-      - true # papa
-      - true # Tama
-      - false # tamahine
-      - true # Mary
-      - true # Barry
-      - false # Larry
+      2017-W31:
+        - true # mama
+        - true # papa
+        - true # Tama
+        - false # tamahine
+        - true # Mary
+        - true # Barry
+        - false # Larry
 - name: Test for residence status appropriate for recieving benefits for 2018 ACT
-  period: 2020-08
+  period: 2020-W32
   absolute_error_margin: 0
   input:
     persons:
@@ -95,20 +99,25 @@
         social_security__ordinarily_resident_in_new_zealand: false
         social_security__resided_continuously_nz_2_years_citizen_or_resident: false
       Mary:
-        immigration__recognised_refugee: false
+        immigration__recognised_refugee:
+          2020-08: false
         immigration__resident: false
         social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
-        years_resided_continuously_in_new_zealand: 3
+        years_resided_continuously_in_new_zealand:
+          2020-08: 3
       Barry:
         immigration__resident: true
-        immigration__protected_person: true
+        immigration__protected_person:
+          2020-08: true
         social_security__ordinarily_resident_in_new_zealand: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: false
       Larry:
-        immigration__recognised_refugee: false
+        immigration__recognised_refugee:
+          2020-08: false
         immigration__resident: false
         social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
-        years_resided_continuously_in_new_zealand: 1
+        years_resided_continuously_in_new_zealand:
+          2020-08: 1
   output:
     citizenship__citizen:
       - false # mama
