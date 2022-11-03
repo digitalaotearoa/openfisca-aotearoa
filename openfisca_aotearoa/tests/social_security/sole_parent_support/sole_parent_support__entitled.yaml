@@ -37,7 +37,7 @@
   period: 2019-W05
   absolute_error_margin: 0
   input:
-    social_security__in_a_relationship: false
+    sole_parent_support__requirement: true
     sole_parent_support__split_care: true
     social_security__residential_requirement: true
     sole_parent_support__age_threshold: true

@@ -18,3 +18,11 @@ class social_security__parent(variables.Variable):
     entity = entities.Person
     definition_period = periods.MONTH
     label = "Is a parent?"
+
+
+class social_security__principal_caregiver(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.MONTH
+    label = "Principal Caregiver in relation to a dependent child"
+    reference = "https://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM6784656"

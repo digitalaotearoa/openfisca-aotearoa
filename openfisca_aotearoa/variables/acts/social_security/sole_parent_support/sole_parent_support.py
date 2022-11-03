@@ -23,28 +23,30 @@ class sole_parent_support__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    label = "Eligible for Sole Parent Support"
+    label = "Entitled for Sole Parent Support"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783165", "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
 
-    def formula(persons, period, parameters):
+    # def formula(persons, period, parameters):
         # The applicant
-        resides_in_nz = persons("social_security__residential_requirement", period)
-        resident_or_citizen = persons("immigration__citizen_or_resident", period)
+    #    resides_in_nz = persons("social_security__residential_requirement", period)
+    # This makes no sense as social_security__residential_requirement covers it
+    #    resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
-        years_in_nz = persons("sole_parent_support__years_in_nz_requirement", period)
-        age_requirement = persons("sole_parent_support__age_threshold", period)
-        child_age_requirement = persons.family("sole_parent_support__family_has_child_under_age_limit", period)
+    # This makes no sense as social_security__residential_requirement covers it (duplicate variable social_security__resided_continuously_nz_2_years_citizen_or_resident)
+    #    years_in_nz = persons("sole_parent_support__years_in_nz_requirement", period)
+    #    age_requirement = persons("sole_parent_support__age_threshold", period)
+    #    child_age_requirement = persons.family("sole_parent_support__family_has_child_under_age_limit", period)
 
-        relationship_test = persons("sole_parent_support__meets_relationship_qualification", period)
+    #    relationship_test = persons("sole_parent_support__meets_relationship_qualification", period)
         # TODO isInadequatelySupportedByPartner
         # TODO isMaintainingChild
 
         # income low enough?
-        low_income = persons("sole_parent_support__below_income_threshold", period)
+    #    low_income = persons("sole_parent_support__below_income_threshold", period)
 
-        return resides_in_nz * resident_or_citizen * years_in_nz *\
-            age_requirement * child_age_requirement * \
-            relationship_test * low_income
+    #    return resides_in_nz * resident_or_citizen * years_in_nz *\
+    #        age_requirement * child_age_requirement * \
+    #        relationship_test * low_income
 
 
     def formula_2018_11_26(persons, period, parameters):
@@ -57,6 +59,25 @@ class sole_parent_support__entitled(variables.Variable):
         ssa29_d = persons("sole_parent_support__age_threshold", period)
 
         return ssa29_a * ssa29_b * ssa29_c * ssa29_d
+
+
+class sole_parent_support__entitled_without_split_care_requirement(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Eligible for Sole Parent Support minus the split care requirement (needed to calculate the split care requirement"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6632"
+
+    def formula_2018_11_26(persons, period, parameters):
+        ssa29_a = persons("sole_parent_support__requirement", period)
+
+        # ssa29_b = persons("sole_parent_support__split_care", period) purposfully excluded see 32 (1)(c)
+
+        ssa29_c = persons("social_security__residential_requirement", period)
+
+        ssa29_d = persons("sole_parent_support__age_threshold", period)
+
+        return ssa29_a * ssa29_c * ssa29_d
 
 
 class sole_parent_support__granted(variables.Variable):
@@ -107,6 +128,7 @@ class sole_parent_support__meets_relationship_qualification(variables.Variable):
     def formula(persons, period, parameters):
         # Do they have a partner
         no_partners = (persons("social_security__in_a_relationship", period.first_week) == 0)
+        no_partners = (persons("person_has_partner", period.first_week) == 0)
         not_supported = (persons("is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported
@@ -139,21 +161,6 @@ class sole_parent_support__age_threshold(variables.Variable):
         return persons("age", period.start) >= age_threshold
 
 
-class sole_parent_support__years_in_nz_requirement(variables.Variable):
-    value_type = bool
-    default_value = True
-    entity = entities.Person
-    label = "Has lived continuously in New Zealand for 2 years or more at any one time since becoming a New Zealand citizen or permanent resident?"
-    definition_period = periods.WEEK
-    reference = "TODO"
-
-    def formula(persons, period, parameters):
-        # been in NZ log enough?
-        min_years = parameters(period).entitlements.social_security.sole_parent_support.minumum_continuous_time_in_nz
-        years_in_nz = persons("number_of_years_lived_in_nz", period.first_month)
-        return years_in_nz >= min_years
-
-
 class sole_parent_support__below_income_threshold(variables.Variable):
     value_type = bool
     default_value = True
@@ -163,7 +170,6 @@ class sole_parent_support__below_income_threshold(variables.Variable):
     set_input = holders.set_input_divide_by_period
 
 
-### New 2018 Act Updates https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783165
 class sole_parent_support__requirement(variables.Variable):
     value_type = bool
     default_value = False
@@ -174,11 +180,8 @@ class sole_parent_support__requirement(variables.Variable):
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(persons, period, parameters):
-        # TODO: A person (P) meets the sole parent requirement if P is the mother or father of, and caring for, at least 1 dependent child aged under 14 years and
-        # ssa30_person_is_parent = persons("person_is_parent", period.first_month)
-        # ssa30_person_has_dependent_child = persons("social_security__dependent_children", period.first_month) > 0
-        # #TODO: How do we get dependent child age? Does it matter is there are some children over the age
-        # ssa30_dependent_child_under_14 = persons("sole_parent_support__dependent_child_requirement", period.first_week)
+
+        ssa30_dependent_child_under_14 = persons("sole_parent_support__dependent_child_requirement", period, "add")
         # ssa30 = ssa30_person_is_parent * ssa30_person_has_dependent_child * ssa30_dependent_child_under_14
 
         ssa30_a = logical_not(persons("social_security__in_a_relationship", period))
@@ -191,22 +194,22 @@ class sole_parent_support__requirement(variables.Variable):
 
         ssa30_e = persons("sole_parent_support__lost_regular_support", period)
 
-        return ssa30_a + ssa30_b + ssa30_c + ssa30_d + ssa30_e
+        return ssa30_dependent_child_under_14 * (ssa30_a + ssa30_b + ssa30_c + ssa30_d + ssa30_e)
 
 
 class sole_parent_support__dependent_child_requirement(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
-    label = "Atleast one dependent child meets age requirement"
-    definition_period = periods.WEEK
+    label = "At least one dependent child meets age requirement"
+    definition_period = periods.DAY
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783167"
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(persons, period, parameters):
-        # TODO: Create parameter for min age
-        child_age_threshold = 14
+        child_age_threshold = parameters(period).social_security.sole_parent_support.child_age_threshold
 
-        return persons.family.members("age", period.first_day) < child_age_threshold
+        return persons.family.members("age", period) < child_age_threshold
 
 
 class sole_parent_support__spouse_or_partner_died(variables.Variable):
@@ -279,61 +282,71 @@ class sole_parent_support__split_care(variables.Variable):
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(persons, period, parameters):
-        ssa32 = persons('sole_parent_support__dependent_children', period)
+        ssa32 = persons('social_security__dependent_children', period) > 2
 
         # This section applies to the parents of 2 or more dependent children
         ssa32_1_a = persons('sole_parent_support__parents_living_apart', period)
-        ssa32_1_b = persons('sole_parent_support__each_parent_is_principal_caregiver', period)
-        #  both parents would be entitled to sole parent support.
-        ssa32_1 = where(ssa32 > 2,True, False) * ssa32_1_a * ssa32_1_b
+        ssa32_1_b = persons('social_security__principal_caregiver', period) * \
+            persons.family.sum(persons.family.members("social_security__principal_caregiver", period), role=entities.Family.PARENT)
+        ssa32_1_c = persons('sole_parent_support__entitled_without_split_care_requirement', period) * persons.family.multiply(persons.family.members("sole_parent_support__entitled_without_split_care_requirement", period), role=entities.Family.PARENT)
+        ssa32_1 = where(ssa32 > 2,True, False) * ssa32_1_a * ssa32_1_b * ssa32_1_c
 
         # Only 1 of the 2 parents is entitled to sole parent support, and the parent who is entitled to sole parent support must be
-        ssa32_2_a = persons('sole_parent_support__TODO', period)
-        ssa32_2_b = persons('sole_parent_support__TODO', period)
-        ssa32_2_c = persons('sole_parent_support__TODO', period)
+        ssa32_2_a = persons('sole_parent_support__receiving', period)
+        ssa32_2_b = logical_not(persons('sole_parent_support__receiving', period)) * \
+            logical_not(persons.family.sum(persons.family.members("sole_parent_support__receiving", period), role=entities.Family.PARENT)) *\
+            persons('sole_parent_support__principal_caregiver_before_apart', period)
+        ssa32_2_c = persons('sole_parent_support__principal_caregiver_of_youngest', period)
         ssa32_2 = ssa32_2_a + ssa32_2_b + ssa32_2_c
 
         # This section does not apply if each parent has become the principal caregiver in respect of at least 1 child under 1 or more orders
-        ssa32_3_a = persons('sole_parent_support__TODO', period)
-        ssa32_3_b = persons('sole_parent_support__TODO', period)
-        ssa32_3 = ssa32_3_a * ssa32_3_b
+        ssa32_3 = persons('social_security__principal_caregiver', period) * \
+            persons.family.sum(persons.family.members("social_security__principal_caregiver", period), role=entities.Family.PARENT)
+        # ssa32_3_a
+        # ssa32_3_b = persons('sole_parent_support__TODO', period)
+        # ssa32_3 = ssa32_3_a * ssa32_3_b
 
         # In this section, child means a dependent child of the parents
-        ssa32_4_a = persons('sole_parent_support__TODO', period)
-        ssa32_4_b = persons('sole_parent_support__TODO', period)
-        ssa32_4 = ssa32_4_a + ssa32_4_b
+        # ssa32_4_a = persons('sole_parent_support__TODO', period)
+        # ssa32_4_b = persons('sole_parent_support__TODO', period)
+        # ssa32_4 = ssa32_4_a + ssa32_4_b
+
+        return ssa32_1 + ssa32_2 + ssa32_3
 
 
-
-        return ssa32_1 + ssa32_2 + ssa32_3 + ssa32_4
-
-
-
-class sole_parent_support__dependent_children(variables.Variable):
+class sole_parent_support__receiving(variables.Variable):
     value_type = bool
-    default_value = False
     entity = entities.Person
-    label = "Number of dependent children"
+    label = "is already receiving sole parent support in respect of any of the children. clause 32 (2)(a)"
     definition_period = periods.WEEK
-    set_input = holders.set_input_dispatch_by_period
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6632"
 
 
 class sole_parent_support__parents_living_apart(variables.Variable):
     value_type = bool
-    default_value = False
     entity = entities.Person
     label = "Parents are living apart"
     definition_period = periods.WEEK
     set_input = holders.set_input_dispatch_by_period
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6632"
 
 
-class sole_parent_support__each_parent_is_principal_caregiver(variables.Variable):
+class sole_parent_support__principal_caregiver_before_apart(variables.Variable):
     value_type = bool
-    default_value = False
     entity = entities.Person
-    label = "Each parent is the principal caregiver of 1 or more of the children"
+    label = "The parent who MSD considers was the principal caregiver in respect of the children immediately before the parents began living apart"
     definition_period = periods.WEEK
     set_input = holders.set_input_dispatch_by_period
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6632"
+
+
+class sole_parent_support__principal_caregiver_of_youngest(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    label = "The parent who is the principal caregiver in respect of the youngest child"
+    definition_period = periods.WEEK
+    set_input = holders.set_input_dispatch_by_period
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6632"
 
 
 class sole_parent_support__TODO(variables.Variable):

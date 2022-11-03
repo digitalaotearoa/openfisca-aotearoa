@@ -68,6 +68,16 @@ Family = build_entity(
             """,
             },
         {
+            "key": "parent",
+            "plural": "parents",
+            "label": "Parents",
+            "doc": """
+            The one or more persons who are also parents of children of the principal.
+            Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
+            In the case of the Social Security Act the application of "sole_parent_support__receiving" can be used for either parent to describe their scenario
+            """
+            },
+        {
             "key": "child",
             "plural": "children",
             "label": "Children",
