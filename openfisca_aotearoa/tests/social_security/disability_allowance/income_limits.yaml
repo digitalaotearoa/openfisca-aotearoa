@@ -27,6 +27,22 @@
       "2022-W07": true
       "2022-W08": true
       "2022-W09": false
+    # disability_allowance__income_limit_clause_11: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_12: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_13: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_14: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
 - name: Disability allowance - Any other single person, withount dependant children (Clause 11)
   period: 2022-W07
   absolute_error_margin: 0
@@ -56,6 +72,22 @@
       "2022-W07": true
       "2022-W08": true
       "2022-W09": false
+    # disability_allowance__income_limit_clause_12: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_13: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_14: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_10: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
 - name: Disability allowance - Person in a relationship (Clause 12) without children
   period: 2022-W07
   absolute_error_margin: 0
@@ -95,6 +127,22 @@
       "2022-W07": true
       "2022-W08": true
       "2022-W09": false
+    # disability_allowance__income_limit_clause_11: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_13: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_14: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
+    # disability_allowance__income_limit_clause_10: 
+    #   "2022-W07": false
+    #   "2022-W08": false
+    #   "2022-W09": false
 - name: Disability allowance - Person in a relationship (Clause 12) with children
   period: 2022-W07
   absolute_error_margin: 0
@@ -138,6 +186,22 @@
       "2022-W07": [true, true, false]
       "2022-W08": [true, true, false]
       "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_11:
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_13:
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_14:
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_10:
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
 - name: Disability allowance - Sole parent with 1 dependant child (Clause 13)
   period: 2022-W07
   absolute_error_margin: 0
@@ -149,6 +213,14 @@
           "2022-W07": 200
           "2022-W08": 400
           "2022-W09": 822
+        is_sole_parent: 
+          "2022-W07": true
+          "2022-W08": true
+          "2022-W09": true
+        disability_allowance__sole_parent_meets_relationship_qualification:
+          "2022-W07": true
+          "2022-W08": true
+          "2022-W09": true
       "Tom":
         date_of_birth: 2010-01-01
     families:
@@ -169,6 +241,22 @@
       "2022-W07": [true, false]
       "2022-W08": [true, false]
       "2022-W09": [false, false]
+    # disability_allowance__income_limit_clause_11: 
+    #   "2022-W07": [false, false]
+    #   "2022-W08": [false, false]
+    #   "2022-W09": [false, false]
+    # disability_allowance__income_limit_clause_12: 
+    #   "2022-W07": [false, false]
+    #   "2022-W08": [false, false]
+    #   "2022-W09": [false, false]
+    # disability_allowance__income_limit_clause_14: 
+    #   "2022-W07": [false, false]
+    #   "2022-W08": [false, false]
+    #   "2022-W09": [false, false]
+    # disability_allowance__income_limit_clause_10: 
+    #   "2022-W07": [false, false]
+    #   "2022-W08": [false, false]
+    #   "2022-W09": [false, false]
 - name: Disability allowance - For any other sole parent i.e. greater than 1 child (Clause 14)
   period: 2022-W07
   absolute_error_margin: 0
@@ -180,6 +268,14 @@
           "2022-W07": 200
           "2022-W08": 400
           "2022-W09": 866
+        disability_allowance__sole_parent_meets_relationship_qualification:
+          "2022-W07": true
+          "2022-W08": true
+          "2022-W09": true
+        is_sole_parent:
+          "2022-W07": true
+          "2022-W08": true
+          "2022-W09": true
       "Tom":
         date_of_birth: 2010-01-01
       "Harry":
@@ -203,3 +299,19 @@
       "2022-W07": [true, false, false]
       "2022-W08": [true, false, false]
       "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_12:
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_11: 
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_13: 
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
+    # disability_allowance__income_limit_clause_10: 
+    #   "2022-W07": [false, false, false]
+    #   "2022-W08": [false, false, false]
+    #   "2022-W09": [false, false, false]
