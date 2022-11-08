@@ -43,7 +43,18 @@ class disability_allowance_entitled(variables.Variable):
     label = "Disability Allowance eligibility"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145", "https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363196.html#DLM363196"
 
-    # Disability has the same meaning as in section 21(1)(h) of the Human Rights Act 1993: https://www.legislation.govt.nz/act/public/1993/0082/latest/DLM304475.html#DLM304475
+    """Disability has the same meaning as in 
+       section 21(1)(h) of the Human Rights Act 1993:
+        
+        disability, means—
+        (i) physical disability or impairment:
+        (ii) physical illness:
+        (iii) psychiatric illness:
+        (iv) intellectual or psychological disability or impairment:
+        (v) any other loss or abnormality of psychological, physiological, or anatomical structure or function:
+        (vi) reliance on a disability assist dog, wheelchair, or other remedial means:
+        (vii) the presence in the body of organisms capable of causing illness:"""
+
     def formula_2018_11_26(persons, period, parameters):
 
         ssa2018_85_2_a_i = persons('disability_allowance__needs_ongoing_support', period)
@@ -52,12 +63,15 @@ class disability_allowance_entitled(variables.Variable):
         ssa2018_85_2_c_i = persons('social_security__granted_main_benefit', period)
         ssa2018_85_2_c_ii = persons('disability_allowance__below_income_threshold', period)
         ssa2018_85_2_d = persons('disability_allowance__ongoing_additional_expenses', period)
-        ssa2018_87_a = numpy.logical_not(persons('disability_allowance__receiving_disablement_pension' , period))
+        # How should we capture conditions for reduced payment or payments that are likely to be rejected due to the
+        # conditions below?
+        ssa2018_87_a_i = numpy.logical_not(persons('disability_allowance__receiving_disablement_pension' , period))
+        ssa2018_87_a_ii = numpy.logical_not(persons("disability_allowance__receiving_veterans_support_entitlement", period))
         ssa2018_87_b = numpy.logical_not(persons('disability_allowance__receiving_accident_compensation_entitlement', period))
         ssa2018_87_c_i_to_iii = numpy.logical_not(persons('disability_allowance__receiving_any_other_disability_allowance', period))
 
         return (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d \
-        * ssa2018_87_a * ssa2018_87_b * ssa2018_87_c_i_to_iii
+        * ssa2018_87_a_i * ssa2018_87_a_ii * ssa2018_87_b * ssa2018_87_c_i_to_iii
 
 class disability_allowance__needs_ongoing_support(variables.Variable):
     value_type = bool
@@ -68,39 +82,12 @@ class disability_allowance__needs_ongoing_support(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
-class disability_allowance__receives_main_benefit(variables.Variable): # need to re-factor
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "TODO"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-
 class disability_allowance__needs_ongoing_treatment(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Does the person need ongoing supervision or treatment by a health practitioner?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-
-class disability_allowance__ongoing_additional_expenses(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Does the person have additional expenses of an ongoing kind arising from the person’s disability?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-
-class is_sole_parent(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Is the person a sole parent?"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
@@ -130,6 +117,61 @@ class disability_allowance__below_income_threshold(variables.Variable):
 
         return meets_clause_10_conditions + meets_clause_11_conditions + meets_clause_12_conditions 
         + meets_clause_13_conditions + meets_clause_14_conditions
+
+
+class disability_allowance__ongoing_additional_expenses(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Does the person have additional expenses of an ongoing kind arising from the person’s disability?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+
+class disability_allowance__person_entitled_to_reciprocal_benefits(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Reciprocal benefits for person entitled to reciprocal benefits"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__receiving_any_other_disability_allowance(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Reciprocal benefits for person entitled to reciprocal benefits"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__receiving_accident_compensation_entitlement(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is the person receiving accident compensation entitlement?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__receiving_disablement_pension(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is the person receiving a disablement pension under Part 3?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+
+class disability_allowance__receiving_veterans_support_entitlement(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is the person receiving an entitlement under Part 4 of the Veterans’ Support Act 2014?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
 class disability_allowance__income_limit_clause_10(variables.Variable):
@@ -194,6 +236,22 @@ class disability_allowance__income_limit_clause_13(variables.Variable):
         return income_within_limit * only_one_child * sole_parent
 
 
+class disability_allowance__income_limit_clause_14(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Does the person earn below the Disability Allowance Income Limit as per clause 14?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
+
+    def formula_2018_11_26(persons, period, parameters):
+        sole_parent = persons("is_sole_parent", period) * \
+        persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
+        more_than_one_child = (persons("social_security__dependent_children", period) > 1)
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.sole_parent_with_one_dep_child
+        return more_than_one_child * sole_parent * income_within_limit
+
+
 class disability_allowance__is_adequately_supported_by_partner(variables.Variable): #copied, need to refactor 
     value_type = bool
     entity = entities.Person
@@ -212,7 +270,6 @@ class disability_allowance__sole_parent_meets_relationship_qualification(variabl
     label = "Meets the sole parent support test for not being in a relationship"
     definition_period = periods.WEEK
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
-
     """
      be one of the following:
         * living apart from their partner and lost the support or being inadequately
@@ -229,22 +286,6 @@ class disability_allowance__sole_parent_meets_relationship_qualification(variabl
         not_supported = (persons("disability_allowance__is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported
-
-
-class disability_allowance__income_limit_clause_14(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Does the person earn below the Disability Allowance Income Limit as per clause 14?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
-
-    def formula_2018_11_26(persons, period, parameters):
-        sole_parent = persons("is_sole_parent", period) * \
-        persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
-        more_than_one_child = (persons("social_security__dependent_children", period) > 1)
-        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.sole_parent_with_one_dep_child
-        return more_than_one_child * sole_parent * income_within_limit
 
 
 class disability_allowance__current_income(variables.Variable):
@@ -278,41 +319,7 @@ class disability_allowance__benefit_amount(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
 
-        return numpy.select([persons("disability_allowance__age_meets_criteria", period)], [588])
-
-
-class disability_allowance__person_entitled_to_reciprocal_benefits(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Reciprocal benefits for person entitled to reciprocal benefits"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-class disability_allowance__receiving_any_other_disability_allowance(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Reciprocal benefits for person entitled to reciprocal benefits"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-
-class disability_allowance__receiving_accident_compensation_entitlement(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Is the person receiving accident compensation entitlement?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-class disability_allowance__receiving_disablement_pension(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Is the person receiving disablement pension?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+        return parameters(period).disability_allowance.max_weekly_benefit
 
 
 class disability_allowance__person_has_partner(variables.Variable): #use person_has_partner 
@@ -332,8 +339,15 @@ class disability_allowance__person_has_partner(variables.Variable): #use person_
                 persons.has_role(entities.Family.PRINCIPAL) * persons.family.nb_persons(entities.Family.PARTNER)
             )
 
-# 	For a single person aged 16 or 17 years without dependent children		$588.98
-# 11	For any other single person without dependent children		$733.72
-# 12	For a person who is in a relationship with or without dependent children		$1,092.55
-# 13	For a sole parent with 1 dependent child		$821.43
-# 14	For any other sole parent		$865.46
+class is_sole_parent(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is the person a sole parent?"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html?search=sw_096be8ed81c90476_sole+parent_25_se&p=1#DLM6784375"
+    """ Sole parent means a person who is the principal caregiver in respect of a dependent child and who—
+    (a) is-
+        (i) married or in a civil union, but living apart from the person’s spouse or partner; or
+        (ii) not married or in a civil union; and
+    (b) is not in a de facto relationship"""
