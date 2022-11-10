@@ -6,19 +6,17 @@ import string
 import numpy
 import pandas
 
-from openfisca_core.experimental import MemoryConfig
-from openfisca_core.indexed_enums import Enum
-from openfisca_core.periods import DateUnit
-from openfisca_core.variables import Variable
+from openfisca_core import indexed_enums, periods, variables
 
-from openfisca_aotearoa.entities import Family, Person
+from openfisca_aotearoa import entities
+from openfisca_aotearoa.variables.demographics import housing
 
 
 # TODO: Review against the new 2018 act
-class accommodation_supplement__eligible(Variable):
+class accommodation_supplement__eligible(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = DateUnit.MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Eligible for Accommodation Supplement"
 
     reference = """
@@ -66,51 +64,39 @@ class accommodation_supplement__eligible(Variable):
 
 
 # Todo possibly needs renaming to social_security__eligible_for_social_housing or social_housing__eligible
-class eligible_for_social_housing(Variable):
+class eligible_for_social_housing(variables.Variable):
     value_type = bool
     default_value = True
-    entity = Person
+    entity = entities.Person
     label = "Has social housing?"
-    definition_period = DateUnit.MONTH
+    definition_period = periods.DateUnit.MONTH
     reference = "Social Security Act 1964 - 61EA Accommodation supplement http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM362856"
 
 
-class accommodation_supplement__below_income_threshold(Variable):
+class accommodation_supplement__below_income_threshold(variables.Variable):
     value_type = bool
     default_value = True
-    entity = Person
+    entity = entities.Person
     label = "Income is below Accommodation Supplement threshold?"
-    definition_period = DateUnit.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
-class accommodation_supplement__below_cash_threshold(Variable):
+class accommodation_supplement__below_cash_threshold(variables.Variable):
     value_type = bool
     default_value = True
-    entity = Person
+    entity = entities.Person
     label = "Cash is below Accommodation Supplement threshold?"
-    definition_period = DateUnit.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
-class accommodation_supplement__base(Variable):
+class accommodation_supplement__base(variables.Variable):
     label = "Social Security Regulations 2018 §17 Base rate"
     reference = "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/LMS96264.html"
-    documentation = """
-        (1) In this regulation,—
-
-            beneficiary means a person who is being paid—
-            (a) a main benefit; or
-            (b) New Zealand superannuation or a veteran’s pension
-
-            benefit, in subclause (2), means a benefit referred to in paragraph
-            (a) or (b) of the definition in this subclause of beneficiary
-
-            non-beneficiary means a person who is not a beneficiary (as defined
-            in this regulation).
-    """
-    entity = Person
+    documentation = """TODO"""
+    entity = entities.Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
         # (2) The base rate is as follows:
@@ -205,68 +191,47 @@ class accommodation_supplement__base(Variable):
         return ssr17_2_a + ssr17_2_b + ssr17_2_c
 
 
-class AccommodationSupplement__Situation(Enum):
-    unknown = """
-        We have no idea
-        """
-    situation_1 = """
-        To a person who has 1 or more dependent children and who is in a
-        relationship, or a sole parent with 2 or more dependent children,
-        whose accommodation costs are rent or payments for board and lodgings
-        """
-    situation_2 = """
-        To a person who has no dependent children and who is in a relationship,
-        or a sole parent with 1 dependent child, whose accommodation costs are
-        rent or payments for board and lodgings
-        """
-    situation_3 = """
-        To any other person whose accommodation costs are rent or payments for
-        board and lodgings
-        """
-    situation_4 = """
-        To a person who has 1 or more dependent children and who is in a
-        relationship, or a sole parent with 2 or more dependent children, whose
-        accommodation costs are the sum of payments required under any mortgage
-        security, and other payments that the chief executive is satisfied are
-        reasonably required to be made in respect of the person’s home
-        """
-    situation_5 = """
-        To a person who has no dependent children and who is in a relationship,
-        or a sole parent with 1 dependent child, whose accommodation costs are
-        the sum of payments required under any mortgage security, and other
-        payments that the chief executive is satisfied are reasonably required
-        to be made in respect of the person’s home
-        """
-    situation_6 = """
-        To any other person whose accommodation costs are the sum of payments
-        required under any mortgage security, and other payments that the chief
-        executive is satisfied are reasonably required to be made in respect of
-        the person’s home
-        """
+class AccommodationSupplement__Situation(indexed_enums.Enum):
+    unknown = "We have no idea"
+    situation_1 = "Situation 1"
+    situation_2 = "Situation 2"
+    situation_3 = "Situation 3"
+    situation_4 = "Situation 4"
+    situation_5 = "Situation 5"
+    situation_6 = "Situation 6"
 
 
-class accommodation_supplement__situation(Variable):
+class accommodation_supplement__situation(variables.Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
-    entity = Person
-    value_type = Enum
+    entity = entities.Person
+    value_type = indexed_enums.Enum
     possible_values = AccommodationSupplement__Situation
     default_value = AccommodationSupplement__Situation.unknown
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
         families = people.family
-        last_week = period.last_week
-        family_members = families.members("social_security__dependent_child", last_week)
+        family_members = families.members("social_security__dependent_child", period)
         dependent_children = sum(family_members)
-        partners = families.nb_persons(Family.PARTNER)
+        partners = families.nb_persons(entities.Family.PARTNER)
+        accommodation_type = people("accommodation_type", period)
+
+        rent_board_lodging = (
+            + (accommodation_type == housing.AccommodationType.rent)
+            + (accommodation_type == housing.AccommodationType.board)
+            + (accommodation_type == housing.AccommodationType.lodging)
+            )
+
+        mortgage = accommodation_type == housing.AccommodationType.mortgage
 
         ssa_sched_4_part_7_1 = (
             + (
                 + (dependent_children >= 1) * (partners >= 1)
                 + (dependent_children >= 2) * (partners == 0)
                 )
+            * rent_board_lodging
             * AccommodationSupplement__Situation.situation_1.index
             )
 
@@ -275,13 +240,42 @@ class accommodation_supplement__situation(Variable):
                 + (dependent_children == 0) * (partners >= 1)
                 + (dependent_children == 1) * (partners == 0)
                 )
+            * rent_board_lodging
             * AccommodationSupplement__Situation.situation_2.index
             )
 
-        ssa_sched_4_part_7_3 = False  # TODO: Add "for board and rent"
-        ssa_sched_4_part_7_4 = False  # TODO: Add "for sum of mortgage"
-        ssa_sched_4_part_7_5 = False  # TODO: Add "for sum of mortgage"
-        ssa_sched_4_part_7_6 = False  # TODO: Add "for sum of mortgage"
+        ssa_sched_4_part_7_3 = (
+            + numpy.logical_not(ssa_sched_4_part_7_1)
+            * numpy.logical_not(ssa_sched_4_part_7_2)
+            * rent_board_lodging
+            * AccommodationSupplement__Situation.situation_3.index
+            )
+
+        ssa_sched_4_part_7_4 = (
+            + (
+                + (dependent_children >= 1) * (partners >= 1)
+                + (dependent_children >= 2) * (partners == 0)
+                )
+            * mortgage
+            * AccommodationSupplement__Situation.situation_4.index
+            )        
+
+        ssa_sched_4_part_7_5 = (
+            + (
+                + (dependent_children == 0) * (partners >= 1)
+                + (dependent_children == 1) * (partners == 0)
+                )
+            * mortgage
+            * AccommodationSupplement__Situation.situation_5.index
+            )        
+
+
+        ssa_sched_4_part_7_6 = (
+            + numpy.logical_not(ssa_sched_4_part_7_4)
+            * numpy.logical_not(ssa_sched_4_part_7_5)
+            * mortgage
+            * AccommodationSupplement__Situation.situation_6.index
+            )
 
         return (
             + ssa_sched_4_part_7_1
@@ -294,14 +288,14 @@ class accommodation_supplement__situation(Variable):
             )
 
 
-class accommodation_supplement__rebate(Variable):
+class accommodation_supplement__rebate(variables.Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
-    entity = Person
+    entity = entities.Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, params):
         last_week = period.last_week
@@ -386,17 +380,17 @@ class accommodation_supplement__rebate(Variable):
             )
 
 
-class accommodation_supplement__part_of_nz(Variable):
+class accommodation_supplement__part_of_nz(variables.Variable):
     label = "TODO"
     reference = "https://datafinder.stats.govt.nz/layer/27780-urban-area-2017-generalised-version/"
     documentation = """TODO"""
-    entity = Person
+    entity = entities.Person
     value_type = str
     default_value = "Other"
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
 
-class AccommodationSupplement__AreaOfResidence(Enum):
+class AccommodationSupplement__AreaOfResidence(indexed_enums.Enum):
     unknown = "We have no idea"
     area_1 = "Area 1"
     area_2 = "Area 2"
@@ -404,15 +398,15 @@ class AccommodationSupplement__AreaOfResidence(Enum):
     area_4 = "Area 4"
 
 
-class accommodation_supplement__area_of_residence(Variable):
+class accommodation_supplement__area_of_residence(variables.Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
-    entity = Person
-    value_type = Enum
+    entity = entities.Person
+    value_type = indexed_enums.Enum
     possible_values = AccommodationSupplement__AreaOfResidence
     default_value = AccommodationSupplement__AreaOfResidence.unknown
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
     def formula(people, period, _params):
         params_path = "openfisca_aotearoa/parameters"
@@ -437,14 +431,14 @@ class accommodation_supplement__area_of_residence(Variable):
         return numpy.fromiter(areas_of_residence, dtype = int)
 
 
-class accommodation_supplement__cutout(Variable):
+class accommodation_supplement__cutout(variables.Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784877"
     documentation = """TODO"""
-    entity = Person
+    entity = entities.Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, params):
         last_week = period.last_week

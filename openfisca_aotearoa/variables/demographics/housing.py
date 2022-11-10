@@ -1,16 +1,37 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import DateUnit
-from openfisca_core.variables import Variable
+from openfisca_core import indexed_enums, periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class accommodation_costs(Variable):
+
+class AccommodationType(indexed_enums.Enum):
+    unknown = "We have no idea"
+    rent = "Rent"
+    board = "Board"
+    lodging = "Lodging"
+    mortgage = "Mortgage"
+    social_housing = "Social housing"
+    residential_care = "Residential care"
+
+
+class accommodation_type(variables.Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""
-    entity = Person
+    entity = entities.Person
+    value_type = indexed_enums.Enum
+    possible_values = AccommodationType
+    default_value = AccommodationType.unknown
+    definition_period = periods.DateUnit.WEEK
+
+
+class accommodation_costs(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEK
+    definition_period = periods.DateUnit.WEEK
