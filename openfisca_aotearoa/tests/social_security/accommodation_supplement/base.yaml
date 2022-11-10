@@ -13,16 +13,16 @@
   period: 2018-11-26
   input:
     age:
-      day:2019-12-30:7: [24, 24, 24, 25, 25, 25]
+      day:2022-01-03:7: [24, 24, 24, 25, 25, 25]
     jobseeker_support__entitled:
-      2020-W01: [true, true, false, true, true, false]
+      2022-W01: [true, true, false, true, true, false]
     social_security__beneficiary:
-      2020-W01: [true, false, true, true, false, true]
+      2022-W01: [true, false, true, true, false, true]
   output:
     jobseeker_support__base:
-      2020-W01: [182.47, 182.47, 0, 218.98, 218.98, 0]
+      2022-W01: [239.70, 239.70, 0, 278.50, 278.50, 0]
     accommodation_supplement__base:
-      2020-W01: [218.98, 0, 0, 218.98, 0, 0]
+      2022-W01: [278.50, 0, 0, 278.50, 0, 0]
 
 - name: >
     Social Security Regulations 2018 -
@@ -42,7 +42,7 @@
     persons:
       Vranda:
         age:
-          day:2022-01-01:10: 24
+          day:2022-01-01:9: 24
           2022-01-10: 24
           2022-01-11: 25
           2022-01-12: 25
@@ -59,7 +59,7 @@
           2022: true
       Piedad:
         age:
-          day:2022-01-01:10: 15
+          day:2022-01-01:9: 15
           2022-01-10: 16
           2022-01-11: 16
           2022-01-12: 16
@@ -68,9 +68,11 @@
           2022-W01: false
           2022-W02: true
           2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
       Srko:
         age:
-          day:2022-01-01:10: 15
+          day:2022-01-01:9: 15
           2022-01-10: 15
           2022-01-11: 16
           2022-01-12: 16
@@ -79,9 +81,11 @@
           2022-W01: false
           2022-W02: true
           2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
       Ash:
         age:
-          day:2022-01-03:7: 15
+          day:2022-01-01:9: 15
           2022-01-10: 15
           2022-01-11: 15
           2022-01-12: 16
@@ -90,19 +94,21 @@
           2022-W01: false
           2022-W02: true
           2022-W03: true
+        family_tax_credit__dependent_child:
+          2022: 33
     family:
       principal: Vranda
       children: [Piedad, Srko, Ash]
   output:
     family_tax_credit__eldest:
-      2022-W02-1: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-W02-2: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-W02-3: [0, 0, 0, 0]
+      2022-01-10: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
+      2022-01-11: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
+      2022-01-12: [0, 0, 0, 0]
     jobseeker_support__base:
       2022-W01: [239.70, 0, 0, 0]
       2022-W02: [406.78, 0, 0, 0]
       2022-W03: [406.78, 0, 0, 0]
     accommodation_supplement__base:
       2022-W01: [278.50, 0, 0, 0]   # (c) for any other single beneficiary...
-      2022-W02: [407.48, 0, 0, 0]   # 406,78 + ($6,642 x 2 / 365) / 52
-      2022-W03: [407.48, 0, 0, 0]   # 406,78 + ($6,642 x 2 / 365) / 52
+      2022-W02: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52
+      2022-W03: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52

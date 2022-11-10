@@ -16,7 +16,7 @@ class family_tax_credit(Variable):
     default_value = 0
     definition_period = DateUnit.YEAR
 
-    def formula(people, period, parameters):
+    def formula_2007_11_01(people, period, parameters):
         return (
             + people("family_tax_credit__eligible", period)
             * people("family_tax_credit__base", period)
@@ -26,7 +26,7 @@ class family_tax_credit(Variable):
 class family_tax_credit__eligible(Variable):
     label = "Is person eligible for family tax credit? (y/n)"
     reference = "https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518515.html#DLM1518515"
-    documentation = """TODO"""
+    documentation = "https://www.wikidata.org/wiki/Q115148845"
     entity = Person
     value_type = bool
     default_value = False
@@ -36,13 +36,13 @@ class family_tax_credit__eligible(Variable):
 class family_tax_credit__base(Variable):
     label = "Amount of family tax credit, not considering eligibility, abatement, or reductions"
     reference = "https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518515.html#DLM1518515"
-    documentation = """TODO"""
+    documentation = "https://www.wikidata.org/wiki/Q115148931"
     entity = Person
     value_type = float
     default_value = 0
     definition_period = DateUnit.YEAR
 
-    def formula(people, period, parameters):
+    def formula_2007_11_01(people, period, parameters):
         return (
             + people("family_tax_credit__eldest", period, "add")
             + people("family_tax_credit__not_eldest", period, "add")
@@ -56,18 +56,30 @@ class family_tax_credit__eldest(Variable):
     entity = Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEKDAY
+    definition_period = DateUnit.DAY
 
-    def formula(people, period, parameters):
-        age = people("age", period.first_day)
+    def formula_2007_11_01(people, period, params):
+        age = people("age", period)
         under_16y = age < 16
-        dependent = people("social_security__dependent_child", period.first_week)
-
+        principal = people.has_role(Family.PRINCIPAL)
+        caregived = people("family_tax_credit__dependent_child", period.this_year)
+        dependent = caregived >= 100 / 3 - .5  # last value is the error margin
+        eldest_child = sum(under_16y * dependent) - 1 >= 0
+        
+        prescribed_amount = (
+            params(period)
+            .acts
+            .income_tax
+            .family_tax_credit
+            .prescribed_amount
+            .eldest
+            )
+        
         return (
-            + people.has_role(Family.PRINCIPAL)
-            * (sum(under_16y * dependent) - 1 >= 0)
-            * 6642
-            / 365
+            + principal
+            * eldest_child
+            * prescribed_amount
+            / period.this_year.days
             )
 
 
@@ -78,19 +90,56 @@ class family_tax_credit__not_eldest(Variable):
     entity = Person
     value_type = float
     default_value = 0
-    definition_period = DateUnit.WEEKDAY
+    definition_period = DateUnit.DAY
 
-    def formula(people, period, parameters):
-        age = people("age", period.first_day)
+    def formula_2007_11_01(people, period, parameters):
+        age = people("age", period)
         under_16y = age < 16
-        dependent = people("social_security__dependent_child", period.first_week)
+        principal = people.has_role(Family.PRINCIPAL)
+        caregived = people("family_tax_credit__dependent_child", period.this_year)
+        dependent = caregived >= 100 / 3 - .5  # last value is the error margin
+        other_than_the_eldest_child = max([0, sum(under_16y * dependent) - 1])
+
+        prescribed_amount = (
+            params(period)
+            .acts
+            .income_tax
+            .family_tax_credit
+            .prescribed_amount
+            .not_eldest
+            )
 
         return (
-            + people.has_role(Family.PRINCIPAL)
-            * max([0, sum(under_16y * dependent) - 1])
-            * 5412
-            / 365
+            + principal
+            * other_than_the_eldest_child
+            * prescribed_amount
+            / period.this_year.days
             )
+
+
+class family_tax_credit__dependent_child(Variable):
+    label = "Percentage over the rolling year that this child is under principal caregiving by P"
+    reference = "https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518492.html"
+    documentation = """TODO"""
+    entity = Person
+    value_type = int
+    default_value = 0
+    definition_period = DateUnit.YEAR
+
+    ###########################################################################
+    #                                                                         #
+    # Please note this refers to the following text:                          #
+    #                                                                         #
+    # For the purposes of sections MD 3, MG 1, and MZ 1 (which relate to      #
+    # certain tax credits for families), a person is a principal caregiver of #
+    # a dependent child if the person— [...]                                  #
+    #                                                                         #
+    # (b)   has the dependent child in their exclusive care for periods       #
+    #       totalling at least one-third of— [...]                            #
+    #                                                                         #
+    #       (ii)    the tax year:                                             #
+    #                                                                         #
+    ###########################################################################
 
 
 class family_scheme__qualifies_for_family_tax_credit(Variable):

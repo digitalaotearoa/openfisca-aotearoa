@@ -161,8 +161,16 @@ class accommodation_supplement__base(Variable):
         for letter in string.ascii_lowercase[0:6]:
             simulation.delete_arrays(f"schedule_4__part1_1_{letter}", period)
 
-        # Then, we recalculate jobseeker base rate as if having 25 years.
+        # 5. Then, we recalculate jobseeker base rate as if having 25 years:
         base25y = simulation.calculate("jobseeker_support__base", period)
+
+        # 6. After, we restore the original ages:
+        simulation.delete_arrays("age", monday)
+        simulation.set_input("age", monday, age)       
+
+        # 7. And we re-invalidate the cached calculations:
+        for letter in string.ascii_lowercase[0:6]:
+            simulation.delete_arrays(f"schedule_4__part1_1_{letter}", period)
 
         # And apply all the conditions.
         ssr17_2_a = singles * beneficiaries * no_child * under25y * base25y
@@ -180,7 +188,6 @@ class accommodation_supplement__base(Variable):
         this_year = period.this_year
         tax_credit = people("family_tax_credit__eldest", this_year, "add") / 52
 
-        print(rate, tax_credit)
 
         # And apply all the conditions.
         ssr17_2_b = singles * beneficiaries * children * (rate + tax_credit)
