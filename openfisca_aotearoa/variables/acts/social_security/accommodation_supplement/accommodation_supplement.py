@@ -213,79 +213,45 @@ class accommodation_supplement__situation(variables.Variable):
 
     def formula_2018_11_26(people, period, _params):
         families = people.family
-        family_members = families.members("social_security__dependent_child", period)
-        dependent_children = sum(family_members)
+        members = families.members("social_security__dependent_child", period)
+        dependent_children = sum(members)
         partners = families.nb_persons(entities.Family.PARTNER)
         accommodation_type = people("accommodation_type", period)
 
-        rent_board_lodging = (
+        # As conditions 1-3 and 4-6 differ only in the accommodation type, we
+        # first calculate the "base condition" (w/o accommodation type).
+        cond_1 = (
+            + (dependent_children >= 1) * (partners >= 1)
+            + (dependent_children >= 2) * (partners == 0)
+            )
+        cond_2 = (
+            + (dependent_children == 0) * (partners >= 1)
+            + (dependent_children == 1) * (partners == 0)
+            )
+        cond_3 = (
+            + numpy.logical_not(cond_1)
+            * numpy.logical_not(cond_2)
+            )
+
+        # Then we calculate conditions 1-3.
+        rent_board_lodge = (
             + (accommodation_type == housing.AccommodationType.rent)
             + (accommodation_type == housing.AccommodationType.board)
             + (accommodation_type == housing.AccommodationType.lodging)
             )
+        ssa_sched_4_part_7_1_to_3 = (cond_1, cond_2, cond_3) * rent_board_lodge
 
+        # And conditions 4-6.
         mortgage = accommodation_type == housing.AccommodationType.mortgage
+        ssa_sched_4_part_7_4_to_6 = (cond_1, cond_2, cond_3) * mortgage
+        
+        # Finally we create a list of conditions and situations.
+        conditions = *ssa_sched_4_part_7_1_to_3, *ssa_sched_4_part_7_4_to_6
+        situations = tuple(AccommodationSupplement__Situation)[1:]
+        fallback = AccommodationSupplement__Situation.unknown
 
-        ssa_sched_4_part_7_1 = (
-            + (
-                + (dependent_children >= 1) * (partners >= 1)
-                + (dependent_children >= 2) * (partners == 0)
-                )
-            * rent_board_lodging
-            * AccommodationSupplement__Situation.situation_1.index
-            )
-
-        ssa_sched_4_part_7_2 = (
-            + (
-                + (dependent_children == 0) * (partners >= 1)
-                + (dependent_children == 1) * (partners == 0)
-                )
-            * rent_board_lodging
-            * AccommodationSupplement__Situation.situation_2.index
-            )
-
-        ssa_sched_4_part_7_3 = (
-            + numpy.logical_not(ssa_sched_4_part_7_1)
-            * numpy.logical_not(ssa_sched_4_part_7_2)
-            * rent_board_lodging
-            * AccommodationSupplement__Situation.situation_3.index
-            )
-
-        ssa_sched_4_part_7_4 = (
-            + (
-                + (dependent_children >= 1) * (partners >= 1)
-                + (dependent_children >= 2) * (partners == 0)
-                )
-            * mortgage
-            * AccommodationSupplement__Situation.situation_4.index
-            )        
-
-        ssa_sched_4_part_7_5 = (
-            + (
-                + (dependent_children == 0) * (partners >= 1)
-                + (dependent_children == 1) * (partners == 0)
-                )
-            * mortgage
-            * AccommodationSupplement__Situation.situation_5.index
-            )        
-
-
-        ssa_sched_4_part_7_6 = (
-            + numpy.logical_not(ssa_sched_4_part_7_4)
-            * numpy.logical_not(ssa_sched_4_part_7_5)
-            * mortgage
-            * AccommodationSupplement__Situation.situation_6.index
-            )
-
-        return (
-            + ssa_sched_4_part_7_1
-            + ssa_sched_4_part_7_2
-            + ssa_sched_4_part_7_3
-            + ssa_sched_4_part_7_4
-            + ssa_sched_4_part_7_5
-            + ssa_sched_4_part_7_6
-            + AccommodationSupplement__Situation.unknown.index
-            )
+        # And we return the situations corresponding to the conditions.
+        return numpy.select(conditions,  situations, fallback)
 
 
 class accommodation_supplement__rebate(variables.Variable):
@@ -298,86 +264,34 @@ class accommodation_supplement__rebate(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, params):
-        last_week = period.last_week
-        situation = people("accommodation_supplement__situation", last_week)
-        accommodation_costs = people("accommodation_costs", last_week)
-        rebate = params(period).acts.social_security.accommodation_supplement.rebate
-        base_rate = people("accommodation_supplement__base", last_week)
+        situation = people("accommodation_supplement__situation", period)
+        accommodation_costs = people("accommodation_costs", period)
+        base_rate = people("accommodation_supplement__base", period)
 
-        ssa_sched_4_part_7_1 = (
-            + (situation == AccommodationSupplement__Situation.situation_1)
+        rebate = (
+            params(period)
+            .acts
+            .social_security
+            .accommodation_supplement
+            .rebate
+            )
+
+        situations = [
+            situation == member 
+            for member in tuple(AccommodationSupplement__Situation)[1:]
+            ]
+
+        ssa_sched_4_part_7_1_to_6 = [
+            + accommodation_costs
+            - rebate[f"section_{i}"]["accommodation_costs"]
             * (
-                + accommodation_costs
-                - (
-                    + rebate["section_1"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_1"]["base_rate"] * base_rate)
-                    )
+                + accommodation_costs 
+                - rebate[f"section_{i}"]["base_rate"] * base_rate
                 )
-            )
+            for i in range(1, 7)
+        ]
 
-        ssa_sched_4_part_7_2 = (
-            + (situation == AccommodationSupplement__Situation.situation_2)
-            * (
-                + accommodation_costs
-                - (
-                    + rebate["section_2"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_2"]["base_rate"] * base_rate)
-                    )
-                )
-            )
-
-        ssa_sched_4_part_7_3 = (
-            + (situation == AccommodationSupplement__Situation.situation_3)
-            * (
-                + accommodation_costs
-                - (
-                    + rebate["section_3"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_3"]["base_rate"] * base_rate)
-                    )
-                )
-            )
-
-        ssa_sched_4_part_7_4 = (
-            + (situation == AccommodationSupplement__Situation.situation_4)
-            * (
-                + accommodation_costs
-                - (
-                    + rebate["section_4"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_4"]["base_rate"] * base_rate)
-                    )
-                )
-            )
-
-        ssa_sched_4_part_7_5 = (
-            + (situation == AccommodationSupplement__Situation.situation_5)
-            * (
-                + accommodation_costs
-                - (
-                    + rebate["section_5"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_5"]["base_rate"] * base_rate)
-                    )
-                )
-            )
-
-        ssa_sched_4_part_7_6 = (
-            + (situation == AccommodationSupplement__Situation.situation_6)
-            * (
-                + accommodation_costs
-                - (
-                    + rebate["section_6"]["accommodation_costs"]
-                    * (accommodation_costs - rebate["section_6"]["base_rate"] * base_rate)
-                    )
-                )
-            )
-
-        return (
-            + ssa_sched_4_part_7_1
-            + ssa_sched_4_part_7_2
-            + ssa_sched_4_part_7_3
-            + ssa_sched_4_part_7_4
-            + ssa_sched_4_part_7_5
-            + ssa_sched_4_part_7_6
-            )
+        return numpy.select(situations, ssa_sched_4_part_7_1_to_6)
 
 
 class accommodation_supplement__part_of_nz(variables.Variable):
@@ -409,25 +323,26 @@ class accommodation_supplement__area_of_residence(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula(people, period, _params):
+        area_of_residence = AccommodationSupplement__AreaOfResidence
         params_path = "openfisca_aotearoa/parameters"
         file_path = "acts/social_security/accommodation_supplement"
         area_path = Path(f"{params_path}/{file_path}/area.csv").resolve()
-        last_week = period.last_week
-        part_of_nz = people("accommodation_supplement__part_of_nz", last_week)
+
+        # We read locations from a database.
+        part_of_nz = people("accommodation_supplement__part_of_nz", period)
         area_of_nz = pandas.read_csv(area_path, sep = ";")
-
-        parts_of_residence = (
-            numpy.flatnonzero(area_of_nz["UA2017_NAME"].isin([part_of_nz]))
-            for part_of_nz in part_of_nz
-            )
-
+        name = area_of_nz["UA2017_NAME"]
+        area = "SSA2018_AREA"
+        locations = (numpy.flatnonzero(name.isin([loc])) for loc in part_of_nz)
+        
+        # The we map locations to each area 1-4.
         areas_of_residence = (
-            AccommodationSupplement__AreaOfResidence[area_of_nz.at[index[0], "SSA2018_AREA"]].index
-            if len(index) > 0
-            else AccommodationSupplement__AreaOfResidence.area_4.index
-            for index in parts_of_residence
+            area_of_residence[area_of_nz.at[index[0], area]].index 
+            if len(index) > 0 else area_of_residence.area_4.index 
+            for index in locations
             )
 
+        # And return the result.
         return numpy.fromiter(areas_of_residence, dtype = int)
 
 
@@ -441,46 +356,26 @@ class accommodation_supplement__cutout(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, params):
-        last_week = period.last_week
-        situation = people("accommodation_supplement__situation", last_week)
-        area_of_residence = people("accommodation_supplement__area_of_residence", last_week)
-        cutout = params(period).acts.social_security.accommodation_supplement.cutout
+        situation = people("accommodation_supplement__situation", period)
+        area = people("accommodation_supplement__area_of_residence", period)
 
-        ssa_sched_4_part_7_1 = (
-            + (situation == AccommodationSupplement__Situation.situation_1)
-            * cutout["section_1"][area_of_residence]
+        cutout = (
+            params(period)
+            .acts
+            .social_security
+            .accommodation_supplement
+            .cutout
             )
 
-        ssa_sched_4_part_7_2 = (
-            + (situation == AccommodationSupplement__Situation.situation_2)
-            * cutout["section_2"][area_of_residence]
-            )
+        situations = [
+            situation == member 
+            for member in tuple(AccommodationSupplement__Situation)[1:]
+            ]
 
-        ssa_sched_4_part_7_3 = (
-            + (situation == AccommodationSupplement__Situation.situation_3)
-            * cutout["section_3"][area_of_residence]
-            )
 
-        ssa_sched_4_part_7_4 = (
-            + (situation == AccommodationSupplement__Situation.situation_4)
-            * cutout["section_4"][area_of_residence]
-            )
+        ssa_sched_4_part_7_1_to_6 = [
+            cutout[f"section_{i}"][area] 
+            for i in range(1, 7)
+            ]
 
-        ssa_sched_4_part_7_5 = (
-            + (situation == AccommodationSupplement__Situation.situation_5)
-            * cutout["section_5"][area_of_residence]
-            )
-
-        ssa_sched_4_part_7_6 = (
-            + (situation == AccommodationSupplement__Situation.situation_6)
-            * cutout["section_6"][area_of_residence]
-            )
-
-        return (
-            + ssa_sched_4_part_7_1
-            + ssa_sched_4_part_7_2
-            + ssa_sched_4_part_7_3
-            + ssa_sched_4_part_7_4
-            + ssa_sched_4_part_7_5
-            + ssa_sched_4_part_7_6
-            )
+        return numpy.select(situations, ssa_sched_4_part_7_1_to_6)
