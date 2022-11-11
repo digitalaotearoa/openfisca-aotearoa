@@ -19,13 +19,7 @@ class accommodation_supplement__eligible(variables.Variable):
     definition_period = periods.DateUnit.MONTH
     label = "Eligible for Accommodation Supplement"
 
-    reference = """
-        61DH Purpose of accommodation supplement
-
-        The purpose of sections 61E to 61EC and Schedule 18 is to provide targeted
-        financial assistance to help certain people with high accommodation costs
-        to meet those costs.
-        """
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783242"
 
     def formula(persons, period, parameters):
         # Based on MSD's web page
