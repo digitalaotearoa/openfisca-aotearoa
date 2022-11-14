@@ -1,8 +1,12 @@
 # Changelog
+
 # 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
+
+# 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+* Change to variable `person_has_partner` - time period switched from month to week
 
 # Changelog
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
