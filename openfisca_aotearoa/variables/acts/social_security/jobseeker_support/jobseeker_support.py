@@ -63,7 +63,7 @@ class jobseeker_support__entitled(variables.Variable):
 
         ssa64_88B_2 = persons("jobseeker_support__age_requirement", period)
 
-        ssa64_88B_3 = persons("social_security__residential_requirement", period.first_month)
+        ssa64_88B_3 = persons("social_security__residential_requirement", period)
 
         ssa64_88B_4 = persons("jobseeker_support__minimum_income", period)
 
@@ -85,7 +85,7 @@ class jobseeker_support__entitled(variables.Variable):
 
         ssa20_c = persons("jobseeker_support__age_requirement", period)
 
-        ssa20_d = persons("social_security__residential_requirement", period.first_month)
+        ssa20_d = persons("social_security__residential_requirement", period)
 
         ssa20_e = persons("jobseeker_support__minimum_income", period)
 

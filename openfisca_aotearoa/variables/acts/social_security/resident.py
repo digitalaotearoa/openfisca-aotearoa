@@ -21,7 +21,7 @@ class social_security__residential_requirement(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Residential requirements for certain benefits, calculates for the 1964 and the 2018 Social Security Acts"
-    definition_period = periods.MONTH
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
     set_input = holders.set_input_dispatch_by_period
 
@@ -30,18 +30,18 @@ class social_security__residential_requirement(variables.Variable):
     # Ref: https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796
     def formula_1964_12_04(persons, period, parameters):
 
-        ssa64_74aa_1_a = persons("immigration__citizen_or_resident", period)
+        ssa64_74aa_1_a = persons("immigration__citizen_or_resident", period.first_month)
 
-        ssa64_74aa_1_b = persons("social_security__ordinarily_resident_in_new_zealand", period)
+        ssa64_74aa_1_b = persons("social_security__ordinarily_resident_in_new_zealand", period.first_month)
 
-        ssa64_74aa_1_c = persons("immigration__recognised_refugee", period) \
-            + persons("immigration__protected_person", period) \
+        ssa64_74aa_1_c = persons("immigration__recognised_refugee", period.first_month) \
+            + persons("immigration__protected_person", period.first_month) \
             + persons("social_security__resided_continuously_nz_2_years_citizen_or_resident", period)
 
         # ssa64_74aa_1_c_i  - this implied in variable: social_security__resided_continuously_nz_2_years_citizen_or_resident
         # ssa64_74aa_1_c_ii  - this implied in calculation
 
-        ssa64_74aa_1A_a_and_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period)
+        ssa64_74aa_1A_a_and_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", periods.ETERNITY)
 
         # ssa64_74aa_2 - this calculation performed by only calling this function in relation to the benefits listed
 
@@ -52,15 +52,15 @@ class social_security__residential_requirement(variables.Variable):
 
         # ssa16_1 - Descriptive, not requiring coding.
 
-        ssa16_2_a = persons("immigration__citizen_or_resident", period) * \
-            persons("social_security__ordinarily_resident_in_new_zealand", period)
+        ssa16_2_a = persons("immigration__citizen_or_resident", period.first_month) * \
+            persons("social_security__ordinarily_resident_in_new_zealand", period.first_month)
 
         ssa16_2_a_i = persons("social_security__resided_continuously_nz_2_years_citizen_or_resident", periods.ETERNITY)
 
-        ssa16_2_a_ii = persons("immigration__recognised_refugee", period) + \
-            persons("immigration__protected_person", period)
+        ssa16_2_a_ii = persons("immigration__recognised_refugee", period.first_month) + \
+            persons("immigration__protected_person", period.first_month)
 
-        ssa16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
+        ssa16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period.first_month) >= 2)
 
         # ssa16_3 - TODO Useful would be a list of countrys this applies to... we could make country an input.
         # ssa16_4 - MSD can refuse or cancel benefit if person not ordinarily in NZ...
@@ -74,8 +74,7 @@ class social_security__ordinarily_resident_in_new_zealand(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "is ordinarily resident in New Zealand"
-    definition_period = periods.MONTH
-    set_input = holders.set_input_dispatch_by_period
+    definition_period = periods.ETERNITY
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784616", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM360407", "https://www.openlaw.nz/case/2014NZCA611"
 
 
