@@ -3,7 +3,7 @@
 ### Step 1: Clone the repo
 
 ```sh
-git clone https://github.com/ServiceInnovationLab/openfisca-aotearoa.git
+git clone https://github.com/digitalaotearoa/openfisca-aotearoa.git
 cd openfisca-aotearoa
 ```
 
