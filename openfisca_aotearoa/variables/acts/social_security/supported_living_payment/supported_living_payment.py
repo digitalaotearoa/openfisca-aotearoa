@@ -89,7 +89,7 @@ class supported_living_payment__entitled(variables.Variable):
         # this section must meet the residential requirements in section 74AA.
         immigration__resident_or_citizen = persons("immigration__citizen_or_resident", period)
 
-        resides_in_nz = persons("social_security__residential_requirement", period)
+        resides_in_nz = persons("social_security__residential_requirement", period.first_week)
 
         # # income low enough?
         income = persons("supported_living_payment__below_income_threshold", period)

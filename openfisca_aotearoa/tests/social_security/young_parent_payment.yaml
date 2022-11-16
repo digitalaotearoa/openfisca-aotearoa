@@ -10,7 +10,8 @@
         age:
           "2017-10-01": 19
         citizenship__citizen: true
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 80000.0
       Oliver:
@@ -20,7 +21,8 @@
         age:
           "2017-10-01": 16
         citizenship__citizen: true
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 0.0
         living_with_parent_or_guardian: true
@@ -32,7 +34,8 @@
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         monthly_income: 0.0
         living_with_parent_or_guardian: false
@@ -63,7 +66,8 @@
   input:
     persons:
       Ruby:
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         social_security__in_a_relationship:
           "week:2017-W01:52": false
@@ -85,7 +89,8 @@
         age:
           "2017-10-01": 16
         citizenship__citizen: true
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
@@ -98,7 +103,8 @@
         age:
           "2017-10-01": 17
         immigration__permanent_resident: true
-        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__ordinarily_resident_in_new_zealand:
+          "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 0.0
         youth_payment__single_young_person_exceptional_circumstances: true
