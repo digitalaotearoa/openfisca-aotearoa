@@ -4,8 +4,7 @@
     jobseeker_support__work_gap: [true, true]
     jobseeker_support__available_for_work: [true, true]
     jobseeker_support__age_requirement: [true, false]
-    social_security__residential_requirement:
-      month:2019-01:2: [true, true]
+    social_security__residential_requirement: [true, true]
     jobseeker_support__minimum_income: [true, true]
   output:
     jobseeker_support__entitled: [true, false]
@@ -19,8 +18,7 @@
 # age_requirement dependancies extended
     jobseeker_support__work_gap: [true, true, true, true]
     jobseeker_support__available_for_work: [true, true, true, true]
-    social_security__residential_requirement:
-      month:2019-01:2: [true, true, true, true]
+    social_security__residential_requirement: [true, true, true, true]
     jobseeker_support__minimum_income: [true, true, true, true]
   output:
     jobseeker_support__age_requirement: [true, false, true, false]
@@ -38,8 +36,7 @@
 # work_gap dependancies extended
     jobseeker_support__available_for_work: [true, true, true, true, true, true, true, true, true, true, true]
     jobseeker_support__age_requirement: [true, true, true, true, true, true, true, true, true, true, true]
-    social_security__residential_requirement:
-      month:2019-01:2: [true, true, true, true, true, true, true, true, true, true, true]
+    social_security__residential_requirement: [true, true, true, true, true, true, true, true, true, true, true]
     jobseeker_support__minimum_income: [true, true, true, true, true, true, true, true, true, true, true]
   output:
     jobseeker_support__work_gap: [true, false, true, false, true, true, false, false, false, true, false]
@@ -54,8 +51,7 @@
 # available_for_work dependancies extended
     jobseeker_support__work_gap: [true, true, true, true, true, true, true]
     jobseeker_support__age_requirement: [true, true, true, true, true, true, true]
-    social_security__residential_requirement:
-      month:2019-01:2: [true, true, true, true, true, true, true]
+    social_security__residential_requirement: [true, true, true, true, true, true, true]
     jobseeker_support__minimum_income: [true, true, true, true, true, true, true]
   output:
     jobseeker_support__entitled: [true, false, true, false, false, true, true]
