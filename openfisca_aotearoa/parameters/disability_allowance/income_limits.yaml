@@ -1,24 +1,46 @@
 description: Income threshold for getting access to disability allowance
-reference: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html#DLM6784890
-single_person:
-  no_children:
-    within_age_limit:
-      values:
-        2018-11-26:
-          value: 588.98
-    outside_age_limit:
-      values:
-        2018-11-26:
-          value: 733.72
-  sole_parent_with_one_dep_child:
+metadata:
+  unit: currency
+  type: value
+  reference: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html#DLM6784890
+clauses:
+  clause_10:
+    values:
+      2018-11-26:
+        value: 588.98
+        metadata:
+          reference:
+            title: Schedule 5 -> Part 3, Clause 10
+            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+  clause_11:
+    values:
+      2018-11-26:
+        value: 733.72
+        metadata:
+          reference:
+            title: Schedule 5 -> Part 3, Clause 11
+            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+  clause_12:
+    values:
+      2018-11-26:
+        value: 1092.55
+        metadata:
+          reference:
+            title: Schedule 5 -> Part 3, Clause 12
+            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+  clause_13:
     values:
       2018-11-26:
         value: 821.43
-  any_other_sole_parent:
+        metadata:
+          reference:
+            title: Schedule 5 -> Part 3, Clause 13
+            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+  clause_14:
     values:
       2018-11-26:
         value: 865.46
-in_a_relationship:
-  values:
-    2018-11-26:
-      value: 1092.55
+        metadata:
+          reference:
+            title: Schedule 5 -> Part 3, Clause 14
+            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html

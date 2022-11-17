@@ -12,4 +12,4 @@
     disability_allowance__receiving_accident_compensation_entitlement: false
     disability_allowance__receiving_any_other_disability_allowance: false
   output: 
-    disability_allowance_entitled: true
+    disability_allowance__entitled: true

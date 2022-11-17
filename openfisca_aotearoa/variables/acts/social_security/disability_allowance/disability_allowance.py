@@ -35,43 +35,32 @@ from openfisca_core import holders
 #
 # For more information on OpenFisca's `variables`:
 # https://openfisca.org/doc/key-concepts/variables.html
-class disability_allowance_entitled(variables.Variable):
+class disability_allowance__entitled(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Disability Allowance eligibility"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783145", "https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363196.html#DLM363196"
-
-    """Disability has the same meaning as in 
-       section 21(1)(h) of the Human Rights Act 1993:
-        
-        disability, means—
-        (i) physical disability or impairment:
-        (ii) physical illness:
-        (iii) psychiatric illness:
-        (iv) intellectual or psychological disability or impairment:
-        (v) any other loss or abnormality of psychological, physiological, or anatomical structure or function:
-        (vi) reliance on a disability assist dog, wheelchair, or other remedial means:
-        (vii) the presence in the body of organisms capable of causing illness:"""
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266"
 
     def formula_2018_11_26(persons, period, parameters):
 
-        ssa2018_85_2_a_i = persons('disability_allowance__needs_ongoing_support', period)
-        ssa2018_85_2_a_ii = persons('disability_allowance__needs_ongoing_treatment', period)
-        ssa2018_85_2_b = persons('disability_allowance__continuing_disability', period)
-        ssa2018_85_2_c_i = persons('social_security__granted_main_benefit', period)
-        ssa2018_85_2_c_ii = persons('disability_allowance__below_income_threshold', period)
-        ssa2018_85_2_d = persons('disability_allowance__ongoing_additional_expenses', period)
+        ssa2018_85_2_a_i = persons("disability_allowance__needs_ongoing_support", period)
+        ssa2018_85_2_a_ii = persons("disability_allowance__needs_ongoing_treatment", period)
+        ssa2018_85_2_b = persons("disability_allowance__continuing_disability", period)
+        ssa2018_85_2_c_i = persons("social_security__granted_main_benefit", period)
+        ssa2018_85_2_c_ii = persons("disability_allowance__below_income_threshold", period)
+        ssa2018_85_2_d = persons("disability_allowance__ongoing_additional_expenses", period)
         # How should we capture conditions for reduced payment or payments that are likely to be rejected due to the
         # conditions below?
-        ssa2018_87_a_i = numpy.logical_not(persons('disability_allowance__receiving_disablement_pension' , period))
+        ssa2018_87_a_i = numpy.logical_not(persons("disability_allowance__receiving_disablement_pension" , period))
         ssa2018_87_a_ii = numpy.logical_not(persons("disability_allowance__receiving_veterans_support_entitlement", period))
-        ssa2018_87_b = numpy.logical_not(persons('disability_allowance__receiving_accident_compensation_entitlement', period))
-        ssa2018_87_c_i_to_iii = numpy.logical_not(persons('disability_allowance__receiving_any_other_disability_allowance', period))
+        ssa2018_87_b = numpy.logical_not(persons("disability_allowance__receiving_accident_compensation_entitlement", period))
+        ssa2018_87_c_i_to_iii = numpy.logical_not(persons("disability_allowance__receiving_any_other_disability_allowance", period))
 
         return (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d \
         * ssa2018_87_a_i * ssa2018_87_a_ii * ssa2018_87_b * ssa2018_87_c_i_to_iii
+
 
 class disability_allowance__needs_ongoing_support(variables.Variable):
     value_type = bool
@@ -185,7 +174,7 @@ class disability_allowance__income_limit_clause_10(variables.Variable):
     def formula_2018_11_26(persons, period, parameters):
         person_aged_16_or_17 = (persons("age", period.start) >= 16) * (persons("age", period.start) <= 17) 
         no_partners = numpy.logical_not(persons("disability_allowance__person_has_partner", period))
-        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.no_children.within_age_limit
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_10"]
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         return person_aged_16_or_17 * no_partners * income_within_limit * without_dependant_child 
 
@@ -202,7 +191,7 @@ class disability_allowance__income_limit_clause_11(variables.Variable):
         no_partners = numpy.logical_not(persons("disability_allowance__person_has_partner", period))
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))  #review this
-        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.no_children.outside_age_limit
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_11"]
         return person_not_aged_16_or_17 * no_partners * without_dependant_child * income_within_limit * not_a_child
 
 
@@ -216,7 +205,7 @@ class disability_allowance__income_limit_clause_12(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         in_relationship = persons("disability_allowance__person_has_partner", period) #refactor this to person_has_partner
-        income_within_limit = persons("disability_allowance__family_income", period) <= parameters(period).disability_allowance.income_limits.in_a_relationship
+        income_within_limit = persons("disability_allowance__family_income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_12"]
         return in_relationship * income_within_limit
 
 
@@ -232,7 +221,7 @@ class disability_allowance__income_limit_clause_13(variables.Variable):
         sole_parent = persons("is_sole_parent", period) * \
         persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
         only_one_child = (persons("social_security__dependent_children", period) == 1)
-        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.sole_parent_with_one_dep_child
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_13"]
         return income_within_limit * only_one_child * sole_parent
 
 
@@ -248,7 +237,7 @@ class disability_allowance__income_limit_clause_14(variables.Variable):
         sole_parent = persons("is_sole_parent", period) * \
         persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
         more_than_one_child = (persons("social_security__dependent_children", period) > 1)
-        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.single_person.sole_parent_with_one_dep_child
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_14"]
         return more_than_one_child * sole_parent * income_within_limit
 
 
