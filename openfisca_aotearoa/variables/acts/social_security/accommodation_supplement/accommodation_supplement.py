@@ -12,23 +12,31 @@ from openfisca_aotearoa import entities
 from openfisca_aotearoa.variables.demographics import housing
 
 
-# TODO: Review against the new 2018 act
-class accommodation_supplement__eligible(variables.Variable):
-    value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+class accommodation_supplement__entitled(variables.Variable):
     label = "Eligible for Accommodation Supplement"
-
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783242"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
 
     def formula(persons, period, parameters):
+        this_month = period.first_month
+
         # Based on MSD's web page
         # https://www.workandincome.govt.nz/products/a-z-benefits/accommodation-supplement.html
-        age_threshold = parameters(
-            period).entitlements.social_security.accommodation_supplement.age_threshold
+        age_threshold = (
+            parameters(period)
+            .entitlements
+            .social_security
+            .accommodation_supplement
+            .age_threshold
+            )
+
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
-        age_requirement = persons("age", period.start) >= age_threshold
+        age_requirement = persons("age", this_month.start) >= age_threshold
 
         # http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html
         # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
@@ -41,20 +49,43 @@ class accommodation_supplement__eligible(variables.Variable):
         # is not ordinarily resident in New Zealand;
 
         in_nz = persons(
-            "social_security__ordinarily_resident_in_new_zealand", period)
-        resident_or_citizen = persons("immigration__resident", period) + persons(
-            "immigration__permanent_resident", period) + persons("citizenship__citizen", period)
-        social_security__accomodation_costs = persons(
-            "social_security__accomodation_costs", period)
-        not_social_housing = (
-            persons("eligible_for_social_housing", period) == 0)
+            "social_security__ordinarily_resident_in_new_zealand",
+            this_month,
+            )
+
+        resident_or_citizen = (
+            + persons("immigration__resident", this_month)
+            + persons("immigration__permanent_resident", this_month)
+            + persons("citizenship__citizen", this_month)
+            )
+
+        social_security__accommodation_costs = persons(
+            "social_security__accommodation_costs",
+            this_month,
+            )
+
+        social_housing = persons("eligible_for_social_housing", this_month)
+        not_social_housing = social_housing == 0
 
         income = persons(
-            "accommodation_supplement__below_income_threshold", period)
-        cash = persons(
-            "accommodation_supplement__below_cash_threshold", period)
+            "accommodation_supplement__below_income_threshold",
+            this_month,
+            )
 
-        return age_requirement * resident_or_citizen * in_nz * social_security__accomodation_costs * not_social_housing * income * cash
+        cash = persons(
+            "accommodation_supplement__below_cash_threshold",
+            this_month,
+            )
+
+        return (
+            + age_requirement
+            * resident_or_citizen
+            * in_nz
+            * social_security__accommodation_costs
+            * not_social_housing
+            * income
+            * cash
+            )
 
 
 # Todo possibly needs renaming to social_security__eligible_for_social_housing or social_housing__eligible

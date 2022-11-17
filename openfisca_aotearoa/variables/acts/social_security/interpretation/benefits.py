@@ -8,7 +8,7 @@ from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class social_security__accomodation_costs(variables.Variable):
+class social_security__accommodation_costs(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person has accommodation costs"

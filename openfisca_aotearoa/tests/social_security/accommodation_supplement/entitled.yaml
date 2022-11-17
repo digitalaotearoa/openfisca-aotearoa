@@ -1,0 +1,131 @@
+- name: Accommodation Supplement for a resident
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 30
+    immigration__resident:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: true
+    eligible_for_social_housing:
+      2018-06: false
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: true
+
+- name: Accommodation Supplement for a permanent resident
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 30
+    immigration__permanent_resident:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: true
+    eligible_for_social_housing:
+      2018-06: false
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: true
+
+- name: Accommodation Supplement for a citizen
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 30
+    citizenship__citizen:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: true
+    eligible_for_social_housing:
+      2018-06: false
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: true
+
+- name: Tests Accommodation Supplement, when applicant has no costs
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 30
+    immigration__resident:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: false
+    eligible_for_social_housing:
+      2018-06: false
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: false
+
+- name: Tests Accommodation Supplement, when applicant is too young
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 15
+    immigration__resident:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: true
+    eligible_for_social_housing:
+      2018-06: false
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: false
+
+- name: Tests Accommodation Supplement, when applicant has social housing
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      "2018-06-01": 45
+    immigration__resident:
+      2018-06: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-06: true
+    social_security__accommodation_costs:
+      2018-06: true
+    eligible_for_social_housing:
+      2018-06: true
+    accommodation_supplement__below_income_threshold:
+      2018-06: true
+    accommodation_supplement__below_cash_threshold:
+      2018-06: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W23: false
