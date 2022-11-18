@@ -10,14 +10,13 @@ long_description = (this_directory / "README.md").read_text()  # pylint: disable
 setup(
     name = "OpenFisca-Aotearoa",
     version = "16.0.0",
-    author = "New Zealand Government, Service Innovation Lab",
-    author_email = "brenda.wallace@dia.govt.nz,hamish.fraser@dia.govt.nz",
+    author = "Digital Aotearoa Collective, originally a New Zealand Government, Service Innovation Lab project",
     description = "OpenFisca tax and benefit system for Aotearoa",
     long_description = long_description,
     long_description_content_type = "text/markdown",
     keywords = "benefit microsimulation social tax",
     license = "http://www.fsf.org/licensing/licenses/agpl-3.0.html",
-    url = "https://github.com/ServiceInnovationLab/openfisca-aotearoa",
+    url = "https://github.com/digitalaotearoa/openfisca-aotearoa",
     include_package_data = True,  # Will read MANIFEST.in
     data_files = [
         (
