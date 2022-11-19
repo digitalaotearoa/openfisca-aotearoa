@@ -7,9 +7,5 @@
     social_security__granted_main_benefit: true
     disability_allowance__below_income_threshold: true
     disability_allowance__ongoing_additional_expenses: true
-    disability_allowance__receiving_disablement_pension: false
-    disability_allowance__receiving_veterans_support_entitlement: false
-    disability_allowance__receiving_accident_compensation_entitlement: false
-    disability_allowance__receiving_any_other_disability_allowance: false
   output: 
-    disability_allowance_entitled: true
+    disability_allowance__entitled: true

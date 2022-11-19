@@ -3,126 +3,126 @@
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 2006-01-01
         social_security__income: 
-          "2022-W07": 200
-          "2022-W08": 300
-          "2022-W09": 589
+          2022-W07: 200
+          2022-W08: 300
+          2022-W09: 589
     families:
       Whanau:
-        principal: ["Lily"]
+        principal: Lily
   output:
     age:
-      "2022-02-20": 16
-    disability_allowance__person_has_partner:
-      "2022-W07": false
-      "2022-W08": false
-      "2022-W09": false
+      2022-02-20: 16
+    person_has_partner:
+      2022-W07: false
+      2022-W08: false
+      2022-W09: false
     social_security__dependent_children:
-      "2022-W07": 0
-      "2022-W08": 0
-      "2022-W09": 0
+      2022-W07: 0
+      2022-W08: 0
+      2022-W09: 0
     disability_allowance__income_limit_clause_10: 
-      "2022-W07": true
-      "2022-W08": true
-      "2022-W09": false
+      2022-W07: true
+      2022-W08: true
+      2022-W09: false
 - name: Disability allowance - Any other single person, withount dependant children (Clause 11)
   period: 2022-W07
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 2000-01-01
         social_security__income: 
-          "2022-W07": 589
-          "2022-W08": 650
-          "2022-W09": 735
+          2022-W07: 589
+          2022-W08: 650
+          2022-W09: 735
     families:
       Whanau:
-        principal: ["Lily"]
+        principal: Lily
   output:
     age:
-      "2022-02-20": 22
-    disability_allowance__person_has_partner:
-      "2022-W07": false
-      "2022-W08": false
-      "2022-W09": false
+      2022-02-20: 22
+    person_has_partner:
+      2022-W07: false
+      2022-W08: false
+      2022-W09: false
     social_security__dependent_children: 
-      "2022-W07": 0
-      "2022-W08": 0
-      "2022-W09": 0
+      2022-W07: 0
+      2022-W08: 0
+      2022-W09: 0
     disability_allowance__income_limit_clause_11: 
-      "2022-W07": true
-      "2022-W08": true
-      "2022-W09": false
+      2022-W07: true
+      2022-W08: true
+      2022-W09: false
 - name: Disability allowance - Person in a relationship (Clause 12) without children
   period: 2022-W07
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 2000-01-01
         social_security__income: 
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 600
-      "Adam":
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 600
+      Adam:
         date_of_birth: 1998-01-01
         social_security__income:
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 600
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 600
     families:
       Whanau:
-        principal: ["Lily"]
-        partners: ["Adam"]
+        principal: Lily
+        partners: Adam
   output:
     age:
-      "2022-02-20": [22, 24]
-    disability_allowance__person_has_partner: 
+      2022-02-20: [22, 24]
+    person_has_partner: 
     - true #Adam
     - true #Lily
     social_security__dependent_children: 
-      "2022-W07": [0, 0]
-      "2022-W08": [0, 0]
-      "2022-W09": [0, 0]
+      2022-W07: [0, 0]
+      2022-W08: [0, 0]
+      2022-W09: [0, 0]
     disability_allowance__family_income:
-      "2022-W07": 400
-      "2022-W08": 800
-      "2022-W09": 1200
+      2022-W07: 400
+      2022-W08: 800
+      2022-W09: 1200
     disability_allowance__income_limit_clause_12: 
-      "2022-W07": true
-      "2022-W08": true
-      "2022-W09": false
+      2022-W07: true
+      2022-W08: true
+      2022-W09: false
 - name: Disability allowance - Person in a relationship (Clause 12) with children
   period: 2022-W07
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 1990-01-01
         social_security__income: 
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 600
-      "Adam":
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 600
+      Adam:
         date_of_birth: 1988-01-01
         social_security__income:
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 593
-      "Tom":
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 593
+      Tom:
         date_of_birth: 2010-01-01
     families:
       Whanau:
-        principal: ["Lily"]
-        partners: ["Adam"]
-        children: ["Tom"]
+        principal: Lily
+        partners: Adam
+        children: Tom
   output:
     age:
-      "2022-02-20": [32, 34, 12]
-    disability_allowance__person_has_partner: 
+      2022-02-20: [32, 34, 12]
+    person_has_partner: 
     - true #Adam
     - true #Lily
     - false #Tom
@@ -131,91 +131,91 @@
      - 1 #Lily
      - 0 #Tom
     disability_allowance__family_income:
-      "2022-W07": 400
-      "2022-W08": 800
-      "2022-W09": 1193
+      2022-W07: 400
+      2022-W08: 800
+      2022-W09: 1193
     disability_allowance__income_limit_clause_12:
-      "2022-W07": [true, true, false]
-      "2022-W08": [true, true, false]
-      "2022-W09": [false, false, false]
+      2022-W07: [true, true, false]
+      2022-W08: [true, true, false]
+      2022-W09: [false, false, false]
 - name: Disability allowance - Sole parent with 1 dependant child (Clause 13)
   period: 2022-W07
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 1990-01-01
         social_security__income: 
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 822
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 822
         is_sole_parent: 
-          "2022-W07": true
-          "2022-W08": true
-          "2022-W09": true
+          2022-W07: true
+          2022-W08: true
+          2022-W09: true
         disability_allowance__sole_parent_meets_relationship_qualification:
-          "2022-W07": true
-          "2022-W08": true
-          "2022-W09": true
-      "Tom":
+          2022-W07: true
+          2022-W08: true
+          2022-W09: true
+      Tom:
         date_of_birth: 2010-01-01
     families:
       Whanau:
-        principal: ["Lily"]
-        children: ["Tom"]
+        principal: Lily
+        children: Tom
   output:
     age:
-      "2022-02-20": [32, 12]
-    disability_allowance__person_has_partner:
+      2022-02-20: [32, 12]
+    person_has_partner:
     - false #Lily
     - false #Tom
     social_security__dependent_children:
-      "2022-W07": [1, 0]
-      "2022-W08": [1, 0]
-      "2022-W09": [1, 0]
+      2022-W07: [1, 0]
+      2022-W08: [1, 0]
+      2022-W09: [1, 0]
     disability_allowance__income_limit_clause_13:
-      "2022-W07": [true, false]
-      "2022-W08": [true, false]
-      "2022-W09": [false, false]
+      2022-W07: [true, false]
+      2022-W08: [true, false]
+      2022-W09: [false, false]
 - name: Disability allowance - For any other sole parent i.e. greater than 1 child (Clause 14)
   period: 2022-W07
   absolute_error_margin: 0
   input:
     persons:
-      "Lily":
+      Lily:
         date_of_birth: 1990-01-01
         social_security__income: 
-          "2022-W07": 200
-          "2022-W08": 400
-          "2022-W09": 866
+          2022-W07: 200
+          2022-W08: 400
+          2022-W09: 866
         disability_allowance__sole_parent_meets_relationship_qualification:
-          "2022-W07": true
-          "2022-W08": true
-          "2022-W09": true
+          2022-W07: true
+          2022-W08: true
+          2022-W09: true
         is_sole_parent:
-          "2022-W07": true
-          "2022-W08": true
-          "2022-W09": true
-      "Tom":
+          2022-W07: true
+          2022-W08: true
+          2022-W09: true
+      Tom:
         date_of_birth: 2010-01-01
-      "Harry":
+      Harry:
         date_of_birth: 2012-01-01
     families:
       Whanau:
-        principal: ["Lily"]
-        children: ["Tom", "Harry"]
+        principal: Lily
+        children: [Tom, Harry]
   output:
     age:
-      "2022-02-20": [32, 12, 10]
-    disability_allowance__person_has_partner: 
+      2022-02-20: [32, 12, 10]
+    person_has_partner: 
     - false #Lily
     - false #Tom
     - false #Harry
     social_security__dependent_children:
-      "2022-W07": [2, 0, 0]
-      "2022-W08": [2, 0, 0]
-      "2022-W09": [2, 0, 0]
+      2022-W07: [2, 0, 0]
+      2022-W08: [2, 0, 0]
+      2022-W09: [2, 0, 0]
     disability_allowance__income_limit_clause_14:
-      "2022-W07": [true, false, false]
-      "2022-W08": [true, false, false]
-      "2022-W09": [false, false, false]
+      2022-W07: [true, false, false]
+      2022-W08: [true, false, false]
+      2022-W09: [false, false, false]
