@@ -51,11 +51,7 @@ class disability_allowance__entitled(variables.Variable):
         ssa2018_85_2_c_i = persons("social_security__granted_main_benefit", period)
         ssa2018_85_2_c_ii = persons("disability_allowance__below_income_threshold", period)
         ssa2018_85_2_d = persons("disability_allowance__ongoing_additional_expenses", period)
-        # ssa2018_87_a_i = numpy.logical_not(persons("disability_allowance__receiving_disablement_pension" , period))
-        # ssa2018_87_a_ii = numpy.logical_not(persons("disability_allowance__receiving_veterans_support_entitlement", period))
-        # ssa2018_87_b = numpy.logical_not(persons("disability_allowance__receiving_accident_compensation_entitlement", period))
-        # ssa2018_87_c_i_to_iii = numpy.logical_not(persons("disability_allowance__receiving_any_other_disability_allowance", period))
-
+        
         return (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d
 
 
@@ -291,7 +287,7 @@ class disability_allowance__benefit(variables.Variable):
     default_value = -9999
     entity = entities.Person
     definition_period = periods.WEEK
-    label = "Amount that a person is eliglble for"
+    label = "Maximum disability allowance that a person is eligible for."
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
     def formula_2018_11_26(persons, period, parameters):
