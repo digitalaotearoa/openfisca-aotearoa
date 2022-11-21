@@ -15,7 +15,7 @@
   output:
     age:
       2022-02-20: 16
-    person_has_partner:
+    social_security__in_a_relationship:
       2022-W07: false
       2022-W08: false
       2022-W09: false
@@ -44,7 +44,7 @@
   output:
     age:
       2022-02-20: 22
-    person_has_partner:
+    social_security__in_a_relationship:
       2022-W07: false
       2022-W08: false
       2022-W09: false
@@ -80,7 +80,7 @@
   output:
     age:
       2022-02-20: [22, 24]
-    person_has_partner: 
+    social_security__in_a_relationship: 
     - true #Adam
     - true #Lily
     social_security__dependent_children: 
@@ -122,7 +122,7 @@
   output:
     age:
       2022-02-20: [32, 34, 12]
-    person_has_partner: 
+    social_security__in_a_relationship: 
     - true #Adam
     - true #Lily
     - false #Tom
@@ -166,7 +166,7 @@
   output:
     age:
       2022-02-20: [32, 12]
-    person_has_partner:
+    social_security__in_a_relationship:
     - false #Lily
     - false #Tom
     social_security__dependent_children:
@@ -207,7 +207,7 @@
   output:
     age:
       2022-02-20: [32, 12, 10]
-    person_has_partner: 
+    social_security__in_a_relationship: 
     - false #Lily
     - false #Tom
     - false #Harry

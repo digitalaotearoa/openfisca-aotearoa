@@ -166,7 +166,7 @@ class disability_allowance__income_limit_clause_10(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         person_aged_16_or_17 = (persons("age", period.start) >= 16) * (persons("age", period.start) <= 17) 
-        no_partners = numpy.logical_not(persons("person_has_partner", period))
+        no_partners = numpy.logical_not(persons("social_security__in_a_relationship", period))
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_10"]
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         return person_aged_16_or_17 * no_partners * income_within_limit * without_dependant_child 
@@ -181,7 +181,7 @@ class disability_allowance__income_limit_clause_11(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         person_not_aged_16_or_17 = (persons("age", period.start) < 16) + (persons("age", period.start) > 17)
-        no_partners = numpy.logical_not(persons("person_has_partner", period))
+        no_partners = numpy.logical_not(persons("social_security__in_a_relationship", period))
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))  #review this
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_11"]
@@ -197,7 +197,7 @@ class disability_allowance__income_limit_clause_12(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
     def formula_2018_11_26(persons, period, parameters):
-        in_relationship = persons("person_has_partner", period) #refactor this to person_has_partner
+        in_relationship = persons("social_security__in_a_relationship", period)
         income_within_limit = persons("disability_allowance__family_income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_12"]
         return in_relationship * income_within_limit
 
@@ -234,7 +234,7 @@ class disability_allowance__income_limit_clause_14(variables.Variable):
         return more_than_one_child * sole_parent * income_within_limit
 
 
-class disability_allowance__is_adequately_supported_by_partner(variables.Variable): #copied, need to refactor 
+class disability_allowance__is_adequately_supported_by_partner(variables.Variable):
     value_type = bool
     entity = entities.Person
     default_value: False
@@ -245,7 +245,7 @@ class disability_allowance__is_adequately_supported_by_partner(variables.Variabl
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
 
 
-class disability_allowance__sole_parent_meets_relationship_qualification(variables.Variable): #copied, need to refactor 
+class disability_allowance__sole_parent_meets_relationship_qualification(variables.Variable):
     value_type = bool
     default_value = True
     entity = entities.Person
@@ -255,7 +255,7 @@ class disability_allowance__sole_parent_meets_relationship_qualification(variabl
 
     def formula(persons, period, parameters):
         # Do they have a partner
-        no_partners = (persons("person_has_partner", period) == 0)
+        no_partners = (persons("social_security__in_a_relationship", period) == 0)
         not_supported = (persons("disability_allowance__is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported
@@ -269,7 +269,7 @@ class disability_allowance__current_income(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
 
-class disability_allowance__family_income(variables.Variable): # Copied from social security job_seeker formulas
+class disability_allowance__family_income(variables.Variable):
     value_type = float
     entity = entities.Person
     definition_period = periods.WEEK
