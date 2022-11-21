@@ -261,14 +261,6 @@ class disability_allowance__sole_parent_meets_relationship_qualification(variabl
         return no_partners + not_supported
 
 
-class disability_allowance__current_income(variables.Variable):
-    value_type = int
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "How much does the person earn per week? (including Superannuation income or Veteran's Pension?)"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
-
-
 class disability_allowance__family_income(variables.Variable):
     value_type = float
     entity = entities.Person
