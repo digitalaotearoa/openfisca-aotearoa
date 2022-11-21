@@ -242,7 +242,7 @@ class disability_allowance__is_adequately_supported_by_partner(variables.Variabl
     their partner as their partner has been imprisoned or is subject to release or detention conditions that prevent employment)
     """
     definition_period = periods.WEEK
-    reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
 
 
 class disability_allowance__sole_parent_meets_relationship_qualification(variables.Variable):
@@ -251,7 +251,7 @@ class disability_allowance__sole_parent_meets_relationship_qualification(variabl
     entity = entities.Person
     label = "Meets the sole parent support test for not being in a relationship"
     definition_period = periods.WEEK
-    reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
 
     def formula(persons, period, parameters):
         # Do they have a partner
