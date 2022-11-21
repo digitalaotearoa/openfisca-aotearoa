@@ -41,13 +41,31 @@ class social_security__granted_main_benefit(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784575"
 
     def formula(persons, period, parameters):
-        a = persons("jobseeker_benefit__granted", period) + \
+        a = persons("jobseeker_support__granted", period) + \
             persons("sole_parent_support__granted", period) + \
             (persons("supported_living_payment__granted", period) * (persons("supported_living_payment__restricted_work_capacity", period) + persons("totally_blind", period))) + \
             (persons("supported_living_payment__granted", period) * persons("supported_living_payment__caring_for_another_person", period)) + \
             persons("youth_payment__granted", period) + \
             persons("young_parent_payment__granted", period) + \
             persons("emergency_benefit__granted", period)
+        # b - is defined in section 349 for the purposes of sections 349 to 352
+        return a
+
+
+class social_security__receiving_main_benefit(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    label = "Person is recieving/being paid a main benefit"
+    definition_period = periods.WEEK
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784575"
+
+    def formula(persons, period, parameters):
+        a = persons("jobseeker_support__receiving", period) + \
+            persons("sole_parent_support__receiving", period) + \
+            persons("supported_living_payment__receiving", period) + \
+            persons("youth_payment__receiving", period) + \
+            persons("young_parent_payment__receiving", period) + \
+            persons("emergency_benefit__receiving", period)
         # b - is defined in section 349 for the purposes of sections 349 to 352
         return a
 

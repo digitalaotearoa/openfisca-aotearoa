@@ -159,7 +159,7 @@ class jobseeker_support__receiving(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
-class jobseeker_benefit__granted(variables.Variable):
+class jobseeker_support__granted(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person

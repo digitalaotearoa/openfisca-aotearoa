@@ -4,6 +4,17 @@
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
+ 
+ # 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
+* Added variables:
+  - `social_security__receiving_main_benefit`
+  - `emergency_benefit__receiving`
+  - `sole_parent_support__receiving`
+  - `supported_living_payment__receiving`
+  - `young_parent_payment__receiving`
+  - `youth_payment__receiving`
+* Renamed variables:
+  - `jobseeker_benefit__granted` to `jobseeker_support__granted`
 
 # 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 * Change to variable `person_has_partner` - time period switched from month to week

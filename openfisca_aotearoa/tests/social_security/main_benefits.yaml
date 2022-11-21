@@ -1,0 +1,123 @@
+- name: >
+    Social Security Act 2018
+    Testing entitled, granted but not receiving main benefits
+  period: 2019-11-26
+  input:
+    persons:
+      "Mama":
+        date_of_birth: 1997-01-01
+        jobseeker_support__granted:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+      "Papa":
+        date_of_birth: 1996-01-01
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+  output:
+    social_security__granted_main_benefit:
+      2020-W01: [true, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [true, false]
+      2023-W01: [true, false]
+    social_security__receiving_main_benefit:
+      2020-W01: [false, false]
+      2021-W01: [false, false]
+      2021-W23: [false, false]
+      2022-W01: [false, false]
+      2023-W01: [false, false]
+- name: >
+    Social Security Act 2018
+    Testing entitled, granted and receiving main benefit
+  period: 2019-11-26
+  input:
+    persons:
+      "Mama":
+        date_of_birth: 1997-01-01
+        jobseeker_support__granted:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+        jobseeker_support__receiving:
+          2020-W01: false
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+      "Papa":
+        date_of_birth: 1996-01-01
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+  output:
+    social_security__granted_main_benefit:
+      2020-W01: [true, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [true, false]
+      2023-W01: [true, false]
+    social_security__receiving_main_benefit:
+      2020-W01: [false, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [true, false]
+      2023-W01: [true, false]
+- name: >
+    Social Security Act 2018
+    Testing entitled, granted and receiving different main benefits
+  period: 2019-11-26
+  input:
+    persons:
+      "Mama":
+        date_of_birth: 1997-01-01
+        jobseeker_support__granted:
+          2020-W01: true
+          2021-W01: true
+          2021-W23: true
+          2022-W01: true
+          2023-W01: true
+        jobseeker_support__receiving:
+          2020-W01: false
+          2021-W01: true
+          2021-W23: false
+          2022-W01: false
+          2023-W01: false
+        sole_parent_support__receiving:
+          2020-W01: false
+          2021-W01: false
+          2021-W23: false
+          2022-W01: false
+          2023-W01: true
+        supported_living_payment__receiving:
+          2020-W01: false
+          2021-W01: false
+          2021-W23: true
+          2022-W01: false
+          2023-W01: false
+      "Papa":
+        date_of_birth: 1996-01-01
+    families:
+      Whanau:
+        principal: ["Mama"]
+        partners: ["Papa"]
+  output:
+    social_security__granted_main_benefit:
+      2020-W01: [true, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [true, false]
+      2023-W01: [true, false]
+    social_security__receiving_main_benefit:
+      2020-W01: [false, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [false, false]
+      2023-W01: [true, false]

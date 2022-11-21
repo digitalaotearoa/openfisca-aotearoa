@@ -14,6 +14,15 @@ class youth_payment__granted(variables.Variable):
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
+class youth_payment__receiving(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently recieving/being paid the youth payment benefit"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
+
+
 class youth_payment__single_young_person_exceptional_circumstances(variables.Variable):
     value_type = bool
     entity = entities.Person
