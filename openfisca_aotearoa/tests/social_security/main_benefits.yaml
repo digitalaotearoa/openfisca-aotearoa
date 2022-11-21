@@ -25,7 +25,7 @@
       2021-W23: [true, false]
       2022-W01: [true, false]
       2023-W01: [true, false]
-    social_security__recieving_main_benefit:
+    social_security__receiving_main_benefit:
       2020-W01: [false, false]
       2021-W01: [false, false]
       2021-W23: [false, false]
@@ -64,7 +64,7 @@
       2021-W23: [true, false]
       2022-W01: [true, false]
       2023-W01: [true, false]
-    social_security__recieving_main_benefit:
+    social_security__receiving_main_benefit:
       2020-W01: [false, false]
       2021-W01: [true, false]
       2021-W23: [true, false]
@@ -115,7 +115,7 @@
       2021-W23: [true, false]
       2022-W01: [true, false]
       2023-W01: [true, false]
-    social_security__recieving_main_benefit:
+    social_security__receiving_main_benefit:
       2020-W01: [false, false]
       2021-W01: [true, false]
       2021-W23: [true, false]

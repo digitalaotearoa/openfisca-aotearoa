@@ -1,7 +1,7 @@
 # Changelog
 # 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
 * Added variables:
-  - `social_security__recieving_main_benefit`
+  - `social_security__receiving_main_benefit`
   - `emergency_benefit__receiving`
   - `sole_parent_support__receiving`
   - `supported_living_payment__receiving`

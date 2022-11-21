@@ -52,7 +52,7 @@ class social_security__granted_main_benefit(variables.Variable):
         return a
 
 
-class social_security__recieving_main_benefit(variables.Variable):
+class social_security__receiving_main_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person is recieving/being paid a main benefit"
