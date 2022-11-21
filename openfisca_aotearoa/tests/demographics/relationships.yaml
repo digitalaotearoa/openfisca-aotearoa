@@ -1,23 +1,23 @@
 - name: Relationship status
-  period: "2018-10"
+  period: "2018-W40"
   absolute_error_margin: 0
   input:
     persons:
       Mama:
         age:
-          "2017-10-01": 30
+          "day:2017-10-01:7": 30
       Papa:
         age:
-          "2017-10-01": 30
+          "day:2017-10-01:7": 30
       Bob:
         age:
-          "2017-10-01": 30
+          "day:2017-10-01:7": 30
       Fred:
         age:
-          "2017-10-01": 30
+          "day:2017-10-01:7": 30
       Mary:
         age:
-          "2017-10-01": 30
+          "day:2017-10-01:7": 30
     families:
       One:
         principal: Mama

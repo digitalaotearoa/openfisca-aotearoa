@@ -15,7 +15,7 @@ class social_security__in_a_relationship(variables.Variable):
     set_input = holders.set_input_dispatch_by_period
 
     def formula(persons, period, parameters):
-        return persons("person_has_partner", period.first_month)
+        return persons("person_has_partner", period)
 
 
 class social_security__been_married_or_civil_union_or_de_facto_relationship(variables.Variable):
