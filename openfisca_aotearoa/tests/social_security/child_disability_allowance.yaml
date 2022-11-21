@@ -1,5 +1,61 @@
----
+- name: Child disability allowance
+  period: 2020-W34
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__residential_requirement: true
+      Papa:
+        social_security__residential_requirement: true
+      Tama_disabled_child:
+        date_of_birth: 2016-01-01 # 4 years old
+        social_security__residential_requirement: true
+        child_disability_allowance__residing_in_principal_home: true
+        child_disability_allowance__residing_in_approved_voluntary_organisation: true
+        social_security__beneficiary_except_benefit_exempt_for_childcare_disability_allowance: true
+        social_security__requires_constant_care: true
+        social_security__medical_certificate_months: 12
+      Tamahine_able_bodied_teenager:
+        date_of_birth: 2001-01-01 # 19 years old
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible_child: [true]
+    social_security__residential_requirement:
+      - true  # mama (principal carer)
+      - true  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    child_disability_allowance__residing_in_principal_home:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    child_disability_allowance__residing_in_approved_voluntary_organisation:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    social_security__beneficiary_except_benefit_exempt_for_childcare_disability_allowance:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    childcare_disability_allowance__child_with_serious_disability:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    child_disability_allowance__entitled:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true  # Tama (disabled child)
+      - false  # tamahine (able bodied)
 
+# Month based tests for the 1964 Act
 - name: Child disability allowance
   period: 2018-08
   absolute_error_margin: 0
