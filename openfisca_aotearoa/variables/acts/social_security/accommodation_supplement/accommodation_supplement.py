@@ -23,8 +23,17 @@ class accommodation_supplement__entitled(variables.Variable):
 
     def formula_2018_11_26(people, period, parameters):
         accommodation_costs = people("accommodation_costs", period)
+        ssa2018_65_2 = accommodation_costs > 0
 
-        return accommodation_costs > 0
+        accommodation_type = people("accommodation_type", period)
+        ssa2018_66 = (
+            + (accommodation_type == housing.AccommodationType.rent)
+            + (accommodation_type == housing.AccommodationType.board)
+            + (accommodation_type == housing.AccommodationType.lodging)
+            + (accommodation_type == housing.AccommodationType.mortgage)
+            )
+
+        return ssa2018_65_2 * ssa2018_66
 
     def formula(persons, period, parameters):
         this_month = period.first_month
@@ -182,7 +191,7 @@ class accommodation_supplement__base(variables.Variable):
 
         # 6. After, we restore the original ages:
         simulation.delete_arrays("age", monday)
-        simulation.set_input("age", monday, age)       
+        simulation.set_input("age", monday, age)
 
         # 7. And we re-invalidate the cached calculations:
         for letter in string.ascii_lowercase[0:6]:
@@ -274,7 +283,7 @@ class accommodation_supplement__situation(variables.Variable):
         # And conditions 4-6.
         mortgage = accommodation_type == housing.AccommodationType.mortgage
         ssa_sched_4_part_7_4_to_6 = (cond_1, cond_2, cond_3) * mortgage
-        
+
         # Finally we create a list of conditions and situations.
         conditions = *ssa_sched_4_part_7_1_to_3, *ssa_sched_4_part_7_4_to_6
         situations = tuple(AccommodationSupplement__Situation)[1:]
@@ -307,7 +316,7 @@ class accommodation_supplement__rebate(variables.Variable):
             )
 
         situations = [
-            situation == member 
+            situation == member
             for member in tuple(AccommodationSupplement__Situation)[1:]
             ]
 
@@ -315,7 +324,7 @@ class accommodation_supplement__rebate(variables.Variable):
             + accommodation_costs
             - rebate[f"section_{i}"]["accommodation_costs"]
             * (
-                + accommodation_costs 
+                + accommodation_costs
                 - rebate[f"section_{i}"]["base_rate"] * base_rate
                 )
             for i in range(1, 7)
@@ -364,11 +373,11 @@ class accommodation_supplement__area_of_residence(variables.Variable):
         name = area_of_nz["UA2017_NAME"]
         area = "SSA2018_AREA"
         locations = (numpy.flatnonzero(name.isin([loc])) for loc in part_of_nz)
-        
+
         # The we map locations to each area 1-4.
         areas_of_residence = (
-            area_of_residence[area_of_nz.at[index[0], area]].index 
-            if len(index) > 0 else area_of_residence.area_4.index 
+            area_of_residence[area_of_nz.at[index[0], area]].index
+            if len(index) > 0 else area_of_residence.area_4.index
             for index in locations
             )
 
@@ -398,13 +407,13 @@ class accommodation_supplement__cutout(variables.Variable):
             )
 
         situations = [
-            situation == member 
+            situation == member
             for member in tuple(AccommodationSupplement__Situation)[1:]
             ]
 
 
         ssa_sched_4_part_7_1_to_6 = [
-            cutout[f"section_{i}"][area] 
+            cutout[f"section_{i}"][area]
             for i in range(1, 7)
             ]
 
