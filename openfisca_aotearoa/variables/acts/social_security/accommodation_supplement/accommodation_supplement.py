@@ -14,7 +14,10 @@ from openfisca_aotearoa.variables.demographics import housing
 
 class accommodation_supplement__entitled(variables.Variable):
     label = "Eligible for Accommodation Supplement"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    reference = (
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241",
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/LMS96264.html",
+        )
     documentation = """TODO"""
     entity = entities.Person
     value_type = bool
@@ -23,17 +26,70 @@ class accommodation_supplement__entitled(variables.Variable):
 
     def formula_2018_11_26(people, period, parameters):
         accommodation_costs = people("accommodation_costs", period)
-        ssa2018_65_2 = accommodation_costs > 0
-
         accommodation_type = people("accommodation_type", period)
-        ssa2018_66 = (
-            + (accommodation_type == housing.AccommodationType.rent)
-            + (accommodation_type == housing.AccommodationType.board)
-            + (accommodation_type == housing.AccommodationType.lodging)
-            + (accommodation_type == housing.AccommodationType.mortgage)
+        receives_accommodation_supplement = people("accommodation_supplement__receiving", period)
+        receives_student_allowance = people("student_allowance__receiving", period)
+        entitled_to_student_allowance = people("student_allowance__eligible", period)
+
+        # 65    Accommodation supplement: discretionary grant
+        # (1)   MSD may grant a person (P), for the period that MSD determines
+        #       an accommodation supplement if—
+        #       (a) P has accommodation costs; and
+        ssa2018_65_1_a = (
+            + (accommodation_costs > 0)
+            * (accommodation_type != 0)
+            )
+        # TODO: add case if in relationship and partner pays
+
+        #       (b) P meets the assets requirement (as set out in regulations
+        #           made under section 423); and
+        # TODO: Cash Assets single
+        # TODO: Cash Assets in relationship
+        ssa2018_65_1_b = numpy.array(True)
+
+        #       (c) P is not excluded on either of the following grounds:
+        #           (i)     the social housing exclusion:
+        ssa2018_65_1_c_i = accommodation_type != housing.AccommodationType.social_housing
+
+        #           (ii)    the other funding exclusion.
+        ssa2018_67_a = receives_accommodation_supplement == False
+        # TODO: check if partner(s) receive
+        ssa2018_67_b_i = receives_student_allowance == False
+        ssa2018_67_b_ii = entitled_to_student_allowance == False
+        # NOTE: (iii) says if P does not receive because of income of half the
+        # planet, so we're just using previous answer for the MVP
+        ssa2018_67_b_iii = entitled_to_student_allowance == False
+        ssa2018_67_c = accommodation_type != housing.AccommodationType.residential_care
+        # NOTE: psychiatric or intellectual handicap situation may imply:
+        # 1. We collecting very sensitive personal information protected by law
+        # 2. A third-party disclosing P's very sensitive personal information,
+        #    in the case the aforesaid condition would render P unable to
+        #    disclose such data autonomously and to non-viciously consent.
+        # TODO: implement
+        ssa2018_67_d = numpy.array(False)
+        # (e)   P is receiving New Zealand superannuation or a veteran’s
+        #       pension and the total income of P and P’s spouse or partner (if
+        #       any) is more than the applicable amount specified in Part 2 of
+        #       Schedule 5.
+        # TODO: implement
+        ssa2018_67_e = numpy.array(False)
+
+        ssa2018_65_1_c_ii = (
+            + ssa2018_67_a
+            * ssa2018_67_b_i
+            * ssa2018_67_b_ii
+            * ssa2018_67_b_iii
+            * ssa2018_67_c
+            * ssa2018_67_d
+            * ssa2018_67_e
             )
 
-        return ssa2018_65_2 * ssa2018_66
+        return (
+            + ssa2018_65_1_a
+            * ssa2018_65_1_b
+            * ssa2018_65_1_c_i
+            * ssa2018_65_1_c_ii
+            )
 
     def formula(persons, period, parameters):
         this_month = period.first_month

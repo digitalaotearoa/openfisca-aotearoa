@@ -85,9 +85,50 @@ Family = build_entity(
         ],
     )
 
+Tenancy = build_entity(
+    key = "tenancy",
+    plural = "tenancies",
+    label = "Tenancy",
+    doc = """TODO""",
+    roles = [
+        {
+            "key": "principal",
+            "label": "Principal",
+            "doc": "The one person who is the focus of the calculation",
+            "max": 1,
+            },
+        {
+            "key": "tenant",
+            "plural": "tenants",
+            "label": "Tenants",
+            "doc": """#TODO"""
+            },
+        ],
+    )
+
+Ownership = build_entity(
+    key = "ownership",
+    plural = "ownerships",
+    label = "Ownership",
+    doc = """TODO""",
+    roles = [
+        {
+            "key": "principal",
+            "label": "Principal",
+            "doc": "The one person who is the focus of the calculation",
+            "max": 1,
+            },
+        {
+            "key": "owner",
+            "plural": "owners",
+            "label": "Owners",
+            "doc": """#TODO"""
+            },
+        ],
+    )
 
 Titled_Property = build_entity(
-    key="titled_property",
+    key="Titled_Property",
     plural="titled_properties",
     label="Titled Property",
     doc="""
@@ -116,4 +157,4 @@ Titled_Property = build_entity(
     )
 
 
-entities = [Titled_Property, Person, Family]
+entities = [Titled_Property, Ownership, Tenancy, Person, Family]
