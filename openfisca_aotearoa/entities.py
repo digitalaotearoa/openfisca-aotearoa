@@ -64,7 +64,7 @@ Family = build_entity(
             "doc": """
             The one or more persons who are partners of the principal.
             Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
-            In the case of the Social Security Act this can be considered an alternative to "in_a_relationship"
+            In the case of the Social Security Act this can be considered an alternative to "social_security__in_a_relationship"
             """,
             },
         {
@@ -75,7 +75,7 @@ Family = build_entity(
             The one or more persons who are also parents of children of the principal.
             Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
             In the case of the Social Security Act the application of "sole_parent_support__receiving" can be used for either parent to describe their scenario
-            """
+            """,
             },
         {
             "key": "child",

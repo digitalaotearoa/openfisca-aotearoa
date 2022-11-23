@@ -1,3 +1,73 @@
+- name: Sole Parent Support Act 2018 — Eligibility (in a relationship)
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: true
+        sole_parent_support__spouse_or_partner_died: false
+        sole_parent_support__marriage_or_civil_union_dissolved: false
+        sole_parent_support__living_apart_and_lost_support: false
+        sole_parent_support__lost_regular_support: false
+        social_security__residential_requirement: true
+        sole_parent_support__age_threshold: true
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+    families:
+      Whanau:
+        principal: Koro
+        children:
+          - Tamaiti
+  output:
+    sole_parent_support__dependent_child_requirement:
+      2019-W05-4:
+        - true
+        - false
+    sole_parent_support__requirement:
+      - false
+      - false
+    sole_parent_support__entitled:
+      - false
+      - false
+- name: Sole Parent Support Act 2018 — Eligibility (not in a relationship)
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        sole_parent_support__spouse_or_partner_died: false
+        sole_parent_support__marriage_or_civil_union_dissolved: false
+        sole_parent_support__living_apart_and_lost_support: false
+        sole_parent_support__lost_regular_support: false
+        social_security__residential_requirement: true
+        sole_parent_support__age_threshold: true
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+    families:
+      Whanau:
+        principal: Koro
+        children:
+          - Tamaiti
+  output:
+    sole_parent_support__dependent_child_requirement:
+      2019-W05-4:
+        - true
+        - false
+    sole_parent_support__requirement:
+      - true
+      - false
+    sole_parent_support__entitled:
+      - true
+      - false
+
+
 - name: Sole Parent Support Act 2018 — Eligibility
   period: 2019-W05
   absolute_error_margin: 0
@@ -15,13 +85,14 @@
   input:
     persons:
       Koro:
-        age: 50
+        age:
+          day:2019-01-28:7: 50
         sole_parent_support__requirement: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
       Tamaiti:
-        age: 5
+        age:
+          day:2019-01-28:7: 5
     families:
       Whanau:
         principal: Koro
@@ -31,7 +102,6 @@
     sole_parent_support__entitled:
       - true
       - false
-
 
 - name: Sole Parent Support Act 2018 — Eligibility Single
   period: 2019-W05
@@ -44,19 +114,24 @@
   output:
     sole_parent_support__entitled: true
 
-- name: Sole Parent Support Act 2018 — Eligibility Single Family
+- name: Sole Parent Support Act 2018 — Eligibility (in a relationship)
   period: 2019-W05
   absolute_error_margin: 0
   input:
     persons:
       Koro:
-        age: 50
-        social_security__in_a_relationship: false
-        sole_parent_support__split_care: true
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: true
+        sole_parent_support__spouse_or_partner_died: false
+        sole_parent_support__marriage_or_civil_union_dissolved: false
+        sole_parent_support__living_apart_and_lost_support: false
+        sole_parent_support__lost_regular_support: false
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
       Tamaiti:
-        age: 5
+        age:
+          day:2019-01-28:7: 5
     families:
       Whanau:
         principal: Koro
@@ -64,31 +139,19 @@
           - Tamaiti
   output:
     sole_parent_support__entitled:
-      - true
       - false
-
-
-- name: Sole Parent Support Act 2018 — Eligibility Spouse or Partner Died
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__spouse_or_partner_died: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
-
+      - false
 - name: Sole Parent Support Act 2018 — Eligibility Spouse or Partner Died Family
   period: 2019-W05
   absolute_error_margin: 0
   input:
     persons:
       Koro:
-        sole_parent_support__spouse_or_partner_died: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
+        sole_parent_support__spouse_or_partner_died: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:
@@ -100,19 +163,6 @@
     sole_parent_support__entitled:
       - true
       - false
-
-
-- name: Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union Dissolved
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__marriage_or_civil_union_dissolved: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
-
 - name: Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union Dissolved Family
   period: 2019-W05
   absolute_error_margin: 0
@@ -120,9 +170,10 @@
     persons:
       Koro:
         sole_parent_support__marriage_or_civil_union_dissolved: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:
@@ -134,19 +185,6 @@
     sole_parent_support__entitled:
       - true
       - false
-
-
-- name: Sole Parent Support Act 2018 — Eligibility Living apart and Lost Support
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__living_apart_and_lost_support: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
-
 - name: Sole Parent Support Act 2018 — Eligibility Living apart and Lost Support Family
   period: 2019-W05
   absolute_error_margin: 0
@@ -154,9 +192,10 @@
     persons:
       Koro:
         sole_parent_support__living_apart_and_lost_support: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:
@@ -168,19 +207,6 @@
     sole_parent_support__entitled:
       - true
       - false
-
-
-- name: Sole Parent Support Act 2018 — Eligibility Lost Regular Support
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__lost_regular_support: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
-
 - name: Sole Parent Support Act 2018 — Eligibility Lost Regular Support Family
   period: 2019-W05
   absolute_error_margin: 0
@@ -188,9 +214,10 @@
     persons:
       Koro:
         sole_parent_support__lost_regular_support: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:
@@ -202,19 +229,6 @@
     sole_parent_support__entitled:
       - true
       - false
-
-
-- name: Sole Parent Support Act 2018 — Eligibility Partner Imprisoned
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__partner_imprisoned: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
-
 - name: Sole Parent Support Act 2018 — Eligibility Partner Imprisoned Family
   period: 2019-W05
   absolute_error_margin: 0
@@ -222,9 +236,10 @@
     persons:
       Koro:
         sole_parent_support__partner_imprisoned: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:
@@ -237,16 +252,6 @@
       - true
       - false
 
-- name: Sole Parent Support Act 2018 — Eligibility Partner Supervision
-  period: 2019-W05
-  absolute_error_margin: 0
-  input:
-    sole_parent_support__partner_supervision: true
-    sole_parent_support__split_care: true
-    social_security__residential_requirement: true
-    sole_parent_support__age_threshold: true
-  output:
-    sole_parent_support__entitled: true
 
 - name: Sole Parent Support Act 2018 — Eligibility Partner Supervision Family
   period: 2019-W05
@@ -255,9 +260,10 @@
     persons:
       Koro:
         sole_parent_support__partner_supervision: true
-        sole_parent_support__split_care: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        age:
+          day:2019-01-28:7: 30
       Tamaiti:
         age: 5
     families:

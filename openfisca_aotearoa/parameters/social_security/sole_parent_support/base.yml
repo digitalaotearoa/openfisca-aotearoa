@@ -1,0 +1,121 @@
+description: Sole Parent Support Base Rate
+metadata:
+# currency or /1 (rate) or year (never used)
+  unit: currency
+# single_amount or marginal_rate or marginal_amount or value?
+  type: value
+  reference:
+    2013-07-15:
+      title: Social Security Act 1964
+      href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527, https://www.legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html
+# TODO - requires old act calculation
+    2007-03-05:
+      title: Social Security (Rates of Benefits and Allowances) Order 2007
+      href: https://www.legislation.govt.nz/regulation/public/2007/0060/latest/DLM428373.html
+# TODO - requires old act calculation
+    2008-03-03:
+      title: Social Security (Rates of Benefits and Allowances) Order 2008
+      href: https://www.legislation.govt.nz/regulation/public/2008/0053/latest/DLM1161407.html
+# TODO - requires old act calculation
+    2009-02-23:
+      title: Social Security (Rates of Benefits and Allowances) Order 2009
+      href: https://www.legislation.govt.nz/regulation/public/2009/0027/latest/DLM1841301.html
+# TODO - requires old act calculation
+    2010-02-22:
+      title: Social Security (Rates of Benefits and Allowances) Order 2010
+      href: https://www.legislation.govt.nz/regulation/public/2010/0021/latest/DLM2748958.html
+# TODO - requires old act calculation
+    2010-08-30:
+      title: Social Security (Rates of Benefits and Allowances) Order (No 2) 2010
+      href: https://www.legislation.govt.nz/regulation/public/2010/0289/latest/DLM3185601.html
+# TODO - requires old act calculation
+    2011-02-21:
+      title: Social Security (Rates of Benefits and Allowances) Order 2011
+      href: https://www.legislation.govt.nz/regulation/public/2011/0016/latest/DLM3561401.html
+# TODO - requires old act calculation
+    2012-02-27:
+      title: Social Security (Rates of Benefits and Allowances) Order 2012
+      href: https://www.legislation.govt.nz/regulation/public/2012/0021/latest/DLM4299301.html
+# TODO - requires old act calculation
+    2013-02-25:
+      title: Social Security (Rates of Benefits and Allowances) Order 2013
+      href: https://www.legislation.govt.nz/regulation/public/2013/0019/latest/DLM5032541.html
+# TODO - requires old act calculation
+    2014-02-24:
+      title: Social Security (Rates of Benefits and Allowances) Order 2014
+      href: https://www.legislation.govt.nz/regulation/public/2014/0039/latest/DLM5941010.html
+# TODO - requires old act calculation
+    2015-02-23:
+      title: Social Security (Rates of Benefits and Allowances) Order 2015
+      href: https://www.legislation.govt.nz/regulation/public/2015/0033/latest/DLM6387601.html
+# TODO - requires old act calculation
+    2016-03-07:
+      title: Social Security (Rates of Benefits and Allowances) Order 2016
+      href: https://www.legislation.govt.nz/regulation/public/2016/0053/latest/DLM6746223.html
+# TODO - requires old act calculation
+    2017-02-27:
+      title: Social Security (Rates of Benefits and Allowances) Order 2017
+      href: https://www.legislation.govt.nz/regulation/public/2017/0030/latest/DLM7118101.html
+# TODO - requires old act calculation
+    2018-02-26:
+      title: Social Security (Rates of Benefits and Allowances) Order 2018
+      href: https://www.legislation.govt.nz/regulation/public/2018/0019/latest/whole.html
+# TODO - requires old act calculation
+    2018-11-26:
+      title: Social Security Act 2018 (As Enacted)
+      href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784854.html
+    2019-02-25:
+      title: Social Security (Rates of Benefits and Allowances) Order 2019
+      href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/LMS156275.html
+    2020-02-24:
+      title: Social Security (Rates of Benefits and Allowances) Order 2020 (Note - altered by the next amendment order)
+      href: https://www.legislation.govt.nz/regulation/public/2020/0013/latest/whole.html
+    2020-03-23:
+      title: Social Security (Rates of Benefits and Allowances) (COVID-19 Recovery Package) Amendment Order 2020
+      href: https://www.legislation.govt.nz/regulation/public/2020/0049/latest/whole.html
+    2021-02-22:
+      title: Social Security (Rates of Benefits and Allowances) Order 2021
+      href: https://www.legislation.govt.nz/regulation/public/2021/0015/latest/whole.html
+    2021-05-24:
+      title: Social Security (Rates of Main Benefits) Order 2021
+      href: https://www.legislation.govt.nz/regulation/public/2021/0120/latest/whole.html
+    2022-02-21:
+      title: Social Security (Rates of Benefits and Allowances) Order 2022
+      href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+values:
+  2018-11-26:
+    value: 334.05
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784854.html
+  2019-04-01:
+    value: 339.69
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/LMS156288.html
+  2020-03-27:
+    value: 375.17
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2020/0049/latest/whole.html
+  2021-04-01:
+    value: 386.78
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2021/0015/latest/whole.html#LMS454107
+  2021-07-01:
+    value: 406.78
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2021/0120/latest/whole.html#LMS494973
+  2022-04-01:
+    value: 425.96
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html#LMS645836

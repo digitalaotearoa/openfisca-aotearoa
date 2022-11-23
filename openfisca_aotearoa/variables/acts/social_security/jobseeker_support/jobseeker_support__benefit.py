@@ -1,5 +1,7 @@
 """This module provides eligibility and amount for Jobseeker Support."""
 
+import numpy
+
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:

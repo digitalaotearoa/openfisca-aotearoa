@@ -44,12 +44,16 @@
  - `sole_parent_support__partner_supervision`
  - `sole_parent_support__split_care`
  - `sole_parent_support__parents_living_apart`
- - `sole_parent_support__each_parent_is_principal_caregiver`
  - `sole_parent_support__principal_caregiver_of_youngest`
  - `sole_parent_support__principal_caregiver_before_apart`
  - `sole_parent_support__entitled_without_split_care_requirement`
+ - `sole_parent_support__both_primary_caregiver_by_order`
  - `sole_parent_support__receiving`
  - `social_security__principal_caregiver`
+ - `sole_parent_support__benefit`
+ - `sole_parent_support__base`
+ - `sole_parent_support__reduction`
+ - `sole_parent_support__weekly_childcare_cost`
 * Other changes:
   - `social_security__residential_requirement` period changed from month to week
   - `social_security__ordinarily_resident_in_new_zealand` period changed from month to eternity
@@ -60,6 +64,7 @@
   - `sole_parent_support__years_in_nz_requirement` period changed from month to week
   - `sole_parent_support__below_income_threshold` period changed from month to week
   - `parent` role added to `family` entity
+  - `Sole Parent Support Base Rate`
 * Added parameters:
   - `parameters/social_security/schedule_5/asset_limits_1.yml`
   - `parameters/social_security/schedule_5/asset_limits_2.yml`

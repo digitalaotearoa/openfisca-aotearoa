@@ -1,6 +1,5 @@
 """TODO: Add missing doctring."""
 
-
 from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
