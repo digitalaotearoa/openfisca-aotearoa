@@ -149,11 +149,7 @@
           2022-W07: 200
           2022-W08: 400
           2022-W09: 822
-        is_sole_parent: 
-          2022-W07: true
-          2022-W08: true
-          2022-W09: true
-        disability_allowance__sole_parent_meets_relationship_qualification:
+        social_security__sole_parent: 
           2022-W07: true
           2022-W08: true
           2022-W09: true
@@ -188,11 +184,7 @@
           2022-W07: 200
           2022-W08: 400
           2022-W09: 866
-        disability_allowance__sole_parent_meets_relationship_qualification:
-          2022-W07: true
-          2022-W08: true
-          2022-W09: true
-        is_sole_parent:
+        social_security__sole_parent:
           2022-W07: true
           2022-W08: true
           2022-W09: true
