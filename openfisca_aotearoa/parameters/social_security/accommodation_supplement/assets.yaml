@@ -1,0 +1,21 @@
+description: >
+  Social Security Regulations 2018 -
+  5   Accommodation Supplement -
+  15  Assets requirement -
+
+metadata:
+  unit: currency
+  reference:
+    2018-11-26:
+      title: Social Security Regulations 2018
+      href: https://www.legislation.govt.nz/regulation/public/2018/0202/latest/LMS96256.html
+
+ssa2018_15_1_a:
+  values:
+    2018-11-26:
+      value: 16200
+
+ssa2018_15_1_b:
+  values:
+    2018-11-26:
+      value: 8100

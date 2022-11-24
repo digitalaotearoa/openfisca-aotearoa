@@ -16,7 +16,7 @@ class family_tax_credit(Variable):
     default_value = 0
     definition_period = DateUnit.YEAR
 
-    def formula_2007_11_01(people, period, parameters):
+    def formula_2007_11_01(people, period, _params):
         return (
             + people("family_tax_credit__eligible", period)
             * people("family_tax_credit__base", period)
@@ -65,7 +65,7 @@ class family_tax_credit__eldest(Variable):
         caregived = people("family_tax_credit__dependent_child", period.this_year)
         dependent = caregived >= 100 / 3 - .5  # last value is the error margin
         eldest_child = sum(under_16y * dependent) - 1 >= 0
-        
+
         prescribed_amount = (
             params(period)
             .acts
@@ -74,7 +74,7 @@ class family_tax_credit__eldest(Variable):
             .prescribed_amount
             .eldest
             )
-        
+
         return (
             + principal
             * eldest_child
@@ -92,7 +92,7 @@ class family_tax_credit__not_eldest(Variable):
     default_value = 0
     definition_period = DateUnit.DAY
 
-    def formula_2007_11_01(people, period, parameters):
+    def formula_2007_11_01(people, period, params):
         age = people("age", period)
         under_16y = age < 16
         principal = people.has_role(Family.PRINCIPAL)
@@ -102,7 +102,6 @@ class family_tax_credit__not_eldest(Variable):
 
         prescribed_amount = (
             params(period)
-            .acts
             .income_tax
             .family_tax_credit
             .prescribed_amount
