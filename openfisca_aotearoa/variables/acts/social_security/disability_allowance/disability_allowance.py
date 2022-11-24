@@ -39,7 +39,7 @@ class disability_allowance__entitled(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Disability Allowance eligibility"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783277"
 
     def formula_2018_11_26(persons, period, parameters):
 
@@ -105,15 +105,6 @@ class disability_allowance__ongoing_additional_expenses(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Does the person have additional expenses of an ongoing kind arising from the person’s disability?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
-
-
-class disability_allowance__person_entitled_to_reciprocal_benefits(variables.Variable):
-    value_type = bool
-    default_value = False
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Reciprocal benefits for person entitled to reciprocal benefits"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
@@ -226,4 +217,4 @@ class social_security__sole_parent(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Is the person a sole parent?"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html#DLM6784723"
