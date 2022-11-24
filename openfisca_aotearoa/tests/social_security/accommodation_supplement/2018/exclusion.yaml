@@ -73,7 +73,7 @@
     65 Accommodation Supplement -
     67 Other funding exclusion
     (b)   Grant
-    (ii)  Would be eligible for student grant were it not means-tested
+    (iii) Would be eligible for student grant were it not means-tested
   period: 2018-11-26
   input:
     student_allowance__would_be_eligible_for_basic_grant:
@@ -83,3 +83,49 @@
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
+
+
+- name: >
+    Social Security Act 2018 -
+    65 Accommodation Supplement -
+    66 Social housing exclusion
+    (c) Residential care
+  period: 2018-11-26
+  input:
+    accommodation_type:
+      2022-W01: [residential_care, under_the_moon]
+  output:
+    accommodation_supplement__other_funding_exclusion:
+      2022-W01: [true, false]
+
+
+- name: >
+    Social Security Act 2018 -
+    65 Accommodation Supplement -
+    66 Social housing exclusion
+    (d) Disability
+  period: 2018-11-26
+  input:
+    accommodation_supplement__disability:
+      2022-W01: [true, false]
+  output:
+    accommodation_supplement__other_funding_exclusion:
+      2022-W01: [true, false]
+
+
+- name: >
+    Social Security Act 2018 -
+    65 Accommodation Supplement -
+    66 Social housing exclusion
+    (e) Superannuation or veteran
+  period: 2018-11-26
+  input:
+    super__being_paid_nz_superannuation:
+      2022-01: [true, true, true, true, false, false, false, false]
+    veterans_support__being_paid_a_veterans_pension:
+      2022-01: [true, true, false, false, true, true, false, false]
+    social_security__income:
+      2022-W01: [500, 1000, 500, 1000, 500, 1000, 500, 1000]
+  output:
+    accommodation_supplement__other_funding_exclusion:
+      2022-W01: [false, true, false, true, false, true, false, false]

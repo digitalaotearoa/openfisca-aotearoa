@@ -33,6 +33,16 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
+        accommodation_type = people("accommodation_type", period)
+        superannuation = people("super__being_paid_nz_superannuation", period.first_month)
+        veteran = people("veterans_support__being_paid_a_veterans_pension", period.first_month)
+        income = people("social_security__income", period)
+
+        total_income = (
+            + people.family.sum(income, role = entities.Family.PRINCIPAL)
+            + people.family.sum(income, role = entities.Family.PARTNER)
+            )
+
         receiving_accommodation_supplement = people(
             "accommodation_supplement__receiving",
             period,
@@ -51,32 +61,51 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
         ssa2018_67_b_i = (
             + people("student_allowance__receiving_basic_grant", period)
             + people("student_allowance__receiving_independent_circumstances", period)
-        )
+            )
 
         ssa2018_67_b_ii = (
             + people("student_allowance__eligible_for_basic_grant", period.first_month)
             + people("student_allowance__eligible_for_independent_circumstances", period.first_month)
-        )
+            )
 
-        # TODO: ssa2018_67_b_ii
-        # Would be eligible to receive one of those grants were it not for the
-        # level of income of P or of P’s parent or parents or spouse or partner
-        # ;or
         ssa2018_67_b_iii = (
             + people("student_allowance__would_be_eligible_for_basic_grant", period)
             + people("student_allowance__would_be_eligible_for_independent_circumstances", period)
-        )
+            )
+
+        ssa2018_67_c = accommodation_type == housing.AccommodationType.residential_care
+
+        ssa2018_67_d = people("accommodation_supplement__disability", period)
+
+        ssa2018_67_e = (
+            + people.has_role(entities.Family.PRINCIPAL)
+            * (superannuation + veteran)
+            * total_income
+            ) >= 600
 
         return (
             + ssa2018_67_a
             + ssa2018_67_b_i
             + ssa2018_67_b_ii
             + ssa2018_67_b_iii
+            + ssa2018_67_c
+            + ssa2018_67_d
+            + ssa2018_67_e
             )
 
 
 class accommodation_supplement__receiving(variables.Variable):
     label = "Already receiving accommodation supplement"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
+
+
+class accommodation_supplement__disability(variables.Variable):
+    label = "Disability"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
     documentation = """TODO"""
     entity = entities.Person
