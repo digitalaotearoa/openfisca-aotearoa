@@ -1,9 +1,10 @@
 """TODO: Add missing doctring."""
 
+import numpy
+
 from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
-from openfisca_aotearoa.variables.demographics import housing
 
 
 class accommodation_supplement__assets_requirement(variables.Variable):
@@ -45,7 +46,10 @@ class accommodation_supplement__assets_requirement(variables.Variable):
             )
 
         ssr2018_15_1_b = (
-            + (people.family.nb_persons(entities.Family.PARTNER) == 0)
+            + numpy.logical_not(people.has_role(entities.Family.PARTNER))
+            * numpy.logical_not(people.has_role(entities.Family.CHILD))
+            * numpy.logical_not(people.has_role(entities.Family.OTHER))
+            * (people.family.nb_persons(entities.Family.PARTNER) == 0)
             * (sum(dependent_children) == 0)
             * (total_cash_assets <= 8100)
             )

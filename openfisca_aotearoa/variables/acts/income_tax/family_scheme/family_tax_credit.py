@@ -42,7 +42,7 @@ class family_tax_credit__base(Variable):
     default_value = 0
     definition_period = DateUnit.YEAR
 
-    def formula_2007_11_01(people, period, parameters):
+    def formula_2007_11_01(people, period, _params):
         return (
             + people("family_tax_credit__eldest", period, "add")
             + people("family_tax_credit__not_eldest", period, "add")
@@ -63,16 +63,16 @@ class family_tax_credit__eldest(Variable):
         under_16y = age < 16
         principal = people.has_role(Family.PRINCIPAL)
         caregived = people("family_tax_credit__dependent_child", period.this_year)
-        dependent = caregived >= 100 / 3 - .5  # last value is the error margin
+        dependent = caregived >= 1 / 3 - .5  # last value is the error margin
         eldest_child = sum(under_16y * dependent) - 1 >= 0
 
         prescribed_amount = (
             params(period)
-            .acts
+            .taxes
             .income_tax
             .family_tax_credit
             .prescribed_amount
-            .eldest
+            .ita2007_md_3_4_a
             )
 
         return (
@@ -97,15 +97,16 @@ class family_tax_credit__not_eldest(Variable):
         under_16y = age < 16
         principal = people.has_role(Family.PRINCIPAL)
         caregived = people("family_tax_credit__dependent_child", period.this_year)
-        dependent = caregived >= 100 / 3 - .5  # last value is the error margin
+        dependent = caregived >= 1 / 3 - .5  # last value is the error margin
         other_than_the_eldest_child = max([0, sum(under_16y * dependent) - 1])
 
         prescribed_amount = (
             params(period)
+            .taxes
             .income_tax
             .family_tax_credit
             .prescribed_amount
-            .not_eldest
+            .ita2007_md_3_4_b
             )
 
         return (
@@ -121,7 +122,7 @@ class family_tax_credit__dependent_child(Variable):
     reference = "https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518492.html"
     documentation = """TODO"""
     entity = Person
-    value_type = int
+    value_type = float
     default_value = 0
     definition_period = DateUnit.YEAR
 

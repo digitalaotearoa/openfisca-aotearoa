@@ -103,6 +103,12 @@ Tenancy = build_entity(
             "label": "Tenants",
             "doc": """#TODO"""
             },
+        {
+            "key": "other",
+            "plural": "others",
+            "label": "Other",
+            "doc": "All other members of a tenancy",
+            },
         ],
     )
 
@@ -123,6 +129,12 @@ Ownership = build_entity(
             "plural": "owners",
             "label": "Owners",
             "doc": """#TODO"""
+            },
+        {
+            "key": "other",
+            "plural": "others",
+            "label": "Other",
+            "doc": "All other members of an ownership",
             },
         ],
     )

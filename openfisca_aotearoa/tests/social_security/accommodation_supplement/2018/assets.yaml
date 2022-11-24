@@ -132,6 +132,22 @@
       children: [Piedad, Srko, Ash]
   output:
     accommodation_supplement__assets_requirement:
-      2022-W01: true
-      2022-W02: true
+      2022-W01: [true, false, false, false, false]
+      2022-W02: [true, false, false, false, false]
       2022-W03: false
+
+
+- name: >
+    Social Security Regulations 2018 -
+    5   Accommodation Supplement -
+    15  Assets requirement -
+    (1) The assets requirement, for the purposes of section 65(1)(b) of the
+        Act, is that a person’s cash assets must not exceed—
+        (b) $8,100, in any other case
+  period: 2018-11-26
+  input:
+    accommodation_supplement__cash_assets:
+      2022-W01: [0, 5000, 10000]
+  output:
+    accommodation_supplement__assets_requirement:
+      2022-W01: [true, true, false]

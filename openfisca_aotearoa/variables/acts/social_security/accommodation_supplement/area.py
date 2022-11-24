@@ -38,7 +38,7 @@ class accommodation_supplement__area_of_residence(variables.Variable):
     default_value = AccommodationSupplement__AreaOfResidence.unknown
     definition_period = periods.DateUnit.WEEK
 
-    def formula(people, period, _params):
+    def formula_2018_11_26(people, period, _params):
         area_of_residence = AccommodationSupplement__AreaOfResidence
         params_path = "openfisca_aotearoa/parameters"
         file_path = "social_security/accommodation_supplement"
@@ -58,5 +58,10 @@ class accommodation_supplement__area_of_residence(variables.Variable):
             for index in locations
             )
 
+        ssa2018_sched_4_part_7_8 = numpy.fromiter(
+            areas_of_residence,
+            dtype = int,
+            )
+
         # And return the result.
-        return numpy.fromiter(areas_of_residence, dtype = int)
+        return ssa2018_sched_4_part_7_8

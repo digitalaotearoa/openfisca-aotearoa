@@ -1,5 +1,7 @@
 """TODO: Add missing doctring."""
 
+import numpy
+
 from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
@@ -50,12 +52,16 @@ class accommodation_supplement__accommodation_costs(variables.Variable):
             )
 
         ssa2018_65_2_a = (
-            + (accommodation_costs > 0)
+            + numpy.logical_not(people.has_role(entities.Tenancy.TENANT))
+            * numpy.logical_not(people.has_role(entities.Tenancy.OTHER))
+            * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.rent)
             )
 
         ssa2018_65_2_b = (
-            + (accommodation_costs > 0)
+            + numpy.logical_not(people.has_role(entities.Ownership.OWNER))
+            * numpy.logical_not(people.has_role(entities.Ownership.OTHER))
+            * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.mortgage)
             )
 
@@ -69,11 +75,13 @@ class accommodation_supplement__accommodation_costs(variables.Variable):
 
         ssa2018_65_2_d = (
             + (
-                + (accommodation_costs_tenancy > 0)
+                + people.has_role(entities.Tenancy.PRINCIPAL)
+                * (accommodation_costs_tenancy > 0)
                 * (accommodation_type == housing.AccommodationType.rent)
                 )
             + (
-                + (accommodation_costs_ownership > 0)
+                + people.has_role(entities.Ownership.PRINCIPAL)
+                * (accommodation_costs_ownership > 0)
                 * (accommodation_type == housing.AccommodationType.mortgage)
                 )
             )

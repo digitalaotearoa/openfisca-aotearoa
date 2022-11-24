@@ -142,12 +142,13 @@
     tenancy:
       principal: Vranda
       tenants: [Piedad]
+      others: [Jarmish]
   output:
     accommodation_supplement__accommodation_costs:
       2022-W01: [false, false, false]
-      2022-W02: [true, true, false]
-      2022-W03: [true, true, false]
-      2022-W04: [false, false, true]
+      2022-W02: [true, false, false]
+      2022-W03: [true, false, false]
+      2022-W04: [false, false, false]
       2022-W05: [false, false, false]
       2022-W06: [false, false, false]
       2022-W07: [false, false, false]
@@ -222,12 +223,13 @@
     ownership:
       principal: Vranda
       owners: [Piedad]
+      others: [Jarmish]
   output:
     accommodation_supplement__accommodation_costs:
       2022-W01: [false, false, false]
-      2022-W02: [true, true, false]
-      2022-W03: [true, true, false]
-      2022-W04: [false, false, true]
+      2022-W02: [true, false, false]
+      2022-W03: [true, false, false]
+      2022-W04: [false, false, false]
       2022-W05: [false, false, false]
       2022-W06: [false, false, false]
       2022-W07: [false, false, false]
