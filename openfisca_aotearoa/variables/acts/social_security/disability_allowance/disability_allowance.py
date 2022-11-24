@@ -145,7 +145,7 @@ class disability_allowance__income_limit_clause_11(variables.Variable):
         person_not_aged_16_or_17 = (persons("age", period.start) < 16) + (persons("age", period.start) > 17)
         no_partners = numpy.logical_not(persons("social_security__in_a_relationship", period))
         without_dependant_child = persons("social_security__dependent_children", period) == 0
-        not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))  # review this
+        not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_11"]
         return person_not_aged_16_or_17 * no_partners * without_dependant_child * income_within_limit * not_a_child
 
@@ -192,17 +192,6 @@ class disability_allowance__income_limit_clause_14(variables.Variable):
         more_than_one_child = (persons("social_security__dependent_children", period) > 1)
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_14"]
         return more_than_one_child * sole_parent * income_within_limit
-
-
-class disability_allowance__is_adequately_supported_by_partner(variables.Variable):
-    value_type = bool
-    entity = entities.Person
-    default_value: False
-    label = """Is adequately supported by their partner? (false if lost the regular support of
-    their partner as their partner has been imprisoned or is subject to release or detention conditions that prevent employment)
-    """
-    definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
 
 
 class disability_allowance__family_income(variables.Variable):
