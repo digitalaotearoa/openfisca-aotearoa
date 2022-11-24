@@ -35,10 +35,10 @@ class accommodation_supplement__entitled(variables.Variable):
             period,
             )
 
-        accommodation_type = people("accommodation_type", period)
-        receives_accommodation_supplement = people("accommodation_supplement__receiving", period)
-        receives_student_allowance = people("student_allowance__receiving", period)
-        entitled_to_student_allowance = people("student_allowance__eligible", period)
+        other_funding_exclusion = people(
+            "accommodation_supplement__other_funding_exclusion",
+            period,
+            )
 
         # 65    Accommodation supplement: discretionary grant
         # (1)   MSD may grant a person (P), for the period that MSD determines
@@ -55,37 +55,7 @@ class accommodation_supplement__entitled(variables.Variable):
         ssa2018_65_1_c_i = numpy.logical_not(social_housing_exclusion)
 
         #           (ii)    the other funding exclusion.
-        ssa2018_67_a = receives_accommodation_supplement == False
-        # TODO: check if partner(s) receive
-        ssa2018_67_b_i = receives_student_allowance == False
-        ssa2018_67_b_ii = entitled_to_student_allowance == False
-        # NOTE: (iii) says if P does not receive because of income of half the
-        # planet, so we're just using previous answer for the MVP
-        ssa2018_67_b_iii = entitled_to_student_allowance == False
-        ssa2018_67_c = accommodation_type != housing.AccommodationType.residential_care
-        # NOTE: psychiatric or intellectual handicap situation may imply:
-        # 1. We collecting very sensitive personal information protected by law
-        # 2. A third-party disclosing P's very sensitive personal information,
-        #    in the case the aforesaid condition would render P unable to
-        #    disclose such data autonomously and to non-viciously consent.
-        # TODO: implement
-        ssa2018_67_d = numpy.array(False)
-        # (e)   P is receiving New Zealand superannuation or a veteran’s
-        #       pension and the total income of P and P’s spouse or partner (if
-        #       any) is more than the applicable amount specified in Part 2 of
-        #       Schedule 5.
-        # TODO: implement
-        ssa2018_67_e = numpy.array(False)
-
-        ssa2018_65_1_c_ii = (
-            + ssa2018_67_a
-            * ssa2018_67_b_i
-            * ssa2018_67_b_ii
-            * ssa2018_67_b_iii
-            * ssa2018_67_c
-            * ssa2018_67_d
-            * ssa2018_67_e
-            )
+        ssa2018_65_1_c_ii = numpy.logical_not(other_funding_exclusion)
 
         return (
             + ssa2018_65_1_a

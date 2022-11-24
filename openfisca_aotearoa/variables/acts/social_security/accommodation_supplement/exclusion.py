@@ -17,9 +17,7 @@ class accommodation_supplement__social_housing_exclusion(variables.Variable):
 
     def formula_2018_11_26(people, period, _params):
         accommodation_type = people("accommodation_type", period)
-
         ssa2018_66 = accommodation_type == housing.AccommodationType.social_housing
-
         return ssa2018_66
 
 
@@ -34,14 +32,6 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
 
     def formula_2018_11_26(people, period, _params):
         accommodation_type = people("accommodation_type", period)
-        superannuation = people("super__being_paid_nz_superannuation", period.first_month)
-        veteran = people("veterans_support__being_paid_a_veterans_pension", period.first_month)
-        income = people("social_security__income", period)
-
-        total_income = (
-            + people.family.sum(income, role = entities.Family.PRINCIPAL)
-            + people.family.sum(income, role = entities.Family.PARTNER)
-            )
 
         receiving_accommodation_supplement = people(
             "accommodation_supplement__receiving",
@@ -77,11 +67,7 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
 
         ssa2018_67_d = people("accommodation_supplement__disability", period)
 
-        ssa2018_67_e = (
-            + people.has_role(entities.Family.PRINCIPAL)
-            * (superannuation + veteran)
-            * total_income
-            ) >= 600
+        # TODO: ssa2018_67_e
 
         return (
             + ssa2018_67_a
@@ -90,7 +76,6 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
             + ssa2018_67_b_iii
             + ssa2018_67_c
             + ssa2018_67_d
-            + ssa2018_67_e
             )
 
 
