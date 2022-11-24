@@ -1,13 +1,12 @@
 """This module provides eligibility for Child Disability Allowance."""
-
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
+
 from openfisca_core import periods, variables
-from openfisca_core import holders
+
 from openfisca_aotearoa import entities
-import numpy
 
 # We import the required `entities` corresponding to our formulas.
 #
@@ -31,6 +30,7 @@ import numpy
 # For more information on OpenFisca's `variables`:
 # https://openfisca.org/doc/key-concepts/variables.html
 
+
 class child_disability_allowance__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
@@ -39,19 +39,17 @@ class child_disability_allowance__entitled(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783266.html"
     default_value = False
 
-
     def formula_2018_11_26(persons, period, parameters):
-        ssa2018_15_2 = persons("social_security__residential_requirement", period)
         # ssa2018_78_1_a --> covered in ssa2018_79
-        ssa2018_78_1_b_i = (persons("child_disability_allowance__residing_in_principal_home", period) + \
-        persons("child_disability_allowance__residing_in_temp_orphan_benefit_caregiver", period) + \
-        persons("child_disability_allowance__residing_with_unsupported_child_benefit_caregiver", period)) * persons.has_role(entities.Family.CHILD)
+        ssa2018_78_1_b_i = (persons("child_disability_allowance__residing_in_principal_home", period)
+            + persons("child_disability_allowance__residing_in_temp_orphan_benefit_caregiver", period)
+            + persons("child_disability_allowance__residing_with_unsupported_child_benefit_caregiver", period)) * persons.has_role(entities.Family.CHILD)
         ssa2018_78_2_a = persons("child_disability_allowance__residing_in_approved_voluntary_organisation", period) * persons.has_role(entities.Family.CHILD)
         # ssa2018_78_2_b --> Accommodation required to be contributed by parents) can be covered as a general note.
         ssa2018_79 = persons.family("child_disability_allowance__eligible_child", period)
         ssa2018_83 = persons("social_security__beneficiary_except_benefit_exempt_for_childcare_disability_allowance", period) * persons.has_role(entities.Family.CHILD)
 
-        return ssa2018_15_2 * ssa2018_78_1_b_i * ssa2018_78_2_a * ssa2018_79 * ssa2018_83
+        return ssa2018_78_1_b_i * ssa2018_78_2_a * ssa2018_79 * ssa2018_83
 
 
 class child_disability_allowance__benefit(variables.Variable):
@@ -75,11 +73,9 @@ class childcare_disability_allowance__child_with_serious_disability(variables.Va
     label = "Child has serious disability"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783270.html"
 
-
     def formula_2018_11_26(persons, period, parameters):
         med_cert_required_months = parameters(period).entitlements.social_security.child_disability_allowance.medical_certification_required_months
         # ssa2018_79_1_a can be covered by a note describing disability
-        # import pdb; pdb.set_trace()
         ssa2018_79_1_b = persons("social_security__requires_constant_care", period)
         ssa2018_79_1_c = (persons("social_security__medical_certificate_months", period) >= med_cert_required_months)
         return ssa2018_79_1_b * ssa2018_79_1_c
@@ -198,6 +194,7 @@ class child_disability_allowance__eligible(variables.Variable):
             resides_in_nz * \
             is_principal_carer * \
             has_eligible_disabled_child
+
 
 # Month based variable for 1964 Act
 class child_disability_allowance__family_has_eligible_child(variables.Variable):

@@ -4,12 +4,11 @@
   input:
     persons:
       Mama:
-        social_security__residential_requirement: true
+        date_of_birth: 1982-01-01
       Papa:
-        social_security__residential_requirement: true
+        date_of_birth: 1978-01-01
       Tama_disabled_child:
         date_of_birth: 2016-01-01 # 4 years old
-        social_security__residential_requirement: true
         child_disability_allowance__residing_in_principal_home: true
         child_disability_allowance__residing_in_approved_voluntary_organisation: true
         social_security__beneficiary_except_benefit_exempt_for_childcare_disability_allowance: true
@@ -24,11 +23,6 @@
         others: Papa
   output:
     child_disability_allowance__eligible_child: [true]
-    social_security__residential_requirement:
-      - true  # mama (principal carer)
-      - true  # papa
-      - true  # Tama (disabled child)
-      - false  # tamahine (able bodied)
     child_disability_allowance__residing_in_principal_home:
       - false  # mama (principal carer)
       - false  # papa
