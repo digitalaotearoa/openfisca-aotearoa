@@ -20,7 +20,21 @@ class accommodation_supplement__entitled(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, parameters):
-        accommodation_costs = people("accommodation_costs", period)
+        accommodation_costs = people(
+            "accommodation_supplement__accommodation_costs",
+            period,
+            )
+
+        assets_requirement = people(
+            "accommodation_supplement__assets_requirement",
+            period,
+            )
+
+        social_housing_exclusion = people(
+            "accommodation_supplement__social_housing_exclusion",
+            period,
+            )
+
         accommodation_type = people("accommodation_type", period)
         receives_accommodation_supplement = people("accommodation_supplement__receiving", period)
         receives_student_allowance = people("student_allowance__receiving", period)
@@ -30,21 +44,15 @@ class accommodation_supplement__entitled(variables.Variable):
         # (1)   MSD may grant a person (P), for the period that MSD determines
         #       an accommodation supplement if—
         #       (a) P has accommodation costs; and
-        ssa2018_65_1_a = (
-            + (accommodation_costs > 0)
-            * (accommodation_type != 0)
-            )
-        # TODO: add case if in relationship and partner pays
+        ssa2018_65_1_a = accommodation_costs
 
         #       (b) P meets the assets requirement (as set out in regulations
         #           made under section 423); and
-        # TODO: Cash Assets single
-        # TODO: Cash Assets in relationship
-        ssa2018_65_1_b = numpy.array(True)
+        ssa2018_65_1_b = assets_requirement
 
         #       (c) P is not excluded on either of the following grounds:
         #           (i)     the social housing exclusion:
-        ssa2018_65_1_c_i = accommodation_type != housing.AccommodationType.social_housing
+        ssa2018_65_1_c_i = numpy.logical_not(social_housing_exclusion)
 
         #           (ii)    the other funding exclusion.
         ssa2018_67_a = receives_accommodation_supplement == False
