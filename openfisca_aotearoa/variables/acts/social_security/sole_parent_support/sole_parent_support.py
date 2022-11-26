@@ -83,7 +83,7 @@ class sole_parent_support__meets_relationship_qualification(variables.Variable):
     """
     def formula(persons, period, parameters):
         # Do they have a partner
-        no_partners = (persons("person_has_partner", period.first_week) == 0)
+        no_partners = (persons("in_a_relationship", period.first_week) == 0)
         not_supported = (persons("is_adequately_supported_by_partner", period) == 0)
         # no partner, OR not supported by partner
         return no_partners + not_supported

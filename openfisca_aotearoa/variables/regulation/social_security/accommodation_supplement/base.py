@@ -28,8 +28,9 @@ class accommodation_supplement__base(variables.Variable):
         rate = people("jobseeker_support__base", period)
 
         # We assume single as in "no partner"
-        mingled = people("social_security__in_a_relationship", period)
-        singles = numpy.logical_not(mingled)
+        principal = people.has_role(entities.Family.PRINCIPAL)
+        mingled = principal * people("in_a_relationship", period)
+        singles = principal * numpy.logical_not(mingled)
 
         # We calculate the number of dependent children.
         f_members = people.family.members

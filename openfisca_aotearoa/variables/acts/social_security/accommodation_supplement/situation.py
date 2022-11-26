@@ -31,19 +31,21 @@ class accommodation_supplement__situation(variables.Variable):
     def formula_2018_11_26(people, period, _params):
         families = people.family
         members = families.members("social_security__dependent_child", period)
+        principal = people.has_role(entities.Family.PRINCIPAL)
+        mingled = principal * people("in_a_relationship", period)
+        singles = principal * numpy.logical_not(mingled)
         dependent_children = sum(members)
-        partners = families.nb_persons(entities.Family.PARTNER)
         accommodation_type = people("accommodation_type", period)
 
         # As conditions 1-3 and 4-6 differ only in the accommodation type, we
         # first calculate the "base condition" (w/o accommodation type).
         cond_1 = (
-            + (dependent_children >= 1) * (partners >= 1)
-            + (dependent_children >= 2) * (partners == 0)
+            + (dependent_children >= 1) * mingled
+            + (dependent_children >= 2) * singles
             )
         cond_2 = (
-            + (dependent_children == 0) * (partners >= 1)
-            + (dependent_children == 1) * (partners == 0)
+            + (dependent_children == 0) * mingled
+            + (dependent_children == 1) * singles
             )
         cond_3 = (
             + numpy.logical_not(cond_1)

@@ -69,7 +69,7 @@
         social_security__ordinarily_resident_in_new_zealand:
           "week:2017-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        social_security__in_a_relationship:
+        in_a_relationship:
           "week:2017-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: true
         social_security__parent: true
@@ -80,7 +80,7 @@
         citizenship__citizen: true
         monthly_income: 10.0
       Oliver:
-        social_security__in_a_relationship:
+        in_a_relationship:
           "week:2017-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
         social_security__parent: true
@@ -94,7 +94,7 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         family_scheme__assessable_income_for_month: 10.0
       Oscar:
-        social_security__in_a_relationship:
+        in_a_relationship:
           "week:2017-W01:52": true
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
         social_security__parent: true

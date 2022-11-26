@@ -10,7 +10,7 @@ from openfisca_core.entities import build_entity
 # For instance, a person in the role of child (family entity) should not be assumed to be a social_security__dependent_child
 # or even a social_security__child. Those legal concepts should be required of the persons put in the child role.
 #
-# In some more generic situations the role can be used to imply a more general concept. For an example of this see: person_has_partner which will return true if the person occupys the role of partner in a scenario.
+# In some more generic situations the role can be used to imply a more general concept. For an example of this see: in_a_relationship which will return true if the person occupys the role of partner in a scenario.
 # The decision to lean on this variable should be carefully considered in light of the definitions within the instrument of law being interpreted.
 # If the instrument has it's own definition for partner - it's probably better to fashion a variable that includes the appropriate tests to that use case.
 
@@ -64,7 +64,7 @@ Family = build_entity(
             "doc": """
             The one or more persons who are partners of the principal.
             Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
-            In the case of the Social Security Act this can be considered an alternative to "social_security__in_a_relationship"
+            In the case of the Social Security Act this can be considered an alternative to "in_a_relationship"
             """,
             },
         {

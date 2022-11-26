@@ -18,8 +18,8 @@ class young_parent_payment__relationship_requirements(Variable):
 
     def formula(persons, period, parameters):
 
-        ssa_166_a = not_(persons("social_security__in_a_relationship", period.first_week)) * persons("social_security__been_married_or_civil_union_or_de_facto_relationship", period)
+        ssa_166_a = not_(persons("in_a_relationship", period.first_week)) * persons("social_security__been_married_or_civil_union_or_de_facto_relationship", period)
 
-        ssa_166_b = persons("social_security__in_a_relationship", period.first_week) * not_(persons("social_security__spouse_is_a_specified_beneficiary", period))
+        ssa_166_b = persons("in_a_relationship", period.first_week) * not_(persons("social_security__spouse_is_a_specified_beneficiary", period))
 
         return ssa_166_a + ssa_166_b
