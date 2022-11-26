@@ -13,9 +13,9 @@
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: true
@@ -35,9 +35,9 @@
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: true
@@ -57,9 +57,9 @@
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: true
@@ -79,9 +79,9 @@
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: false
@@ -101,9 +101,9 @@
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: false
@@ -123,9 +123,9 @@
     social_housing__eligible:
       2018-W01: true
     accommodation_supplement__below_income_threshold:
-      2018-01: true
+      2018-W01: true
     accommodation_supplement__below_cash_threshold:
-      2018-01: true
+      2018-W01: true
   output:
     accommodation_supplement__entitled:
       2018-W01: false

@@ -108,12 +108,12 @@ class accommodation_supplement__entitled(variables.Variable):
 
         income = people(
             "accommodation_supplement__below_income_threshold",
-            this_month,
+            period,
             )
 
         cash = people(
             "accommodation_supplement__below_cash_threshold",
-            this_month,
+            period,
             )
 
         return (
@@ -142,7 +142,7 @@ class accommodation_supplement__below_income_threshold(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Income is below Accommodation Supplement threshold?"
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.DateUnit.WEEK
 
 
 class accommodation_supplement__below_cash_threshold(variables.Variable):
@@ -150,4 +150,4 @@ class accommodation_supplement__below_cash_threshold(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Cash is below Accommodation Supplement threshold?"
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.DateUnit.WEEK
