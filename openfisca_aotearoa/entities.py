@@ -140,7 +140,7 @@ Ownership = build_entity(
     )
 
 Titled_Property = build_entity(
-    key="Titled_Property",
+    key="titled_property",
     plural="titled_properties",
     label="Titled Property",
     doc="""
