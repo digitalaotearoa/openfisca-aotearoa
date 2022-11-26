@@ -8,8 +8,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
@@ -30,8 +30,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
@@ -52,8 +52,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
@@ -74,8 +74,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: false
+    accommodation_supplement__accommodation_costs:
+      2018-W01: false
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
@@ -96,8 +96,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
     social_housing__eligible:
       2018-W01: false
     accommodation_supplement__below_income_threshold:
@@ -118,8 +118,8 @@
       2018-01: true
     social_security__ordinarily_resident_in_new_zealand:
       2018-01: true
-    social_security__accommodation_costs:
-      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
     social_housing__eligible:
       2018-W01: true
     accommodation_supplement__below_income_threshold:

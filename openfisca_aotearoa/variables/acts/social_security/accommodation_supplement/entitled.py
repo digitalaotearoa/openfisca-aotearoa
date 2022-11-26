@@ -98,9 +98,9 @@ class accommodation_supplement__entitled(variables.Variable):
             + people("citizenship__citizen", this_month)
             )
 
-        social_security__accommodation_costs = people(
-            "social_security__accommodation_costs",
-            this_month,
+        accommodation_supplement__accommodation_costs = people(
+            "accommodation_supplement__accommodation_costs",
+            period,
             )
 
         social_housing = people("social_housing__eligible", period)
@@ -120,7 +120,7 @@ class accommodation_supplement__entitled(variables.Variable):
             + age_requirement
             * resident_or_citizen
             * in_nz
-            * social_security__accommodation_costs
+            * accommodation_supplement__accommodation_costs
             * not_social_housing
             * income
             * cash
