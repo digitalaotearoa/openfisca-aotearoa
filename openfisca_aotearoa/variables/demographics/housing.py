@@ -5,7 +5,6 @@ from openfisca_core import indexed_enums, periods, variables
 from openfisca_aotearoa import entities
 
 
-
 class AccommodationType(indexed_enums.Enum):
     unknown = "We have no idea"
     rent = "Rent"

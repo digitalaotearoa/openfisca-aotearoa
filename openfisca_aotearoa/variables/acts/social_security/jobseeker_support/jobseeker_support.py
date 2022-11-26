@@ -4,7 +4,9 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from openfisca_core import periods, variables
+import numpy
+
+from openfisca_core import holders, periods, variables
 
 # We import the required `entities` corresponding to our formulas.
 #
@@ -14,10 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-
-import numpy
-
-from openfisca_core import holders
 
 
 # We define the `jobseeker_support` variable.

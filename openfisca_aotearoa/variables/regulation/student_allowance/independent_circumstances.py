@@ -26,6 +26,7 @@ class independent_circumstances_grant__entitled(variables.Variable):
     """
     # Forumla todo
 
+
 class independent_circumstances_grant__receiving(variables.Variable):
     label = "Already receiving independent circumstances grant"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"

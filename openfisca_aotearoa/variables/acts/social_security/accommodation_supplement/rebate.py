@@ -5,7 +5,9 @@ import numpy
 from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
-from openfisca_aotearoa.variables.acts.social_security.accommodation_supplement.situation import AccommodationSupplement__Situation
+from openfisca_aotearoa.variables.acts.social_security.accommodation_supplement.situation import (
+    AccommodationSupplement__Situation,
+    )
 from openfisca_aotearoa.variables.demographics.housing import AccommodationType
 
 

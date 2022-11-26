@@ -7,6 +7,7 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 from openfisca_aotearoa.variables.demographics.housing import AccommodationType
 
+
 class accommodation_supplement(variables.Variable):
     label = "TODO"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"

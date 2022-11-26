@@ -1,10 +1,9 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core import holders
 from openfisca_core.periods import DateUnit
 from openfisca_core.variables import Variable
 
-from openfisca_aotearoa.entities import Person, Family
+from openfisca_aotearoa.entities import Family, Person
 
 
 class family_tax_credit(Variable):

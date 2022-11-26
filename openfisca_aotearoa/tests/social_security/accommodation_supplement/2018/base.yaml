@@ -41,12 +41,8 @@
   input:
     persons:
       Vranda:
-        age:
-          day:2022-01-01:9: 24
-          2022-01-10: 24
-          2022-01-11: 25
-          2022-01-12: 25
-          day:2022-01-13:353: 25
+        date_of_birth:
+          ETERNITY: 1997-01-11
         jobseeker_support__entitled:
           2022-W01: true
           2022-W02: true
@@ -58,12 +54,8 @@
         family_tax_credit__eligible:
           2022: true
       Piedad:
-        age:
-          day:2022-01-01:9: 15
-          2022-01-10: 16
-          2022-01-11: 16
-          2022-01-12: 16
-          day:2022-01-13:353: 16
+        date_of_birth:
+          ETERNITY: 2006-01-10
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true
@@ -71,12 +63,8 @@
         family_tax_credit__dependent_child:
           2022: 33
       Srko:
-        age:
-          day:2022-01-01:9: 15
-          2022-01-10: 15
-          2022-01-11: 16
-          2022-01-12: 16
-          day:2022-01-13:353: 16
+        date_of_birth:
+          ETERNITY: 2006-01-11
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true
@@ -84,12 +72,8 @@
         family_tax_credit__dependent_child:
           2022: 33
       Ash:
-        age:
-          day:2022-01-01:9: 15
-          2022-01-10: 15
-          2022-01-11: 15
-          2022-01-12: 16
-          day:2022-01-13:353: 16
+        date_of_birth:
+          ETERNITY: 2006-01-12
         social_security__dependent_child:
           2022-W01: false
           2022-W02: true

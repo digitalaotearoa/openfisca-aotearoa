@@ -1,8 +1,11 @@
 """TODO: Add missing doctring."""
-from openfisca_core.periods import DAY, ETERNITY, DateUnit
+from openfisca_core.periods import DateUnit, DAY, ETERNITY
 from openfisca_core.variables import Variable
-from openfisca_aotearoa.variables.demographics.residence import days_since_n_years_ago
+
 from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa.variables.demographics.residence import (
+    days_since_n_years_ago,
+    )
 
 
 class citizenship__citizen(Variable):

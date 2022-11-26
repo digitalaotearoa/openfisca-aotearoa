@@ -100,7 +100,6 @@ class accommodation_supplement__base(variables.Variable):
         this_year = period.this_year
         tax_credit = people("family_tax_credit__eldest", this_year, "add") / 52
 
-
         # And apply all the conditions.
         ssr2018_17_2_b = (
             + singles

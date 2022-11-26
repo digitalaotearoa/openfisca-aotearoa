@@ -6,7 +6,6 @@ from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
 from . import entities
 
-
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
 

@@ -16,10 +16,10 @@ from openfisca_core.entities import build_entity
 
 
 Person = build_entity(
-    key="person",
-    plural="persons",
-    label="Person",
-    doc="""
+    key = "person",
+    plural = "persons",
+    label = "Person",
+    doc = """
     A Person represents an individual, the minimal legal entity on which a legislation might be applied.
 
     Example:
@@ -31,14 +31,14 @@ Person = build_entity(
 
     For more information on entities, see: http://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
-    is_person=True
+    is_person = True,
     )
 
 Family = build_entity(
-    key="family",
-    plural="families",
-    label="Family",
-    doc="""
+    key = "family",
+    plural = "families",
+    label = "Family",
+    doc = """
     A Family represents a collection of related persons.
 
     Family entities are a way of making calculations across a number of entitlements including for example "Working for families" and "Paid Parental Leave"
@@ -50,7 +50,7 @@ Family = build_entity(
     Families can be used to make calculations for the principal; as each entitlement is calculated in relation to the Principal it is recommended for modelling to create multiple family sets for each principal if needing to describe scenarios for different family members
 
     """,
-    roles=[
+    roles = [
         {
             "key": "principal",
             "label": "Principal",
@@ -65,7 +65,7 @@ Family = build_entity(
             The one or more persons who are partners of the principal.
             Utilise variables to further define if a person fits the legal definition of a partner as it differs between legal instruments.
             In the case of the Social Security Act this can be considered an alternative to "social_security__in_a_relationship"
-            """
+            """,
             },
         {
             "key": "child",
@@ -101,7 +101,7 @@ Tenancy = build_entity(
             "key": "tenant",
             "plural": "tenants",
             "label": "Tenants",
-            "doc": """#TODO"""
+            "doc": """#TODO""",
             },
         {
             "key": "other",
@@ -128,7 +128,7 @@ Ownership = build_entity(
             "key": "owner",
             "plural": "owners",
             "label": "Owners",
-            "doc": """#TODO"""
+            "doc": """#TODO""",
             },
         {
             "key": "other",

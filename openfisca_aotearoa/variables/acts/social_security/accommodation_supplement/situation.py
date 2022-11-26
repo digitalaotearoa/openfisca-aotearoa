@@ -77,4 +77,4 @@ class accommodation_supplement__situation(variables.Variable):
         fallback = AccommodationSupplement__Situation.unknown
 
         # And we return the situations corresponding to the conditions.
-        return numpy.select(conditions,  situations, fallback)
+        return numpy.select(conditions, situations, fallback)

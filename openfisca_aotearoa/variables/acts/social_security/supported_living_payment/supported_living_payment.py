@@ -2,7 +2,8 @@
 
 from numpy import logical_not as not_
 
-from openfisca_core import periods, variables, holders
+from openfisca_core import holders, periods, variables
+
 from openfisca_aotearoa import entities
 
 # Benefit: Part 1E Supported Living Payment (eligible self applicant):
