@@ -44,7 +44,7 @@
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: false
   output:
-    student_allowance__eligible_for_basic_grant:
+    basic_grant__entitled:
       - true  # fulltime uni student
       - true  # part time
       - true  # overseas
@@ -98,7 +98,7 @@
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
   output:
-    student_allowance__eligible_for_basic_grant:
+    basic_grant__entitled:
       - true  # married secondary school student
       - false  # not married secondary school student
       - false  # childless married secondary school student
@@ -129,7 +129,7 @@
         student_allowance__meets_attendance_and_performance_requirements: true
 
   output:
-    student_allowance__eligible_for_basic_grant:
+    basic_grant__entitled:
       - false # default
       - false # not_attending
       - false # not_immigration__citizen_or_resident
@@ -171,7 +171,7 @@
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
   output:
-    student_allowance__eligible_for_basic_grant:
+    basic_grant__entitled:
       - false  # fulltime uni student
       - false  # part time
       - false  # overseas

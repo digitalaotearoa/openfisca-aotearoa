@@ -1,9 +1,9 @@
 """TODO: Add missing doctring."""
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
+
 from openfisca_aotearoa import entities
-from openfisca_core import holders
 
 
 class income_tax__dependent_child(variables.Variable):

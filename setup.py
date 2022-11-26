@@ -9,7 +9,7 @@ long_description = (this_directory / "README.md").read_text()  # pylint: disable
 
 setup(
     name = "OpenFisca-Aotearoa",
-    version = "16.0.0",
+    version = "18.0.0",
     author = "Digital Aotearoa Collective, originally a New Zealand Government, Service Innovation Lab project",
     description = "OpenFisca tax and benefit system for Aotearoa",
     long_description = long_description,
@@ -26,6 +26,7 @@ setup(
         ],
     install_requires = [
         "openfisca-core[web-api] @ git+https://github.com/openfisca/openfisca-core.git@add-weeks",
+        "pandas >= 1.5.0, < 1.6.0",
         ],
     extras_require = {
         "dev": [
@@ -42,6 +43,7 @@ setup(
             "flake8-quotes >= 3.2.0, < 4.0.0",
             "flake8-simplify >= 0.9.0, < 1.0.0",
             "flake8-use-fstring >= 1.1.0, < 2.0.0",
+            "isort >= 5.0.0, < 6.0.0",
             "pylint >= 2.6.0, < 3.0.0",
             "pycodestyle >= 2.6.0, < 3.0.0",
             "pyupgrade >= 2.32.0, < 3.0.0",

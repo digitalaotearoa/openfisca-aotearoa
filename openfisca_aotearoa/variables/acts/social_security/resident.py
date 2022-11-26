@@ -4,8 +4,7 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from openfisca_core import periods, variables
-from openfisca_core import holders
+from openfisca_core import holders, periods, variables
 
 # We import the required `entities` corresponding to our formulas.
 #

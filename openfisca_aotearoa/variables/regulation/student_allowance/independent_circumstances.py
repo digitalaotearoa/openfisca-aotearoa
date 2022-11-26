@@ -1,15 +1,14 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class student_allowance__eligible_for_independent_circumstances(Variable):
+class independent_circumstances_grant__entitled(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260312"
     label = "Eligible for Student Allowance Independent Circumstances Grant"
     """
@@ -26,3 +25,23 @@ class student_allowance__eligible_for_independent_circumstances(Variable):
             a basic grant. (4) This regulation is subject to regulations 12 to 16, 20, 28 to 31, 34, 35, 40, and 44 to 48.
     """
     # Forumla todo
+
+
+class independent_circumstances_grant__receiving(variables.Variable):
+    label = "Already receiving independent circumstances grant"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
+
+
+class independent_circumstances_grant__would_be_entitled(variables.Variable):
+    label = "Would be eligible for independent circumstances if less income"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK

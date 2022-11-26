@@ -10,7 +10,7 @@
       2021-W23: [true, true, true, true, true]
       2022-W01: [true, true, true, true, true]
       2023-W01: [true, true, true, true, true]
-    social_security__in_a_relationship:
+    in_a_relationship:
       2020-W01: [false, false, false, false, false]
       2021-W01: [false, false, false, false, false]
       2021-W23: [false, false, false, false, false]
@@ -60,7 +60,7 @@
       2021-W23: [true, true, true, true, true]
       2022-W01: [true, true, true, true, true]
       2023-W01: [true, true, true, true, true]
-    social_security__in_a_relationship:
+    in_a_relationship:
       2020-W01: [false, false, false, false, false]
       2021-W01: [false, false, false, false, false]
       2021-W23: [false, false, false, false, false]
@@ -142,12 +142,12 @@
       2021-W23: [1, 1, 0]
       2022-W01: [1, 1, 0]
       2023-W01: [1, 1, 0]
-    social_security__in_a_relationship:
-      2020-W01: [true, true, false]
-      2021-W01: [true, true, false]
-      2021-W23: [true, true, false]
-      2022-W01: [true, true, false]
-      2023-W01: [true, true, false]
+    in_a_relationship:
+      2020-W01: [true, false, false]
+      2021-W01: [true, false, false]
+      2021-W23: [true, false, false]
+      2022-W01: [true, false, false]
+      2023-W01: [true, false, false]
     jobseeker_support__base:
       2020-W01: [391.00, 0, 0]
       2021-W01: [428.06, 0, 0]

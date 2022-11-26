@@ -4,6 +4,8 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
+import numpy
+
 from openfisca_core import periods, variables
 
 # We import the required `entities` corresponding to our formulas.
@@ -14,7 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-import numpy
 
 
 class schedule_4__part1_1_a(variables.Variable):
@@ -27,7 +28,7 @@ class schedule_4__part1_1_a(variables.Variable):
     def formula_2018_11_26(people, period, parameters):
         # Get `single` for each person in `people` at `period`, where `period`
         # is "forever", as in "Are you single now?"
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
         age = people("age", period.first_day)
 
         clause_1_a_i = single * (age < 20) * people("jobseeker_support__living_with_parent", period)
@@ -44,7 +45,7 @@ class schedule_4__part1_1_b(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(b)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
         age = people("age", period.first_day)
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
@@ -60,7 +61,7 @@ class schedule_4__part1_1_c(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(c)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_b", period)) * \
@@ -77,7 +78,7 @@ class schedule_4__part1_1_d(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(d)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_b", period)) * \
@@ -94,7 +95,7 @@ class schedule_4__part1_1_e(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(e)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             single * \
@@ -110,7 +111,7 @@ class schedule_4__part1_1_f(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(f)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("social_security__in_a_relationship", period))
+        single = numpy.logical_not(people("in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_e", period)) * \
@@ -126,7 +127,7 @@ class schedule_4__part1_1_g(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(g)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             people.family.any(people.family.members("social_security__granted_main_benefit", period), role=entities.Family.PARTNER)
 
 
@@ -162,11 +163,11 @@ class schedule_4__part1_1_h(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(h)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
 
     def formula_2020_11_09(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER) + \
             people.family.any(people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month), role=entities.Family.PARTNER)
 
@@ -204,7 +205,7 @@ class schedule_4__part1_1_i(variables.Variable):
     end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
 
 
@@ -242,13 +243,13 @@ class schedule_4__part1_1_j(variables.Variable):
     label = "Part 1 Jobseeker Support - Clause 1(j)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             numpy.logical_not(people("schedule_4__part1_1_g", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_h", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_i", period))
 
     def formula_2020_11_09(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
+        return people("in_a_relationship", period) * \
             numpy.logical_not(people("schedule_4__part1_1_g", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_h", period))
 

@@ -1,10 +1,18 @@
 # Changelog
 
+# 18.0.0 - [33](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/33)
+
+* New features:
+  - Add first out of four cases of accommodation supplement
+
+* Breaking changes
+  - Several definition period and name changes
+
 # 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
- 
+
  # 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
 * Added variables:
   - `social_security__receiving_main_benefit`
@@ -17,7 +25,7 @@
   - `jobseeker_benefit__granted` to `jobseeker_support__granted`
 
 # 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
-* Change to variable `person_has_partner` - time period switched from month to week
+* Change to variable `in_a_relationship` - time period switched from month to week
 
 # Changelog
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
@@ -25,7 +33,7 @@
 * Updated spelling of dependant to dependent when used as an adjective
 * Added section: `emergency_benefit`
 * Added variables:
-  - `social_security__in_a_relationship`
+  - `in_a_relationship`
   - `social_security__been_married_or_civil_union_or_de_facto_relationship`
   - `social_security__age_youngest_dependant_child`
   - `jobseeker_support__transferred_15_july_2013`
@@ -78,7 +86,7 @@
   - `married` (see marriage__married)
   - `civil_union` (see civil_union__civil_union)
   - `de_facto_relationship` (see property_relationships__de_facto_relationship)
-  - `married_or_civil_union_or_de_facto_relationship` (see person_has_partner)
+  - `married_or_civil_union_or_de_facto_relationship` (see in_a_relationship)
 * Entities and roles:
   - `principal_caregiver` to `principal`,
   - Removed the `parent` role as it wasn't utilised
@@ -93,10 +101,10 @@
   - Adapted `orphans_benefit__entitled` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
   - Adapted `unsupported_child__entitled` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
   - Adapted `childcare_assistance__eligible_childcare_subsidy` to utilise `income_tax__principal_caregiver` instead of role `principal_caregiver`
-  - Changed `social_security__dependent_children`, `social_security__child`, `social_security__dependent_child`, `social_security__financially_independent`, `social_security__in_a_relationship` from month to week period
+  - Changed `social_security__dependent_children`, `social_security__child`, `social_security__dependent_child`, `social_security__financially_independent`, `in_a_relationship` from month to week period
   - Added formula to `social_security__dependent_child`
   - Added additional clauses to `jobseeker_support__base`
-  - Improved `person_has_partner` formula
+  - Improved `in_a_relationship` formula
   - Add section `schedule_4` to `structure.json`
 
 # 15.0.0 - [34](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/34)
@@ -163,7 +171,7 @@
   - `is_resident` to `immigration__resident`
   - `is_permanent_resident` to `immigration__permanent_resident`
   - `is_dependent_child` to `dependent_child`
-  - `has_a_partner` to `person_has_partner`
+  - `has_a_partner` to `in_a_relationship`
   - `is_of_full_capacity` to `full_capacity`
   - `home_help__had_multiple_birth` to `home_help__multiple_birth`
   - `has_dependent_child` to `person_has_dependent_child`

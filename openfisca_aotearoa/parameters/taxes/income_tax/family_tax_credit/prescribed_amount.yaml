@@ -1,0 +1,20 @@
+description: Prescribed amount of family tax credit for the eldest child
+reference: https://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518515.html#DLM1518515
+
+ita2007_md_3_4_a:
+  values:
+    2019-03-18:
+      value: 6642
+      metadata:
+        reference:
+          title: Taxation (Annual Rates for 2018–19, Modernising Tax Administration, and Remedial Matters) Act 2019
+          href: https://www.legislation.govt.nz/act/public/2019/0005/latest/LMS55565.html
+
+ita2007_md_3_4_b:
+  values:
+    2019-03-18:
+      value: 5412
+      metadata:
+        reference:
+          title: Taxation (Annual Rates for 2018–19, Modernising Tax Administration, and Remedial Matters) Act 2019
+          href: https://www.legislation.govt.nz/act/public/2019/0005/latest/LMS55565.html
