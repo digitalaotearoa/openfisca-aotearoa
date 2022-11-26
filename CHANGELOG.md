@@ -1,5 +1,13 @@
 # Changelog
 
+# 18.0.0 - [33](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/33)
+
+* New features:
+  - Add first out of four cases of accommodation supplement
+
+* Breaking changes
+  - Several definition period and name changes
+
 # 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
