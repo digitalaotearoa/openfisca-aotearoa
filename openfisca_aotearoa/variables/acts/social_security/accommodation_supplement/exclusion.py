@@ -49,18 +49,18 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
             )
 
         ssa2018_67_b_i = (
-            + people("student_allowance__receiving_basic_grant", period)
-            + people("student_allowance__receiving_independent_circumstances", period)
+            + people("basic_grant__receiving", period)
+            + people("independent_circumstances_grant__receiving", period)
             )
 
         ssa2018_67_b_ii = (
-            + people("student_allowance__eligible_for_basic_grant", period.first_month)
-            + people("student_allowance__eligible_for_independent_circumstances", period.first_month)
+            + people("basic_grant__entitled", period.first_month)
+            + people("independent_circumstances_grant__entitled", period.first_month)
             )
 
         ssa2018_67_b_iii = (
-            + people("student_allowance__would_be_eligible_for_basic_grant", period)
-            + people("student_allowance__would_be_eligible_for_independent_circumstances", period)
+            + people("basic_grant__would_be_entitled", period)
+            + people("independent_circumstances_grant__would_be_entitled", period)
             )
 
         ssa2018_67_c = accommodation_type == housing.AccommodationType.residential_care

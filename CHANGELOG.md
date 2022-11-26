@@ -303,7 +303,7 @@
 
 # 11.1.2 [170](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/170)
 * No functional changes.
-  - Removing unnecessary family/Titled_Property groups in tests
+  - Removing unnecessary family/titled_property groups in tests
 
 # 11.1.1 [169](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/169)
 * Rename duplicate tests (same name, different test)
@@ -556,7 +556,7 @@ Calculation improvement.
 # 4.1.0 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/51)
 Calculation improvement.
 * Added Child Disability Allowance
-* Added "Others" role within a Titled_Property
+* Added "Others" role within a titled_property
 * Added "Others" role within a family
 
 # 4.0.2 - [#42](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/22)

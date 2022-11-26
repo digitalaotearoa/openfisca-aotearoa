@@ -5,7 +5,7 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 
 
-class student_allowance__eligible_for_independent_circumstances(variables.Variable):
+class independent_circumstances_grant__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.DateUnit.MONTH
@@ -26,7 +26,7 @@ class student_allowance__eligible_for_independent_circumstances(variables.Variab
     """
     # Forumla todo
 
-class student_allowance__receiving_independent_circumstances(variables.Variable):
+class independent_circumstances_grant__receiving(variables.Variable):
     label = "Already receiving independent circumstances grant"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
     documentation = """TODO"""
@@ -36,7 +36,7 @@ class student_allowance__receiving_independent_circumstances(variables.Variable)
     definition_period = periods.DateUnit.WEEK
 
 
-class student_allowance__would_be_eligible_for_independent_circumstances(variables.Variable):
+class independent_circumstances_grant__would_be_entitled(variables.Variable):
     label = "Would be eligible for independent circumstances if less income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
     documentation = """TODO"""

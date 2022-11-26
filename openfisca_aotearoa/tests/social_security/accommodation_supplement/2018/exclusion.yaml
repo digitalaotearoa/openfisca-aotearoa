@@ -42,9 +42,9 @@
     (i) Receives student grant
   period: 2018-11-26
   input:
-    student_allowance__receiving_basic_grant:
+    basic_grant__receiving:
       2022-W01: [true, true, false, false]
-    student_allowance__receiving_independent_circumstances:
+    independent_circumstances_grant__receiving:
       2022-W01: [true, false, true, false]
   output:
     accommodation_supplement__other_funding_exclusion:
@@ -59,9 +59,9 @@
     (ii)  Eligible for student grant
   period: 2018-11-26
   input:
-    student_allowance__eligible_for_basic_grant:
+    basic_grant__entitled:
       2022-01: [true, true, false, false]
-    student_allowance__eligible_for_independent_circumstances:
+    independent_circumstances_grant__entitled:
       2022-01: [true, false, true, false]
   output:
     accommodation_supplement__other_funding_exclusion:
@@ -76,9 +76,9 @@
     (iii) Would be eligible for student grant were it not means-tested
   period: 2018-11-26
   input:
-    student_allowance__would_be_eligible_for_basic_grant:
+    basic_grant__would_be_entitled:
       2022-W01: [true, true, false, false]
-    student_allowance__would_be_eligible_for_independent_circumstances:
+    independent_circumstances_grant__would_be_entitled:
       2022-W01: [true, false, true, false]
   output:
     accommodation_supplement__other_funding_exclusion:

@@ -7,7 +7,7 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 
 
-class student_allowance__eligible_for_basic_grant(variables.Variable):
+class basic_grant__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.DateUnit.MONTH
@@ -57,7 +57,7 @@ class student_allowance__eligible_for_basic_grant(variables.Variable):
     # has obtained, at level 3 of the National Certificate of Educational Achievement, 42 credits or more.
 
 
-class student_allowance__receiving_basic_grant(variables.Variable):
+class basic_grant__receiving(variables.Variable):
     label = "Already receiving basic grant"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
     documentation = """TODO"""
@@ -67,7 +67,7 @@ class student_allowance__receiving_basic_grant(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
 
-class student_allowance__would_be_eligible_for_basic_grant(variables.Variable):
+class basic_grant__would_be_entitled(variables.Variable):
     label = "Would be eligible for basic grant if less income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
     documentation = """TODO"""
