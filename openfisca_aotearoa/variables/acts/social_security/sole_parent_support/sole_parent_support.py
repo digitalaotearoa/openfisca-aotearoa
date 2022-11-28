@@ -75,15 +75,6 @@ class sole_parent_support__receiving(variables.Variable):
     reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
 
 
-class sole_parent_support__base(variables.Variable):
-    value_type = float
-    default_value = 0
-    entity = entities.Person
-    label = "TODO"
-    definition_period = periods.DateUnit.WEEK
-    reference = "TODO"
-
-
 class sole_parent_support__meets_relationship_qualification(variables.Variable):
     value_type = bool
     default_value = True
@@ -185,10 +176,14 @@ class sole_parent_support__dependent_child_requirement(variables.Variable):
     def formula_2018_11_26(persons, period, parameters):
         child_age_threshold = parameters(period).social_security.sole_parent_support.child_age_threshold
 
-        dc = persons.family.members("social_security__dependent_child", period.first_week) * \
+        ssa30 = persons.family.members("social_security__dependent_child", period.first_week) * \
             persons.family.members("age", period.first_day) < child_age_threshold
 
-        return persons.family.any(dc, role=entities.Family.CHILD) * (persons.has_role(entities.Family.PRINCIPAL) + persons.has_role(entities.Family.PARENT))
+        principal = persons("social_security__principal_caregiver", period.first_month)
+        children = persons.family.any(ssa30, role=entities.Family.CHILD)
+        parent = persons.has_role(entities.Family.PARENT)
+
+        return children * (principal + parent)
 
 
 class sole_parent_support__spouse_or_partner_died(variables.Variable):

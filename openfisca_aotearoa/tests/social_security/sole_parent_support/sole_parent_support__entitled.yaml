@@ -13,6 +13,8 @@
         sole_parent_support__lost_regular_support: false
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
       Tamaiti:
         age:
           day:2019-01-28:7: 5
@@ -47,6 +49,8 @@
         sole_parent_support__lost_regular_support: false
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
       Tamaiti:
         age:
           day:2019-01-28:7: 5
@@ -76,6 +80,8 @@
     sole_parent_support__split_care: [true, true, false, true, true]
     social_security__residential_requirement: [true, true, true, false, true]
     sole_parent_support__age_threshold: [true, true, true, true, false]
+    social_security__principal_caregiver:
+      month:2019-01:2: [true, true, true, true, true]
   output:
     sole_parent_support__entitled: [true, false, false, false, false]
 
@@ -129,6 +135,8 @@
         sole_parent_support__lost_regular_support: false
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
       Tamaiti:
         age:
           day:2019-01-28:7: 5
@@ -150,6 +158,8 @@
         social_security__residential_requirement: true
         sole_parent_support__spouse_or_partner_died: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:
@@ -172,6 +182,8 @@
         sole_parent_support__marriage_or_civil_union_dissolved: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:
@@ -194,6 +206,8 @@
         sole_parent_support__living_apart_and_lost_support: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:
@@ -216,6 +230,8 @@
         sole_parent_support__lost_regular_support: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:
@@ -238,6 +254,8 @@
         sole_parent_support__partner_imprisoned: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:
@@ -262,6 +280,8 @@
         sole_parent_support__partner_supervision: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
       Tamaiti:

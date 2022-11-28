@@ -6,8 +6,6 @@ import numpy
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-import numpy
-
 from openfisca_core import periods, variables
 
 # We import the required `entities` corresponding to our formulas.

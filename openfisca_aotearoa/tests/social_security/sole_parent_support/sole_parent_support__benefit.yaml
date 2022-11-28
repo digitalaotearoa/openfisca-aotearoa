@@ -6,6 +6,8 @@
       Koro:
         sole_parent_support__marriage_or_civil_union_dissolved: true
         social_security__residential_requirement: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         sole_parent_support__age_threshold: true
         age:
           day:2019-01-28:7: 30
@@ -32,6 +34,8 @@
         sole_parent_support__marriage_or_civil_union_dissolved: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
         social_security__income:
@@ -59,6 +63,8 @@
         sole_parent_support__marriage_or_civil_union_dissolved: true
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
         age:
           day:2019-01-28:7: 30
         social_security__income:

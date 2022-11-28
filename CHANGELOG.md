@@ -1,38 +1,6 @@
 # Changelog
 
-## 19.1.0 - [46](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/46)
-
-* Tax and benefit system evolution.
-* Impacted periods: from 26/11/2018.
-* Impacted areas: `regulations/accommodation_supplement/base.py`
-* Details:
-  - Add calculation for non-beneficiaries
-
-### 19.0.1 - [45](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/45)
-
-* Calculation improvement.
-* Impacted periods: 2018/11/26.
-* Impacted areas: `accommodation_supplement`
-* Details:
-  - Use `social_security__dependent_children`
-
-# 19.0.0 - [44](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/44)
-
-* Calculation improvement:
-  - Incorporates all main benefits for accommodation base rate calculation
-
-* Breaking changes
-  - Several definition period and name changes
-
-# 18.0.0 - [33](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/33)
-
-* New features:
-  - Add first out of four cases of accommodation supplement
-
-* Breaking changes
-  - Several definition period and name changes
-
-# 17.2.0 - [40](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/40)
+# 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
 * Added variables:
  - `sole_parent_support__requirement`
  - `sole_parent_support__dependent_child_requirement`
@@ -79,6 +47,38 @@
   - `parameters/social_security/sole_parent_support/age_threshold.yml`
 * Removed variables
   - `sole_parent_support__years_in_nz_requirement`
+
+## 19.1.0 - [46](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/46)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 26/11/2018.
+* Impacted areas: `regulations/accommodation_supplement/base.py`
+* Details:
+  - Add calculation for non-beneficiaries
+
+### 19.0.1 - [45](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/45)
+
+* Calculation improvement.
+* Impacted periods: 2018/11/26.
+* Impacted areas: `accommodation_supplement`
+* Details:
+  - Use `social_security__dependent_children`
+
+# 19.0.0 - [44](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/44)
+
+* Calculation improvement:
+  - Incorporates all main benefits for accommodation base rate calculation
+
+* Breaking changes
+  - Several definition period and name changes
+
+# 18.0.0 - [33](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/33)
+
+* New features:
+  - Add first out of four cases of accommodation supplement
+
+* Breaking changes
+  - Several definition period and name changes
 
 # 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
 * Other changes:
