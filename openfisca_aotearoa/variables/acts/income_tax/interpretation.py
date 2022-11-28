@@ -1,5 +1,6 @@
 """TODO: Add missing doctring."""
 
+# Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
@@ -8,7 +9,7 @@ from openfisca_aotearoa import entities
 class income_tax__dependent_child(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    definition_period = periods.DAY
     label = "Determines if a Person is classified as financially dependant"
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1520575.html#DLM1520883"
     set_input = holders.set_input_dispatch_by_period
@@ -28,7 +29,7 @@ class income_tax__dependent_child(variables.Variable):
 class income_tax__principal_caregiver(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "Is the person the principal caregiver"
     reference = "https://legislation.govt.nz/act/public/2007/0097/latest/DLM1520575.html#DLM1522335"
     set_input = holders.set_input_dispatch_by_period

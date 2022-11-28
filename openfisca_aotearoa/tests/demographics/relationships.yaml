@@ -13,7 +13,7 @@
       partners: [Papa]
       others: [Bob, Fred, Mary]
   output:
-    in_a_relationship: [true, false, false, false, false]
+    social_security__in_a_relationship: [true, false, false, false, false]
 
 
 - name: Relationship status
@@ -31,7 +31,7 @@
       partners: [Fred]
       others: [Mama, Papa, Mary]
   output:
-    in_a_relationship: [false, false, true, false, false]
+    social_security__in_a_relationship: [false, false, true, false, false]
 
 
 - name: Relationship status
@@ -48,4 +48,4 @@
       principal: Mary
       others: [Mama, Papa, Bob, Fred]
   output:
-    in_a_relationship: False
+    social_security__in_a_relationship: False

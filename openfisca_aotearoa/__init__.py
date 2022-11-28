@@ -6,7 +6,7 @@ from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
 from . import entities
 
-COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
+COUNTRY_DIR = os.path.dirname(__file__)
 
 
 # Our country tax and benefit class inherits from the general TaxBenefitSystem class.

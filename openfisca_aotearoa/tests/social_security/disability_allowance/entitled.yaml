@@ -7,5 +7,5 @@
     social_security__granted_main_benefit: true
     disability_allowance__below_income_threshold: true
     disability_allowance__ongoing_additional_expenses: true
-  output: 
+  output:
     disability_allowance__entitled: true

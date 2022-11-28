@@ -1,42 +1,44 @@
 """TODO: Add missing doctring."""
 
+# Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core.holders import set_input_dispatch_by_period
-from openfisca_core import periods, variables
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Person
 
 
-class income_tax__residence(variables.Variable):
+class income_tax__residence(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
     default_value = True
     label = "Boolean for if a Person is classified as meeting residence requirements"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518482.html"
 
 
-class income_tax__annual_gross_income(variables.Variable):
+class income_tax__annual_gross_income(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "Annual gross income"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512333.html"
 
 
-class income_tax__annual_total_deduction(variables.Variable):
+class income_tax__annual_total_deduction(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "Annual total deduction"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512336.html"
 
 
-class income_tax__net_income(variables.Variable):
+class income_tax__net_income(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "Net income"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512339.html"
 
@@ -48,10 +50,10 @@ class income_tax__net_income(variables.Variable):
             )
 
 
-class income_tax__net_loss(variables.Variable):
+class income_tax__net_loss(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "Net loss"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512339.html"
 
@@ -63,18 +65,18 @@ class income_tax__net_loss(variables.Variable):
             )
 
 
-class income_tax__available_tax_loss(variables.Variable):
+class income_tax__available_tax_loss(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "Available tax loss"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1520575.html#DLM1520774"
 
 
-class income_tax__taxable_income(variables.Variable):
+class income_tax__taxable_income(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.YEAR
+    entity = Person
+    definition_period = YEAR
     label = "A person's taxable income for a tax year"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1512344.html"
 

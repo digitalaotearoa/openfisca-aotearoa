@@ -9,7 +9,7 @@ from openfisca_aotearoa import entities
 class social_security__child_with_serious_disability(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "Child has serious disability"
     reference = """Social Security Act 1964 Part 1D Child disability allowance 39A
         (1)For the purposes of this section and of sections 39B to 39E, child with a serious disability means a dependent child who
@@ -23,7 +23,7 @@ class social_security__child_with_serious_disability(variables.Variable):
 class social_security__disability_self_inflicted(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = """The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by
     the person with a view to qualifying for a benefit"""
     reference = """

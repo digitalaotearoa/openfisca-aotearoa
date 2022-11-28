@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-import numpy
+from numpy import logical_not as not_
 
 from openfisca_core import holders, periods, variables
 
@@ -20,7 +20,7 @@ class supported_living_payment__granted(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently granted the supported living benefit"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
@@ -29,14 +29,14 @@ class supported_living_payment__receiving(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently recieving/being paid the supported living payment"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
 
 
 class supported_living_payment__caring_for_another_person(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment."
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
     set_input = holders.set_input_dispatch_by_period
@@ -45,7 +45,7 @@ class supported_living_payment__caring_for_another_person(variables.Variable):
 class supported_living_payment__below_income_threshold(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "Income below threshold for supported living payment"
     reference = "TODO"
 
@@ -53,7 +53,7 @@ class supported_living_payment__below_income_threshold(variables.Variable):
 class supported_living_payment__restricted_work_capacity(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "Is incapable of regularly working 15 or more hours a week in open employment"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176", "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367"
     set_input = holders.set_input_dispatch_by_period
@@ -63,7 +63,7 @@ class supported_living_payment__restricted_work_capacity(variables.Variable):
 class supported_living_payment__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "Eligible for Supported Living Payment."
     reference = """
         http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367
@@ -89,7 +89,7 @@ class supported_living_payment__entitled(variables.Variable):
         # 40B (5) A person must not be granted a supported living payment under this section if the chief
         # executive is satisfied that the person's restricted capacity for work, or total blindness, was
         # self-inflicted and brought about by the person with a view to qualifying for a benefit.
-        not_self_inflicted = numpy.logical_not(persons("social_security__disability_self_inflicted", period))
+        not_self_inflicted = not_(persons("social_security__disability_self_inflicted", period))
 
         # 40B (1A) An applicant for the supported living payment under
         # this section must be aged at least 16 years.
@@ -105,3 +105,13 @@ class supported_living_payment__entitled(variables.Variable):
         income = persons("supported_living_payment__below_income_threshold", period)
 
         return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * immigration__resident_or_citizen * income
+
+
+class supported_living_payment__base(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

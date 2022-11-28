@@ -10,7 +10,7 @@ from openfisca_aotearoa import entities
 class fulltime_employment(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    definition_period = periods.DAY
     label = "The person is not in full-time employment"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
@@ -18,14 +18,14 @@ class fulltime_employment(variables.Variable):
 class hours_per_week_employed(variables.Variable):
     value_type = int
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "The hours per week a person is employed for"
 
 
 class losing_earnings_from_health_injury(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    definition_period = periods.DAY
     label = "The person is losing earnings from health injury"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
@@ -33,7 +33,7 @@ class losing_earnings_from_health_injury(variables.Variable):
 class work_gap(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    definition_period = periods.DAY
     label = "The person has a work gap"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 

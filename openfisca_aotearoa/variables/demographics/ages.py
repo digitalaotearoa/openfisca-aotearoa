@@ -1,38 +1,41 @@
 """TODO: Add missing doctring."""
 
-import datetime
+from datetime import date
 
-import numpy
+from numpy import where
 
-from openfisca_core import holders, periods, variables
+from openfisca_core import holders
+# Import from openfisca-core the common python objects used to code the legislation in OpenFisca
+from openfisca_core.periods import DAY, ETERNITY
+from openfisca_core.variables import Variable
 
 # Import the entities specifically defined for this tax and benefit system
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Family, Person
 
 
 # This variable is a pure input: it doesn't have a formula
-class date_of_birth(variables.Variable):
+class date_of_birth(Variable):
     # base_function = missing_value # missing_value removed from model_api
-    value_type = datetime.date
-    entity = entities.Person
+    value_type = date
+    entity = Person
     label = "Birth date"
-    definition_period = periods.DateUnit.ETERNITY  # This variable cannot change over time.
+    definition_period = ETERNITY  # This variable cannot change over time.
     reference = "https://en.wiktionary.org/wiki/birthdate"
 
 
 # This variable is a pure input: it doesn't have a formula
-class due_date_of_birth(variables.Variable):
-    value_type = datetime.date
-    entity = entities.Person
+class due_date_of_birth(Variable):
+    value_type = date
+    entity = Person
     label = "Birth due date"
-    definition_period = periods.DateUnit.ETERNITY  # This variable cannot change over time.
+    definition_period = ETERNITY  # This variable cannot change over time.
     reference = ""
 
 
-class age(variables.Variable):
+class age(Variable):
     value_type = int
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "The age of a Person (in years)"
     unit = "years"
     default_value = -9999
@@ -46,16 +49,13 @@ class age(variables.Variable):
         birth_day = (birth - birth.astype("datetime64[M]") + 1).astype(int)
 
         is_birthday_past = (birth_month < period.start.month) + (birth_month == period.start.month) * (birth_day <= period.start.day)
-        # If the birthday is not passed
-        # this year, substract one year
-        return (period.start.year - birth_year) - numpy.where(is_birthday_past, 0, 1)
+        return (period.start.year - birth_year) - where(is_birthday_past, 0, 1)  # If the birthday is not passed this year, substract one year
 
 
-
-class age_of_youngest(variables.Variable):
+class age_of_youngest(Variable):
     value_type = int
-    entity = entities.Family
-    definition_period = periods.DateUnit.DAY
+    entity = Family
+    definition_period = DAY
     unit = "years"
     label = "The age of the youngest member of a family"
     # A person's age is computed according to their birth date.
@@ -64,12 +64,12 @@ class age_of_youngest(variables.Variable):
         return families.min(families.members("age", period))
 
 
-class age_of_partner(variables.Variable):
+class age_of_partner(Variable):
     value_type = int
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     unit = "years"
     label = "The maximum age of partner in a family"
 
     def formula(persons, period, parameters):
-        return persons.family.max(persons.family.members("age", period), role = entities.Family.PARTNER)
+        return persons.family.max(persons.family.members("age", period), role=Family.PARTNER)

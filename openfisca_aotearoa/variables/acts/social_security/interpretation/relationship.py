@@ -16,5 +16,5 @@ class social_security__been_married_or_civil_union_or_de_facto_relationship(vari
 class social_security__parent(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.MONTH
     label = "Is a parent?"

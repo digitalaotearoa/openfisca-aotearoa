@@ -27,7 +27,7 @@ class young_parent_payment__receiving(variables.Variable):
 class young_parent_payment__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "Eligible for Young Parent Payment"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -73,7 +73,7 @@ class young_parent_payment__base(variables.Variable):
 class young_parent_payment__basic_requirements(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "Meets young parent payment basic requirements"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -114,12 +114,11 @@ class young_parent_payment__basic_requirements(variables.Variable):
 class young_parent_payment__income_under_threshold(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "Is their income under the Young Parent Payment threshold?"
 
     def formula(persons, period, parameters):
-        # TODO: Fix this calculation
-        yearly_income = (persons("weekly_income", period) * 52)
+        yearly_income = (persons("monthly_income", period) * 12)
         yearly_income_threshold = (
             52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold)
         return yearly_income < yearly_income_threshold

@@ -21,7 +21,7 @@ class super___eligibility_age(variables.Variable):
 class super__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "Classified as eligible for NZ Super"
     reference = "http://www.legislation.govt.nz/act/public/2001/0084/latest/DLM113987.html"
 
@@ -32,6 +32,16 @@ class super__entitled(variables.Variable):
             numpy.logical_not(persons("acc__receiving_compensation", period)) +\
             persons(
                 "veterans_support__entitled", period)
+
+
+class super__receiving(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
 
 
 class super__base(variables.Variable):

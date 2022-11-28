@@ -1,40 +1,41 @@
 """TODO: Add missing doctring."""
 
-import numpy
+from numpy import clip, logical_not
 
-from openfisca_core import periods, variables
+from openfisca_core.periods import DAY, ETERNITY
+from openfisca_core.variables import Variable
 
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Person
 
 
-class acc_sched_1__incapacitated_for_6_months(variables.Variable):
+class acc_sched_1__incapacitated_for_6_months(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.ETERNITY
+    entity = Person
+    definition_period = ETERNITY
     label = "Incapacitated for 6 months"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
-class acc_sched_1__loe_more_than_lope(variables.Variable):
+class acc_sched_1__loe_more_than_lope(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.ETERNITY
+    entity = Person
+    definition_period = ETERNITY
     label = "Loss of earnings entitlement is more than loss of potential earnings entitlement"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
-class acc_sched_1__engaged_fulltime_study_or_training(variables.Variable):
+class acc_sched_1__engaged_fulltime_study_or_training(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "Engaged in full-time study or training, does not include full-time study or training in living or social skills"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
-class acc_sched_1__lope_eligible(variables.Variable):
+class acc_sched_1__lope_eligible(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "Corporation determination of incapacity"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
@@ -47,9 +48,9 @@ class acc_sched_1__lope_eligible(variables.Variable):
         potential_earner = persons("acc__potential_earner", period)
 
         over_or_equal_18 = (persons("age", period) >= 18)
-        not_engaged_in_study_at_entitlement = numpy.logical_not(persons("acc_sched_1__engaged_fulltime_study_or_training", period))
+        not_engaged_in_study_at_entitlement = logical_not(persons("acc_sched_1__engaged_fulltime_study_or_training", period))
         earner = persons("acc__earner", period)
-        not_earner_with_higher_loe = numpy.logical_not(earner * persons("acc_sched_1__loe_more_than_lope", period))
+        not_earner_with_higher_loe = logical_not(earner * persons("acc_sched_1__loe_more_than_lope", period))
 
         six_months = persons("acc_sched_1__incapacitated_for_6_months", period)
 
@@ -65,24 +66,24 @@ class acc_sched_1__lope_eligible(variables.Variable):
                 * six_months)
 
 
-class acc_sched_1__weekly_earnings(variables.Variable):
+class acc_sched_1__weekly_earnings(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "Weekly earnings"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
 
-class acc_sched_1__lope_weekly_compensation(variables.Variable):
+class acc_sched_1__lope_weekly_compensation(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "Compensation per week"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104891.html"
 
     def formula(persons, period, parameters):
         hourly_rate_week = parameters(period).minimum_wage.adult_rate * 40
-        minimum_earnings = numpy.clip(persons("acc_sched_1__minimum_weekly_earnings", period), hourly_rate_week, None)
+        minimum_earnings = clip(persons("acc_sched_1__minimum_weekly_earnings", period), hourly_rate_week, None)
         abatement = minimum_earnings * parameters(period).acc.weekly_compensation_abatement
         weekly_earnings = persons("acc_sched_1__weekly_earnings", period)
-        return numpy.clip((abatement - (abatement + weekly_earnings - minimum_earnings)), 0, None) * persons("acc_sched_1__lope_eligible", period)
+        return clip((abatement - (abatement + weekly_earnings - minimum_earnings)), 0, None) * persons("acc_sched_1__lope_eligible", period)

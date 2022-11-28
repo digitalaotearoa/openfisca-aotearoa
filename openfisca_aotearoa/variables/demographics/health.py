@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-import datetime
+from datetime import date
 
 from openfisca_core import periods, variables
 
@@ -16,7 +16,7 @@ class full_capacity(variables.Variable):
 
 
 class date_of_injury(variables.Variable):
-    value_type = datetime.date
+    value_type = date
     entity = entities.Person
     label = "Date of injury, ACC act does not explicitly define this term but does add to it for specific circumstances"
     definition_period = periods.ETERNITY  # This variable cannot change over time.

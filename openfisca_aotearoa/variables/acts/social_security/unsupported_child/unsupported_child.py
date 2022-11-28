@@ -1,17 +1,18 @@
 """TODO: Add missing doctring."""
 
-import numpy
+from numpy import logical_not as not_
 
-from openfisca_core import periods, variables
+from openfisca_core.periods import ETERNITY, MONTH
+from openfisca_core.variables import Variable
 
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Family, Person
 
 
 # TODO: Review against the new 2018 act
-class unsupported_child__entitled(variables.Variable):
+class unsupported_child__entitled(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "Eligible for Unsupported child’s benefit"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM361606"
     # Unsupported child’s benefit
@@ -34,7 +35,7 @@ class unsupported_child__entitled(variables.Variable):
 
         age_test = persons("age", period.start) >= 18
 
-        not_the_parent = numpy.logical_not(
+        not_the_parent = not_(
             persons("social_security__parent_of_dependent_child", period))
         one_year = persons(
             "social_security__principal_carer_for_one_year_from_application_date", period)
@@ -48,10 +49,10 @@ class unsupported_child__entitled(variables.Variable):
 
 
 # TODO: Review against the new 2018 act
-class unsupported_child__unsupported_child_in_family(variables.Variable):
+class unsupported_child__unsupported_child_in_family(Variable):
     value_type = bool
-    entity = entities.Family
-    definition_period = periods.DateUnit.MONTH
+    entity = Family
+    definition_period = MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM361613"
     label = "Family has an unsupported child"
 
@@ -62,29 +63,29 @@ class unsupported_child__unsupported_child_in_family(variables.Variable):
         resident_or_citizen = families.members(
             "immigration__citizen_or_resident", period)
 
-        return families.any((children * parents_unable * resident_or_citizen), role = entities.Family.CHILD)
+        return families.any((children * parents_unable * resident_or_citizen), role=Family.CHILD)
 
 
 # TODO: Review against the new 2018 act, needs reference
-class social_security__parent_of_dependent_child(variables.Variable):
+class social_security__parent_of_dependent_child(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.ETERNITY
+    entity = Person
+    definition_period = ETERNITY
     default_value = True
     label = "Is the parent of their dependent child"
 
 
 # TODO: Review against the new 2018 act, needs reference
-class social_security__principal_carer_for_one_year_from_application_date(variables.Variable):
+class social_security__principal_carer_for_one_year_from_application_date(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "Is the principal carer for one year (or more) from the application date"
 
 
 # TODO: Review against the new 2018 act, needs reference
-class social_security__parents_unable_to_provide_sufficient_care(variables.Variable):
+class social_security__parents_unable_to_provide_sufficient_care(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "because of a breakdown in the child’s family, no natural parent, adoptive parent, or step-parent of the child is able to care for the child or to provide fully for the child’s support"

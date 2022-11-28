@@ -21,7 +21,7 @@ from openfisca_aotearoa import entities
 class jobseeker_support__benefit(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "The final net benefit entitlement"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
@@ -32,12 +32,12 @@ class jobseeker_support__benefit(variables.Variable):
 class jobseeker_support__reduction(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
     def formula_2018_11_26(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PRINCIPAL)
+        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
 
         # numpy.floor required for income tests as it's "35c for every $1"
         family_income = numpy.floor(family_income)
@@ -64,7 +64,7 @@ class jobseeker_support__reduction(variables.Variable):
             )
 
     def formula_2020_11_09(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PRINCIPAL)
+        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
 
         # numpy.floor required for income tests as it's "35c for every $1"
         family_income = numpy.floor(family_income)
@@ -93,7 +93,7 @@ class jobseeker_support__reduction(variables.Variable):
 class jobseeker_support__base(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Jobseeker Support - Base Amount, (this is taxed and the amounts are supplied after tax, i.e. net)"
 
@@ -139,7 +139,8 @@ class jobseeker_support__base(variables.Variable):
             clause_1_h_i_net_weekly_benefit + clause_1_h_ii_net_weekly_benefit + \
             clause_1_i_i_net_weekly_benefit + clause_1_i_ii_net_weekly_benefit + \
             clause_1_j_i_net_weekly_benefit + clause_1_j_ii_net_weekly_benefit
-        return people("jobseeker_support__entitled", period) * base
+
+        return base
 
     def formula_2020_11_09(people, period, parameters):
         # This is the date clause 1 (i) was repealed as per: https://www.legislation.govt.nz/act/public/2018/0032/152.0/DLM6784850.html
@@ -185,13 +186,14 @@ class jobseeker_support__base(variables.Variable):
             clause_1_g_i_net_weekly_benefit + clause_1_g_ii_net_weekly_benefit + \
             clause_1_h_i_net_weekly_benefit + clause_1_h_ii_net_weekly_benefit + \
             clause_1_j_i_net_weekly_benefit + clause_1_j_ii_net_weekly_benefit
-        return people("jobseeker_support__entitled", period) * base
+
+        return base
 
 
 class jobseeker_support__living_with_parent(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "As defined in Part 1 of Schedule 4 of the Social Security Act, Part 1, 8"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 

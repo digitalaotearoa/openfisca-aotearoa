@@ -1,5 +1,13 @@
 # Changelog
 
+# 19.0.0 - [44](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/44)
+
+* Calculation improvement:
+  - Incorporates all main benefits for accommodation base rate calculation
+
+* Breaking changes
+  - Several definition period and name changes
+
 # 18.0.0 - [33](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/33)
 
 * New features:
@@ -8,12 +16,14 @@
 * Breaking changes
   - Several definition period and name changes
 
-# 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
+## 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)
+
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
 
- # 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
+# 17.0.0 - [37](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/37)
+
 * Added variables:
   - `social_security__receiving_main_benefit`
   - `emergency_benefit__receiving`
@@ -24,11 +34,12 @@
 * Renamed variables:
   - `jobseeker_benefit__granted` to `jobseeker_support__granted`
 
-# 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+### 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+
 * Change to variable `in_a_relationship` - time period switched from month to week
 
-# Changelog
 # 16.0.0 - [35](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+
 * Change to contributing.md and coding patterns
 * Updated spelling of dependant to dependent when used as an adjective
 * Added section: `emergency_benefit`
@@ -108,6 +119,7 @@
   - Add section `schedule_4` to `structure.json`
 
 # 15.0.0 - [34](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/34)
+
 * Resolve issues with dependant child concepts within the Social Security Act
 * Updated spelling of dependant to dependent when used as an adjective
 * Breaking changes, Removed variables:
@@ -119,6 +131,7 @@
   - removed the formula associated with `social_security__dependent_child`
 
 # 14.0.0 - [31](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/31)
+
 * Added support for Social Security Act 2018 residency requirements
 * Added Job Seeker Support entitlement for Social Security Act 2018
 * Breaking changes, Renamed variables:
@@ -157,10 +170,12 @@
  - `age_threshold` to `age_threshold_without_dependant_child`
  - `age_threshold_with_dependant_child` to `age_threshold_other`
 
-# 13.0.1 - [30](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/30)
+### 13.0.1 - [30](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/30)
+
 * Restoration of Citizen and Immigration tests to utilise functionality added in OpenFisca core.
 
 # 13.0.0 - [29](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/29)
+
 * Large restructure and renaming exercise to lay groundwork for social security act work.
 * Switch away from using act numbers for folders to using prefixes. New version of social security act forced this.
 * Added documentation on coding, structuring project
@@ -277,97 +292,121 @@
 * Removed excess variable `immigration__holds_permanent_resident_visa`
 * Added `orphans_benefit`,`unsupported_child`,`child_disability_allowance`,`young_parent_payment` to structure.json
 
+## 12.1.0 [16](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/16)
 
-# 12.1.0 [16](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/16)
 * Removal of some tests while underlying issue in openfisca core is resolved (see openfisca_core/holders/helpers.py and period days)
 * Adjustments to some tests to account for above issue
 * Breaking changes:
  - age_of_partner now returns the maximum age of partners rather than assuming one as this section was failing to run after upgrade
 
 # 12.0.0 [13](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/13)
+
 * Allows utilisation of the vscode .devcontainer development process. Requires container environment.
 
 # 12.0.0 [183](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/183)
+
 * Upgrade to Open Fisca Core 30.x
 * Breaking changes:
  - no longer accepts MONTH period values for variables that are by DAY
  - age variables must be set for a DAY period, not MONTH or YEAR
 
-# 11.3.2 [184](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/184)
+### 11.3.2 [184](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/184)
+
 * No functional changes.
   - Added regression test for age calculations
 
-# 11.3.0 [178](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/178)
+## 11.3.0 [178](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/178)
+
 * Accident Compensation Act - Loss of Earnings and Loss of Potential Earnings
 
-# 11.2.0 [176](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/176)
+## 11.2.0 [176](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/176)
+
 * Bug Fix
   - Rates Rebate algorithm formula incorrectly allowed negative excess income
 
-# 11.1.3 [174](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/174)
+### 11.1.3 [174](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/174)
+
 * No functional changes.
   - Removing unnecessary family groups in tests
   - Better names for tests
 
-# 11.1.2 [170](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/170)
+### 11.1.2 [170](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/170)
+
 * No functional changes.
   - Removing unnecessary family/titled_property groups in tests
 
-# 11.1.1 [169](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/169)
+### 11.1.1 [169](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/169)
+
 * Rename duplicate tests (same name, different test)
 
-# 11.1.0 [167](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/167)
+## 11.1.0 [167](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/167)
+
 * Adds values for Rates Rebates 2018 to 2019
 
 # 11.0.0 [163](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/163)
+
 * Upgrade to Open Fisca 29.x
 
-# 10.2.1 [159](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/159)
+### 10.2.1 [159](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/159)
+
 * No functional changes.
   - Removed debug print statement
 
-# 10.2.0 [153](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/153)
+## 10.2.0 [153](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/153)
+
 * Update to Openfisca Core 26.0
 
-# 10.1.3 [148](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/148)
+### 10.1.3 [148](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/148)
+
 * Add Hamish to maintainers
 
-# 10.1.2 [150](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/150)
+### 10.1.2 [150](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/150)
+
 * Automate git tagging of release
 
-# 10.1.1 [122](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/122)
+### 10.1.1 [122](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/122)
+
 * Grammar fix up in variable labels
 
-# 10.1.0 [142](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/142)
+## 10.1.0 [142](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/142)
+
 * Add formula for Primary Carer in Paid Parental Leave
 
 # 10.0.0 [145](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/145)
+
 * Upgrades to Open Fisca core 25.0
 * Removed support for Python 2.7
 * Updated all yaml tests to new format
 
-# 9.2.0 - [141](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/141)
+## 9.2.0 - [141](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/141)
+
 * add `immigration__entitled_to_indefinite_stay` for use in citizenship presence calculations
 
-# 9.1.0 - [#139](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/139)
+## 9.1.0 - [#139](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/139)
+
 * Fix calculation of number of days present in NZ for Citizenship by Grant
 
-# 9.0.1 - [#121](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/121)
+### 9.0.1 - [#121](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/121)
+
 * Added unit (years) to ages
 * Added unit (NZD) to best_start__entitlement
 
 # 9.0.0 - [#132](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/132)
+
 * Removed duplicate parameter `general/age_of_superannuation`
 
-# 8.0.1 - [#126](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/126)
+### 8.0.1 - [#126](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/126)
+
 * Changed Formula:
   - Removed `family_scheme__full_time_earner` from `family_scheme__qualifies_for_family_tax_credit`
 
 # 8.0.0 - [#125](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/125)
+
 * Renamed variables:
   - `family_scheme__in_work_tax_credit_is_full_time_earner` replaced with `family_scheme__full_time_earner`
 
 # 7.0.0 - [#124](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/124)
+
 * Renamed variables:
   - `social_security__eligible_for_childcare_subsidy` to `childcare_assistance__eligible_childcare_subsidy`
   - `sole_parent__family_has_child_under_age_limit` to `sole_parent_support__family_has_child_under_age_limit`
@@ -385,16 +424,19 @@
   - `entitlements.social_security.childcare_subsidy.minimum_hours_in_childcare`
 * Added `social_security_regulation` to structure.json
 
-# 6.1.2 - [#117](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/117)
-* Bug fix
+### 6.1.2 - [#117](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/117)
+
+#### Bug fix
+
   - no longer throws unhandled exception when working on leap days
 
-# 6.1.1 - [#115](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/115)
+### 6.1.1 - [#115](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/115)
 
-* New variable
+#### New variable
+
   - `citizenship__preceeding_single_year_minimum_presence_requirement`
 
-# 6.1.0 - [#101](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/101)
+## 6.1.0 - [#101](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/101)
 
 * Added Citizen-by-grant presence in NZ requirements algorithm
 * Change `age` to be changing by `DAY`
@@ -416,59 +458,79 @@
   - `citizenship__intends_crown_service`
 
 
-# 6.0.3 - [#104](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/104)
-* Refactor to remove unused variables
+### 6.0.3 - [#104](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/104)
+
+#### Refactor to remove unused variables
+
   - Removed `acc__elected_for_weekly_compensation`
   - Removed `social_security__cash_assets`
   - Removed `family_scheme__proportion_as_principal_carer`
   - Removed `social_security__is_a_specified_beneficiary`
   - Removed `income_tax__tax_payer_filing_status`
 
-# 6.0.2 - [#103](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/103)
-* Tidyup metadata
-    Adding yet more missing labels
+### 6.0.2 - [#103](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/103)
 
-# 6.0.1 - [#102](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/102)
-* Tidyup metadata
-    Adding missing labels, shortened long labels and improved language in descriptions
+#### Tidyup metadata
+
+* Adding yet more missing labels
+
+### 6.0.1 - [#102](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/102)
+
+#### Tidyup metadata
+
+* Adding missing labels, shortened long labels and improved language in descriptions
 
 # 6.0.0 - [#98](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/98)
-* Technical improvement.
-    Upgrade to Python 3.7
 
-# 5.1.4 - [#100](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/100)
-* Technical improvement.
+#### Technical improvement
+
+* Upgrade to Python 3.7
+
+### 5.1.4 - [#100](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/100)
+
+#### Technical improvement
     Pin to version 24.3.0, to ensure we support legislation explorer
     the `/entities` route was added to the API in this version
 
-# 5.1.3 - [#97](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/97)
-* Refactored NZ Superannuation
+### 5.1.3 - [#97](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/97)
+
+#### Refactored NZ Superannuatio
   - Added `super__eligible_age`
   - Removed age requirement from `super__eligible`
   - Removed `super__living_alone` and `super__has_partner_in_long_term_care_or_rest_home`
 
-# 5.1.2 - [#94](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/94)
-* Added NZ Superannuation
+### 5.1.2 - [#94](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/94)
 
-# 5.1.1 - [#93](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/93)
-* Bug fix.
+#### Added NZ Superannuatio
+
+### 5.1.1 - [#93](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/93)
+
+#### Bug fix
   - adding residency requirements to entitlements
 
-# 5.1.0 - [#92](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/92)
-* Tax and benefit system evolution.
+## 5.1.0 - [#92](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/92)
+
+#### Tax and benefit system evolution
+
   - adding income test to Family Tax Credit
   - added variables `family_scheme__in_work_tax_credit_is_full_time_earner, family_scheme__in_work_tax_credit_income_under_threshold, family_scheme__family_tax_credit_income_under_threshold`
 
-# 5.0.2 - [#88](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/88)
-* Tax and benefit system evolution.
+### 5.0.2 - [#88](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/88)
+
+#### Tax and benefit system evolution
+
   - added formula for is_permanent_resident
 
-# 5.0.1 - [#81](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/81)
-Calculation improvement.
+### 5.0.1 - [#81](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/81)
+
+#### Calculation improvement
+
  * Added Home Help
 
 # 5.0.0 - [#83](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/83)
-* Tax and benefit system evolution. Major change.
+
+#### Tax and benefit system evolution. Major change.
+
 * Impacted periods: income_tax
 * Impacted areas: `tests/best_start, tests/family_scheme, tests/working_for_families, variables/entitlements/income_tax/best_start.py, variables/entitlements/income_tax/family_scheme.py, variables/entitlements/income_tax/working_for_families.py`
 * Details:
@@ -498,53 +560,75 @@ Calculation improvement.
   - moved family scheme tests sub folder `income_tax/family_scheme folder`
 
 
-# 4.2.6 - [#81](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/81)
-Calculation improvement.
+### 4.2.6 - [#81](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/81)
+
+#### Calculation improvement
+
  * Added Home Help
 
-# 4.2.5 - [#84](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/87)
-Calculation improvement.
+### 4.2.5 - [#84](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/87)
+
+#### Calculation improvement
+
  * Added Childcare Subsidy
 
-# 4.2.4 - [#77](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/86)
-Calculation improvement.
+### 4.2.4 - [#77](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/86)
+
+#### Calculation improvement
+
  * Added Unsupported Child Benefit
  * Added Orphan's benefit
 
-# 4.2.3 - [#77](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/77)
-Technical improvement.
+### 4.2.3 - [#77](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/77)
+
+#### Technical improvement
+
  * Remove dependency on OpenFisca-Web-API (now included in Core)
  * Update README.md with notes on updating OpenFisca-Core for existing developers
 
-# 4.2.2 - [#78](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/78)
-Calculation improvement.
+### 4.2.2 - [#78](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/78)
+
+#### Calculation improvement
+
  * Added Paid Parental Leave Regulations
 
-# 4.2.1 - [#75](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/75)
-Calculation improvement.
+### 4.2.1 - [#75](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/75)
+
+#### Calculation improvement
+
  * Added Student Allowance Regulations
  * Seperated Acts and Regulations
  * Adding Relationship status
  * Adding Superannuation age qualifications.
 
-# 4.2.0
-Hotfix
+## 4.2.0
+
+#### Hotfix
+
  * Mark source code as UTF8
 
-# 4.1.6 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/74)
-Calculation improvement.
+### 4.1.6 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/74)
+
+#### Calculation improvement
+
  * Added Young Parent Payment for single person
 
-# 4.1.5 - [#72](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/72)
-Calculation improvement.
+### 4.1.5 - [#72](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/72)
+
+#### Calculation improvement
+
   * Added Community Service Card
 
-# 4.1.4 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
-Calculation improvement.
+### 4.1.4 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
+
+#### Calculation improvement
+
  * Added Jobseeker Support for 18 and 19 year olds
 
-# 4.1.3 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
-Calculation improvement.
+### 4.1.3 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
+
+#### Calculation improvement
+
 * addded Supported living payment
 * Organising by numbered section of the act
 * Moved Social Security Act disability definitions to that folder
@@ -553,32 +637,43 @@ Calculation improvement.
 * Renaming job seeker to Jobseeker Support
 * Restructured Social Security Act variables
 
-# 4.1.2 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
-Calculation improvement.
+### 4.1.2 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/55)
+
+#### Calculation improvement
+
 * Added Sole Parent Support
 
 # 4.1.1 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/53)
-Calculation improvement.
+
+#### Calculation improvement.
+
 * Added Job Seeker Support
 
-# 4.1.0 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/51)
-Calculation improvement.
+## 4.1.0 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/51)
+
+#### Calculation improvement
+
 * Added Child Disability Allowance
 * Added "Others" role within a titled_property
 * Added "Others" role within a family
 
-# 4.0.2 - [#42](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/22)
-Legislation improvement.
+### 4.0.2 - [#42](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/22)
+
+#### Legislation improvement
+
 * Added Accommodation Supplement from the Social Security Act 1964
 
-# 4.0.1 - [#42](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/42)
-Technical improvement.
+### 4.0.1 - [#42](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/42)
+
+#### Technical improvement
+
 * Details:
   - Moving the version bump check to its own segment of the circle ci config, This means it appears as a separate check within a github PR, and so we can see quickly that the input/output tests pass - and it's only the version bump that's missing.
 
 # 4.0.0 - [#22](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/22)
 
-* Tax and benefit system evolution. Major change.
+#### Tax and benefit system evolution; Major change
+
 * Impacted periods: all
 * Impacted areas: `entities.families, tests/best_start, tests/family_scheme, tests/working_for_families, variables/demographics, variables/rates_rebates, variables/entitlements/income_tax/best_start.py, variables/entitlements/income_tax/family_scheme.py, variables/entitlements/income_tax/working_for_families.py`
 * Details:
@@ -590,7 +685,8 @@ Technical improvement.
 
 # 3.0.0 - [#20](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/20)
 
-* Tax and benefit system evolution.
+#### Tax and benefit system evolution
+
 * Impacted periods: all.
 * Impacted areas:
   - Variables `income_tax__tax_payer_filing_status, income_tax__annual_gross_income, income_tax__annual_total_deduction, income_tax__net_income, income_tax__net_loss, income_tax__available_tax_loss, income_tax__taxable_income, rates_rebates__dependants, rates_rebates__rates_total, rates_rebates__combined_income, rates_rebates__rebate, rates_rebates__maximum_income_for_full_rebate, rates_rebates__minimum_income_for_no_rebate`
@@ -599,7 +695,8 @@ Technical improvement.
 
 ## 2.2.0 - [#19](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/19)
 
-* Tax and benefit system evolution.
+#### Tax and benefit system evolution
+
 * Impacted periods: all.
 * Impacted areas: Entities
 * Details:
@@ -613,7 +710,8 @@ Technical improvement.
 
 ## 2.1.0 - [#18](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/18)
 
-* Tax and benefit system evolution
+#### Tax and benefit system evolution
+
 * Impacted periods: from 2000-04-01
 * Impacted areas:
   - Variables `tax_payer_filing_status__income_tax, annual_gross_income__income_tax, annual_total_deduction__income_tax, net_income__income_tax, net_loss__income_tax, available_tax_loss__income_tax, taxable_income__income_tax`
@@ -623,7 +721,8 @@ Technical improvement.
 
 # 2.0.0 - [#12](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/12)
 
-* Tax and benefit system evolution
+#### Tax and benefit system evolution
+
 * Impacted periods: from 1973-07
 * Impacted areas:
   - Variables `rates_rebates`
@@ -637,7 +736,8 @@ Technical improvement.
 
 ### 1.0.1 - [#10](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/10)
 
-* Tax and benefit system evolution
+#### Tax and benefit system evolution
+
 * Impacted periods: from 1973-07
 * Impacted areas:
   - Variables `rates_rebates`
@@ -647,7 +747,8 @@ Technical improvement.
 
 # 1.0.0 - [#6](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/6)
 
-* Tax and benefit system evolution
+#### Tax and benefit system evolution
+
 * Impacted periods: from 1973-07
 * Impacted areas:
   - Parameters `benefits/rates_rebates`
@@ -666,7 +767,9 @@ Technical improvement.
     - Introduce `maximum_income_for_full_rebate` variable
     - Introduce `minimum_income_for_no_rebate` variable
 <!-- -->
-* Tax and benefit system evolution
+
+#### Tax and benefit system evolution
+
 * Impacted periods: from 1898-01-01
 * Impacted areas:
   - Parameters `general`
@@ -675,7 +778,9 @@ Technical improvement.
     - Introduce `general/age_of_majority` parameter
     - Introduce `general/age_of_superannuation` parameter
 <!-- -->
-* Tax and benefit system evolution
+
+#### Tax and benefit system evolution
+
 * Impacted periods: from 2000-04-01
 * Impacted areas:
   - Parameters `taxes`

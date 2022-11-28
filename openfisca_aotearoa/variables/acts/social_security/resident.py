@@ -20,7 +20,7 @@ class social_security__residential_requirement(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Residential requirements for certain benefits, calculates for the 1964 and the 2018 Social Security Acts"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
     set_input = holders.set_input_dispatch_by_period
 

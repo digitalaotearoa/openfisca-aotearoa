@@ -24,7 +24,7 @@ class veterans_support__received_childrens_pension(variables.Variable):
 class veterans_support__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "Applicant is a entitled to be paid veterans pension in a Pacific country"
     reference = "http://www.legislation.govt.nz/act/public/2014/0056/latest/DLM5537707.html"
 
@@ -37,6 +37,16 @@ class veterans_support__being_paid_a_veterans_pension(variables.Variable):
 
 
 class veterans_pension__entitled(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
+
+
+class veterans_pension__receiving(variables.Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""

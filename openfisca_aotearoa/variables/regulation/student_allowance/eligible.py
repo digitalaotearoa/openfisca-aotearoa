@@ -1,14 +1,15 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core import periods, variables
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
 
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Person
 
 
-class student_allowance__eligible_for_certain_allowances(variables.Variable):
+class student_allowance__eligible_for_certain_allowances(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260337"
     label = "Eligible to certain allowances under Student Allowance Regulations"
 
@@ -64,33 +65,33 @@ class student_allowance__eligible_for_certain_allowances(variables.Variable):
             * under_super_age * ((fulltime * attendance) + overseas + parttime)
 
 
-class student_allowance__enrolled_fulltime(variables.Variable):
+class student_allowance__enrolled_fulltime(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "is enrolled in a full-time course at a tertiary provider or secondary school"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260337"
 
 
-class student_allowance__meets_attendance_and_performance_requirements(variables.Variable):
+class student_allowance__meets_attendance_and_performance_requirements(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "meets the attendance and performance requirements of that provider or school for tuition"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260337"
 
 
-class student_allowance__approved_to_study_overseas(variables.Variable):
+class student_allowance__approved_to_study_overseas(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "is approved to study overseas under regulation 26"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260337"
 
 
-class student_allowance__approved_to_study_parttime(variables.Variable):
+class student_allowance__approved_to_study_parttime(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "is approved to study in a part-time course under regulation 12A."
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260337"

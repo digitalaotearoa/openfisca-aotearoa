@@ -19,7 +19,7 @@ from openfisca_aotearoa import entities
 class immigration__holds_resident_visa(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "Holder of a resident visa"
 
 
@@ -56,12 +56,12 @@ class immigration__citizen_or_resident(variables.Variable):
 class immigration__recognised_refugee(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "is recognised as a refugee"
 
 
 class immigration__protected_person(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    definition_period = periods.MONTH
     label = "is recognised as a a protected person in New Zealand"

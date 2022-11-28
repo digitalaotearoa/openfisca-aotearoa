@@ -1,16 +1,17 @@
 """TODO: Add missing doctring."""
 
-import numpy
+from numpy import logical_not as not_
 
-from openfisca_core import periods, variables
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
 
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Person
 
 
-class family_scheme__qualifies_for_working_for_families(variables.Variable):
+class family_scheme__qualifies_for_working_for_families(Variable):
     value_type = bool
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "Is a person is qualified as eligible for the working for families"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518484.html"
 
@@ -18,13 +19,13 @@ class family_scheme__qualifies_for_working_for_families(variables.Variable):
         received_parents_allowance = persons("veterans_support__received_parents_allowance", period)
         received_childrens_pension = persons("veterans_support__received_childrens_pension", period)
 
-        return persons("family_scheme__base_qualifies", period) * numpy.logical_not(received_parents_allowance) * numpy.logical_not(received_childrens_pension)
+        return persons("family_scheme__base_qualifies", period) * not_(received_parents_allowance) * not_(received_childrens_pension)
 
 
-class family_scheme__working_for_families_entitlement(variables.Variable):
+class family_scheme__working_for_families_entitlement(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.MONTH
+    entity = Person
+    definition_period = MONTH
     label = "The entitlement a person has under the family scheme"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518503.html"
 

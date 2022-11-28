@@ -18,7 +18,7 @@ class accommodation_supplement__assets_requirement(variables.Variable):
 
     def formula_2018_11_26(people, period, params):
         principal = people.has_role(entities.Family.PRINCIPAL)
-        mingled = principal * people("in_a_relationship", period)
+        mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
         cash_assets = people("accommodation_supplement__cash_assets", period)
         dependent_children = people("social_security__dependent_child", period)

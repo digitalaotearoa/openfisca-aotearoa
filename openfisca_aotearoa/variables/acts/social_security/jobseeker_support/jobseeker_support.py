@@ -34,7 +34,7 @@ from openfisca_aotearoa import entities
 class jobseeker_support__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     label = "Jobseeker Support eligibility and amount"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144", "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
@@ -103,7 +103,7 @@ class jobseeker_support__work_gap(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "The person is not in full-time employment or is losing earnings through a health condition or injury"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
     set_input = holders.set_input_dispatch_by_period
 
@@ -126,7 +126,7 @@ class jobseeker_support__available_for_work(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "The person is not in full-time employment or is losing earnings through a health condition or injury"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
     set_input = holders.set_input_dispatch_by_period
 
@@ -144,7 +144,7 @@ class jobseeker_support__losing_earnings(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "In employment but is losing earnings through a health condition or injury"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
@@ -153,7 +153,7 @@ class jobseeker_support__receiving(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "is receiving jobseeker support at the rate in clause 1(c), (e), or (f) of Part 1 of Schedule 4, SSA2018 21 3(a)"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
@@ -162,7 +162,7 @@ class jobseeker_support__granted(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently granted the Jobseeker benefit"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
@@ -171,7 +171,7 @@ class jobseeker_support__full_employment_temporary(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "during a temporary period, Person engages in full-time employment, SSA2018 21 3(b)"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
@@ -180,7 +180,7 @@ class jobseeker_support__income_52_week_period_less_than(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person’s all income when calculated over a 52-week period is less than the amount that would, under the appropriate income test, reduce the applicable rate of jobseeker support to zero, SSA2018 21 3(c)"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
@@ -189,7 +189,7 @@ class jobseeker_support__willing_and_able(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Is prepared for employment?"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783149", "https://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
 
@@ -198,7 +198,7 @@ class jobseeker_support__taken_reasonable_steps(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Has taken reasonable steps to find it (work)"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783149", "https://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
 
@@ -207,7 +207,7 @@ class jobseeker_support__limited_in_capacity(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "because of a health condition, injury, or disability, is limited in capacity to seek, undertake, or be available for it (work)"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783149", "https://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
 
 
@@ -216,7 +216,7 @@ class jobseeker_support__age_requirement(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Meets the age test for Jobseeker Support?"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783152", "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
     set_input = holders.set_input_dispatch_by_period
 
@@ -248,6 +248,6 @@ class jobseeker_support__minimum_income(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Income is below Job Seeker Support threshold?"
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783154", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5478527"
     set_input = holders.set_input_dispatch_by_period

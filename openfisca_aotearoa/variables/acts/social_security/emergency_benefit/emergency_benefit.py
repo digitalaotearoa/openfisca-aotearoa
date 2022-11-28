@@ -4,6 +4,7 @@ from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
 
+
 class emergency_benefit__entitled(variables.Variable):
     value_type = bool
     default_value = False

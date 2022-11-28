@@ -21,14 +21,14 @@ from openfisca_aotearoa import entities
 class schedule_4__part1_1_a(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(a)"
 
     def formula_2018_11_26(people, period, parameters):
         # Get `single` for each person in `people` at `period`, where `period`
         # is "forever", as in "Are you single now?"
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
         age = people("age", period.first_day)
 
         clause_1_a_i = single * (age < 20) * people("jobseeker_support__living_with_parent", period)
@@ -40,12 +40,12 @@ class schedule_4__part1_1_a(variables.Variable):
 class schedule_4__part1_1_b(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(b)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
         age = people("age", period.first_day)
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
@@ -56,29 +56,29 @@ class schedule_4__part1_1_b(variables.Variable):
 class schedule_4__part1_1_c(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(c)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_b", period)) * \
             single * \
-            people("jobseeker_support__transferred_15_july_2013",  periods.DateUnit.ETERNITY) * \
+            people("jobseeker_support__transferred_15_july_2013", periods.DateUnit.ETERNITY) * \
             (people("social_security__dependent_children", period) == 0)
 
 
 class schedule_4__part1_1_d(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(d)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_b", period)) * \
@@ -90,12 +90,12 @@ class schedule_4__part1_1_d(variables.Variable):
 class schedule_4__part1_1_e(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(e)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             single * \
@@ -106,12 +106,12 @@ class schedule_4__part1_1_e(variables.Variable):
 class schedule_4__part1_1_f(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(f)"
 
     def formula_2018_11_26(people, period, parameters):
-        single = numpy.logical_not(people("in_a_relationship", period))
+        single = numpy.logical_not(people("social_security__in_a_relationship", period))
 
         return numpy.logical_not(people("schedule_4__part1_1_a", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_e", period)) * \
@@ -122,19 +122,19 @@ class schedule_4__part1_1_f(variables.Variable):
 class schedule_4__part1_1_g(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(g)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("in_a_relationship", period) * \
-            people.family.any(people.family.members("social_security__granted_main_benefit", period), role = entities.Family.PARTNER)
+        return people("social_security__in_a_relationship", period) * \
+            people.family.any(people.family.members("social_security__granted_main_benefit", period), role=entities.Family.PARTNER)
 
 
 class schedule_4__part1_1_g_i(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(g)(i)"
 
@@ -146,7 +146,7 @@ class schedule_4__part1_1_g_i(variables.Variable):
 class schedule_4__part1_1_g_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(g)(ii)"
 
@@ -158,24 +158,24 @@ class schedule_4__part1_1_g_ii(variables.Variable):
 class schedule_4__part1_1_h(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(h)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("in_a_relationship", period) * \
-            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role = entities.Family.PARTNER)
+        return people("social_security__in_a_relationship", period) * \
+            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
 
     def formula_2020_11_09(people, period, parameters):
-        return people("in_a_relationship", period) * \
-            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role = entities.Family.PARTNER) + \
-            people.family.any(people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month), role = entities.Family.PARTNER)
+        return people("social_security__in_a_relationship", period) * \
+            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER) + \
+            people.family.any(people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month), role=entities.Family.PARTNER)
 
 
 class schedule_4__part1_1_h_i(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(h)(i)"
 
@@ -187,7 +187,7 @@ class schedule_4__part1_1_h_i(variables.Variable):
 class schedule_4__part1_1_h_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(h)(ii)"
 
@@ -199,20 +199,20 @@ class schedule_4__part1_1_h_ii(variables.Variable):
 class schedule_4__part1_1_i(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)"
     end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("in_a_relationship", period) * \
-            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role = entities.Family.PARTNER)
+        return people("social_security__in_a_relationship", period) * \
+            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
 
 
 class schedule_4__part1_1_i_i(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)(i)"
     end = "2020-11-09"
@@ -225,7 +225,7 @@ class schedule_4__part1_1_i_i(variables.Variable):
 class schedule_4__part1_1_i_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(i)(ii)"
     end = "2020-11-09"
@@ -238,18 +238,18 @@ class schedule_4__part1_1_i_ii(variables.Variable):
 class schedule_4__part1_1_j(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(j)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("in_a_relationship", period) * \
+        return people("social_security__in_a_relationship", period) * \
             numpy.logical_not(people("schedule_4__part1_1_g", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_h", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_i", period))
 
     def formula_2020_11_09(people, period, parameters):
-        return people("in_a_relationship", period) * \
+        return people("social_security__in_a_relationship", period) * \
             numpy.logical_not(people("schedule_4__part1_1_g", period)) * \
             numpy.logical_not(people("schedule_4__part1_1_h", period))
 
@@ -257,7 +257,7 @@ class schedule_4__part1_1_j(variables.Variable):
 class schedule_4__part1_1_j_i(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(j)(i)"
 
@@ -269,7 +269,7 @@ class schedule_4__part1_1_j_i(variables.Variable):
 class schedule_4__part1_1_j_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Part 1 Jobseeker Support - Clause 1(j)(ii)"
 

@@ -45,7 +45,7 @@ class youth_payment__base(variables.Variable):
 class youth_payment__single_young_person_exceptional_circumstances(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DateUnit.WEEK
+    definition_period = periods.DateUnit.MONTH
     label = "a young person in exceptional circumstances"
     reference = """
     (2) For the purposes of subsection (1), a young person is in exceptional circumstances if—

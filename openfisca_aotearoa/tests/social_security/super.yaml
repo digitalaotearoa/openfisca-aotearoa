@@ -1,7 +1,7 @@
 ---
 
 - name: "NZ Super"
-  period: 2018-W01
+  period: 2018-08
   absolute_error_margin: 0
   input:
     persons:

@@ -1,13 +1,14 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core import periods, variables
+from openfisca_core.periods import DAY
+from openfisca_core.variables import Variable
 
-from openfisca_aotearoa import entities
+from openfisca_aotearoa.entities import Person
 
 
-class acc_sched_1__minimum_weekly_earnings(variables.Variable):
+class acc_sched_1__minimum_weekly_earnings(Variable):
     value_type = float
-    entity = entities.Person
-    definition_period = periods.DateUnit.DAY
+    entity = Person
+    definition_period = DAY
     label = "Minimum weekly earnings"
     reference = "http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM104874.html"
