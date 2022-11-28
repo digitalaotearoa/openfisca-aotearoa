@@ -10,7 +10,7 @@ class young_parent_payment__granted(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently granted the young parent benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
@@ -19,7 +19,7 @@ class young_parent_payment__receiving(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently recieving/being paid the young parent payment"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
 
 
@@ -27,7 +27,7 @@ class young_parent_payment__receiving(variables.Variable):
 class young_parent_payment__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Eligible for Young Parent Payment"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -60,11 +60,20 @@ class young_parent_payment__entitled(variables.Variable):
         return basic_requirements * (single_requirements + in_relationship_requirements) * residency
 
 
+class young_parent_payment__base(variables.Variable):
+    value_type = float
+    default_value = 0
+    entity = entities.Person
+    label = "TODO"
+    definition_period = periods.DateUnit.WEEK
+    reference = "TODO"
+
+
 # TODO: Review against the new 2018 act
 class young_parent_payment__basic_requirements(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Meets young parent payment basic requirements"
     reference = "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686080"
     """
@@ -105,11 +114,12 @@ class young_parent_payment__basic_requirements(variables.Variable):
 class young_parent_payment__income_under_threshold(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Is their income under the Young Parent Payment threshold?"
 
     def formula(persons, period, parameters):
-        yearly_income = (persons("monthly_income", period) * 12)
+        # TODO: Fix this calculation
+        yearly_income = (persons("weekly_income", period) * 52)
         yearly_income_threshold = (
             52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold)
         return yearly_income < yearly_income_threshold

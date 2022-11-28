@@ -1,19 +1,18 @@
 """TODO: Add missing doctring."""
 
-from numpy import datetime64
-from numpy import logical_not as not_
-from numpy import where
+import datetime
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+import numpy
 
-from openfisca_aotearoa.entities import Family, Person
+from openfisca_core import periods, variables
+
+from openfisca_aotearoa import entities
 
 
-class best_start__eligibility(Variable):
+class best_start__eligibility(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Is each person classified as eligible for best start tax credit"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
@@ -29,21 +28,21 @@ class best_start__eligibility(Variable):
         # (i) a parental tax credit:
         # (iii) a parental leave payment or preterm baby payment under Part 7A of the Parental Leave and Employment Protection Act 1987.
 
-        return qualifies * family_is_eligible * not_(received_parents_allowance) * not_(received_childrens_pension)
+        return qualifies * family_is_eligible * numpy.logical_not(received_parents_allowance) * numpy.logical_not(received_childrens_pension)
 
 
-class best_start__family_has_children_eligible(Variable):
+class best_start__family_has_children_eligible(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     label = "Is each family classified as eligible for best start tax credit"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
     def formula(families, period, parameters):
         families_have_children_born_after_launch_date = families.max(
-            families.members("date_of_birth", period) >= datetime64("2018-07-01"))
+            families.members("date_of_birth", period) >= numpy.datetime64("2018-07-01"))
         families_have_children_due_after_launch_date = families.max(
-            families.members("due_date_of_birth", period) >= datetime64("2018-07-01"))
+            families.members("due_date_of_birth", period) >= numpy.datetime64("2018-07-01"))
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH
         families_have_children_younger_than_three_years = families(
@@ -52,10 +51,10 @@ class best_start__family_has_children_eligible(Variable):
             families_have_children_younger_than_three_years
 
 
-class best_start__year_of_child(Variable):
+class best_start__year_of_child(variables.Variable):
     value_type = float
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Returns the year of eligibilty either 1, 2 or 3 otherwise returns zero"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
@@ -71,22 +70,22 @@ class best_start__year_of_child(Variable):
         is_birthday_month_past = (adjust_month <= period.start.month)
         is_current_or_previous_year = birth_year <= period.start.year
         whatyear = (period.start.year - birth_year) - \
-            where(is_birthday_month_past, 0, 1)
+            numpy.where(is_birthday_month_past, 0, 1)
 
         whatyear = whatyear + 1
         whatyear = whatyear * \
             (whatyear < 4) * \
             is_current_or_previous_year * \
             (((persons("date_of_birth", period)
-                >= datetime64("2018-07-01")) + (persons("due_date_of_birth", period) >= datetime64("2018-07-01"))) > 0)
+                >= numpy.datetime64("2018-07-01")) + (persons("due_date_of_birth", period) >= numpy.datetime64("2018-07-01"))) > 0)
 
         return whatyear
 
 
-class best_start__tax_credit_per_child(Variable):
+class best_start__tax_credit_per_child(variables.Variable):
     value_type = float
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Value of a Families entitlement for best start tax credit"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
@@ -104,7 +103,7 @@ class best_start__tax_credit_per_child(Variable):
             "family_scheme__assessable_income", period.this_year))
 
         # calculate income over the threshold
-        income_over_threshold = where(
+        income_over_threshold = numpy.where(
             (family_income - threshold) < 0, 0, family_income - threshold)
 
         # work out the ages for each family member
@@ -124,11 +123,11 @@ class best_start__tax_credit_per_child(Variable):
         return (dependant_eligible_full + dependant_eligible_abated_1 + dependant_eligible_abated_2) / 12
 
 
-class best_start__entitlement(Variable):
+class best_start__entitlement(variables.Variable):
     value_type = float
     unit = "NZD"
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "The total value the principal carer is entitled to for the best start tax credit"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 

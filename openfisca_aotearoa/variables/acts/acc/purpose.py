@@ -1,16 +1,15 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class acc__fullfils_purpose_of_act(Variable):
+class acc__fullfils_purpose_of_act(variables.Variable):
     label = "The purpose of this Act is to enhance the public good and reinforce the social contract represented by the first accident compensation scheme by providing for a fair and sustainable scheme for managing personal injury that has, as its overriding goals, minimising both the overall incidence of injury in the community, and the impact of injury on the community (including economic, social, and personal costs),"
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     reference = "Section 3 http://www.legislation.govt.nz/act/public/2001/0049/latest/DLM100100.html"
 
     def formula(persons, period, parameters):
@@ -24,10 +23,10 @@ class acc__fullfils_purpose_of_act(Variable):
             )
 
 
-class acc__promotes_measures_to_reduce_incidence_and_severity_of_personal_injury(Variable):
+class acc__promotes_measures_to_reduce_incidence_and_severity_of_personal_injury(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "establishing as a primary function of the Corporation the promotion of measures to reduce the incidence and severity of personal injury"
 
 # (b)

@@ -1,31 +1,30 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class student_allowance__childless(Variable):
+class student_allowance__childless(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "childless means not having a supported child or children"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259374"
 
 
-class student_allowance__combined_income(Variable):
+class student_allowance__combined_income(variables.Variable):
     value_type = float
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "the personal income of that student; and the spousal or partner’s income of that student"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259377"
 
 
-class student_allowance__dependent_student(Variable):
+class student_allowance__dependent_student(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "is a dependent student"
     """dependent student, in relation to a parent whose income is being assessed, means a child of that parent—
     (a) who is attending a full-time course at a tertiary provider or a secondary school; and
@@ -38,25 +37,25 @@ class student_allowance__dependent_student(Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259381"
 
 
-class student_allowance__income_before_tax(Variable):
+class student_allowance__income_before_tax(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = """income before tax includes gains before tax and profits before tax"""
 
 
-class student_allowance__living_with_a_parent(Variable):
+class student_allowance__living_with_a_parent(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = """living with a parent has the same meaning as in section 3(1) of the Social Security Act 1964"""
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259900"
 
 
-class student_allowance__married_or_partnered(Variable):
+class student_allowance__married_or_partnered(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "married or partnered as per Student Allowances Regulations 1998"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259902"
     """
@@ -69,10 +68,10 @@ class student_allowance__married_or_partnered(Variable):
         return persons("student_allowance__person_has_spouse", period)
 
 
-class student_allowance__supported_child(Variable):
+class student_allowance__supported_child(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "has a supported child as per Student Allowances Regulations 1998"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259968"
     """
@@ -93,18 +92,18 @@ class student_allowance__supported_child(Variable):
     """
 
 
-class student_allowance__partner_has_a_supported_child(Variable):
+class student_allowance__partner_has_a_supported_child(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "their spouse has a supported child, as per Student Allowances Regulations 1998"
     reference = "www.legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM6530648"
 
 
-class student_allowance__person_has_spouse(Variable):
+class student_allowance__person_has_spouse(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Has spouse as per Student Allowances Regulations 1998"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259958"
 
@@ -123,10 +122,10 @@ class student_allowance__person_has_spouse(Variable):
         return part_a + part_b
 
 
-class student_allowance__student(Variable):
+class student_allowance__student(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "student means a person who is enrolled or intends to enrol in a recognised course of study"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259958"
 

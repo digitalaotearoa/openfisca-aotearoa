@@ -19,6 +19,6 @@ from openfisca_aotearoa import entities
 class social_security__income(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     label = "Income of a person as defined in Part 2"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784816"

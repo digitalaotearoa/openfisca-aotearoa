@@ -1,15 +1,14 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class student_allowance__partner_or_person_receiving_certain_allowances(Variable):
+class student_allowance__partner_or_person_receiving_certain_allowances(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     reference = "http://www.legislation.govt.nz/regulation/public/1998/0277/latest/DLM260340.html"
     label = "Student not eligible for certain allowances where student or spouse or partner receiving social security payments, New Zealand superannuation, or veteran’s pension"
 

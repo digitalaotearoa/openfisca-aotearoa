@@ -16,7 +16,7 @@ class social_security__financially_independent(variables.Variable):
         (d) in receipt of a main benefit under this Act
         """
 
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = """Interpretation section of Social Security Act 1964"""
     set_input = holders.set_input_dispatch_by_period
 
@@ -34,7 +34,7 @@ class social_security__recieves_goverment_assisted_scheme_payments(variables.Var
     value_type = bool
     entity = entities.Person
     default_value = False
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
     label = "In receipt of payments under a Government-assisted scheme which the chief executive considers analogous to a main benefit under Socal Security Act"
 
 
@@ -43,7 +43,7 @@ class social_security__in_receipt_of_basic_grant(variables.Variable):
     value_type = bool
     entity = entities.Person
     default_value = False
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
     label = "in receipt of a basic grant or an independent circumstances grant under the Student Allowances Regulations 1998 (SR 1998/277)"
 
 
@@ -52,7 +52,7 @@ class social_security__recieves_main_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     default_value = False
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
     label = "in receipt of a main benefit under Social Security Act"
 
 
@@ -60,6 +60,6 @@ class social_security__recieves_main_benefit(variables.Variable):
 class social_security__received_income_tested_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.YEAR  # Questioning if there's a reason this is a year.
+    definition_period = periods.DateUnit.YEAR  # Questioning if there's a reason this is a year.
     label = "Boolean for if a Person is classified as receiving an income tested benefit"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359124.html#DLM360353"

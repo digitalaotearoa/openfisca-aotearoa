@@ -1,16 +1,15 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class social_security__spouse_is_a_specified_beneficiary(Variable):
+class social_security__spouse_is_a_specified_beneficiary(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.WEEK
     label = """his or her spouse is a specified beneficiary within the meaning of paragraphs (b) to (d) of the definition
         of that term in section 157."""
     reference = """

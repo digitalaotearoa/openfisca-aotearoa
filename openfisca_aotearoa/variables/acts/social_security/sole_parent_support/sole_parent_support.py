@@ -20,7 +20,7 @@ from openfisca_aotearoa import entities
 class sole_parent_support__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Eligible for Sole Parent Support"
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
 
@@ -50,7 +50,7 @@ class sole_parent_support__granted(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently granted the Sole Parent Support benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
@@ -59,8 +59,17 @@ class sole_parent_support__receiving(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently recieving/being paid sole parent support"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
+
+
+class sole_parent_support__base(variables.Variable):
+    value_type = float
+    default_value = 0
+    entity = entities.Person
+    label = "TODO"
+    definition_period = periods.DateUnit.WEEK
+    reference = "TODO"
 
 
 class sole_parent_support__meets_relationship_qualification(variables.Variable):
@@ -68,7 +77,7 @@ class sole_parent_support__meets_relationship_qualification(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Meets the sole parent support test for not being in a relationship"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
 
     """
@@ -92,7 +101,7 @@ class sole_parent_support__meets_relationship_qualification(variables.Variable):
 class sole_parent_support__family_has_child_under_age_limit(variables.Variable):
     value_type = bool
     entity = entities.Family
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Does the family have a child who meets the criteria for disabled"
 
     def formula(families, period, parameters):
@@ -106,7 +115,7 @@ class sole_parent_support__age_threshold(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Meets the age test for sole parent support?"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.workandincome.govt.nz/products/a-z-benefits/sole-parent-support.html"
 
     def formula(persons, period, parameters):
@@ -120,7 +129,7 @@ class sole_parent_support__years_in_nz_requirement(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Has lived continuously in New Zealand for 2 years or more at any one time since becoming a New Zealand citizen or permanent resident?"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     reference = "TODO"
 
     def formula(persons, period, parameters):
@@ -135,4 +144,4 @@ class sole_parent_support__below_income_threshold(variables.Variable):
     default_value = True
     entity = entities.Person
     label = "Income is below Sole Parent Support threshold?"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK

@@ -1,43 +1,43 @@
 - name: Young Parent Payment single young person
-  period: 2017-10
+  period: 2018-W01
   absolute_error_margin: 0
   input:
     persons:
       Ruby:
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 19
+          2018-01-01: 19
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        monthly_income: 80000.0
+        weekly_income: 20000
       Oliver:
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 16
+          2018-01-01: 16
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        monthly_income: 0.0
+        weekly_income: 0.0
         living_with_parent_or_guardian: true
-        family_scheme__assessable_income_for_month: 10.0
+        family_scheme__assessable_income_for_week: 2.5
       Oscar:
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 17
+          2018-01-01: 17
         immigration__permanent_resident: true
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        monthly_income: 0.0
+        weekly_income: 0.0
         living_with_parent_or_guardian: false
         youth_payment__single_young_person_exceptional_circumstances: true
     families:
@@ -61,52 +61,52 @@
       - true
 
 - name: Young Parent Payment in a relationship
-  period: 2017-10
+  period: 2018-W01
   absolute_error_margin: 0
   input:
     persons:
       Ruby:
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
         in_a_relationship:
-          "week:2017-W01:52": false
+          "week:2018-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: true
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 19
+          2018-01-01: 19
         citizenship__citizen: true
-        monthly_income: 10.0
+        weekly_income: 2.5
       Oliver:
         in_a_relationship:
-          "week:2017-W01:52": false
+          "week:2018-W01:52": false
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 16
+          2018-01-01: 16
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        family_scheme__assessable_income_for_month: 10.0
+        family_scheme__assessable_income_for_week: 2.5
       Oscar:
         in_a_relationship:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__been_married_or_civil_union_or_de_facto_relationship: false
         social_security__parent: true
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         age:
-          "2017-10-01": 17
+          2018-01-01: 17
         immigration__permanent_resident: true
         social_security__ordinarily_resident_in_new_zealand:
-          "week:2017-W01:52": true
+          "week:2018-W01:52": true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
-        family_scheme__assessable_income_for_month: 0.0
+        family_scheme__assessable_income_for_week: 0.0
         youth_payment__single_young_person_exceptional_circumstances: true
     families:
       One:
@@ -130,28 +130,28 @@
 
 
 - name: Young Parent Payment Residency
-  period: 2017-10
+  period: 2018-W01
   absolute_error_margin: 0
   input:
     persons:
       Kiwi:
         age:
-          "2017-10-01": 19
+          2018-01-01: 19
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         social_security__parent: true
         citizenship__citizen: true
-        family_scheme__assessable_income_for_month: 300.0
+        family_scheme__assessable_income_for_week: 75.0
         social_security__ordinarily_resident_in_new_zealand: true
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
       OE:
         age:
-          "2017-10-01": 19
+          2018-01-01: 19
         social_security__dependent_children:
-          "week:2017-W01:52": 1
+          "week:2018-W01:52": 1
         social_security__parent: true
         citizenship__citizen: true
-        family_scheme__assessable_income_for_month: 300.0
+        family_scheme__assessable_income_for_week: 75.0
         social_security__ordinarily_resident_in_new_zealand: false
         social_security__resided_continuously_nz_2_years_citizen_or_resident: true
     families:

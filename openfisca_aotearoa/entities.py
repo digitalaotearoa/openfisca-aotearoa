@@ -139,7 +139,7 @@ Ownership = build_entity(
         ],
     )
 
-Titled_Property = build_entity(
+TitledProperty = build_entity(
     key="titled_property",
     plural="titled_properties",
     label="Titled Property",
@@ -169,4 +169,4 @@ Titled_Property = build_entity(
     )
 
 
-entities = [Titled_Property, Ownership, Tenancy, Person, Family]
+entities = [TitledProperty, Ownership, Tenancy, Person, Family]

@@ -1,18 +1,17 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not as not_
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class young_parent_payment__single_young_persons(Variable):
+class young_parent_payment__single_young_persons(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.WEEK
     label = "Meets Young Parent Payment single person requirements from section 165"
     reference = """
         165 Young parent payment: single young persons
@@ -48,7 +47,7 @@ class young_parent_payment__single_young_persons(Variable):
 
         exceptional_circumstances = persons("youth_payment__single_young_person_exceptional_circumstances", period)
 
-        section_2 = sixteen_or_seventeen * not_(living_with_parent_or_guardian) * exceptional_circumstances
+        section_2 = sixteen_or_seventeen * numpy.logical_not(living_with_parent_or_guardian) * exceptional_circumstances
         section_3 = sixteen_or_seventeen * (living_with_parent_or_guardian + financially_supported_by_parent_or_guardian) * family_income_under_threshold
         section_4 = eighteen_or_nineteen
 
@@ -60,13 +59,13 @@ class young_parent_payment__single_young_persons(Variable):
 
 
 # TODO: Review against the new 2018 act
-class young_parent_payment__family_income_under_threshold(Variable):
+class young_parent_payment__family_income_under_threshold(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.WEEK
     label = "Person's family income is under the young parent payment threshold"
 
     def formula(persons, period, parameters):
         yearly_income_threshold = 52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold
-        yearly_family_income = persons("family_scheme__assessable_income_for_month", period) * 12
+        yearly_family_income = persons("family_scheme__assessable_income_for_week", period) * 52
         return yearly_family_income < yearly_income_threshold

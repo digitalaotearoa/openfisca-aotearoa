@@ -21,7 +21,7 @@ from openfisca_aotearoa import entities
 class jobseeker_support__benefit(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     label = "The final net benefit entitlement"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
@@ -32,12 +32,12 @@ class jobseeker_support__benefit(variables.Variable):
 class jobseeker_support__reduction(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
     def formula_2018_11_26(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        family_income = people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PRINCIPAL)
 
         # numpy.floor required for income tests as it's "35c for every $1"
         family_income = numpy.floor(family_income)
@@ -64,7 +64,7 @@ class jobseeker_support__reduction(variables.Variable):
             )
 
     def formula_2020_11_09(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        family_income = people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role = entities.Family.PRINCIPAL)
 
         # numpy.floor required for income tests as it's "35c for every $1"
         family_income = numpy.floor(family_income)
@@ -93,7 +93,7 @@ class jobseeker_support__reduction(variables.Variable):
 class jobseeker_support__base(variables.Variable):
     value_type = float
     entity = entities.Person
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Jobseeker Support - Base Amount, (this is taxed and the amounts are supplied after tax, i.e. net)"
 
@@ -191,7 +191,7 @@ class jobseeker_support__base(variables.Variable):
 class jobseeker_support__living_with_parent(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     label = "As defined in Part 1 of Schedule 4 of the Social Security Act, Part 1, 8"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 

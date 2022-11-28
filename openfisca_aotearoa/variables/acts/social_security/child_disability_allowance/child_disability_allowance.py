@@ -1,16 +1,15 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Family, Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class child_disability_allowance__eligible(Variable):
+class child_disability_allowance__eligible(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Eligible for Child Disability Allowance"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
 
@@ -40,10 +39,10 @@ class child_disability_allowance__eligible(Variable):
             has_eligible_disabled_child
 
 
-class child_disability_allowance__family_has_eligible_child(Variable):
+class child_disability_allowance__family_has_eligible_child(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     label = "Does the family have a child who meets the criteria for disabled"
     reference = "http://legislation.govt.nz/bill/government/2017/0004/15.0/DLM7512349.html"
 
@@ -52,15 +51,15 @@ class child_disability_allowance__family_has_eligible_child(Variable):
         child_age_threshold = parameters(period).entitlements.social_security.child_disability_allowance.child_age_threshold
         children = families.members("age", period.start) <= child_age_threshold
         disabled_children = has_disability * children
-        return families.any(disabled_children, role=Family.CHILD)
+        return families.any(disabled_children, role = entities.Family.CHILD)
 
 
 # TODO: Review against the new 2018 act
-class child_disability_allowance__allowance_criteria(Variable):
+class child_disability_allowance__allowance_criteria(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = "Has serious disability"
-    definition_period = MONTH
+    definition_period = periods.DateUnit.MONTH
 
     def formula(persons, period, parameters):
         med_cert_required_months = parameters(period).entitlements.social_security.child_disability_allowance.medical_certification_required_months
@@ -71,16 +70,16 @@ class child_disability_allowance__allowance_criteria(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__medical_certification_months(Variable):
+class social_security__medical_certification_months(variables.Variable):
     value_type = int
-    entity = Person
+    entity = entities.Person
     label = "Number of future months the disability is expected to last for, in months"
-    definition_period = MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # TODO: Review against the new 2018 act
-class social_security__requires_constant_care_and_attention(Variable):
+class social_security__requires_constant_care_and_attention(variables.Variable):
     value_type = bool
-    entity = Person
+    entity = entities.Person
     label = "Requires constant care and attention"
-    definition_period = MONTH
+    definition_period = periods.DateUnit.MONTH

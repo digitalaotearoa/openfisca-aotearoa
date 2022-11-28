@@ -9,7 +9,7 @@ class social_security__granted_main_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person is granted a main benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784575"
 
     def formula(persons, period, parameters):
@@ -28,7 +28,7 @@ class social_security__receiving_main_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person is recieving/being paid a main benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784575"
 
     def formula(persons, period, parameters):
@@ -46,7 +46,7 @@ class social_security__beneficiary(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person who has been granted a benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784416"
 
 
@@ -57,7 +57,7 @@ class social_security__a_beneficiary(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Person is a beneficiary"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM362802.html#DLM362810"
 
     def formula(persons, period, parameters):
@@ -76,7 +76,7 @@ class social_security__paid_jobseeker_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid Jobseeker"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # This only applies to 1964 ACT, DO NOT USE FOR 2018
@@ -84,7 +84,7 @@ class social_security__paid_sole_parent_support(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid sole parent support"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # This only applies to 1964 ACT, DO NOT USE FOR 2018
@@ -92,7 +92,7 @@ class social_security__paid_a_supported_living_payment(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid a supported living payment"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # This only applies to 1964 ACT, DO NOT USE FOR 2018
@@ -100,7 +100,7 @@ class social_security__paid_a_youth_payment(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid a a youth payment"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # This only applies to 1964 ACT, DO NOT USE FOR 2018
@@ -108,7 +108,7 @@ class social_security__paid_a_young_parent_payment(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid a a young parent payment"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH
 
 
 # This only applies to 1964 ACT, DO NOT USE FOR 2018
@@ -116,4 +116,4 @@ class social_security__paid_an_emergency_benefit(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is being paid a young parent payment"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH

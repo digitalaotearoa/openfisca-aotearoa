@@ -23,9 +23,56 @@ class accommodation_supplement__base(variables.Variable):
         #
         # Beneficiaries who are single
 
-        # We assume beneficiary of jobseeker support.
+        # We check whether P is beneficiary
         beneficiaries = people("social_security__beneficiary", period)
-        rate = people("jobseeker_support__base", period)
+
+        # We then calculate all main benefit amounts, as well as emergency
+        # benefit, superannuation, and veteran pension.
+        emergency_benefit = (
+            + people("sole_parent_support__entitled", period)
+            * people("sole_parent_support__base", period)
+            )
+
+        jobseeker_support = (
+            + people("jobseeker_support__entitled", period)
+            * people("jobseeker_support__base", period)
+            )
+
+        sole_parent_support = (
+            + people("sole_parent_support__entitled", period)
+            * people("sole_parent_support__base", period)
+            )
+
+        superannuation = (
+            + people("super__entitled", period)
+            * people("super__base", period)
+            )
+
+        veterans_pension = (
+            + people("veterans_pension__entitled", period)
+            * people("veterans_pension__base", period)
+            )
+
+        young_parent_payment = (
+            + people("young_parent_payment__entitled", period)
+            * people("young_parent_payment__base", period)
+            )
+
+        youth_payment = (
+            + people("youth_payment__entitled", period)
+            * people("youth_payment__base", period)
+            )
+
+        # We compare the base rates and take the maximum amount.
+        rate = numpy.maximum.reduce([
+            emergency_benefit,
+            jobseeker_support,
+            sole_parent_support,
+            young_parent_payment,
+            superannuation,
+            veterans_pension,
+            youth_payment,
+            ])
 
         # We assume single as in "no partner"
         principal = people.has_role(entities.Family.PRINCIPAL)

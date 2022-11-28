@@ -43,7 +43,7 @@ class total_number_of_years_lived_in_nz_since_age_50(variables.Variable):
 class days_present_in_new_zealand_in_preceeding_5_years(variables.Variable):
     value_type = int
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.DateUnit.DAY
     default_value = 0
 
     def formula(persons, period, parameters):
@@ -78,7 +78,7 @@ def days_since_n_years_ago(day, n=1):
 class days_present_in_new_zealand_in_preceeding_year(variables.Variable):
     value_type = int
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.DateUnit.DAY
     label = "was present in New Zealand this many days in the last (rolling) year"
     reference = "Accumlative from `was_present_in_nz_and_entitled_to_indefinite_stay` variable`"
     default_value = 0
@@ -97,7 +97,7 @@ class days_present_in_new_zealand_in_preceeding_year(variables.Variable):
 class was_present_in_nz_and_entitled_to_indefinite_stay(variables.Variable):
     value_type = int
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.DateUnit.DAY
     label = "was present in New Zealand and entitled to indefinite stay"
     reference = "Whether both `present_in_new_zealand` and `immigration__entitled_to_indefinite_stay` were true"
 
@@ -110,7 +110,7 @@ class was_present_in_nz_and_entitled_to_indefinite_stay(variables.Variable):
 class present_in_new_zealand(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.DateUnit.DAY
     default_value = False
     label = "was present in New Zealand on this day"
     reference = "http://www.legislation.govt.nz/act/public/1977/0061/latest/DLM443855.html"
@@ -121,4 +121,4 @@ class years_resided_continuously_in_new_zealand(variables.Variable):
     value_type = int
     entity = entities.Person
     label = "number of years resided continuously in New Zealand"
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.MONTH

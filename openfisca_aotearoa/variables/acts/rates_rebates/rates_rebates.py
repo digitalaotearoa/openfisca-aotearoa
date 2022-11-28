@@ -1,46 +1,43 @@
 """TODO: Add missing doctring."""
 
-from numpy import clip, floor
+import numpy
 
-# Import from openfisca-core the common python objects used to code the legislation in OpenFisca
-from openfisca_core.holders import set_input_divide_by_period
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+from openfisca_core import holders, periods, variables
 
 # Import the entities specifically defined for this tax and entitlement system
-from openfisca_aotearoa.entities import Person, Titled_Property
+from openfisca_aotearoa import entities
 
 
-class rates_rebates__dependants(Variable):
+class rates_rebates__dependants(variables.Variable):
     value_type = int
-    entity = Person
-    definition_period = YEAR
+    entity = entities.Person
+    definition_period = periods.DateUnit.YEAR
     label = "Number of Persons classified as dependant for the purposes of Rates Rebates"
 
 
-class rates_rebates__rates_total(Variable):
+class rates_rebates__rates_total(variables.Variable):
     value_type = float
-    entity = Titled_Property
-    definition_period = YEAR
+    entity = entities.TitledProperty
+    definition_period = periods.DateUnit.YEAR
     label = "Total rates for the property"
 
 
-class rates_rebates__combined_income(Variable):
+class rates_rebates__combined_income(variables.Variable):
     value_type = float
-    entity = Person
-    definition_period = YEAR
+    entity = entities.Person
+    definition_period = periods.DateUnit.YEAR
     # Allows user to declare a salary for a year. OpenFisca will spread the yearly amount over the months contained in the year.
-    set_input = set_input_divide_by_period
+    set_input = holders.set_input_divide_by_period
     label = "Combined Income of applicant and others normally resident at property for the purposes of Rates Rebates"
     reference = "http://www.legislation.govt.nz/act/public/1973/0005/67.0/whole.html#DLM409685"
 
 
 # Reference is accurate as at the time this formula was written,
 # link to legislation is: http://www.legislation.govt.nz/act/public/1973/0005/67.0/DLM409673.html
-class rates_rebates__rebate(Variable):
+class rates_rebates__rebate(variables.Variable):
     value_type = float
-    entity = Titled_Property
-    definition_period = YEAR
+    entity = entities.TitledProperty
+    definition_period = periods.DateUnit.YEAR
     label = "Yearly rebate applied to housing rates."
     reference = "Obtained from spreadsheet at Department Of Internal Affairs Innovation Lab"
 
@@ -54,7 +51,8 @@ class rates_rebates__rebate(Variable):
         allowable_income = (titled_properties.sum(titled_properties.members("rates_rebates__dependants", period)) * additional_per_dependant) + income_threshold
 
         # wrapping floor math function is non legislative and only to conform output of variable with existing infrastracture.
-        excess_income = floor((titled_properties.sum(titled_properties.members("rates_rebates__combined_income", period)) - allowable_income) / 8).clip(min=0)
+        excess_income = numpy.floor((titled_properties.sum(titled_properties.members("rates_rebates__combined_income",
+                                                                                period)) - allowable_income) / 8).clip(min=0)
 
         # minus the initial contribution
         rates_minus_contribution = titled_properties("rates_rebates__rates_total", period) - initial_contribution
@@ -63,13 +61,13 @@ class rates_rebates__rebate(Variable):
         rebate = rates_minus_contribution - ((rates_minus_contribution / 3) + excess_income)
 
         # Ensures the results aren't negative (less than 0) or greater than the maximum_allowable
-        return clip(rebate, 0, maximum_allowable)
+        return numpy.clip(rebate, 0, maximum_allowable)
 
 
-class rates_rebates__maximum_income_for_full_rebate(Variable):
+class rates_rebates__maximum_income_for_full_rebate(variables.Variable):
     value_type = float
-    entity = Titled_Property
-    definition_period = YEAR
+    entity = entities.TitledProperty
+    definition_period = periods.DateUnit.YEAR
     label = "Maximum income eligible for the full rebate, less than this number should get full rebate"
     reference = "http://www.legislation.govt.nz/act/public/1973/0005/67.0/DLM409673.html"
 
@@ -88,10 +86,10 @@ class rates_rebates__maximum_income_for_full_rebate(Variable):
         return ((((rates_total - initial_contribution) - rebate) - ((rates_total - initial_contribution) / 3)) * 8) + allowable_income
 
 
-class rates_rebates__minimum_income_for_no_rebate(Variable):
+class rates_rebates__minimum_income_for_no_rebate(variables.Variable):
     value_type = float
-    entity = Titled_Property
-    definition_period = YEAR
+    entity = entities.TitledProperty
+    definition_period = periods.DateUnit.YEAR
     label = "Minimum income that returns no rebate. Less than this number gets a rebate"
     reference = "http://www.legislation.govt.nz/act/public/1973/0005/67.0/DLM409673.html"
 

@@ -1,17 +1,16 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not as not_
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class family_scheme__qualifies_for_minimum_family_tax_credit(Variable):
+class family_scheme__qualifies_for_minimum_family_tax_credit(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Is a person is qualified as eligible for the minimum family tax credit"
     reference = "http://www.legislation.govt.nz/act/public/2007/0097/latest/DLM1518564.html"
 
@@ -22,4 +21,4 @@ class family_scheme__qualifies_for_minimum_family_tax_credit(Variable):
         received_childrens_pension = persons("veterans_support__received_childrens_pension", period)
         full_time_earner = persons("family_scheme__full_time_earner", period)
 
-        return base_qualifies * full_time_earner * not_(received_tested_benefit) * not_(received_parents_allowance) * not_(received_childrens_pension)
+        return base_qualifies * full_time_earner * numpy.logical_not(received_tested_benefit) * numpy.logical_not(received_parents_allowance) * numpy.logical_not(received_childrens_pension)

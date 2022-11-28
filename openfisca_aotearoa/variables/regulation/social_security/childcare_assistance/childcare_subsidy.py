@@ -1,17 +1,16 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not as not_
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Family, Person
+from openfisca_aotearoa import entities
 
 
-class childcare_assistance__eligible_childcare_subsidy(Variable):
+class childcare_assistance__eligible_childcare_subsidy(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Eligibility of child for payment of childcare subsidy"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
 
@@ -33,10 +32,10 @@ class childcare_assistance__eligible_childcare_subsidy(Variable):
                 + is_5_and_will_be_enrolled + under_6_with_disability_allowance)
 
 
-class childcare_assistance__family_has_resident_child_under_5_not_in_school(Variable):
+class childcare_assistance__family_has_resident_child_under_5_not_in_school(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     label = "Family has a resident child who is under 5 years old, not in school and in minimum childcare hours per week"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"
 
@@ -45,19 +44,19 @@ class childcare_assistance__family_has_resident_child_under_5_not_in_school(Vari
 
         dependent_children = families.members(
             "social_security__dependent_child", period.first_week)
-        not_in_school = not_(families.members(
+        not_in_school = numpy.logical_not(families.members(
             "attending_school", period))
         under_5 = families.members("age", period.start) < 5
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
-        return families.any((dependent_children * citizens_and_residents * not_in_school * under_5 * meets_early_childcare_hours_threshold), role=Family.CHILD)
+        return families.any((dependent_children * citizens_and_residents * not_in_school * under_5 * meets_early_childcare_hours_threshold), role = entities.Family.CHILD)
 
 
-class childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school(Variable):
+class childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     label = "Family has resident child aged 5 who will be enrolled in school and in minimum childcare hours per week"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"
 
@@ -72,13 +71,13 @@ class childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school(Var
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
-        return families.any((dependent_children * citizens_and_residents * children_to_be_enrolled * aged_5 * meets_early_childcare_hours_threshold), role=Family.CHILD)
+        return families.any((dependent_children * citizens_and_residents * children_to_be_enrolled * aged_5 * meets_early_childcare_hours_threshold), role = entities.Family.CHILD)
 
 
-class childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6(Variable):
+class childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     label = "Family has a child under 6 years old and eligible for Disability Allowance and in minimum childcare hours per week"
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"
 
@@ -93,12 +92,12 @@ class childcare_assistance__family_has_child_eligible_for_disability_allowance_c
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
-        return families.any((dependent_children * citizens_and_residents * eligible_children * under_6 * meets_early_childcare_hours_threshold), role=Family.CHILD)
+        return families.any((dependent_children * citizens_and_residents * eligible_children * under_6 * meets_early_childcare_hours_threshold), role = entities.Family.CHILD)
 
 
-class childcare_assistance__household_income_below_childcare_subsidy_threshold(Variable):
+class childcare_assistance__household_income_below_childcare_subsidy_threshold(variables.Variable):
     value_type = bool
     default_value = True
-    entity = Family
+    entity = entities.Family
     label = "Household income is below Childcare Subsidy threshold"
-    definition_period = MONTH
+    definition_period = periods.DateUnit.MONTH

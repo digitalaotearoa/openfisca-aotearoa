@@ -11,7 +11,7 @@ class social_security__child(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Is a child as defined in Schedule 2, Dictionary"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS6902"
 
     def formula(persons, period, parameters):
@@ -28,7 +28,7 @@ class social_security__dependent_child(variables.Variable):
     entity = entities.Person
     label = "Is a dependent children as defined in Schedule 2, Dictionary in relation to a person in a family"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS7234", "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/dependent-child-01.html"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     set_input = holders.set_input_dispatch_by_period
 
     def formula(persons, period, parameters):
@@ -44,7 +44,7 @@ class social_security__dependent_children(variables.Variable):
     value_type = float
     entity = entities.Person
     label = "number a dependent child (or children)"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#LMS7234"
     set_input = holders.set_input_dispatch_by_period
 
@@ -56,7 +56,7 @@ class social_security__dependent_children(variables.Variable):
 class social_security__age_youngest_dependant_child(variables.Variable):
     value_type = int
     entity = entities.Person
-    definition_period = periods.DAY
+    definition_period = periods.DateUnit.DAY
     label = "As defined in Part 1 of Schedule 4 of the Social Security Act, Part 1, 1(c)"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     set_input = holders.set_input_dispatch_by_period

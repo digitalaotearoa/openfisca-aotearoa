@@ -1,18 +1,17 @@
 """TODO: Add missing doctring."""
 
-from numpy import logical_not as not_
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Family, Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class orphans_benefit__entitled(Variable):
+class orphans_benefit__entitled(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Eligible for Orphan's benefit"
     reference = """http://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM361606
         Orphans' benefits
@@ -31,7 +30,7 @@ class orphans_benefit__entitled(Variable):
 
         age_test = persons("age", period.start) >= 18
 
-        not_the_parent = not_(
+        not_the_parent = numpy.logical_not(
             persons("social_security__parent_of_dependent_child", period))
         one_year = persons(
             "social_security__principal_carer_for_one_year_from_application_date", period)
@@ -45,10 +44,10 @@ class orphans_benefit__entitled(Variable):
 
 
 # TODO: Review against the new 2018 act
-class social_security__orphaned_child_in_family(Variable):
+class social_security__orphaned_child_in_family(variables.Variable):
     value_type = bool
-    entity = Family
-    definition_period = MONTH
+    entity = entities.Family
+    definition_period = periods.DateUnit.MONTH
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM361606"
     label = "Family is caring for an orphan as per Social Security Act 1964"
 
@@ -59,12 +58,12 @@ class social_security__orphaned_child_in_family(Variable):
         resident_or_citizen = families.members(
             "immigration__citizen_or_resident", period)
 
-        return families.any((children * orphaned * resident_or_citizen), role=Family.CHILD)
+        return families.any((children * orphaned * resident_or_citizen), role = entities.Family.CHILD)
 
 
 # TODO: Review against the new 2018 act, missing reference
-class social_security__orphaned(Variable):
+class social_security__orphaned(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "each of the child's natural or adoptive parents is dead, or cannot be found, or suffers a serious long-term disablement which renders him or her unable to care for the child"

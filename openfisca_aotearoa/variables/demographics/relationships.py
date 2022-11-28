@@ -11,7 +11,7 @@ class in_a_relationship(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Common definition of 'in a relationship', note can also be set to true through use of the partner role in a family"
-    definition_period = periods.WEEK  # This variables.variable changes over time.
+    definition_period = periods.DateUnit.WEEK  # This variables.variable changes over time.
     reference = "This is a common definition utilsed in at least both the Social Security Act 2018 and the Income Tax Act 2007"
     set_input = holders.set_input_dispatch_by_period
 
@@ -34,7 +34,7 @@ class is_adequately_supported_by_partner(variables.Variable):
     label = """Is adequately supported by their partner? (false if lost the regular support of
     their partner as their partner has been imprisoned or is subject to release or detention conditions that prevent employment)
     """
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     reference = "https://www.workandincome.govt.nz/map/income-support/main-benefits/sole-parent-support/qualifications.html"
     default_value = True
 
@@ -43,5 +43,5 @@ class is_adequately_supported_by_partner(variables.Variable):
 class person_is_step_parent(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "Is a step-parent?"

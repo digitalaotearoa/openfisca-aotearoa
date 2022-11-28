@@ -21,19 +21,18 @@ To be able to receive a Community Services Card, a client must:
     *   be aged over 16 years old, but not be a dependent child
 """
 
-from numpy import logical_not as not_
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
 # TODO: Review against the new 2018 act
-class social_security__eligible_for_community_services_card(Variable):
+class social_security__eligible_for_community_services_card(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "is eligible for Community Services Card"
     reference = "http://www.legislation.govt.nz/regulation/public/1993/0169/latest/DLM176710.html"
 
@@ -69,44 +68,44 @@ class social_security__eligible_for_community_services_card(Variable):
             (received_superannuation * low_income) +\
             (is_fulltime_student * low_income) +\
             (dependent_children * low_income * (resident_or_citizen + eligible_for_wff)) +\
-            not_(dependent_children) * low_income * \
+            numpy.logical_not(dependent_children) * low_income * \
             resident_or_citizen * age_requirement * in_nz
 
 
 # TODO:
 # below are variables that still need to be implemented
 # TODO: Review against the new 2018 act
-class social_security__received_orphans_benefit(Variable):
+class social_security__received_orphans_benefit(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Orphan's Benefit"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5468365.html"
 
 
 # TODO: Review against the new 2018 act
-class social_security__received_unsupported_childs_benefit(Variable):
+class social_security__received_unsupported_childs_benefit(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Unsupported Child's Benefit"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361613.html"
 
 
 # TODO: Review against the new 2018 act
-class social_security__received_child_disability_allowance(Variable):
+class social_security__received_child_disability_allowance(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Child Disability Allowance"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
 
 
 # TODO: Review against the new 2018 act
-class social_security__received_residential_care_subsidy(Variable):
+class social_security__received_residential_care_subsidy(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Residential Care Subsidy"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359124.html"
     """
@@ -125,59 +124,59 @@ class social_security__received_residential_care_subsidy(Variable):
     """
 
 
-class veterans_support__received_veterans_pension(Variable):
+class veterans_support__received_veterans_pension(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Veteran's Pension"
     reference = "http://www.legislation.govt.nz/act/public/2014/0056/latest/DLM5537967.html"
 
 
-class veterans_support__received_weekly_income_compensation(Variable):
+class veterans_support__received_weekly_income_compensation(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Weekly Income Compensation"
     reference = "http://legislation.govt.nz/act/public/2014/0056/latest/link.aspx?id=DLM5537962"
 
 
-class veterans_support__received_weekly_compensation(Variable):
+class veterans_support__received_weekly_compensation(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Weekly Compensation"
     reference = "http://legislation.govt.nz/act/public/2014/0056/latest/link.aspx?id=DLM5602254"
 
 
 # TODO: Review against the new 2018 act
-class social_security__received_superannuation(Variable):
+class social_security__received_superannuation(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Received Superannuation"
     reference = "http://legislation.govt.nz/act/public/1956/0047/latest/DLM446884.html"
 
 
 # TODO: Review against the new 2018 act
-class social_security__fulltime_student(Variable):
+class social_security__fulltime_student(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Is a Full-time student"
     reference = "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359124.html"
 
 
-class community_services_card(Variable):
+class community_services_card(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "Has a current Community Services Card"
     reference = "https://www.workandincome.govt.nz/products/a-z-benefits/community-services-card.html"
 
 
-class community_services_card__below_income_threshold(Variable):
+class community_services_card__below_income_threshold(variables.Variable):
     value_type = bool
     default_value = True
-    entity = Person
+    entity = entities.Person
     label = "Income is below Community Services Card threshold?"
-    definition_period = MONTH
+    definition_period = periods.DateUnit.MONTH

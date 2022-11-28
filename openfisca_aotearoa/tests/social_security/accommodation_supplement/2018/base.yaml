@@ -84,15 +84,29 @@
       principal: Vranda
       children: [Piedad, Srko, Ash]
   output:
-    family_tax_credit__eldest:
-      2022-01-10: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-01-11: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-01-12: [0, 0, 0, 0]
-    jobseeker_support__base:
-      2022-W01: [239.70, 0, 0, 0]
-      2022-W02: [406.78, 0, 0, 0]
-      2022-W03: [406.78, 0, 0, 0]
     accommodation_supplement__base:
       2022-W01: [278.50, 0, 0, 0]   # (c) for any other single beneficiary...
       2022-W02: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52
       2022-W03: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52
+
+
+#- name: >
+#    Social Security Regulations 2018 -
+#    Accommodation Supplement -
+#    Base rate -
+#    Beneficiaries who are in a relationship -
+#    (e) for a beneficiary who is in a relationship and whose spouse or partner
+#        is not entitled to an accommodation supplement under section 230 of the
+#        Act, the rate specified in paragraph (d) as if a rate of a benefit were
+#        paid in respect of that spouse or partner:
+
+
+#- name: >
+#    Social Security Regulations 2018 -
+#    Accommodation Supplement -
+#    Base rate -
+#    Beneficiaries who are in a relationship -
+#    (e) for a beneficiary who is in a relationship and whose spouse or partner
+#        is not entitled to an accommodation supplement under section 230 of the
+#        Act, the rate specified in paragraph (d) as if a rate of a benefit were
+#        paid in respect of that spouse or partner:

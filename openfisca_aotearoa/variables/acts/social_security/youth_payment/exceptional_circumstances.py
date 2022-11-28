@@ -6,12 +6,21 @@ from openfisca_core import periods, variables
 from openfisca_aotearoa import entities
 
 
+class youth_payment__entitled(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "TODO"
+    definition_period = periods.DateUnit.WEEK
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783213"
+
+
 class youth_payment__granted(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
     label = "Person is currently granted the youth payment benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
 
 
@@ -20,14 +29,23 @@ class youth_payment__receiving(variables.Variable):
     default_value = False
     entity = entities.Person
     label = "Person is currently recieving/being paid the youth payment benefit"
-    definition_period = periods.WEEK
+    definition_period = periods.DateUnit.WEEK
     reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
+
+
+class youth_payment__base(variables.Variable):
+    value_type = float
+    default_value = 0
+    entity = entities.Person
+    label = "TODO"
+    definition_period = periods.DateUnit.WEEK
+    reference = "TODO"
 
 
 class youth_payment__single_young_person_exceptional_circumstances(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.DateUnit.WEEK
     label = "a young person in exceptional circumstances"
     reference = """
     (2) For the purposes of subsection (1), a young person is in exceptional circumstances if—
