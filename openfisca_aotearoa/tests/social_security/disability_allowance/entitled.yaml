@@ -1,0 +1,11 @@
+- name: Disability allowance - entitled
+  period: 2022-W10
+  input:
+    disability_allowance__needs_ongoing_support: true
+    disability_allowance__needs_ongoing_treatment: true
+    disability_allowance__continuing_disability: true
+    social_security__granted_main_benefit: true
+    disability_allowance__below_income_threshold: true
+    disability_allowance__ongoing_additional_expenses: true
+  output: 
+    disability_allowance__entitled: true
