@@ -128,7 +128,7 @@ class accommodation_supplement__base(variables.Variable):
             * beneficiaries
             * no_child
             * leastwise25y
-            * (numpy.select(receiving, rate) + tax_credit)
+            * numpy.select(receiving, rate)
             )
 
         # Who are in a relationship
@@ -148,7 +148,10 @@ class accommodation_supplement__base(variables.Variable):
         ssr2018_17_2_d = (
             + mingled
             * beneficiaries
-            * numpy.select(receiving, rate)
+            * (
+                + no_child * numpy.select(receiving, rate)
+                + children * (numpy.select(receiving, rate) + tax_credit)
+                )
             )
 
         return (

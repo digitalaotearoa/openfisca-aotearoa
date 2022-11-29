@@ -74,7 +74,7 @@
       children: [Piedad, Srko, Ash]
   output:
     accommodation_supplement__base:
-      2022-W01: [278.50, 0, 0, 0]   # (c) for any other single beneficiary...
+      2022-W01: [278.50, 0, 0, 0]
       2022-W02: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52
       2022-W03: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52
 
@@ -103,9 +103,10 @@
     Accommodation Supplement -
     Base rate -
     Beneficiaries who are in a relationship -
-    (c) for any other single beneficiary, the maximum weekly rate of a
-        benefit that the beneficiary would be entitled to receive before
-        any abatement or deduction:
+    (c) for a beneficiary who is in a relationship and is not a beneficiary to
+        whom paragraph (e) applies,—
+        (i) the maximum weekly rate of a benefit that the beneficiary
+            is entitled to receive, before any abatement or deduction; [...]
   period: 2018-11-26
   input:
     jobseeker_support__receiving:
@@ -115,3 +116,68 @@
   output:
     accommodation_supplement__base:
       2022-W01: [453.62, 0, 278.50]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Beneficiaries who are in a relationship -
+    (c) for a beneficiary who is in a relationship and is not a beneficiary to
+        whom paragraph (e) applies,— [...]
+        (ii)  if the beneficiary has 1 or more dependent children, the maximum
+              annual rate of family tax credit (divided by 52) that is paid in
+              respect of an eldest dependent child who is under 16 years (if
+              any) under subparts MA to MF and MZ of the Income Tax Act 2007;
+  period: 2018-11-26
+  absolute_error_margin: 0.005
+  input:
+    persons:
+      Vranda:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        jobseeker_support__receiving:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
+        social_security__in_a_relationship:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: false
+      Piedad:
+        date_of_birth:
+          ETERNITY: 2006-01-10
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Srko:
+        date_of_birth:
+          ETERNITY: 2006-01-11
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Ash:
+        date_of_birth:
+          ETERNITY: 2006-01-12
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__dependent_child:
+          2022: 33
+    family:
+      principal: Vranda
+      children: [Piedad, Srko, Ash]
+  output:
+    accommodation_supplement__base:
+      2022-W01: [453.62, 0, 0, 0]
+      2022-W02: [484.80, 0, 0, 0]  # 481,30 + ($6,642 x 10 / 365) / 52
+      2022-W03: [410.28, 0, 0, 0]  # 406,78 + ($6,642 x 10 / 365) / 52
