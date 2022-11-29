@@ -170,9 +170,27 @@ class accommodation_supplement__base(variables.Variable):
         #     partner:
         # TODO: ssr2018_17_2_e
 
+        # Non-beneficiaries who are single -
+        non_beneficiaries = numpy.logical_not(beneficiaries)
+
+        # (f) for a single non-beneficiary with 1 or more dependent children,—
+        #     (i)   the appropriate maximum weekly rate of jobseeker support;
+        #           plus
+        #     (ii)  the annual rate of family tax credit (divided by 52) that
+        #           is payable in respect of an eldest dependent child who is
+        #           under 16 years under subparts MA to MF and MZ of the Income
+        #           Tax Act 2007:
+        ssr2018_17_2_f = (
+            + singles
+            * non_beneficiaries
+            * children
+            * (rate[1] + tax_credit)
+            )
+
         return (
             + ssr2018_17_2_a
             + ssr2018_17_2_b
             + ssr2018_17_2_c
             + ssr2018_17_2_d
+            + ssr2018_17_2_f
             )

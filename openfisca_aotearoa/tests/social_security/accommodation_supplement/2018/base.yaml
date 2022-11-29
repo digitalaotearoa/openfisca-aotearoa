@@ -181,3 +181,63 @@
       2022-W01: [453.62, 0, 0, 0]
       2022-W02: [485.15, 0, 0, 0]  # 481,30 + ($6,642 x 11 / 365) / 52
       2022-W03: [410.63, 0, 0, 0]  # 406,78 + ($6,642 x 11 / 365) / 52
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Non-beneficiaries who are single -
+    (f) for a single non-beneficiary with 1 or more dependent children,—
+        (i)   the appropriate maximum weekly rate of jobseeker support; plus
+        (ii)  the annual rate of family tax credit (divided by 52) that is
+              payable in respect of an eldest dependent child who is under 16
+              years under subparts MA to MF and MZ of the Income Tax Act 2007:
+  period: 2018-11-26
+  absolute_error_margin: 0.005
+  input:
+    persons:
+      Vranda:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        jobseeker_support__entitled:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
+      Piedad:
+        date_of_birth:
+          ETERNITY: 2006-01-10
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Srko:
+        date_of_birth:
+          ETERNITY: 2006-01-11
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Ash:
+        date_of_birth:
+          ETERNITY: 2006-01-12
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__dependent_child:
+          2022: 33
+    family:
+      principal: Vranda
+      children: [Piedad, Srko, Ash]
+  output:
+    accommodation_supplement__base:
+      2022-W01: 0
+      2022-W02: [410.63, 0, 0, 0]  # 406,78 + ($6,642 x 11 / 365) / 52
+      2022-W03: [410.63, 0, 0, 0]  # 406,78 + ($6,642 x 11 / 365) / 52
