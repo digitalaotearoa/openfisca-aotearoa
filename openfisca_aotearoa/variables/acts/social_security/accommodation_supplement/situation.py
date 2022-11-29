@@ -29,12 +29,10 @@ class accommodation_supplement__situation(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
-        families = people.family
-        members = families.members("social_security__dependent_child", period)
         principal = people.has_role(entities.Family.PRINCIPAL)
         mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
-        dependent_children = sum(members)
+        dependent_children = people("social_security__dependent_children", period)
         accommodation_type = people("accommodation_type", period)
 
         # As conditions 1-3 and 4-6 differ only in the accommodation type, we
@@ -79,4 +77,4 @@ class accommodation_supplement__situation(variables.Variable):
         fallback = AccommodationSupplement__Situation.unknown
 
         # And we return the situations corresponding to the conditions.
-        return numpy.select(conditions, situations, fallback)
+        return numpy.select(conditions, situations, fallback.index)
