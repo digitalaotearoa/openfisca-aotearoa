@@ -16,7 +16,7 @@ class accommodation_supplement__base(variables.Variable):
     default_value = 0
     definition_period = periods.DateUnit.WEEK
 
-    def formula_2018_11_26(people, period, _params):
+    def formula_2018_11_26(people, period, params):
         # We assume age on Monday
         monday = period.first_day
 
@@ -180,11 +180,34 @@ class accommodation_supplement__base(variables.Variable):
         #           is payable in respect of an eldest dependent child who is
         #           under 16 years under subparts MA to MF and MZ of the Income
         #           Tax Act 2007:
+        eligible = people("jobseeker_support__entitled", period)
+
         ssr2018_17_2_f = (
             + singles
             * non_beneficiaries
             * children
+            * eligible
             * (rate[1] + tax_credit)
+            )
+
+        # (g) for any other single non-beneficiary, the weekly rate of
+        #     jobseeker support at the rate in clause 1(d) of Part 1 of
+        #     Schedule 4 of the Act before any abatement or deduction:
+        ssa2018_sched_4_part_1_clause_1_d = (
+            params(period)
+            .social_security
+            .jobseeker_support
+            .base
+            .clauses
+            .clause_1_d
+            )
+
+        ssr2018_17_2_g = (
+            + singles
+            * non_beneficiaries
+            * no_child
+            * eligible
+            * ssa2018_sched_4_part_1_clause_1_d
             )
 
         return (
@@ -193,4 +216,5 @@ class accommodation_supplement__base(variables.Variable):
             + ssr2018_17_2_c
             + ssr2018_17_2_d
             + ssr2018_17_2_f
+            + ssr2018_17_2_g
             )

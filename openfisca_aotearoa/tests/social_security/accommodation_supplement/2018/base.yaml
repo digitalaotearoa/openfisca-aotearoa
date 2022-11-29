@@ -238,6 +238,23 @@
       children: [Piedad, Srko, Ash]
   output:
     accommodation_supplement__base:
-      2022-W01: 0
+      2022-W01: [278.50, 0, 0, 0]
       2022-W02: [410.63, 0, 0, 0]  # 406,78 + ($6,642 x 11 / 365) / 52
       2022-W03: [410.63, 0, 0, 0]  # 406,78 + ($6,642 x 11 / 365) / 52
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Non-beneficiaries who are single -
+    (g) for any other single non-beneficiary, the weekly rate of jobseeker
+        support at the rate in clause 1(d) of Part 1 of Schedule 4 of the Act
+        before any abatement or deduction:
+  period: 2018-11-26
+  input:
+    jobseeker_support__entitled:
+      2022-W01: [true, false]
+  output:
+    accommodation_supplement__base:
+      2022-W01: [278.50, 0]
