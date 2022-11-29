@@ -31,7 +31,7 @@ class accommodation_supplement__base(variables.Variable):
         # Beneficiaries
         beneficiaries = people("accommodation_supplement__beneficiary", period)
 
-        #  Who are single
+        # Who are single
         principal = people.has_role(entities.Family.PRINCIPAL)
         mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
@@ -131,4 +131,29 @@ class accommodation_supplement__base(variables.Variable):
             * (numpy.select(receiving, rate) + tax_credit)
             )
 
-        return ssr2018_17_2_a + ssr2018_17_2_b + ssr2018_17_2_c
+        # Who are in a relationship
+
+        # (d) for a beneficiary who is in a relationship and is not a
+        #     beneficiary to whom paragraph (e) applies,—
+        #     (i)   the maximum weekly rate of a benefit that the beneficiary
+        #           is entitled to receive, before any abatement or deduction;
+        #           plus
+        #     (ii)  if the beneficiary has 1 or more dependent children, the
+        #           maximum annual rate of family tax credit (divided by 52)
+        #           that is paid in respect of an eldest dependent child who is
+        #           under 16 years (if any) under subparts MA to MF and MZ of
+        #           the Income Tax Act 2007; plus
+        #     (iii) the maximum weekly rate of a benefit paid in respect of the
+        #           beneficiary’s spouse or partner:
+        ssr2018_17_2_d = (
+            + mingled
+            * beneficiaries
+            * numpy.select(receiving, rate)
+            )
+
+        return (
+            + ssr2018_17_2_a
+            + ssr2018_17_2_b
+            + ssr2018_17_2_c
+            + ssr2018_17_2_d
+            )
