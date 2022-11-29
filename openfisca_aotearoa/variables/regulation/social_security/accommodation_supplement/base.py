@@ -145,26 +145,28 @@ class accommodation_supplement__base(variables.Variable):
         #           the Income Tax Act 2007; plus
         #     (iii) the maximum weekly rate of a benefit paid in respect of the
         #           beneficiary’s spouse or partner:
+        receive_partners = numpy.sum([
+            + people.has_role(entities.Family.PARTNER)
+            * numpy.select(receiving, rates),
+            ])
 
-        ssr2018_17_2_d_i = (
+        ssr2018_17_2_d_i_iii = (
             + mingled
             * beneficiaries
             * no_child
-            * numpy.select(receiving, rates)
+            * (numpy.select(receiving, rates) + receive_partners)
             )
 
-        ssr2018_17_2_d_ii = (
+        ssr2018_17_2_d_ii_iii = (
             + mingled
             * beneficiaries
             * children
-            * (numpy.select(receiving, rates) + tax_credit)
+            * (numpy.select(receiving, rates) + receive_partners + tax_credit)
             )
 
-        # TODO: ssr2018_17_2_d_iii
-
         ssr2018_17_2_d = (
-            + ssr2018_17_2_d_i
-            + ssr2018_17_2_d_ii
+            + ssr2018_17_2_d_i_iii
+            + ssr2018_17_2_d_ii_iii
             )
 
         # (e) for a beneficiary who is in a relationship and whose spouse or

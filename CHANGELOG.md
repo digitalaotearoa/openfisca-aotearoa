@@ -1,5 +1,13 @@
 # Changelog
 
+## 19.1.0 - [46](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/46)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 26/11/2018.
+* Impacted areas: `regulations/accommodation_supplement/base.py`
+* Details:
+  - Add calculation for non-beneficiaries
+
 ### 19.0.1 - [45](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/45)
 
 * Calculation improvement.
