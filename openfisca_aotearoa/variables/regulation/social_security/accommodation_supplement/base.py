@@ -138,21 +138,37 @@ class accommodation_supplement__base(variables.Variable):
         #     (i)   the maximum weekly rate of a benefit that the beneficiary
         #           is entitled to receive, before any abatement or deduction;
         #           plus
+        ssr2018_17_2_d_i = (
+            + mingled
+            * beneficiaries
+            * no_child
+            * numpy.select(receiving, rate)
+            )
+
         #     (ii)  if the beneficiary has 1 or more dependent children, the
         #           maximum annual rate of family tax credit (divided by 52)
         #           that is paid in respect of an eldest dependent child who is
         #           under 16 years (if any) under subparts MA to MF and MZ of
         #           the Income Tax Act 2007; plus
-        #     (iii) the maximum weekly rate of a benefit paid in respect of the
-        #           beneficiary’s spouse or partner:
-        ssr2018_17_2_d = (
+        ssr2018_17_2_d_ii = (
             + mingled
             * beneficiaries
-            * (
-                + no_child * numpy.select(receiving, rate)
-                + children * (numpy.select(receiving, rate) + tax_credit)
-                )
+            * children
+            * (numpy.select(receiving, rate) + tax_credit)
             )
+
+        #     (iii) the maximum weekly rate of a benefit paid in respect of the
+        #           beneficiary’s spouse or partner:
+        # TODO: ssr2018_17_2_d_iii
+
+        ssr2018_17_2_d = ssr2018_17_2_d_i + ssr2018_17_2_d_ii
+
+        # (e) for a beneficiary who is in a relationship and whose spouse or
+        #     partner is not entitled to an accommodation supplement under
+        #     section 230 of the Act, the rate specified in paragraph (d) as if
+        #     a rate of a benefit were paid in respect of that spouse or
+        #     partner:
+        # TODO: ssr2018_17_2_e
 
         return (
             + ssr2018_17_2_a
