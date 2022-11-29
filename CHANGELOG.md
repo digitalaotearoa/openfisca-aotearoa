@@ -1,5 +1,53 @@
 # Changelog
 
+# 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
+* Added variables:
+ - `sole_parent_support__requirement`
+ - `sole_parent_support__dependent_child_requirement`
+ - `sole_parent_support__spouse_or_partner_died`
+ - `sole_parent_support__marriage_or_civil_union_dissolved`
+ - `sole_parent_support__living_apart_and_lost_support`
+ - `sole_parent_support__lost_regular_support`
+ - `sole_parent_support__partner_imprisoned`
+ - `sole_parent_support__partner_supervision`
+ - `sole_parent_support__split_care`
+ - `sole_parent_support__parents_living_apart`
+ - `sole_parent_support__principal_caregiver_of_youngest`
+ - `sole_parent_support__principal_caregiver_before_apart`
+ - `sole_parent_support__entitled_without_split_care_requirement`
+ - `sole_parent_support__both_primary_caregiver_by_order`
+ - `sole_parent_support__receiving`
+ - `social_security__principal_caregiver`
+ - `sole_parent_support__benefit`
+ - `sole_parent_support__base`
+ - `sole_parent_support__reduction`
+ - `sole_parent_support__weekly_childcare_cost`
+* Other changes:
+  - `social_security__residential_requirement` period changed from month to week
+  - `social_security__ordinarily_resident_in_new_zealand` period changed from month to eternity
+  - `sole_parent_support__entitled` period changed from month to week
+  - `sole_parent_support__meets_relationship_qualification` period changed from month to week
+  - `sole_parent_support__family_has_child_under_age_limit` period changed from month to week
+  - `sole_parent_support__age_threshold` period changed from month to week
+  - `sole_parent_support__years_in_nz_requirement` period changed from month to week
+  - `sole_parent_support__below_income_threshold` period changed from month to week
+  - `parent` role added to `family` entity
+  - `Sole Parent Support Base Rate`
+* Added parameters:
+  - `parameters/social_security/schedule_5/asset_limits_1.yml`
+  - `parameters/social_security/schedule_5/asset_limits_2.yml`
+  - `parameters/social_security/schedule_5/asset_limits_3.yml`
+  - `parameters/social_security/schedule_5/asset_limits_4.yml`
+  - `parameters/social_security/schedule_5/income_limits_5.yml`
+  - `parameters/social_security/schedule_5/income_limits_6.yml`
+  - `parameters/social_security/schedule_5/income_limits_7.yml`
+  - `parameters/social_security/schedule_5/income_limits_8.yml`
+  - `parameters/social_security/schedule_5/income_limits_9.yml`
+  - `parameters/social_security/sole_parent_support/child_age_threshold.yml`
+  - `parameters/social_security/sole_parent_support/age_threshold.yml`
+* Removed variables
+  - `sole_parent_support__years_in_nz_requirement`
+
 ## 19.1.0 - [46](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/46)
 
 * Tax and benefit system evolution.
@@ -32,8 +80,7 @@
 * Breaking changes
   - Several definition period and name changes
 
-## 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)
-
+# 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
@@ -49,6 +96,8 @@
   - `youth_payment__receiving`
 * Renamed variables:
   - `jobseeker_benefit__granted` to `jobseeker_support__granted`
+# 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+* Change to variable `person_has_partner` - time period switched from month to week
 
 ### 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
 

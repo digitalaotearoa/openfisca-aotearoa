@@ -6,6 +6,7 @@ from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
+
 # Benefit: Part 1E Supported Living Payment (eligible self applicant):
 # If applicant.isNZResident
 #     and 16 <= applicant.Age
@@ -13,8 +14,6 @@ from openfisca_aotearoa import entities
 #     and applicant.hasSeriousDisability
 #     and threshold.income.SupportedLivingPayment
 # then benefit.isSupportedLivingPayment is PERMITTED
-
-
 class supported_living_payment__granted(variables.Variable):
     value_type = bool
     default_value = False

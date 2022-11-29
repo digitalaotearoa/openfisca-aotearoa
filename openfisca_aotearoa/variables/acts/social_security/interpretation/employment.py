@@ -1,4 +1,4 @@
-"""TODO: Add missing doctring."""
+"""Variables relating to employment definitions in the Social Security Act 2018."""
 
 from openfisca_core import periods, variables
 

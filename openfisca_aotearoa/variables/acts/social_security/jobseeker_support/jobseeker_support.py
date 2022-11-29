@@ -1,10 +1,10 @@
 """This module provides eligibility and amount for Jobseeker Support."""
 
+import numpy
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-import numpy
 
 from openfisca_core import holders, periods, variables
 
@@ -243,6 +243,7 @@ class jobseeker_support__age_requirement(variables.Variable):
         return ssa23_a + ssa23_b
 
 
+# TODO add reverse caculation?
 class jobseeker_support__minimum_income(variables.Variable):
     value_type = bool
     default_value = False
