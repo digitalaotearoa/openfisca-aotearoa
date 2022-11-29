@@ -258,3 +258,167 @@
   output:
     accommodation_supplement__base:
       2022-W01: [278.50, 0]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Non-beneficiaries who are in a relationship -
+    (h) for a non-beneficiary who is in a relationship,—
+        (i)   the appropriate maximum weekly rate of jobseeker support; plus
+  period: 2018-11-26
+  absolute_error_margin: 0.005
+  input:
+    social_security__in_a_relationship:
+      2022-W01: [true, false, false]
+    jobseeker_support__entitled:
+      2022-W01: [true, true, false]
+  output:
+    accommodation_supplement__base:
+      2022-W01: [453.62, 278.50, 0]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Non-beneficiaries who are in a relationship -
+    (h) for a non-beneficiary who is in a relationship,— [...]
+        (ii)  if the beneficiary has 1 or more dependent children, the maximum
+              annual rate of family tax credit (divided by 52) that is payable
+              in respect of an eldest dependent child who is under 16 years
+              under subparts MA to MF and MZ of the Income Tax Act 2007; plus
+  period: 2018-11-26
+  absolute_error_margin: 0.005
+  input:
+    persons:
+      Vranda:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        jobseeker_support__entitled:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
+        social_security__in_a_relationship:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: false
+      Piedad:
+        date_of_birth:
+          ETERNITY: 2006-01-10
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Srko:
+        date_of_birth:
+          ETERNITY: 2006-01-11
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Ash:
+        date_of_birth:
+          ETERNITY: 2006-01-12
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__dependent_child:
+          2022: 33
+    family:
+      principal: Vranda
+      children: [Piedad, Srko, Ash]
+  output:
+    accommodation_supplement__base:
+      2022-W01: [453.62, 0, 0, 0]
+      2022-W02: [485.15, 0, 0, 0]
+      2022-W03: [410.63, 0, 0, 0]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    Base rate -
+    Non-beneficiaries who are in a relationship -
+    (h) for a non-beneficiary who is in a relationship,—
+        (i)   the appropriate maximum weekly rate of jobseeker support; plus
+        (ii)  if the beneficiary has 1 or more dependent children, the maximum
+              annual rate of family tax credit (divided by 52) that is payable
+              in respect of an eldest dependent child who is under 16 years
+              under subparts MA to MF and MZ of the Income Tax Act 2007; plus
+        (iii) the maximum weekly rate of jobseeker support that would have been
+              payable in respect of the beneficiary’s spouse or partner.
+  period: 2018-11-26
+  absolute_error_margin: 0.005
+  input:
+    persons:
+      Vranda:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        jobseeker_support__entitled:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
+        social_security__in_a_relationship:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: false
+      Bob:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        jobseeker_support__entitled:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__eligible:
+          2022: true
+        social_security__in_a_relationship:
+          2022-W01: true
+          2022-W02: true
+          2022-W03: false
+      Piedad:
+        date_of_birth:
+          ETERNITY: 2006-01-10
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Srko:
+        date_of_birth:
+          ETERNITY: 2006-01-11
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: false
+        family_tax_credit__dependent_child:
+          2022: 33
+      Ash:
+        date_of_birth:
+          ETERNITY: 2006-01-12
+        social_security__dependent_child:
+          2022-W01: false
+          2022-W02: true
+          2022-W03: true
+        family_tax_credit__dependent_child:
+          2022: 33
+    family:
+      principal: Vranda
+      partners: [Bob]
+      children: [Piedad, Srko, Ash]
+  output:
+    accommodation_supplement__base:
+      2022-W01: [907.24, 0, 0, 0, 0]
+      2022-W02: [966.45, 0, 0, 0, 0]
+      2022-W03: [410.63, 0, 0, 0, 0]
