@@ -21,7 +21,8 @@ class accommodation_supplement__assets_requirement(variables.Variable):
         mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
         cash_assets = people("accommodation_supplement__cash_assets", period)
-        dependent_children = people("social_security__dependent_child", period)
+        children = people("social_security__dependent_children", period) >= 1
+        no_child = numpy.logical_not(children)
 
         cash_assets_principal = people.family.sum(
             cash_assets,
@@ -52,13 +53,13 @@ class accommodation_supplement__assets_requirement(variables.Variable):
 
         ssr2018_15_1_a_ii = (
             + singles
-            * (sum(dependent_children) >= 1)
+            * children
             * (total_cash_assets <= threshold.ssa2018_15_1_a)
             )
 
         ssr2018_15_1_b = (
             + singles
-            * (sum(dependent_children) == 0)
+            * no_child
             * (total_cash_assets <= threshold.ssa2018_15_1_b)
             )
 

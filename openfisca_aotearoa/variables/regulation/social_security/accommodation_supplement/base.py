@@ -36,10 +36,8 @@ class accommodation_supplement__base(variables.Variable):
         mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
 
-        # We have no dependant children
-        f_members = people.family.members
-        dependant = sum(f_members("social_security__dependent_child", period))
-        children = dependant >= 1
+        # We have no dependent children
+        children = people("social_security__dependent_children", period) >= 1
         no_child = numpy.logical_not(children)
 
         # (a) for a single beneficiary under the age of 25 years, the maximum
