@@ -1,5 +1,13 @@
 # Changelog
 
+### 19.0.1 - [45](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/45)
+
+* Calculation improvement.
+* Impacted periods: 2018/11/26.
+* Impacted areas: `accommodation_supplement`
+* Details:
+  - Use `social_security__dependent_children`
+
 # 19.0.0 - [44](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/44)
 
 * Calculation improvement:
