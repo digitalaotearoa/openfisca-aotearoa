@@ -16,7 +16,7 @@ class accommodation_supplement__base(variables.Variable):
     default_value = 0
     definition_period = periods.DateUnit.WEEK
 
-    def formula_2018_11_26(people, period, _params):
+    def formula_2018_11_26(people, period, params):
         # We assume age on Monday
         monday = period.first_day
 
@@ -31,7 +31,7 @@ class accommodation_supplement__base(variables.Variable):
         # Beneficiaries
         beneficiaries = people("accommodation_supplement__beneficiary", period)
 
-        #  Who are single
+        # Who are single
         principal = people.has_role(entities.Family.PRINCIPAL)
         mingled = principal * people("social_security__in_a_relationship", period)
         singles = principal * numpy.logical_not(mingled)
@@ -92,7 +92,7 @@ class accommodation_supplement__base(variables.Variable):
         #           the Income Tax Act 2007:
 
         # We calculate the base base rate of the receiving benefit.
-        rate = (
+        rates = (
             people("emergency_benefit__base", period),
             people("jobseeker_support__base", period),
             people("sole_parent_support__base", period),
@@ -112,7 +112,7 @@ class accommodation_supplement__base(variables.Variable):
             + singles
             * beneficiaries
             * children
-            * (numpy.select(receiving, rate) + tax_credit)
+            * (numpy.select(receiving, rates) + tax_credit)
             )
 
         # (c) for any other single beneficiary, the maximum weekly rate of a
@@ -128,7 +128,141 @@ class accommodation_supplement__base(variables.Variable):
             * beneficiaries
             * no_child
             * leastwise25y
-            * (numpy.select(receiving, rate) + tax_credit)
+            * numpy.select(receiving, rates)
             )
 
-        return ssr2018_17_2_a + ssr2018_17_2_b + ssr2018_17_2_c
+        # Who are in a relationship
+
+        # (d) for a beneficiary who is in a relationship and is not a
+        #     beneficiary to whom paragraph (e) applies,—
+        #     (i)   the maximum weekly rate of a benefit that the beneficiary
+        #           is entitled to receive, before any abatement or deduction;
+        #           plus
+        #     (ii)  if the beneficiary has 1 or more dependent children, the
+        #           maximum annual rate of family tax credit (divided by 52)
+        #           that is paid in respect of an eldest dependent child who is
+        #           under 16 years (if any) under subparts MA to MF and MZ of
+        #           the Income Tax Act 2007; plus
+        #     (iii) the maximum weekly rate of a benefit paid in respect of the
+        #           beneficiary’s spouse or partner:
+        receive_partners = numpy.sum([
+            + people.has_role(entities.Family.PARTNER)
+            * numpy.select(receiving, rates),
+            ])
+
+        ssr2018_17_2_d_i_iii = (
+            + mingled
+            * beneficiaries
+            * no_child
+            * (numpy.select(receiving, rates) + receive_partners)
+            )
+
+        ssr2018_17_2_d_ii_iii = (
+            + mingled
+            * beneficiaries
+            * children
+            * (numpy.select(receiving, rates) + receive_partners + tax_credit)
+            )
+
+        ssr2018_17_2_d = (
+            + ssr2018_17_2_d_i_iii
+            + ssr2018_17_2_d_ii_iii
+            )
+
+        # (e) for a beneficiary who is in a relationship and whose spouse or
+        #     partner is not entitled to an accommodation supplement under
+        #     section 230 of the Act, the rate specified in paragraph (d) as if
+        #     a rate of a benefit were paid in respect of that spouse or
+        #     partner:
+
+        # TODO: ssr2018_17_2_e
+
+        # Non-beneficiaries who are single -
+        non_beneficiaries = numpy.logical_not(beneficiaries)
+
+        # (f) for a single non-beneficiary with 1 or more dependent children,—
+        #     (i)   the appropriate maximum weekly rate of jobseeker support;
+        #           plus
+        #     (ii)  the annual rate of family tax credit (divided by 52) that
+        #           is payable in respect of an eldest dependent child who is
+        #           under 16 years under subparts MA to MF and MZ of the Income
+        #           Tax Act 2007:
+        eligible = people("jobseeker_support__entitled", period)
+
+        ssr2018_17_2_f = (
+            + singles
+            * non_beneficiaries
+            * children
+            * eligible
+            * (rates[1] + tax_credit)
+            )
+
+        # (g) for any other single non-beneficiary, the weekly rate of
+        #     jobseeker support at the rate in clause 1(d) of Part 1 of
+        #     Schedule 4 of the Act before any abatement or deduction:
+        ssa2018_sched_4_part_1_clause_1_d = (
+            params(period)
+            .social_security
+            .jobseeker_support
+            .base
+            .clauses
+            .clause_1_d
+            )
+
+        ssr2018_17_2_g = (
+            + singles
+            * non_beneficiaries
+            * no_child
+            * eligible
+            * ssa2018_sched_4_part_1_clause_1_d
+            )
+
+        # Non-beneficiaries who are in a relationship -
+        #
+        # (h) for a non-beneficiary who is in a relationship,—
+        #     (i)   the appropriate maximum weekly rate of jobseeker support;
+        #           plus
+        #     (ii)  if the beneficiary has 1 or more dependent children, the
+        #           maximum annual rate of family tax credit (divided by 52)
+        #           that is payable in respect of an eldest dependent child who
+        #           is under 16 years under subparts MA to MF and MZ of the
+        #           Income Tax Act 2007; plus
+        #     (iii) the maximum weekly rate of jobseeker support that would
+        #           have been payable in respect of the beneficiary’s spouse or
+        #           partner.
+        rate_partners = numpy.sum([
+            + people.has_role(entities.Family.PARTNER)
+            * eligible
+            * rates[1],
+            ])
+
+        ssr2018_17_2_h_i_iii = (
+            + mingled
+            * non_beneficiaries
+            * no_child
+            * eligible
+            * (rates[1] + rate_partners)
+            )
+
+        ssr2018_17_2_h_ii_iii = (
+            + mingled
+            * non_beneficiaries
+            * children
+            * eligible
+            * (rates[1] + tax_credit + rate_partners)
+            )
+
+        ssr2018_17_2_h = (
+            + ssr2018_17_2_h_i_iii
+            + ssr2018_17_2_h_ii_iii
+            )
+
+        return (
+            + ssr2018_17_2_a
+            + ssr2018_17_2_b
+            + ssr2018_17_2_c
+            + ssr2018_17_2_d
+            + ssr2018_17_2_f
+            + ssr2018_17_2_g
+            + ssr2018_17_2_h
+            )
