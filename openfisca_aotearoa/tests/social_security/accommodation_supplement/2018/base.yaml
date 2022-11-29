@@ -14,13 +14,11 @@
   input:
     age:
       day:2022-01-03:7: [24, 24, 24, 25, 25, 25]
-    jobseeker_support__entitled:
-      2022-W01: [true, true, false, true, true, false]
-    social_security__beneficiary:
+    accommodation_supplement__beneficiary:
       2022-W01: [true, false, true, true, false, true]
+    jobseeker_support__receiving:
+      2022-W01: [true, true, false, true, true, false]
   output:
-    jobseeker_support__base:
-      2022-W01: [239.70, 239.70, 0, 278.50, 278.50, 0]
     accommodation_supplement__base:
       2022-W01: [278.50, 0, 0, 278.50, 0, 0]
 
@@ -43,11 +41,11 @@
       Vranda:
         date_of_birth:
           ETERNITY: 1997-01-11
-        jobseeker_support__entitled:
+        accommodation_supplement__beneficiary:
           2022-W01: true
           2022-W02: true
           2022-W03: true
-        social_security__beneficiary:
+        jobseeker_support__receiving:
           2022-W01: true
           2022-W02: true
           2022-W03: true
@@ -84,14 +82,6 @@
       principal: Vranda
       children: [Piedad, Srko, Ash]
   output:
-    family_tax_credit__eldest:
-      2022-01-10: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-01-11: [18.20, 0, 0, 0]  # $6,642 x 1 / 365
-      2022-01-12: [0, 0, 0, 0]
-    jobseeker_support__base:
-      2022-W01: [239.70, 0, 0, 0]
-      2022-W02: [406.78, 0, 0, 0]
-      2022-W03: [406.78, 0, 0, 0]
     accommodation_supplement__base:
       2022-W01: [278.50, 0, 0, 0]   # (c) for any other single beneficiary...
       2022-W02: [410.63, 0, 0, 0]   # 406,78 + ($6,642 x 11 / 365) / 52

@@ -31,6 +31,10 @@ brackets:
         value: 90
       2021-04-01:
         value: 160
-# Income Test 3 means that the applicable rate of benefit must be reduced by 70 cents for every $1 of total income of the beneficiary and the beneficiary’s spouse or partner that is more than,—
-# (a) if the rate of benefit is a rate of New Zealand superannuation stated in clause 1 of Part 2 of Schedule 1 of the New Zealand Superannuation and Retirement Income Act 2001, $160 a week; or
+# Income Test 3 means that the applicable rate of benefit must be reduced by 70
+# cents for every $1 of total income of the beneficiary and the beneficiary’s
+# spouse or partner that is more than,—
+# (a) if the rate of benefit is a rate of New Zealand superannuation stated in
+#     clause 1 of Part 2 of Schedule 1 of the New Zealand Superannuation and
+#     Retirement Income Act 2001, $160 a week; or
 # (b) in any other case, $160 a week

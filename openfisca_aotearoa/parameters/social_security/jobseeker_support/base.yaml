@@ -7,7 +7,9 @@ metadata:
   reference:
     2013-07-15:
       title: Social Security Act 1964
-      href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527, https://www.legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html
+      href:
+      - https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527,
+      - https://www.legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html
 # TODO - requires old act calculation
     2007-03-05:
       title: Social Security (Rates of Benefits and Allowances) Order 2007

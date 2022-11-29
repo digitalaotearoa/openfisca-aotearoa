@@ -105,3 +105,13 @@ class supported_living_payment__entitled(variables.Variable):
         income = persons("supported_living_payment__below_income_threshold", period)
 
         return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * immigration__resident_or_citizen * income
+
+
+class supported_living_payment__base(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

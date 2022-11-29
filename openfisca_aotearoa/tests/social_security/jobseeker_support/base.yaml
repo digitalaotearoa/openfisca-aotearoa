@@ -10,7 +10,7 @@
       2021-W23: [true, true, true, true, true]
       2022-W01: [true, true, true, true, true]
       2023-W01: [true, true, true, true, true]
-    in_a_relationship:
+    social_security__in_a_relationship:
       2020-W01: [false, false, false, false, false]
       2021-W01: [false, false, false, false, false]
       2021-W23: [false, false, false, false, false]
@@ -60,7 +60,7 @@
       2021-W23: [true, true, true, true, true]
       2022-W01: [true, true, true, true, true]
       2023-W01: [true, true, true, true, true]
-    in_a_relationship:
+    social_security__in_a_relationship:
       2020-W01: [false, false, false, false, false]
       2021-W01: [false, false, false, false, false]
       2021-W23: [false, false, false, false, false]
@@ -142,18 +142,18 @@
       2021-W23: [1, 1, 0]
       2022-W01: [1, 1, 0]
       2023-W01: [1, 1, 0]
-    in_a_relationship:
+    social_security__in_a_relationship:
       2020-W01: [true, false, false]
       2021-W01: [true, false, false]
       2021-W23: [true, false, false]
       2022-W01: [true, false, false]
       2023-W01: [true, false, false]
     jobseeker_support__base:
-      2020-W01: [391.00, 0, 0]
-      2021-W01: [428.06, 0, 0]
-      2021-W23: [441.30, 0, 0]
-      2022-W01: [481.30, 0, 0]
-      2023-W01: [566.00, 0, 0]
+      2020-W01: [391.00, 339.69, 182.47]
+      2021-W01: [428.06, 375.17, 213.10]
+      2021-W23: [441.30, 386.78, 219.70]
+      2022-W01: [481.30, 406.78, 239.70]
+      2023-W01: [566.00, 440.96, 274.37]
 - name: >
     Social Security Act 2018
     Jobseeker Support
@@ -205,11 +205,11 @@
         children: ["Bubba"]
   output:
     jobseeker_support__base:
-      2020-W01: [195.50, 0, 0]
-      2021-W01: [214.03, 0, 0]
-      2021-W23: [220.65, 0, 0]
-      2022-W01: [240.65, 0, 0]
-      2023-W01: [283.00, 0, 0]
+      2020-W01: [195.50, 339.69, 182.47]
+      2021-W01: [214.03, 375.17, 213.10]
+      2021-W23: [220.65, 386.78, 219.70]
+      2022-W01: [240.65, 406.78, 239.70]
+      2023-W01: [283.00, 440.96, 274.37]
     jobseeker_support__reduction:
       2020-W01: [143.5, 0, 0]
       2021-W01: [59.5, 0, 0]

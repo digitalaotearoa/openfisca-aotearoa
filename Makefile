@@ -1,4 +1,4 @@
-all: test
+all: lint test
 
 uninstall:
 	pip freeze | grep -v "^-e" | xargs pip uninstall -y
@@ -31,7 +31,7 @@ format-style:
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	isort `git ls-files | grep "\.py$$"`
 	autopep8 `git ls-files | grep "\.py$$"`
-	pyupgrade --py37-plus --keep-runtime-typing `git ls-files | grep "\.py$$"`
+	pyupgrade --py39-plus `git ls-files | grep "\.py$$"`
 
 
 check-style:
@@ -39,8 +39,10 @@ check-style:
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	flake8 `git ls-files | grep "\.py$$"`
 	pylint `git ls-files | grep "\.py$$"`
+	yamllint `git ls-files | grep "\.yaml$$"`
 
 
+lint: clean check-syntax-errors format-style check-style
 test: clean check-syntax-errors
 ifdef yaml
 	openfisca test -c openfisca_aotearoa openfisca_aotearoa/tests/$(yaml)
@@ -50,6 +52,3 @@ endif
 
 serve:
 	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000 --reload
-
-lint:
-	yamllint . && flake8

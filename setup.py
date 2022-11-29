@@ -9,13 +9,21 @@ long_description = (this_directory / "README.md").read_text()  # pylint: disable
 
 setup(
     name = "OpenFisca-Aotearoa",
-    version = "18.0.0",
+    version = "19.0.0",
     author = "Digital Aotearoa Collective, originally a New Zealand Government, Service Innovation Lab project",
     description = "OpenFisca tax and benefit system for Aotearoa",
+    classifiers = [
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
+        "Operating System :: POSIX",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        ],
     long_description = long_description,
     long_description_content_type = "text/markdown",
-    keywords = "benefit microsimulation social tax",
-    license = "http://www.fsf.org/licensing/licenses/agpl-3.0.html",
+    keywords = "microsimulation tax benefit rules-as-code",
+    license = "https://www.fsf.org/licensing/licenses/agpl-3.0.html",
     url = "https://github.com/digitalaotearoa/openfisca-aotearoa",
     include_package_data = True,  # Will read MANIFEST.in
     data_files = [
@@ -47,6 +55,7 @@ setup(
             "pylint >= 2.6.0, < 3.0.0",
             "pycodestyle >= 2.6.0, < 3.0.0",
             "pyupgrade >= 2.32.0, < 3.0.0",
+            "yamllint >= 1.28.0, < 2.0.0",
             ],
         },
     packages = find_packages(),

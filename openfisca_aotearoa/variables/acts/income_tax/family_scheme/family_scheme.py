@@ -53,7 +53,7 @@ class family_scheme__full_time_earner(Variable):
     reference = "http://legislation.govt.nz/act/public/2007/0097/latest/DLM1518419.html"
 
     def formula(persons, period, parameters):
-        has_partner = persons("in_a_relationship", period.first_week) == 1
+        has_partner = persons("social_security__in_a_relationship", period.first_week) == 1
         hours_per_week_threshold = parameters(period).entitlements.social_security.family_scheme.hours_per_week_threshold
         hours_per_week_threshold_with_partner = parameters(period).entitlements.social_security.family_scheme.hours_per_week_threshold_with_partner
 
