@@ -68,7 +68,7 @@
         total_number_of_years_lived_in_nz_since_age_20: 11
         total_number_of_years_lived_in_nz_since_age_50: 6
   output:
-    super__eligible:
+    super__entitled:
       - false # Not eligible
       - true # Is citizen
       - true # Is PR

@@ -5,7 +5,7 @@
     persons:
       Lily:
         date_of_birth: 2006-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 200
           2022-W08: 300
           2022-W09: 589
@@ -15,7 +15,7 @@
   output:
     age:
       2022-02-20: 16
-    person_has_partner:
+    social_security__in_a_relationship:
       2022-W07: false
       2022-W08: false
       2022-W09: false
@@ -23,7 +23,7 @@
       2022-W07: 0
       2022-W08: 0
       2022-W09: 0
-    disability_allowance__income_limit_clause_10: 
+    disability_allowance__income_limit_clause_10:
       2022-W07: true
       2022-W08: true
       2022-W09: false
@@ -34,7 +34,7 @@
     persons:
       Lily:
         date_of_birth: 2000-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 589
           2022-W08: 650
           2022-W09: 735
@@ -44,15 +44,15 @@
   output:
     age:
       2022-02-20: 22
-    person_has_partner:
+    social_security__in_a_relationship:
       2022-W07: false
       2022-W08: false
       2022-W09: false
-    social_security__dependent_children: 
+    social_security__dependent_children:
       2022-W07: 0
       2022-W08: 0
       2022-W09: 0
-    disability_allowance__income_limit_clause_11: 
+    disability_allowance__income_limit_clause_11:
       2022-W07: true
       2022-W08: true
       2022-W09: false
@@ -63,7 +63,7 @@
     persons:
       Lily:
         date_of_birth: 2000-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 200
           2022-W08: 400
           2022-W09: 600
@@ -80,10 +80,10 @@
   output:
     age:
       2022-02-20: [22, 24]
-    person_has_partner: 
+    social_security__in_a_relationship:
     - true #Adam
-    - true #Lily
-    social_security__dependent_children: 
+    - false #Lily
+    social_security__dependent_children:
       2022-W07: [0, 0]
       2022-W08: [0, 0]
       2022-W09: [0, 0]
@@ -91,9 +91,9 @@
       2022-W07: 400
       2022-W08: 800
       2022-W09: 1200
-    disability_allowance__income_limit_clause_12: 
-      2022-W07: true
-      2022-W08: true
+    disability_allowance__income_limit_clause_12:
+      2022-W07: [true, false]
+      2022-W08: [true, false]
       2022-W09: false
 - name: Disability allowance - Person in a relationship (Clause 12) with children
   period: 2022-W07
@@ -102,7 +102,7 @@
     persons:
       Lily:
         date_of_birth: 1990-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 200
           2022-W08: 400
           2022-W09: 600
@@ -122,21 +122,21 @@
   output:
     age:
       2022-02-20: [32, 34, 12]
-    person_has_partner: 
+    social_security__in_a_relationship:
     - true #Adam
-    - true #Lily
+    - false #Lily
     - false #Tom
-    social_security__dependent_children: 
-     - 1 #Adam
-     - 1 #Lily
-     - 0 #Tom
+    social_security__dependent_children:
+    - 1 #Adam
+    - 1 #Lily
+    - 0 #Tom
     disability_allowance__family_income:
       2022-W07: 400
       2022-W08: 800
       2022-W09: 1193
     disability_allowance__income_limit_clause_12:
-      2022-W07: [true, true, false]
-      2022-W08: [true, true, false]
+      2022-W07: [true, false, false]
+      2022-W08: [true, false, false]
       2022-W09: [false, false, false]
 - name: Disability allowance - Sole parent with 1 dependant child (Clause 13)
   period: 2022-W07
@@ -145,15 +145,11 @@
     persons:
       Lily:
         date_of_birth: 1990-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 200
           2022-W08: 400
           2022-W09: 822
-        is_sole_parent: 
-          2022-W07: true
-          2022-W08: true
-          2022-W09: true
-        disability_allowance__sole_parent_meets_relationship_qualification:
+        social_security__sole_parent:
           2022-W07: true
           2022-W08: true
           2022-W09: true
@@ -166,7 +162,7 @@
   output:
     age:
       2022-02-20: [32, 12]
-    person_has_partner:
+    social_security__in_a_relationship:
     - false #Lily
     - false #Tom
     social_security__dependent_children:
@@ -184,15 +180,11 @@
     persons:
       Lily:
         date_of_birth: 1990-01-01
-        social_security__income: 
+        social_security__income:
           2022-W07: 200
           2022-W08: 400
           2022-W09: 866
-        disability_allowance__sole_parent_meets_relationship_qualification:
-          2022-W07: true
-          2022-W08: true
-          2022-W09: true
-        is_sole_parent:
+        social_security__sole_parent:
           2022-W07: true
           2022-W08: true
           2022-W09: true
@@ -207,7 +199,7 @@
   output:
     age:
       2022-02-20: [32, 12, 10]
-    person_has_partner: 
+    social_security__in_a_relationship:
     - false #Lily
     - false #Tom
     - false #Harry

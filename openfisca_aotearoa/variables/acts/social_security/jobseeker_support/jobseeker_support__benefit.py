@@ -1,5 +1,7 @@
 """This module provides eligibility and amount for Jobseeker Support."""
 
+import numpy
+
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
@@ -14,8 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-
-import numpy
 
 
 class jobseeker_support__benefit(variables.Variable):
@@ -139,7 +139,8 @@ class jobseeker_support__base(variables.Variable):
             clause_1_h_i_net_weekly_benefit + clause_1_h_ii_net_weekly_benefit + \
             clause_1_i_i_net_weekly_benefit + clause_1_i_ii_net_weekly_benefit + \
             clause_1_j_i_net_weekly_benefit + clause_1_j_ii_net_weekly_benefit
-        return people("jobseeker_support__entitled", period) * base
+
+        return base
 
     def formula_2020_11_09(people, period, parameters):
         # This is the date clause 1 (i) was repealed as per: https://www.legislation.govt.nz/act/public/2018/0032/152.0/DLM6784850.html
@@ -185,7 +186,8 @@ class jobseeker_support__base(variables.Variable):
             clause_1_g_i_net_weekly_benefit + clause_1_g_ii_net_weekly_benefit + \
             clause_1_h_i_net_weekly_benefit + clause_1_h_ii_net_weekly_benefit + \
             clause_1_j_i_net_weekly_benefit + clause_1_j_ii_net_weekly_benefit
-        return people("jobseeker_support__entitled", period) * base
+
+        return base
 
 
 class jobseeker_support__living_with_parent(variables.Variable):

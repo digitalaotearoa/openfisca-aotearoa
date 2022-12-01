@@ -2,8 +2,8 @@
 
 import numpy
 
-from openfisca_core import periods, variables
 from openfisca_core import holders
+from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
 
@@ -42,7 +42,7 @@ class social_security__dependent_child(variables.Variable):
 
 
 class social_security__dependent_children(variables.Variable):
-    value_type = float
+    value_type = int
     entity = entities.Person
     label = "number a dependent child (or children)"
     definition_period = periods.WEEK

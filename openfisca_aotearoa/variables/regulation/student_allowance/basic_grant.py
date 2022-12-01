@@ -1,17 +1,16 @@
 """TODO: Add missing doctring."""
 
-from numpy import invert
+import numpy
 
-from openfisca_core.periods import MONTH
-from openfisca_core.variables import Variable
+from openfisca_core import periods, variables
 
-from openfisca_aotearoa.entities import Person
+from openfisca_aotearoa import entities
 
 
-class student_allowance__eligible_for_basic_grant(Variable):
+class basic_grant__entitled(variables.Variable):
     value_type = bool
-    entity = Person
-    definition_period = MONTH
+    entity = entities.Person
+    definition_period = periods.DateUnit.MONTH
     label = "eligibily for Student Allowance basic grant"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260306"
 
@@ -34,7 +33,8 @@ class student_allowance__eligible_for_basic_grant(Variable):
 
         student_allowance__eligible_for_certain_allowances = persons("student_allowance__eligible_for_certain_allowances", period)
 
-        partner_or_person_receives_certain_allowances = invert(persons("student_allowance__partner_or_person_receiving_certain_allowances", period))
+        partner_or_person_receives_certain_allowances = numpy.invert(persons(
+            "student_allowance__partner_or_person_receiving_certain_allowances", period))
 
         return (criteria_a + criteria_b + criteria_c) * student_allowance__eligible_for_certain_allowances * partner_or_person_receives_certain_allowances
 
@@ -55,3 +55,23 @@ class student_allowance__eligible_for_basic_grant(Variable):
     # (ii)
 
     # has obtained, at level 3 of the National Certificate of Educational Achievement, 42 credits or more.
+
+
+class basic_grant__receiving(variables.Variable):
+    label = "Already receiving basic grant"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK
+
+
+class basic_grant__would_be_entitled(variables.Variable):
+    label = "Would be eligible for basic grant if less income"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK

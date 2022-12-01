@@ -1,0 +1,33 @@
+description: Schedule 5, Part 1, Asset Limits 3
+metadata:
+# currency or /1 (rate) or year (never used)
+  unit: currency
+# single_amount or marginal_rate or marginal_amount or value?
+  type: value
+  reference:
+    2018-11-26:
+      title: Social Security Act 2018 (As Enacted)
+      href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784890.html
+    2019-02-25:
+      title: Social Security (Rates of Benefits and Allowances) Order 2019
+      href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html#LMS156293
+    2020-02-24:
+      title: Social Security (Rates of Benefits and Allowances) Order 2020
+      href: https://www.legislation.govt.nz/regulation/public/2020/0013/latest/whole.html#LMS312576
+    2021-02-22:
+      title: Social Security (Rates of Benefits and Allowances) Order 2021
+      href: https://www.legislation.govt.nz/regulation/public/2021/0015/latest/whole.html#LMS454115
+    2022-02-21:
+      title: Social Security (Rates of Benefits and Allowances) Order 2022
+      href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html#LMS645842
+values:
+  2018-11-26:
+    value: 1414.09
+  2019-04-01:
+    value: 1437.99
+  2020-04-01:
+    value: 1461.89
+  2021-04-01:
+    value: 1478.76
+  2022-04-01:
+    value: 1566.73

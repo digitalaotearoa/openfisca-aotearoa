@@ -1,0 +1,44 @@
+- name: >
+    Social Security Regulations 2018 -
+    Accommodation Supplement -
+    § 17  Base rate -
+    ¶ 1   Beneficiaries
+  period: 2018-11-26
+  input:
+    emergency_benefit__receiving:
+      2022-W01: [true, false]
+    jobseeker_support__receiving:
+      2022-W02: [true, false]
+    sole_parent_support__receiving:
+      2022-W03: [true, false]
+    super__receiving:
+      2022-W04: [true, false]
+    supported_living_payment__receiving:
+      2022-W05: [true, false]
+    veterans_pension__receiving:
+      2022-W06: [true, false]
+    young_parent_payment__receiving:
+      2022-W07: [true, false]
+    youth_payment__receiving:
+      2022-W08: [true, false]
+  output:
+    accommodation_supplement__beneficiary:
+      2022-W01: [true, false]
+      2022-W02: [true, false]
+      2022-W03: [true, false]
+      2022-W04: [true, false]
+      2022-W05: [true, false]
+      2022-W06: [true, false]
+      2022-W07: [true, false]
+      2022-W08: [true, false]
+      2022-W09: [false, false]
+    accommodation_supplement__non_beneficiary:
+      2022-W01: [false, true]
+      2022-W02: [false, true]
+      2022-W03: [false, true]
+      2022-W04: [false, true]
+      2022-W05: [false, true]
+      2022-W06: [false, true]
+      2022-W07: [false, true]
+      2022-W08: [false, true]
+      2022-W09: [true, true]

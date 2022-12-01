@@ -2,8 +2,10 @@
 
 from numpy import logical_not as not_
 
-from openfisca_core import periods, variables, holders
+from openfisca_core import holders, periods, variables
+
 from openfisca_aotearoa import entities
+
 
 # Benefit: Part 1E Supported Living Payment (eligible self applicant):
 # If applicant.isNZResident
@@ -12,8 +14,6 @@ from openfisca_aotearoa import entities
 #     and applicant.hasSeriousDisability
 #     and threshold.income.SupportedLivingPayment
 # then benefit.isSupportedLivingPayment is PERMITTED
-
-
 class supported_living_payment__granted(variables.Variable):
     value_type = bool
     default_value = False
@@ -21,6 +21,15 @@ class supported_living_payment__granted(variables.Variable):
     label = "Person is currently granted the supported living benefit"
     definition_period = periods.WEEK
     reference = "Reference is unclear, but variable is utilised by the phrase: 'granted a main benefit'"
+
+
+class supported_living_payment__receiving(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    label = "Person is currently recieving/being paid the supported living payment"
+    definition_period = periods.WEEK
+    reference = "Reference is unclear, but concept underpinning the variable assumes it covers both: 'being paid a main benefit' or 'recieving a benefit'"
 
 
 class supported_living_payment__caring_for_another_person(variables.Variable):
@@ -95,3 +104,13 @@ class supported_living_payment__entitled(variables.Variable):
         income = persons("supported_living_payment__below_income_threshold", period)
 
         return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * immigration__resident_or_citizen * income
+
+
+class supported_living_payment__base(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

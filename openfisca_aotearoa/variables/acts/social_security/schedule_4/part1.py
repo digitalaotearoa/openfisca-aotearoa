@@ -1,5 +1,7 @@
 """This module provides eligibility and amount for Jobseeker Support."""
 
+import numpy
+
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
@@ -14,7 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-import numpy
 
 
 class schedule_4__part1_1_a(variables.Variable):

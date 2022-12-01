@@ -1,6 +1,8 @@
 """TODO: Add missing doctring."""
 
-from numpy import datetime64, logical_not as not_, where
+from numpy import datetime64
+from numpy import logical_not as not_
+from numpy import where
 
 from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable

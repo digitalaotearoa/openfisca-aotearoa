@@ -1,4 +1,47 @@
-# We can run this test on our command line using `openfisca-run-test openfisca_aotearoa/tests/income_tax/family_scheme/family_tax_credit.yaml`
+- name: >
+    § Abating WFF tax credits
+    ¶ Family tax credit
+    MD 3 Calculation of family tax credit
+  period: 2007-11-01
+  absolute_error_margin: 0.005
+  input:
+    persons:
+      Vranda:
+        date_of_birth:
+          ETERNITY: 1997-01-11
+        family_tax_credit__eligible:
+          2022: true
+      Piedad:
+        date_of_birth:
+          ETERNITY: 2006-01-10
+        family_tax_credit__dependent_child:
+          2022: .33
+      Srko:
+        date_of_birth:
+          ETERNITY: 2006-01-11
+        family_tax_credit__dependent_child:
+          2022: .33
+      Ash:
+        date_of_birth:
+          ETERNITY: 2006-01-12
+        family_tax_credit__dependent_child:
+          2022: .33
+    family:
+      principal: Vranda
+      children: [Piedad, Srko, Ash]
+  output:
+    family_tax_credit__base:
+      2022: [481.89, 0, 0, 0]
+    family_tax_credit__eldest:
+      2022-01-10: [18.20, 0, 0, 0]
+      2022-01-11: [18.20, 0, 0, 0]
+      2022-01-12: [0, 0, 0, 0]
+    family_tax_credit__not_eldest:
+      2022-01-10: [14.83, 0, 0, 0]
+      2022-01-11: [0, 0, 0, 0]
+      2022-01-12: [0, 0, 0, 0]
+
+
 - name: Tests persons age eligibility in relation to the family tax credit
   period: 2018-08
   absolute_error_margin: 0

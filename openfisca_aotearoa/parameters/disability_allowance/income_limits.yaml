@@ -1,8 +1,8 @@
-description: Income threshold for getting access to disability allowance
+description: Schedule 5 - Part 3 - Disability allowance income limits
 metadata:
   unit: currency
   type: value
-  reference: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html#DLM6784890
+  reference: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html
 clauses:
   clause_10:
     values:
@@ -11,7 +11,7 @@ clauses:
         metadata:
           reference:
             title: Schedule 5 -> Part 3, Clause 10
-            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html
   clause_11:
     values:
       2018-11-26:
@@ -19,7 +19,7 @@ clauses:
         metadata:
           reference:
             title: Schedule 5 -> Part 3, Clause 11
-            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html
   clause_12:
     values:
       2018-11-26:
@@ -27,7 +27,7 @@ clauses:
         metadata:
           reference:
             title: Schedule 5 -> Part 3, Clause 12
-            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html
   clause_13:
     values:
       2018-11-26:
@@ -35,7 +35,7 @@ clauses:
         metadata:
           reference:
             title: Schedule 5 -> Part 3, Clause 13
-            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html
   clause_14:
     values:
       2018-11-26:
@@ -43,4 +43,4 @@ clauses:
         metadata:
           reference:
             title: Schedule 5 -> Part 3, Clause 14
-            href: https://www.legislation.govt.nz/regulation/public/2019/0027/latest/whole.html
+            href: https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html

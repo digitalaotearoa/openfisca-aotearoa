@@ -1,10 +1,12 @@
 """This module provides eligibility and amount for Jobseeker Support."""
 
+import numpy
 # We import the required OpenFisca modules needed to define a formula.
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from openfisca_core import periods, variables
+
+from openfisca_core import holders, periods, variables
 
 # We import the required `entities` corresponding to our formulas.
 #
@@ -14,10 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-
-import numpy
-
-from openfisca_core import holders
 
 
 # We define the `jobseeker_support` variable.
@@ -159,7 +157,7 @@ class jobseeker_support__receiving(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
 
 
-class jobseeker_benefit__granted(variables.Variable):
+class jobseeker_support__granted(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
@@ -245,6 +243,7 @@ class jobseeker_support__age_requirement(variables.Variable):
         return ssa23_a + ssa23_b
 
 
+# TODO add reverse caculation?
 class jobseeker_support__minimum_income(variables.Variable):
     value_type = bool
     default_value = False

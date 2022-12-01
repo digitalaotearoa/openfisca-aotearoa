@@ -4,9 +4,17 @@
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
+<<<<<<< HEAD
 from operator import truediv
 from openfisca_core import periods, variables
 from openfisca_core import holders
+=======
+import numpy
+
+from openfisca_core import periods, variables
+
+from openfisca_aotearoa import entities
+>>>>>>> main
 
 # We import the required `entities` corresponding to our formulas.
 #
@@ -15,12 +23,15 @@ from openfisca_core import holders
 #
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
+<<<<<<< HEAD
 from openfisca_aotearoa import entities
 
 import numpy
 
 from openfisca_core import holders
 
+=======
+>>>>>>> main
 
 # We define the `disability_allowance` variable.
 #
@@ -35,13 +46,22 @@ from openfisca_core import holders
 #
 # For more information on OpenFisca's `variables`:
 # https://openfisca.org/doc/key-concepts/variables.html
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 class disability_allowance__entitled(variables.Variable):
     value_type = bool
     default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Disability Allowance eligibility"
+<<<<<<< HEAD
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266"
+=======
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783277"
+>>>>>>> main
 
     def formula_2018_11_26(persons, period, parameters):
 
@@ -51,7 +71,11 @@ class disability_allowance__entitled(variables.Variable):
         ssa2018_85_2_c_i = persons("social_security__granted_main_benefit", period)
         ssa2018_85_2_c_ii = persons("disability_allowance__below_income_threshold", period)
         ssa2018_85_2_d = persons("disability_allowance__ongoing_additional_expenses", period)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> main
         return (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d
 
 
@@ -88,6 +112,7 @@ class disability_allowance__below_income_threshold(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Person's income meets the thresholds as specified in Part 3 (Disability Allowance Income Limits) of the SS Act 2018"
+<<<<<<< HEAD
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280" 
 
     def formula_2018_11_26(persons, period, parameters):
@@ -99,6 +124,19 @@ class disability_allowance__below_income_threshold(variables.Variable):
 
         return meets_clause_10_conditions + meets_clause_11_conditions + meets_clause_12_conditions 
         + meets_clause_13_conditions + meets_clause_14_conditions
+=======
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
+
+    def formula_2018_11_26(persons, period, parameters):
+        meets_clause_10_conditions = persons("disability_allowance__income_limit_clause_10", period)  # single person (16/17) w/out dep children
+        meets_clause_11_conditions = persons("disability_allowance__income_limit_clause_11", period)  # single person w/out dep children
+        meets_clause_12_conditions = persons("disability_allowance__income_limit_clause_12", period)  # in relationship
+        meets_clause_13_conditions = persons("disability_allowance__income_limit_clause_13", period)  # single person with 1 child
+        meets_clause_14_conditions = persons("disability_allowance__income_limit_clause_14", period)  # single person with > 1 child
+
+        return meets_clause_10_conditions + meets_clause_11_conditions + meets_clause_12_conditions + \
+            meets_clause_13_conditions + meets_clause_14_conditions
+>>>>>>> main
 
 
 class disability_allowance__ongoing_additional_expenses(variables.Variable):
@@ -110,6 +148,7 @@ class disability_allowance__ongoing_additional_expenses(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
+<<<<<<< HEAD
 
 class disability_allowance__person_entitled_to_reciprocal_benefits(variables.Variable):
     value_type = bool
@@ -156,6 +195,8 @@ class disability_allowance__person_entitled_to_reciprocal_benefits(variables.Var
 #     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
 
+=======
+>>>>>>> main
 class disability_allowance__income_limit_clause_10(variables.Variable):
     value_type = bool
     default_value = False
@@ -165,11 +206,20 @@ class disability_allowance__income_limit_clause_10(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
     def formula_2018_11_26(persons, period, parameters):
+<<<<<<< HEAD
         person_aged_16_or_17 = (persons("age", period.start) >= 16) * (persons("age", period.start) <= 17) 
         no_partners = numpy.logical_not(persons("person_has_partner", period))
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_10"]
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         return person_aged_16_or_17 * no_partners * income_within_limit * without_dependant_child 
+=======
+        person_aged_16_or_17 = (persons("age", period.start) >= 16) * (persons("age", period.start) <= 17)
+        no_partners = numpy.logical_not(persons("social_security__in_a_relationship", period))
+        income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_10"]
+        without_dependant_child = persons("social_security__dependent_children", period) == 0
+        return person_aged_16_or_17 * no_partners * income_within_limit * without_dependant_child
+
+>>>>>>> main
 
 class disability_allowance__income_limit_clause_11(variables.Variable):
     value_type = bool
@@ -181,9 +231,15 @@ class disability_allowance__income_limit_clause_11(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         person_not_aged_16_or_17 = (persons("age", period.start) < 16) + (persons("age", period.start) > 17)
+<<<<<<< HEAD
         no_partners = numpy.logical_not(persons("person_has_partner", period))
         without_dependant_child = persons("social_security__dependent_children", period) == 0
         not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))  #review this
+=======
+        no_partners = numpy.logical_not(persons("social_security__in_a_relationship", period))
+        without_dependant_child = persons("social_security__dependent_children", period) == 0
+        not_a_child = numpy.logical_not(persons.has_role(entities.Family.CHILD))
+>>>>>>> main
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_11"]
         return person_not_aged_16_or_17 * no_partners * without_dependant_child * income_within_limit * not_a_child
 
@@ -197,7 +253,11 @@ class disability_allowance__income_limit_clause_12(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
     def formula_2018_11_26(persons, period, parameters):
+<<<<<<< HEAD
         in_relationship = persons("person_has_partner", period) #refactor this to person_has_partner
+=======
+        in_relationship = persons("social_security__in_a_relationship", period)
+>>>>>>> main
         income_within_limit = persons("disability_allowance__family_income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_12"]
         return in_relationship * income_within_limit
 
@@ -211,8 +271,12 @@ class disability_allowance__income_limit_clause_13(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
     def formula_2018_11_26(persons, period, parameters):
+<<<<<<< HEAD
         sole_parent = persons("is_sole_parent", period) * \
         persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
+=======
+        sole_parent = persons("social_security__sole_parent", period)
+>>>>>>> main
         only_one_child = (persons("social_security__dependent_children", period) == 1)
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_13"]
         return income_within_limit * only_one_child * sole_parent
@@ -227,13 +291,18 @@ class disability_allowance__income_limit_clause_14(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
 
     def formula_2018_11_26(persons, period, parameters):
+<<<<<<< HEAD
         sole_parent = persons("is_sole_parent", period) * \
         persons("disability_allowance__sole_parent_meets_relationship_qualification", period)
+=======
+        sole_parent = persons("social_security__sole_parent", period)
+>>>>>>> main
         more_than_one_child = (persons("social_security__dependent_children", period) > 1)
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_14"]
         return more_than_one_child * sole_parent * income_within_limit
 
 
+<<<<<<< HEAD
 class disability_allowance__is_adequately_supported_by_partner(variables.Variable): #copied, need to refactor 
     value_type = bool
     entity = entities.Person
@@ -270,15 +339,26 @@ class disability_allowance__current_income(variables.Variable):
 
 
 class disability_allowance__family_income(variables.Variable): # Copied from social security job_seeker formulas
+=======
+class disability_allowance__family_income(variables.Variable):
+>>>>>>> main
     value_type = float
     entity = entities.Person
     definition_period = periods.WEEK
     label = "How much does the family earn per week?"
+<<<<<<< HEAD
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"   
 
     def formula(people, period, parameters):
         family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + \
         people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL) 
+=======
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784890.html"
+
+    def formula(people, period, parameters):
+        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + \
+            people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+>>>>>>> main
         return family_income
 
 
@@ -295,10 +375,18 @@ class disability_allowance__benefit(variables.Variable):
         return persons("disability_allowance__entitled", period) * parameters(period).disability_allowance.max_weekly_benefit
 
 
+<<<<<<< HEAD
 class is_sole_parent(variables.Variable):
+=======
+class social_security__sole_parent(variables.Variable):
+>>>>>>> main
     value_type = bool
     default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Is the person a sole parent?"
+<<<<<<< HEAD
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
+=======
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html#DLM6784723"
+>>>>>>> main

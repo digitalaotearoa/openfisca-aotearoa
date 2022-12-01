@@ -3,7 +3,7 @@
 import json
 import os
 
-DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+DIR_PATH = os.path.dirname(__file__)
 
 
 def parse(file_name):

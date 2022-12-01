@@ -1,0 +1,303 @@
+- name: Sole Parent Split Care, no one eligible - why is this false and not incalculatable?
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    social_security__dependent_children:
+      - 2
+      - 2
+      - 0
+      - 0
+    sole_parent_support__parents_living_apart:
+      - true
+      - true
+      - false
+      - false
+    sole_parent_support__split_care:
+      - false
+      - false
+      - false
+      - false
+- name: Sole Parent Split Care, no one eligible - one parent already recieving
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    sole_parent_support__split_care:
+      - true
+      - false
+      - false
+      - false
+- name: Sole Parent Split Care, no one eligible - principal already recieving
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    sole_parent_support__split_care:
+      - true
+      - false
+      - false
+      - false
+- name: Sole Parent Split Care, other parent already recieving
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: true
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    sole_parent_support__split_care:
+      - false
+      - true
+      - false
+      - false
+- name: Sole Parent Split Care, neither principal caregiver before living apart, principal caregiver of youngest
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        sole_parent_support__principal_caregiver_of_youngest: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    sole_parent_support__split_care:
+      - true
+      - false
+      - false
+      - false
+- name: Sole Parent Split Care, court ordered two principal caregivers
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        sole_parent_support__principal_caregiver_of_youngest: false
+        sole_parent_support__both_primary_caregiver_by_order: true
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        sole_parent_support__principal_caregiver_of_youngest: false
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+      Ruru:
+        age:
+          day:2019-01-28:7: 3
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+          - Ruru
+  output:
+    sole_parent_support__split_care:
+      - true
+      - true
+      - false
+      - false
+- name: Sole Parent Split Care, only one child - should return true as section doesn't apply
+  period: 2019-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        age:
+          day:2019-01-28:7: 50
+        social_security__in_a_relationship: false
+        social_security__residential_requirement: true
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        sole_parent_support__principal_caregiver_of_youngest: false
+        sole_parent_support__both_primary_caregiver_by_order: false
+      Mike:
+        sole_parent_support__parents_living_apart: true
+        social_security__principal_caregiver:
+          month:2019-01:2: true
+        sole_parent_support__receiving: false
+        sole_parent_support__principal_caregiver_before_apart: false
+        sole_parent_support__principal_caregiver_of_youngest: false
+        age:
+          day:2019-01-28:7: 50
+      Tamaiti:
+        age:
+          day:2019-01-28:7: 5
+    families:
+      Whanau:
+        principal: Koro
+        parents:
+          - Mike
+        children:
+          - Tamaiti
+  output:
+    sole_parent_support__split_care:
+      - true
+      - true
+      - false

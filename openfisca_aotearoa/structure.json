@@ -152,10 +152,10 @@
             "Reference": "http://www.legislation.govt.nz/act/public/1973/0005/latest/DLM409296.html"
         },
         {
-            "Title": "Social Security Act 1964",
+            "Title": "Social Security Act 2018",
             "Prefix": "social_security",
             "Type": "Act",
-            "Reference": "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM359107.html",
+            "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html",
             "Children": [
                 "accommodation_supplement",
                 "child_disability_allowance",

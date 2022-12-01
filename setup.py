@@ -9,13 +9,21 @@ long_description = (this_directory / "README.md").read_text()  # pylint: disable
 
 setup(
     name = "OpenFisca-Aotearoa",
-    version = "16.0.0",
+    version = "20.0.0",
     author = "Digital Aotearoa Collective, originally a New Zealand Government, Service Innovation Lab project",
     description = "OpenFisca tax and benefit system for Aotearoa",
+    classifiers = [
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
+        "Operating System :: POSIX",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        ],
     long_description = long_description,
     long_description_content_type = "text/markdown",
-    keywords = "benefit microsimulation social tax",
-    license = "http://www.fsf.org/licensing/licenses/agpl-3.0.html",
+    keywords = "microsimulation tax benefit rules-as-code",
+    license = "https://www.fsf.org/licensing/licenses/agpl-3.0.html",
     url = "https://github.com/digitalaotearoa/openfisca-aotearoa",
     include_package_data = True,  # Will read MANIFEST.in
     data_files = [
@@ -26,6 +34,7 @@ setup(
         ],
     install_requires = [
         "openfisca-core[web-api] @ git+https://github.com/openfisca/openfisca-core.git@add-weeks",
+        "pandas >= 1.5.0, < 1.6.0",
         ],
     extras_require = {
         "dev": [
@@ -42,9 +51,11 @@ setup(
             "flake8-quotes >= 3.2.0, < 4.0.0",
             "flake8-simplify >= 0.9.0, < 1.0.0",
             "flake8-use-fstring >= 1.1.0, < 2.0.0",
+            "isort >= 5.0.0, < 6.0.0",
             "pylint >= 2.6.0, < 3.0.0",
             "pycodestyle >= 2.6.0, < 3.0.0",
             "pyupgrade >= 2.32.0, < 3.0.0",
+            "yamllint >= 1.28.0, < 2.0.0",
             ],
         },
     packages = find_packages(),

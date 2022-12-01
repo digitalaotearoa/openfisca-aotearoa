@@ -7,7 +7,9 @@ metadata:
   reference:
     2013-07-15:
       title: Social Security Act 1964
-      href: https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527, https://www.legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html
+      href:
+      - https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html#DLM5478527,
+      - https://www.legislation.govt.nz/act/public/2013/0013/latest/DLM4542346.html
 # TODO - requires old act calculation
     2007-03-05:
       title: Social Security (Rates of Benefits and Allowances) Order 2007
@@ -85,6 +87,12 @@ metadata:
 clauses:
   clause_1_a:
     values:
+      2018-11-26:
+        value: 143.55
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(a)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 145.98
         metadata:
@@ -117,6 +125,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_b:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(b)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -149,6 +163,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_c:
     values:
+      2018-11-26:
+        value: 224.28
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(c)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 228.07
         metadata:
@@ -181,6 +201,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_d:
     values:
+      2018-11-26:
+        value: 215.34
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(d)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 218.98
         metadata:
@@ -213,6 +239,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_e:
     values:
+      2018-11-26:
+        value: 334.05
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(e)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 339.69
         metadata:
@@ -245,6 +277,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_f:
     values:
+      2018-11-26:
+        value: 334.05
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(f)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 339.69
         metadata:
@@ -277,6 +315,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_g_i:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(g)(i)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -309,6 +353,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_g_ii:
     values:
+      2018-11-26:
+        value: 192.25
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(g)(ii)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 195.50
         metadata:
@@ -341,6 +391,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_h_i:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(h)(i)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -373,6 +429,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_h_ii:
     values:
+      2018-11-26:
+        value: 205.06
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(h)(ii)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 208.53
         metadata:
@@ -405,6 +467,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_i_i:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(i)(i)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -420,6 +488,12 @@ clauses:
       # removed in 2021
   clause_1_i_ii:
     values:
+      2018-11-26:
+        value: 205.06
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(i)(ii)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 208.53
         metadata:
@@ -435,6 +509,12 @@ clauses:
       # removed in 2021
   clause_1_j_i:
     values:
+      2018-11-26:
+        value: 358.88
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(j)(i)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 364.94
         metadata:
@@ -467,6 +547,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_1_j_ii:
     values:
+      2018-11-26:
+        value: 384.50
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 1(j)(ii)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 391.00
         metadata:
@@ -499,6 +585,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_2:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 2
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -531,6 +623,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_3_i:
     values:
+      2018-11-26:
+        value: 179.44
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 3(i)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 182.47
         metadata:
@@ -563,6 +661,12 @@ clauses:
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
   clause_3_ii:
     values:
+      2018-11-26:
+        value: 192.25
+        metadata:
+          reference:
+            title: Part 1 -> Schedule 4, Part 1, Clause 3(ii)
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784850.html
       2019-04-01:
         value: 195.50
         metadata:
