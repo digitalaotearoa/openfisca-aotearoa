@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from openfisca_core import indexed_enums, periods, variables
+from openfisca_core import holders, indexed_enums, periods, variables
 
 from openfisca_aotearoa import entities
 
@@ -24,6 +24,7 @@ class accommodation_type(variables.Variable):
     possible_values = AccommodationType
     default_value = AccommodationType.unknown
     definition_period = periods.DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period
 
 
 class accommodation_costs(variables.Variable):
@@ -34,3 +35,4 @@ class accommodation_costs(variables.Variable):
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period

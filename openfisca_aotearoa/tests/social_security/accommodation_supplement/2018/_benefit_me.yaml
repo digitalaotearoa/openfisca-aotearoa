@@ -1,0 +1,37 @@
+- name: >
+    BenefitMe
+    Peta's Story
+  period: 2022-12-05
+  relative_error_margin: 0.001
+  input:
+    persons:
+      Peta:
+        age:
+          day:2022-01-01:365: 32
+        social_security__in_a_relationship:
+          week:2022-W01:52: false
+        accommodation_costs:
+          week:2022-W01:52: 350
+        accommodation_type:
+          week:2022-W01:52: rent
+        accommodation_supplement__area_of_residence:
+          week:2022-W01:52: area_2
+        family_tax_credit__eligible:
+          2022: true
+        jobseeker_support__entitled:
+          week:2022-W01:52: true
+      Anahera:
+        age:
+          day:2022-01-01:365: 5
+        social_security__dependent_child:
+          week:2022-W01:52: true
+        family_tax_credit__dependent_child:
+          2022: true
+    family:
+      principal: Peta
+      children: [Anahera]
+  output:
+    accommodation_supplement:
+      2022-W49: [145.54, 0]
+    family_tax_credit:
+      2022: [6623.80, 0]
