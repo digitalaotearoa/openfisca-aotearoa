@@ -35,3 +35,28 @@
       2022-W49: [145.54, 0]
     family_tax_credit:
       2022: [6623.80, 0]
+
+
+- name: >
+    BenefitMe
+    Kai's Story
+  period: 2022-12-05
+  relative_error_margin: 0.001
+  input:
+    persons:
+      Kai:
+        age:
+          day:2022-01-01:365: 23
+        accommodation_costs:
+          week:2022-W01:52: 350
+        accommodation_type:
+          week:2022-W01:52: board
+        accommodation_supplement__area_of_residence:
+          week:2022-W01:52: area_2
+        accommodation_supplement__cash_assets:
+          2022-W49: 800
+        jobseeker_support__entitled:
+          week:2022-W01:52: true
+  output:
+    accommodation_supplement:
+      2022-W49: 105.00

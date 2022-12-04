@@ -24,6 +24,16 @@
 * Other Changes:
  - `tests/social_security/sole_parent_support/sole_parent_support__benefit.yaml figure fixed for 2022/23`
 
+## 20.1.0 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
+
+* Test case.
+* Impacted periods: none.
+* Impacted areas: `tests/accommodation_supplement`
+* Details:
+  - Add Peta's story
+  - Add Kai's story
+>>>>>>> 6f04876 (Bump version)
+
 # 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
 
 * Added variables:
