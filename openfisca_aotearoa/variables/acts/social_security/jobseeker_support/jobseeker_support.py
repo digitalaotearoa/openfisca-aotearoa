@@ -157,6 +157,7 @@ class jobseeker_support__receiving(variables.Variable):
     label = "is receiving jobseeker support at the rate in clause 1(c), (e), or (f) of Part 1 of Schedule 4, SSA2018 21 3(a)"
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
+    set_input = holders.set_input_dispatch_by_period
 
 
 class jobseeker_support__granted(variables.Variable):

@@ -1,6 +1,6 @@
 - name: >
     BenefitMe
-    Peta's Story
+    Peta's Story (without family tax credit)
   period: 2022-12-05
   relative_error_margin: 0.001
   input:
@@ -8,29 +8,63 @@
       Peta:
         age:
           day:2022-01-01:365: 32
+        social_security__residential_requirement:
+          2022-W49: true
         social_security__in_a_relationship:
-          week:2022-W01:52: false
-        accommodation_costs:
-          week:2022-W01:52: 350
-        accommodation_type:
-          week:2022-W01:52: rent
-        accommodation_supplement__area_of_residence:
-          week:2022-W01:52: area_2
+          2022-W49: false
+        social_security__dependent_children:
+          2022-W49: 1
+        jobseeker_support__minimum_income:
+          2022-W49: true
         family_tax_credit__eligible:
           2022: true
-        jobseeker_support__entitled:
-          week:2022-W01:52: true
-      Anahera:
-        age:
-          day:2022-01-01:365: 5
-        social_security__dependent_child:
-          week:2022-W01:52: true
-        family_tax_credit__dependent_child:
-          2022: true
-    family:
-      principal: Peta
-      children: [Anahera]
+        accommodation_costs:
+          2022-W49: 350
+        accommodation_type:
+          2022-W49: rent
+        accommodation_supplement__area_of_residence:
+          2022-W49: area_2
   output:
+    jobseeker_support__benefit:
+      2022-W49: 440.96
+    accommodation_supplement:
+      2022-W49: 155.00
+    family_tax_credit:
+      2022: 0
+
+
+- name: >
+    BenefitMe
+    Peta's Story (with family tax credit)
+  period: 2022-12-05
+  relative_error_margin: 0.001
+  input:
+    persons:
+      Peta:
+        age:
+          day:2022-01-01:365: 32
+        social_security__residential_requirement:
+          2022-W49: true
+        social_security__in_a_relationship:
+          2022-W49: false
+        social_security__dependent_children:
+          2022-W49: 1
+        jobseeker_support__minimum_income:
+          2022-W49: true
+        family_tax_credit__eligible:
+          2022: true
+        accommodation_costs:
+          2022-W49: 350
+        accommodation_type:
+          2022-W49: rent
+        accommodation_supplement__area_of_residence:
+          2022-W49: area_2
+      Anahera:
+        family_tax_credit__dependent_child:
+          2022: .5
+  output:
+    jobseeker_support__benefit:
+      2022-W49: [440.96, 0]
     accommodation_supplement:
       2022-W49: [145.54, 0]
     family_tax_credit:
@@ -55,8 +89,10 @@
           week:2022-W01:52: area_2
         accommodation_supplement__cash_assets:
           2022-W49: 800
-        jobseeker_support__entitled:
-          week:2022-W01:52: true
   output:
+    jobseeker_support__benefit:
+      2022-W49: 0
     accommodation_supplement:
-      2022-W49: 105.00
+      2022-W49: 105
+    family_tax_credit:
+      2022: 0
