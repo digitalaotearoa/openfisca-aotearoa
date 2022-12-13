@@ -1,5 +1,9 @@
 # Changelog
 
+# 20.0.1 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
+* Other Changes:
+ - `tests/social_security/sole_parent_support/sole_parent_support__benefit.yaml figure fixed for 2022/23`
+
 # 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
 * Added variables:
  - `sole_parent_support__requirement`

@@ -113,8 +113,9 @@ values:
       reference:
         title: Part 2 -> Clause 1
         href: https://www.legislation.govt.nz/regulation/public/2021/0120/latest/whole.html#LMS494973
+# Note: the order increases it to 425.96 and then to 440.96 further into the document
   2022-04-01:
-    value: 425.96
+    value: 440.96
     metadata:
       reference:
         title: Part 2 -> Clause 1

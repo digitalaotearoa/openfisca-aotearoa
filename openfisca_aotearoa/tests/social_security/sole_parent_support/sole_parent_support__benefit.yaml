@@ -85,5 +85,65 @@
     sole_parent_support__benefit:
       - 310.05
       - 0
-
-
+- name: Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union Dissolved Family and $200 income and childcare costs TODO, check outputs manually
+  period: 2023-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        sole_parent_support__marriage_or_civil_union_dissolved: true
+        social_security__residential_requirement: true
+        sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2023-01:2: true
+        age:
+          day:2023-01-28:7: 30
+        social_security__income:
+          2023-W05: 200
+        sole_parent_support__weekly_childcare_cost:
+          2023-W05: 30
+      Tamaiti:
+        age: 5
+    families:
+      Whanau:
+        principal: Koro
+        children:
+          - Tamaiti
+  output:
+    sole_parent_support__entitled:
+      - true
+      - false
+    sole_parent_support__benefit:
+      - 434.96
+      - 0
+- name: Sole Parent Support Act 2018 — 2022/23 Eligibility Marriage or Civil Union Dissolved Family and 0 income and childcare costs $0
+  period: 2023-W05
+  absolute_error_margin: 0
+  input:
+    persons:
+      Koro:
+        sole_parent_support__marriage_or_civil_union_dissolved: true
+        social_security__residential_requirement: true
+        sole_parent_support__age_threshold: true
+        social_security__principal_caregiver:
+          month:2023-01:2: true
+        age:
+          day:2023-01-28:7: 30
+        social_security__income:
+          2023-W05: 0
+        sole_parent_support__weekly_childcare_cost:
+          2023-W05: 0
+      Tamaiti:
+        age: 5
+    families:
+      Whanau:
+        principal: Koro
+        children:
+          - Tamaiti
+  output:
+    sole_parent_support__entitled:
+      - true
+      - false
+    sole_parent_support__benefit:
+      - 440.96
+      - 0
