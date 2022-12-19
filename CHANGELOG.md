@@ -1,5 +1,10 @@
 # Changelog
 
+# 20.0.3 - [51](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/51)
+* Fixes problem with importlib_metadata and idna upstream:
+ - `setup.py`
+
+
 # 20.0.2 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
 * Added dependency package importlib_metadata:
  - `setup.py`
