@@ -8,7 +8,7 @@ clean:
 	find . -name '*.pyc' -exec rm \{\} \;
 
 deps:
-	pip install --upgrade pip build twine
+	pip install --upgrade pip
 
 install: deps
 	@# Install OpenFisca-Aotearoa for development.

@@ -30,8 +30,8 @@ python --version # This should match the version in .python-version file
 ### Step 3: Install dev dependencies
 
 ```sh
-pip install --upgrade pip build twine
-pip install --use-deprecated=legacy-resolver --upgrade --editable ".[dev]"
+pip install --upgrade pip
+pip install --upgrade --editable ".[dev]"
 ```
 
 :tada: This OpenFisca Country Package is now installed and ready!
