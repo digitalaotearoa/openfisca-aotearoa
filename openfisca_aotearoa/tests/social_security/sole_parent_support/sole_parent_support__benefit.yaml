@@ -54,7 +54,10 @@
     sole_parent_support__benefit:
       - 304.05
       - 0
-- name: Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union Dissolved Family and $200 income and childcare costs TODO, check outputs manually
+- name: >
+    Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union
+    Dissolved Family and $200 income and childcare costs
+    TODO, check outputs manually
   period: 2019-W05
   absolute_error_margin: 0
   input:
@@ -85,7 +88,10 @@
     sole_parent_support__benefit:
       - 310.05
       - 0
-- name: Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union Dissolved Family and $200 income and childcare costs TODO, check outputs manually
+- name: >
+    Sole Parent Support Act 2018 — Eligibility Marriage or Civil Union
+    Dissolved Family and $200 income and childcare costs
+    TODO, check outputs manually
   period: 2023-W05
   absolute_error_margin: 0
   input:

@@ -7,12 +7,13 @@ You may get Sole Parent Support if you are:
     * not in a relationship
     * without adequate financial support
     * a New Zealand citizen or permanent resident who has been here for at least two years
-    at any one time since becoming a citizen or permanent resident, and who normally lives here.
+        at any one time since becoming a citizen or permanent resident, and who normally lives here.
+
 """
+
 from numpy import logical_not
 
-from openfisca_core import holders
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
