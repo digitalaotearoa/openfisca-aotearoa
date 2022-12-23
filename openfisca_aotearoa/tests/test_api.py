@@ -34,7 +34,7 @@ def endpoint():
 def timeout():
     """Return the timeout to use for the API."""
 
-    return 1
+    return 2.5
 
 
 @pytest.fixture

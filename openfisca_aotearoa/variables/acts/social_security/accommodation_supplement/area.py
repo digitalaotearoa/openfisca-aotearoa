@@ -7,6 +7,7 @@ import pandas
 
 from openfisca_core import indexed_enums, periods, variables
 
+import openfisca_aotearoa
 from openfisca_aotearoa import entities
 
 
@@ -40,8 +41,9 @@ class accommodation_supplement__area_of_residence(variables.Variable):
 
     def formula_2018_11_26(people, period, _params):
         area_of_residence = AccommodationSupplement__AreaOfResidence
-        params_path = "openfisca_aotearoa/parameters"
-        file_path = "social_security/accommodation_supplement"
+        module_path = Path(openfisca_aotearoa.__file__).parent
+        params_path = Path(f"{module_path}/parameters")
+        file_path = Path("social_security/accommodation_supplement")
         area_path = Path(f"{params_path}/{file_path}/area.csv").resolve()
 
         # We read locations from a database.

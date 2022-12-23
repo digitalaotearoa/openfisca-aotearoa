@@ -32,12 +32,20 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Topic :: Scientific/Engineering :: Information Analysis",
     ]
+include = [
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "LICENSE.AGPL.txt",
+    "README.md",
+    "openfisca_aotearoa/**/*",
+    ]
 packages = [{include = "openfisca_aotearoa", from = "."}]
 
 [tool.poetry.dependencies]
 python = "~3.9"
-openfisca-core = {git = "https://github.com/openfisca/openfisca-core.git", branch = "add-weeks", extras = ["web-api"]}
 pandas = "~1.5"
+openfisca-core = {git = "https://github.com/openfisca/openfisca-core.git", branch = "add-weeks", extras = ["web-api"]}
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.5.0"
