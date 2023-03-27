@@ -158,9 +158,9 @@
         social_security__residential_requirement: true
         sole_parent_support__age_threshold: true
         social_security__principal_caregiver:
-          month:2023-01:2: true
+          month:2023-04:2: true
         age:
-          day:2023-04-01:7: 30
+          day:2023-04-10:7: 30
         social_security__income:
           2023-W15: 0
         sole_parent_support__weekly_childcare_cost:
