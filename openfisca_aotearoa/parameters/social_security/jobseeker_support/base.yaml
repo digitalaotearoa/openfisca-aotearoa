@@ -84,6 +84,9 @@ metadata:
     2022-02-21:
       title: Social Security (Rates of Benefits and Allowances) Order 2022
       href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+    2023-02-20:
+      title: Social Security (Rates of Benefits and Allowances) Order 2023
+      href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
 clauses:
   clause_1_a:
     values:
@@ -123,6 +126,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(a)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 250.63
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(a)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_b:
     values:
       2018-11-26:
@@ -161,6 +170,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(b)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 294.18
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(b)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_c:
     values:
       2018-11-26:
@@ -199,6 +214,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(c)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 348.59
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(c)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_d:
     values:
       2018-11-26:
@@ -237,6 +258,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(d)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 337.74
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(d)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_e:
     values:
       2018-11-26:
@@ -275,6 +302,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(e)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 472.79
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(e)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_f:
     values:
       2018-11-26:
@@ -313,6 +346,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(f)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 472.79
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(f)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_g_i:
     values:
       2018-11-26:
@@ -351,6 +390,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(g)(i)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 287.35
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(g)(i)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_g_ii:
     values:
       2018-11-26:
@@ -389,6 +434,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(g)(ii)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 303.43
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(g)(ii)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_h_i:
     values:
       2018-11-26:
@@ -427,6 +478,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(h)(i)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 287.35
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(h)(i)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_h_ii:
     values:
       2018-11-26:
@@ -465,6 +522,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(h)(ii)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 303.43
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(h)(ii)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_i_i:
     values:
       2018-11-26:
@@ -545,6 +608,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(j)(i)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 574.70
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(j)(i)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_1_j_ii:
     values:
       2018-11-26:
@@ -583,6 +652,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 1(j)(ii)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 606.86
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 1(j)(ii)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_2:
     values:
       2018-11-26:
@@ -621,6 +696,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 2
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 287.35
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 2
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_3_i:
     values:
       2018-11-26:
@@ -659,6 +740,12 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 3(i)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 287.35
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 3(i)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
   clause_3_ii:
     values:
       2018-11-26:
@@ -697,3 +784,9 @@ clauses:
           reference:
             title: Part 1 -> Schedule 4, Part 1, Clause 3(ii)
             href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+      2023-04-01:
+        value: 303.43
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 3(ii)
+            href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
