@@ -227,7 +227,7 @@
       2020-W01: [52, 0, 0]
       2021-W01: [154.53, 0, 0]
       2021-W23: [220.65, 0, 0]
-      2022-W01: [102.04999, 0, 0]
+      2022-W01: [102.04999, 0, 0] # <-- person's income went up so their benefit went down
       2023-W01: [251.5, 0, 0]
       2023-W15: [271.93, 0, 0]
     social_security__receiving_main_benefit:
