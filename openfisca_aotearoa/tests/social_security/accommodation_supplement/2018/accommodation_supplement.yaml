@@ -11,7 +11,7 @@
     accommodation_type:
       2022-W01: [rent, rent, rent, rent, rent, rent]
       2022-W02: [lodging, lodging, lodging, lodging, lodging, lodging]
-      2023-W15: [rent, rent, rent, rent, rent, rent]
+      2023-W15: [lodging, lodging, lodging, lodging, lodging, lodging]
     accommodation_supplement__cash_assets:
       2022-W01: [8100, 8100, 8100, 8100, 8101, 8100]
       2022-W02: [8100, 8100, 8100, 8100, 8101, 8100]
@@ -36,4 +36,4 @@
     accommodation_supplement:
       2022-W01: [0., 21.26, 80, 161.26, 0., 165.]
       2022-W02: [0., 7.96, 64.66, 121.36, 0., 165.]
-      2023-W15: [0., 7.96, 64.66, 121.36, 0., 165.]
+      2023-W15: [0., 0., 10.8955, 45.8955, 0., 80.8955]
