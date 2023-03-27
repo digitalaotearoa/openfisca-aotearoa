@@ -41,7 +41,7 @@
       2024-W01: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
   output:
     accommodation_supplement:
-      2022-W01: [0., 7.96,     64.66,   121.36,     0., 165.]
-      2022-W02: [0., 7.96,     64.66,   121.36,     0., 165.]
-      2023-W01: [0., 1.574997, 58.275,  114.975006, 0., 165.]
-      2024-W01: [0., 0.,       54.2955, 110.9955,   0., 165.]
+      2022-W01: [0., 7.96,     64.66,   121.36,     0., 165.] # January
+      2022-W02: [0., 7.96,     64.66,   121.36,     0., 165.] # February (the same)
+      2023-W01: [0., 1.574997, 58.275,  114.975006, 0., 165.] # January a year later
+      2024-W01: [0., 0.,       54.2955, 110.9955,   0., 165.] # January, another a year later
