@@ -31,6 +31,9 @@ brackets:
         value: 115
       2021-04-01:
         value: 160
+      # no change in 2022
+      # no change in 2023
+      # https://www.legislation.govt.nz/all/results.aspx?search=ad_act%40bill%40regulation%40deemedreg__%22Income+Test+1%22____25_ac%40bc%40rc%40dc%40apub%40aloc%40apri%40apro%40aimp%40bgov%40bloc%40bpri%40bmem%40rpub%40rimp_ac%40bc%40rc%40ainf%40anif%40bcur%40rinf%40rnif%40raif%40rasm%40rrev_a_aw_se_&p=1
   - rate:
       2018-11-26:
         value: 0.7
@@ -41,3 +44,6 @@ brackets:
         value: 215
       2021-04-01:
         value: 250
+      # no change in 2022
+      # no change in 2023
+      # https://www.legislation.govt.nz/all/results.aspx?search=ad_act%40bill%40regulation%40deemedreg__%22Income+Test+1%22____25_ac%40bc%40rc%40dc%40apub%40aloc%40apri%40apro%40aimp%40bgov%40bloc%40bpri%40bmem%40rpub%40rimp_ac%40bc%40rc%40ainf%40anif%40bcur%40rinf%40rnif%40raif%40rasm%40rrev_a_aw_se_&p=1
