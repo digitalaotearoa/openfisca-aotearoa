@@ -5,35 +5,43 @@
   absolute_error_margin: 0.005
   input:
     accommodation_costs:
-      2022-W01: [50, 100, 200, 300, 300, 500]
+      2022-W01: [20, 50, 100, 150, 150, 200]
       2022-W02: [20, 50, 100, 150, 150, 200]
       2023-W01: [20, 50, 100, 150, 150, 200]
+      2024-W01: [20, 50, 100, 150, 150, 200]
     accommodation_type:
-      2022-W01: [rent, rent, rent, rent, rent, rent]
+      2022-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
       2022-W02: [lodging, lodging, lodging, lodging, lodging, lodging]
       2023-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
+      2024-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
     accommodation_supplement__cash_assets:
       2022-W01: [8100, 8100, 8100, 8100, 8101, 8100]
       2022-W02: [8100, 8100, 8100, 8100, 8101, 8100]
       2023-W01: [8100, 8100, 8100, 8100, 8101, 8100]
+      2024-W01: [8100, 8100, 8100, 8100, 8101, 8100]
     age:
       day:2022-01-03:7: [24, 24, 24, 24, 24, 24]
       day:2022-01-11:7: [24, 24, 24, 24, 24, 24]
       day:2023-01-01:7: [24, 24, 24, 24, 24, 24]
+      day:2024-01-01:7: [24, 24, 24, 24, 24, 24]
     jobseeker_support__receiving:
       2022-W01: [true, true, true, true, true, true]
       2022-W02: [true, true, true, true, true, true]
       2023-W01: [true, true, true, true, true, true]
+      2024-W01: [true, true, true, true, true, true]
     accommodation_supplement__beneficiary:
       2022-W01: [true, true, true, true, true, true]
       2022-W02: [true, true, true, true, true, true]
       2023-W01: [true, true, true, true, true, true]
+      2024-W01: [true, true, true, true, true, true]
     accommodation_supplement__part_of_nz:
       2022-W01: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
       2022-W02: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
       2023-W01: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
+      2024-W01: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
   output:
     accommodation_supplement:
       2022-W01: [0., 21.26, 80, 161.26, 0., 165.]
       2022-W02: [0., 7.96, 64.66, 121.36, 0., 165.]
       2023-W01: [0., 0., 54.2955, 110.9955, 0., 165.]
+      2024-W01: [0., 0., 54.2955, 110.9955, 0., 165.]
