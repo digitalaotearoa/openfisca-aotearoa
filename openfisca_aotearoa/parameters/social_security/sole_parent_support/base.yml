@@ -82,6 +82,9 @@ metadata:
     2022-02-21:
       title: Social Security (Rates of Benefits and Allowances) Order 2022
       href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html
+    2023-02-20:
+      title: Social Security (Rates of Benefits and Allowances) Order 2023
+      href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
 values:
   2018-11-26:
     value: 334.05
@@ -120,3 +123,9 @@ values:
       reference:
         title: Part 2 -> Clause 1
         href: https://www.legislation.govt.nz/regulation/public/2022/0028/latest/whole.html#LMS645836
+  2023-04-01:
+    value: 472.79
+    metadata:
+      reference:
+        title: Part 2 -> Clause 1
+        href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
