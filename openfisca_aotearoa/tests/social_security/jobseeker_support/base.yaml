@@ -168,6 +168,7 @@
           2021-W23: true
           2022-W01: true
           2023-W01: true
+          2023-W15: true
         date_of_birth: 1997-01-01
         social_security__income:
           2020-W01: 290
@@ -175,12 +176,14 @@
           2021-W23: 0
           2022-W01: 300
           2023-W01: 150
+          2023-W15: 150
         jobseeker_support__living_with_parent:
           2020-W01: false
           2021-W01: false
           2021-W23: false
           2022-W01: false
           2023-W01: false
+          2023-W15: false
         jobseeker_support__transferred_15_july_2013: false
       "Papa":
         social_security__income:
@@ -189,6 +192,7 @@
           2021-W23: 0
           2022-W01: 256
           2023-W01: 100
+          2023-W15: 100
         date_of_birth: 1996-01-01
         social_security__granted_main_benefit:
           2020-W01: true
@@ -196,6 +200,7 @@
           2021-W23: true
           2022-W01: true
           2023-W01: true
+          2023-W15: true
       "Bubba":
         date_of_birth: 2015-01-24
     families:
