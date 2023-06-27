@@ -5,15 +5,15 @@
   absolute_error_margin: 0.005
   input:
     accommodation_costs:
-      2022-W01: [20, 50, 100, 150, 150, 200]
-      2022-W02: [20, 50, 100, 150, 150, 200]
-      2023-W01: [20, 50, 100, 150, 150, 200]
-      2024-W01: [20, 50, 100, 150, 150, 200]
+      2022-W01: [50, 100, 150, 200, 300, 400]
+      2022-W02: [50, 100, 150, 200, 300, 400]
+      2023-W01: [50, 100, 150, 200, 300, 400]
+      2024-W01: [50, 100, 150, 200, 300, 400]
     accommodation_type:
-      2022-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
-      2022-W02: [lodging, lodging, lodging, lodging, lodging, lodging]
+      2022-W01: [rent, rent, rent, rent, rent, rent]
+      2022-W02: [board, board, board, board, board, board]
       2023-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
-      2024-W01: [lodging, lodging, lodging, lodging, lodging, lodging]
+      2024-W01: [mortgage, mortgage, mortgage, mortgage, mortgage, mortgage]
     accommodation_supplement__cash_assets:
       2022-W01: [8100, 8100, 8100, 8100, 8101, 8100]
       2022-W02: [8100, 8100, 8100, 8100, 8101, 8100]
@@ -41,7 +41,7 @@
       2024-W01: [Alexandra urban area, Alexandra urban area, Alexandra urban area, Arrowtown urban area, Arrowtown urban area, Arrowtown urban area]
   output:
     accommodation_supplement:
-      2022-W01: [0.00, 7.96, 64.66, 121.36, 0.00, 165.00] # January
-      2022-W02: [0.00, 7.96, 64.66, 121.36, 0.00, 165.00] # February (the same)
-      2023-W01: [0.00, 1.57, 58.28, 114.98, 0.00, 165.00] # January a year later
-      2024-W01: [0.00, 0.00, 54.30, 111.00, 0.00, 165.00] # January, another a year later
+      2022-W01: [0.00, 21.26, 56.26, 91.26, 0.00, 165.00] # January
+      2022-W02: [0.00, 21.26, 56.26, 91.26, 0.00, 165.00] # February (the same)
+      2023-W01: [0.00, 0.00, 9.97, 31.68, 0.00, 118.48] # January a year later
+      2024-W01: [0.00, 0.00, 34.07, 69.07, 0.00, 165.00] # January, another a year later

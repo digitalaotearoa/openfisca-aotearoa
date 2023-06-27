@@ -5,7 +5,6 @@ import numpy
 from openfisca_core import periods, variables
 
 from openfisca_aotearoa import entities
-from openfisca_aotearoa.variables.demographics.housing import AccommodationType
 
 
 class accommodation_supplement(variables.Variable):
@@ -19,10 +18,8 @@ class accommodation_supplement(variables.Variable):
 
     def formula_2018_11_26(people, period, _params):
         entitled = people("accommodation_supplement__entitled", period)
-        # TODO: move to parameter
         accommodation_costs = people("accommodation_costs", period)
-        accommodation_type = people("accommodation_type", period)
-        rate = (accommodation_type == AccommodationType.lodging) * .62 + 1
+        rate = people("accommodation_supplement__rate", period)
         cost = accommodation_costs * rate
         rebate = people("accommodation_supplement__rebate", period)
         cutout = people("accommodation_supplement__cutout", period)
