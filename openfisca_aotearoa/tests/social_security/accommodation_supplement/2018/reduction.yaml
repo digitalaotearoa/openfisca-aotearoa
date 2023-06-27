@@ -13,3 +13,20 @@
   output:
     accommodation_supplement__reduction:
       2022-W01: [0, 0]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (1) This regulation applies to the amount of accommodation supplement
+        assessed—
+        (a) under [...] Part 7 of Schedule 4 of the Act
+  period: 2018-11-26
+  input:
+    accommodation_costs:
+      2022-W01: [1, 0]
+  output:
+    accommodation_supplement__reduction:
+      2022-W01: [0, 0]
