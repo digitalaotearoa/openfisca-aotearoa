@@ -23,3 +23,14 @@ class social_security__in_a_relationship(variables.Variable):
             + people.has_role(entities.Family.PRINCIPAL)
             * (married + civil_union + de_facto_rel + relationship)
             )
+
+
+# TODO: Add calculation
+class social_security__community_spouse_or_partner(variables.Variable):
+    label = "Whether a person is a community spouse or partner"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784375"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = bool
+    default_value = False
+    definition_period = periods.DateUnit.WEEK

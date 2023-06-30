@@ -1,0 +1,203 @@
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (a) if the applicant is not a community spouse or partner (as defined
+            in Schedule 2 of the Act), the combined weekly income of—
+            (i)  the applicant; and
+            (ii) any spouse or partner of the applicant;
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (a) if the applicant is not a community spouse or partner (as defined
+            in Schedule 2 of the Act), the combined weekly income of—
+            (i)  the applicant; and
+            (ii) any spouse or partner of the applicant;
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+    family:
+      principal: Vrenda
+      partners: [Piedad]
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 100]
+      2023-W03: [200, 200]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (b) if the applicant is a community spouse or partner (as so defined),
+            the weekly income of the applicant alone (disregarding any income
+            of the applicant’s spouse or partner who is receiving long-term
+            residential care in a hospital or rest home).
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__community_spouse_or_partner:
+          2023-W01: true
+          2023-W02: true
+          2023-W03: true
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (b) if the applicant is a community spouse or partner (as so defined),
+            the weekly income of the applicant alone (disregarding any income
+            of the applicant’s spouse or partner who is receiving long-term
+            residential care in a hospital or rest home).
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__community_spouse_or_partner:
+          2023-W01: true
+          2023-W02: true
+          2023-W03: true
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (b) if the applicant is a community spouse or partner (as so defined),
+            the weekly income of the applicant alone (disregarding any income
+            of the applicant’s spouse or partner who is receiving long-term
+            residential care in a hospital or rest home).
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__community_spouse_or_partner:
+          2023-W01: true
+          2023-W02: true
+          2023-W03: true
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+    family:
+      principal: Vrenda
+      partners: [Piedad]
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2A) The relevant weekly income mentioned in subclause (2) is,—
+        (b) if the applicant is a community spouse or partner (as so defined),
+            the weekly income of the applicant alone (disregarding any income
+            of the applicant’s spouse or partner who is receiving long-term
+            residential care in a hospital or rest home).
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__community_spouse_or_partner:
+          2023-W01: true
+          2023-W02: true
+          2023-W03: true
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+    family:
+      principal: Vrenda
+      partners: [Piedad]
+  output:
+    accommodation_supplement__relevant_weekly_income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
