@@ -1,9 +1,8 @@
 description: Social Security Income Test 1
 metadata:
-# currency or /1 (rate) or year (never used)
-  unit: currency
-# single_amount or marginal_rate or marginal_amount or value?
-  type: value
+  type: marginal_rate
+  rate_unit: /1
+  threshold_unit: currency-NZD
   reference:
     2018-11-26:
       title: Social Security Act 2018 (as enacted)
@@ -17,12 +16,24 @@ metadata:
 brackets:
   - rate:
       2018-11-26:
-        value: 0
+        value: 0.0
+      2020-04-01:
+        value: 0.0
+      2021-04-01:
+        value: 0.0
     threshold:
       2018-11-26:
         value: 0
+      2020-04-01:
+        value: 0
+      2021-04-01:
+        value: 0
   - rate:
       2018-11-26:
+        value: 0.3
+      2020-04-01:
+        value: 0.3
+      2021-04-01:
         value: 0.3
     threshold:
       2018-11-26:
@@ -36,6 +47,10 @@ brackets:
       # https://www.legislation.govt.nz/all/results.aspx?search=ad_act%40bill%40regulation%40deemedreg__%22Income+Test+1%22____25_ac%40bc%40rc%40dc%40apub%40aloc%40apri%40apro%40aimp%40bgov%40bloc%40bpri%40bmem%40rpub%40rimp_ac%40bc%40rc%40ainf%40anif%40bcur%40rinf%40rnif%40raif%40rasm%40rrev_a_aw_se_&p=1
   - rate:
       2018-11-26:
+        value: 0.7
+      2020-04-01:
+        value: 0.7
+      2021-04-01:
         value: 0.7
     threshold:
       2018-11-26:
