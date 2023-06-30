@@ -36,57 +36,57 @@ class jobseeker_support__reduction(variables.Variable):
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
-    def formula_2018_11_26(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+    def formula_2018_11_26(people, period, _parameters):
+        rate_1 = (
+            + people("schedule_4__part1_1_c", period)
+            + people("schedule_4__part1_1_e", period)
+            + people("schedule_4__part1_1_f", period)
+            )
+        rate_3 = (
+            + people("schedule_4__part1_1_a", period)
+            + people("schedule_4__part1_1_b", period)
+            + people("schedule_4__part1_1_d", period)
+            + people("schedule_4__part1_1_i", period)
+            + people("schedule_4__part1_1_j", period)
+            )
+        rate_4 = (
+            + people("schedule_4__part1_1_g", period)
+            + people("schedule_4__part1_1_h", period)
+            )
 
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+        test_1 = people("jobseeker_support__income_test_1", period)
+        test_3 = people("jobseeker_support__income_test_3_b", period)
+        test_4 = people("jobseeker_support__income_test_4", period)
 
-        test_1 = people("schedule_4__part1_1_c", period) + \
-            people("schedule_4__part1_1_e", period) + \
-            people("schedule_4__part1_1_f", period)
-
-        test_3 = people("schedule_4__part1_1_a", period) + \
-            people("schedule_4__part1_1_b", period) + \
-            people("schedule_4__part1_1_d", period) + \
-            people("schedule_4__part1_1_i", period) + \
-            people("schedule_4__part1_1_j", period)
-
-        test_4 = people("schedule_4__part1_1_g", period) + \
-            people("schedule_4__part1_1_h", period)
-
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_3 = parameters(period).social_security.income_test_3b
-        scale_4 = parameters(period).social_security.income_test_4
-        return people("jobseeker_support__entitled", period) * \
-            (
-                (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
+        return (
+            + people("jobseeker_support__entitled", period)
+            * ((rate_1 * test_1) + (rate_3 * test_3) + (rate_4 * test_4))
             )
 
     def formula_2020_11_09(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        rate_1 = (
+            + people("schedule_4__part1_1_c", period)
+            + people("schedule_4__part1_1_e", period)
+            + people("schedule_4__part1_1_f", period)
+            )
+        rate_3 = (
+            + people("schedule_4__part1_1_a", period)
+            + people("schedule_4__part1_1_b", period)
+            + people("schedule_4__part1_1_d", period)
+            + people("schedule_4__part1_1_j", period)
+            )
+        rate_4 = (
+            + people("schedule_4__part1_1_g", period)
+            + people("schedule_4__part1_1_h", period)
+            )
 
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+        test_1 = people("jobseeker_support__income_test_1", period)
+        test_3 = people("jobseeker_support__income_test_3_b", period)
+        test_4 = people("jobseeker_support__income_test_4", period)
 
-        test_1 = people("schedule_4__part1_1_c", period) + \
-            people("schedule_4__part1_1_e", period) + \
-            people("schedule_4__part1_1_f", period)
-
-        test_3 = people("schedule_4__part1_1_a", period) + \
-            people("schedule_4__part1_1_b", period) + \
-            people("schedule_4__part1_1_d", period) + \
-            people("schedule_4__part1_1_j", period)
-
-        test_4 = people("schedule_4__part1_1_g", period) + \
-            people("schedule_4__part1_1_h", period)
-
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_3 = parameters(period).social_security.income_test_3b
-        scale_4 = parameters(period).social_security.income_test_4
-        return people("jobseeker_support__entitled", period) * \
-            (
-                (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
+        return (
+            + people("jobseeker_support__entitled", period)
+            * ((rate_1 * test_1) + (rate_3 * test_3) + (rate_4 * test_4))
             )
 
 
