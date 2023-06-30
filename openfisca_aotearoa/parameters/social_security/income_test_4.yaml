@@ -1,9 +1,8 @@
 description: Social Security Income Test 4
 metadata:
-# currency or /1 (rate) or year (never used)
-  unit: currency
-# single_amount or marginal_rate or marginal_amount or value?
-  type: value
+  type: marginal_rate
+  rate_unit: /1
+  threshold_unit: currency-NZD
   reference:
     2018-11-26:
       title: Social Security Act 2018 (as enacted)

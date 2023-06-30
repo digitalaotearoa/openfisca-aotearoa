@@ -32,3 +32,36 @@
   output:
     jobseeker_support__income_test_2:
       2023-W01: [0, 0, 0, 0.15, 13.35, 13.50, 13.50, 13.85]
+
+
+- name: >
+    Social Security Act 2018 -
+    Schedule 2 Dictionary -
+    Income test 3 -
+    The applicable rate of benefit must be reduced by 70 cents for every $1 of
+    the total income of the beneficiary and the beneficiary’s spouse or partner
+    that is more than,—
+      (b) [...] $160 a week
+  period: 2018-11-26
+  input:
+    jobseeker_support__testable_income:
+      2023-W01: [159.99, 160.00, 160.01, 161.99, 249.99, 250.00, 250.01, 251.99]
+  output:
+    jobseeker_support__income_test_3_b:
+      2023-W01: [0, 0, 0, 0.70, 62.30, 63.00, 63.00, 63.70]
+
+
+- name: >
+    Social Security Act 2018 -
+    Schedule 2 Dictionary -
+    Income test 4 -
+    The applicable rate of benefit must be reduced by 35 cents for every $1 of
+    the total income of the beneficiary and the beneficiary’s spouse or partner
+    that is more than $160 a week
+  period: 2018-11-26
+  input:
+    jobseeker_support__testable_income:
+      2023-W01: [159.99, 160.00, 160.01, 161.99, 249.99, 250.00, 250.01, 251.99]
+  output:
+    jobseeker_support__income_test_4:
+      2023-W01: [0, 0, 0, 0.35, 31.15, 31.50, 31.50, 31.85]
