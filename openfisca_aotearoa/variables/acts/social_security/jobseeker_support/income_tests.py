@@ -27,23 +27,6 @@ class jobseeker_support__income_test_1(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, parameters):
-        family = people.family
-
-        beneficiary_income = family.sum(
-            family.members("social_security__income", period),
-            role = entities.Family.PRINCIPAL,
-            )
-
-        spouse_or_partner_income = family.sum(
-            family.members("social_security__income", period),
-            role = entities.Family.PARTNER,
-            )
-
-        total_income = numpy.floor(
-            + beneficiary_income
-            + spouse_or_partner_income
-        )
-
+        testable_income = people("jobseeker_support__testable_income", period)
         income_test_1 = parameters(period).social_security.income_test_1
-
-        return income_test_1.calc(total_income)
+        return income_test_1.calc(numpy.floor(testable_income))
