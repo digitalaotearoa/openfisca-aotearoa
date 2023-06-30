@@ -47,3 +47,20 @@
   output:
     accommodation_supplement__reduction:
       2022-W01: [0, 0]
+
+
+- name: >
+    Social Security Regulations 2018 -
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    18  Income-based reductions to assessed base rate for non-beneficiary -
+    (2) That amount must be reduced by 25 cents for every $1 of the relevant
+        weekly income (see subclause (2A)) in excess of the income level
+        specified in subclause (3).
+  period: 2018-11-26
+  input:
+    accommodation_supplement__relevant_weekly_income:
+      2022-W01: [0, 1000, 2000]
+  output:
+    accommodation_supplement__reduction:
+      2022-W01: [0, 0, 0]
