@@ -1,0 +1,47 @@
+description: >
+  Social Security Act 2018 -
+  Part 2 Assistance -
+  Subpart 10 Accommodation supplement -
+  (2) Accommodation costs
+
+metadata:
+  unit: /1
+  reference:
+    2018-11-26:
+      title: Social Security Act 2018
+      href: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241
+
+unknown:
+  values:
+    2018-11-26:
+      value: 0.00
+
+rent:
+  values:
+    2018-11-26:
+      value: 1.00
+
+board:
+  values:
+    2018-11-26:
+      value: 0.62
+
+lodging:
+  values:
+    2018-11-26:
+      value: 0.62
+
+mortgage:
+  values:
+    2018-11-26:
+      value: 1.00
+
+social_housing:
+  values:
+    2018-11-26:
+      value: 0.00
+
+residential_care:
+  values:
+    2018-11-26:
+      value: 0.00

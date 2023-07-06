@@ -16,7 +16,7 @@ class accommodation_supplement__entitled(variables.Variable):
     default_value = False
     definition_period = periods.DateUnit.WEEK
 
-    def formula_2018_11_26(people, period, parameters):
+    def formula_2018_11_26(people, period, _params):
         accommodation_costs = people(
             "accommodation_supplement__accommodation_costs",
             period,
