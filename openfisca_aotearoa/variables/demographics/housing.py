@@ -35,4 +35,33 @@ class accommodation_costs(variables.Variable):
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
-    set_input = holders.set_input_dispatch_by_period
+
+
+class service_costs(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Family
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK
+
+
+class water_costs(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Family
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK
+
+
+class arrears(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

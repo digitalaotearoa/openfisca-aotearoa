@@ -1,4 +1,10 @@
-"""TODO: Add missing doctring."""
+"""Eligible for accommodation supplement.
+
+A person is entitled to accommodation costs if she has accommodation costs,
+meets the assets requirement, and is not excluded on the social housing and
+the other funding exclusion grounds.
+
+"""
 
 import numpy
 
@@ -8,57 +14,56 @@ from openfisca_aotearoa import entities
 
 
 class accommodation_supplement__entitled(variables.Variable):
-    label = "Eligible for Accommodation Supplement"
+    label = "Eligible for accommodation supplement"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783241"
-    documentation = """TODO"""
+    documentation = """
+        A person is entitled to accommodation costs if she has accommodation
+        costs, meets the assets requirement, and is not excluded on the social
+        housing and the other funding exclusion grounds.
+        """
     entity = entities.Person
     value_type = bool
     default_value = False
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, _params):
-        accommodation_costs = people(
+        # (1) MSD may grant a person (P), for the period that MSD determines
+        #     an accommodation supplement if—
+
+        #     (a) P has accommodation costs; and
+        ssa2018_part_2_sub_10_65_1_a = people(
             "accommodation_supplement__accommodation_costs",
             period,
             )
 
-        assets_requirement = people(
+        #     (b) P meets the assets requirement (as set out in regulations
+        #         made under section 423); and
+        ssa2018_part_2_sub_10_65_1_b = people(
             "accommodation_supplement__assets_requirement",
             period,
             )
 
+        #     (c) P is not excluded on either of the following grounds:
+
+        #         (i)  the social housing exclusion:
         social_housing_exclusion = people(
             "accommodation_supplement__social_housing_exclusion",
             period,
             )
+        ssa2018_part_2_sub_10_65_1_c_i = numpy.logical_not(social_housing_exclusion)
 
+        #         (ii) the other funding exclusion.
         other_funding_exclusion = people(
             "accommodation_supplement__other_funding_exclusion",
             period,
             )
-
-        # 65    Accommodation supplement: discretionary grant
-        # (1)   MSD may grant a person (P), for the period that MSD determines
-        #       an accommodation supplement if—
-        #       (a) P has accommodation costs; and
-        ssa2018_65_1_a = accommodation_costs
-
-        #       (b) P meets the assets requirement (as set out in regulations
-        #           made under section 423); and
-        ssa2018_65_1_b = assets_requirement
-
-        #       (c) P is not excluded on either of the following grounds:
-        #           (i)     the social housing exclusion:
-        ssa2018_65_1_c_i = numpy.logical_not(social_housing_exclusion)
-
-        #           (ii)    the other funding exclusion.
-        ssa2018_65_1_c_ii = numpy.logical_not(other_funding_exclusion)
+        ssa2018_part_2_sub_10_65_1_c_ii = numpy.logical_not(other_funding_exclusion)
 
         return (
-            + ssa2018_65_1_a
-            * ssa2018_65_1_b
-            * ssa2018_65_1_c_i
-            * ssa2018_65_1_c_ii
+            + ssa2018_part_2_sub_10_65_1_a
+            * ssa2018_part_2_sub_10_65_1_b
+            * ssa2018_part_2_sub_10_65_1_c_i
+            * ssa2018_part_2_sub_10_65_1_c_ii
             )
 
     def formula_1964_12_04(people, period, params):
