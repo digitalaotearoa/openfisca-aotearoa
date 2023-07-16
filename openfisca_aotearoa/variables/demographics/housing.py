@@ -41,7 +41,7 @@ class service_costs(variables.Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""
-    entity = entities.Family
+    entity = entities.Person
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
@@ -51,7 +51,7 @@ class water_costs(variables.Variable):
     label = "TODO"
     reference = "TODO"
     documentation = """TODO"""
-    entity = entities.Family
+    entity = entities.Person
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK

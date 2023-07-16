@@ -72,12 +72,14 @@ class accommodation_supplement__accommodation_costs(variables.Variable):
             period,
             )
 
-        return (
+        total_costs = (
             + ssa2018_part_2_sub_10_65_2_a
             + ssa2018_part_2_sub_10_65_2_b
             + ssa2018_part_2_sub_10_65_2_c
             + ssa2018_part_2_sub_10_65_2_d
             )
+
+        return numpy.maximum(total_costs, 0)
 
 class ssa2018_part_2_sub_10_65_2_a(variables.Variable):
     label = "Accommodation costs (a)"
@@ -106,6 +108,12 @@ class ssa2018_part_2_sub_10_65_2_a(variables.Variable):
             + people.has_role(entities.Tenancy.OTHER)
             )
 
+        # Whether each person is part of an ownership.
+        ownership = (
+            + people.has_role(entities.Ownership.OWNER)
+            + people.has_role(entities.Ownership.OTHER)
+            )
+
         # Accommodation type for the requested period.
         accommodation_type = people("accommodation_type", period)
 
@@ -131,6 +139,7 @@ class ssa2018_part_2_sub_10_65_2_a(variables.Variable):
 
         return (
             + numpy.logical_not(tenancy)
+            * numpy.logical_not(ownership)
             * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.rent)
             * (accommodation_costs - service_costs - arrears)
@@ -166,6 +175,12 @@ class ssa2018_part_2_sub_10_65_2_b(variables.Variable):
         #        (ii) MSD is satisfied are reasonably required to be made:
 
         # Whether each person is part of a tenancy.
+        tenancy = (
+            + people.has_role(entities.Tenancy.TENANT)
+            + people.has_role(entities.Tenancy.OTHER)
+            )
+
+        # Whether each person is part of an ownership.
         ownership = (
             + people.has_role(entities.Ownership.OWNER)
             + people.has_role(entities.Ownership.OTHER)
@@ -186,9 +201,11 @@ class ssa2018_part_2_sub_10_65_2_b(variables.Variable):
             )
 
         return (
-            + numpy.logical_not(ownership)
+            + numpy.logical_not(tenancy)
+            * numpy.logical_not(ownership)
             * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.mortgage)
+            * accommodation_costs
             * costs_ratio.mortgage
             )
 
@@ -213,6 +230,18 @@ class ssa2018_part_2_sub_10_65_2_c(variables.Variable):
         #         premises, 62% of the amount paid for board or lodging
         #         (excluding any arrears):
 
+        # Whether each person is part of a tenancy.
+        tenancy = (
+            + people.has_role(entities.Tenancy.TENANT)
+            + people.has_role(entities.Tenancy.OTHER)
+            )
+
+        # Whether each person is part of an ownership.
+        ownership = (
+            + people.has_role(entities.Ownership.OWNER)
+            + people.has_role(entities.Ownership.OTHER)
+            )
+
         # Accommodation type for the requested period.
         accommodation_type = people("accommodation_type", period)
 
@@ -230,16 +259,22 @@ class ssa2018_part_2_sub_10_65_2_c(variables.Variable):
         boarding_costs = (
             + (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.board)
+            * accommodation_costs
             * costs_ratio.board
             )
 
         lodging_costs = (
             + (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.lodging)
+            * accommodation_costs
             * costs_ratio.lodging
             )
 
-        return boarding_costs + lodging_costs
+        return (
+            + numpy.logical_not(tenancy)
+            * numpy.logical_not(ownership)
+            * (boarding_costs + lodging_costs)
+            )
 
 class ssa2018_part_2_sub_10_65_2_d(variables.Variable):
     label = "Accommodation costs (d)"
@@ -266,11 +301,17 @@ class ssa2018_part_2_sub_10_65_2_d(variables.Variable):
         #         tenanted, or commonly owned, premises that MSD is satisfied
         #         the person is paying
 
-        # Whether each person is a tenancy's applicant.
-        tenant = people.has_role(entities.Tenancy.PRINCIPAL)
+        # Whether each person is part of a tenancy.
+        tenancy = (
+            + people.has_role(entities.Tenancy.TENANT)
+            + people.has_role(entities.Tenancy.OTHER)
+            )
 
-        # Whether each person is an ownership's applicant.
-        owner = people.has_role(entities.Ownership.PRINCIPAL)
+        # Whether each person is part of an ownership.
+        ownership = (
+            + people.has_role(entities.Ownership.OWNER)
+            + people.has_role(entities.Ownership.OTHER)
+            )
 
         # Accommodation type for the requested period.
         accommodation_type = people("accommodation_type", period)
@@ -323,16 +364,20 @@ class ssa2018_part_2_sub_10_65_2_d(variables.Variable):
             )
 
         tenancy_costs = (
-            + tenant
+            + tenancy
+            * numpy.logical_not(ownership)
             * (accommodation_costs_tenancy > 0)
             * (accommodation_type == housing.AccommodationType.rent)
+            * accommodation_costs_tenancy
             * costs_ratio.rent
             )
 
         ownership_costs = (
-            + owner
+            + numpy.logical_not(tenancy)
+            * ownership
             * (accommodation_costs_ownership > 0)
             * (accommodation_type == housing.AccommodationType.mortgage)
+            * accommodation_costs_ownership
             * costs_ratio.mortgage
             )
 

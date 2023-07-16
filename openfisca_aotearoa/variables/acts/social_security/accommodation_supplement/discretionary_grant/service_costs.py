@@ -19,7 +19,7 @@ class accommodation_supplement__service_costs(variables.Variable):
         Service costs are those determined by MSD of any services provided to
         or in connection with the premises, excluding the cost of water supply.
         """
-    entity = entities.Family
+    entity = entities.Person
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
