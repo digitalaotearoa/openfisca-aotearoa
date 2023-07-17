@@ -5,9 +5,9 @@
     (2) Service Costs -
   period: 2018-11-26
   input:
-    service_costs:
+    social_security__service_costs:
       2022-W01: [0, 100, 0, 100, 100, 50]
-    water_costs:
+    accommodation_supplement__water_supply:
       2022-W01: [0, 0, 100, 100, 50, 100]
   output:
     accommodation_supplement__service_costs:

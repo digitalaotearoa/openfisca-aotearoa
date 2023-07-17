@@ -37,26 +37,6 @@ class accommodation_costs(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
 
-class service_costs(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = entities.Person
-    value_type = float
-    default_value = 0
-    definition_period = periods.DateUnit.WEEK
-
-
-class water_costs(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = entities.Person
-    value_type = float
-    default_value = 0
-    definition_period = periods.DateUnit.WEEK
-
-
 class arrears(variables.Variable):
     label = "TODO"
     reference = "TODO"

@@ -71,12 +71,7 @@ class accommodation_supplement__entitled(variables.Variable):
 
         # Based on MSD's web page
         # https://www.workandincome.govt.nz/products/a-z-benefits/accommodation-supplement.html
-        age_threshold = (
-            params(period)
-            .social_security
-            .accommodation_supplement
-            .age_threshold
-            )
+        age_threshold = 16
 
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH

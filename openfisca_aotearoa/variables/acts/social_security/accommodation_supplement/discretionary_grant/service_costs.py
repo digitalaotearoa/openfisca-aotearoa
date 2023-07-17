@@ -33,10 +33,15 @@ class accommodation_supplement__service_costs(variables.Variable):
         #         telephone network connection, or broadband Internet
         #         connection) provided to or in connection with the premises
         #         for consumption or use by the occupants of the premises; but
-        ssa2018_part_2_sub_10_65_2_a = people("service_costs", period)
+        ssa2018_part_2_sub_10_65_2_a = people(
+            "social_security__service_costs",
+            period,
+            )
 
         #     (b) does not include the cost of water supplied to the premises.
-        ssa2018_part_2_sub_10_65_2_b = people("water_costs", period)
+        ssa2018_part_2_sub_10_65_2_b = people(
+            "accommodation_supplement__water_supply", period,
+            )
 
         total_costs = (
             + ssa2018_part_2_sub_10_65_2_a
@@ -44,3 +49,13 @@ class accommodation_supplement__service_costs(variables.Variable):
             )
 
         return numpy.maximum(total_costs, 0)
+
+
+class accommodation_supplement__water_supply(variables.Variable):
+    label = "Accommodation supplement's water supply costs"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6783242.html"
+    documentation = """Cost of water supplied to the premises."""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

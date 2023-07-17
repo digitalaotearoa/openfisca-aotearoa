@@ -64,3 +64,13 @@ class youth_payment__single_young_person_exceptional_circumstances(variables.Var
         (b) the chief executive is not satisfied that there are good and sufficient reasons for the young person not to live with that parent or guardian.
     http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM4686073
     """
+
+
+class youth_payment__service_costs(variables.Variable):
+    label = "TODO"
+    reference = "TODO"
+    documentation = """TODO"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK

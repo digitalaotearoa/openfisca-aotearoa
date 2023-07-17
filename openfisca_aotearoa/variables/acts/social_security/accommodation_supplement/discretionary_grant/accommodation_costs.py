@@ -192,6 +192,15 @@ class ssa2018_part_2_sub_10_65_2_b(variables.Variable):
         # Accommodation costs for the requested period.
         accommodation_costs = people("accommodation_costs", period)
 
+        # Service costs for the requested period.
+        service_costs = people(
+            "accommodation_supplement__service_costs",
+            period,
+            )
+
+        # Cumulated arrears for the requested period.
+        arrears = people("arrears", period)
+
         # Accommodation costs ratio to be considered as accommodation costs.
         costs_ratio = (
             params(period)
@@ -205,7 +214,7 @@ class ssa2018_part_2_sub_10_65_2_b(variables.Variable):
             * numpy.logical_not(ownership)
             * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.mortgage)
-            * accommodation_costs
+            * (accommodation_costs - service_costs - arrears)
             * costs_ratio.mortgage
             )
 
