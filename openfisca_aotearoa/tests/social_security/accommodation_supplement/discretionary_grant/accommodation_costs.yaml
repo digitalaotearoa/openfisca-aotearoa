@@ -6,13 +6,13 @@
         (a) Rent
   period: 2018-11-26
   input:
-    accommodation_costs:
+    social_security__accommodation_costs:
       2022-W01: [0, 100, 100, 100, 0, 0, 100, 100]
       2022-W02: [0, 100, 100, 100, 0, 0, 100, 100]
     accommodation_type:
       2022-W01: [rent, rent, rent, rent, rent, rent, rent, rent]
       2022-W02: [asdf, asdf, asdf, asdf, asdf, asdf, asdf, asdf]
-    service_costs:
+    accommodation_supplement__service_costs:
       2022-W01: [0, 0, 100, 100, 100, 0, 50, 50]
       2022-W02: [0, 0, 100, 100, 100, 0, 50, 50]
     arrears:
@@ -32,13 +32,13 @@
         (b) Mortgage
   period: 2018-11-26
   input:
-    accommodation_costs:
+    social_security__accommodation_costs:
       2022-W01: [0, 100, 100, 100, 0, 0, 100, 100]
       2022-W02: [0, 100, 100, 100, 0, 0, 100, 100]
     accommodation_type:
       2022-W01: [mortgage, mortgage, mortgage, mortgage, mortgage, mortgage, mortgage, mortgage]
       2022-W02: [asdf, asdf, asdf, asdf, asdf, asdf, asdf, asdf]
-    service_costs:
+    accommodation_supplement__service_costs:
       2022-W01: [0, 0, 100, 100, 100, 0, 50, 50]
       2022-W02: [0, 0, 100, 100, 100, 0, 50, 50]
     arrears:
