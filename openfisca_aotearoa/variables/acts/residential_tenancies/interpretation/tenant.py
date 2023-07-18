@@ -11,7 +11,7 @@ from openfisca_aotearoa import entities
 
 class residential_tenancies__tenant(variables.Variable):
     label = "Residential tenancies' tenant"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784375.html"
+    reference = "https://www.legislation.govt.nz/act/public/1986/0120/latest/DLM94283.html"
     documentation = """
         Tenant is the grantee of a tenancy of a premise under a tenancy
         agreement.

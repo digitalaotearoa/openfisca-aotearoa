@@ -111,7 +111,7 @@ Tenancy = build_entity(
             "key": "tenant",
             "plural": "tenants",
             "label": "Tenants",
-            "doc": """#TODO""",
+            "doc": """The grantee of the tenancy""",
             },
         {
             "key": "other",
