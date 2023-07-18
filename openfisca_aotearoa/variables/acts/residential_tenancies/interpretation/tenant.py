@@ -16,7 +16,7 @@ class residential_tenancies__tenant(variables.Variable):
         Tenant is the grantee of a tenancy of a premise under a tenancy
         agreement.
         """
-    entity = entities.Tenancy
+    entity = entities.Person
     value_type = bool
     default_value = False
     definition_period = periods.DateUnit.WEEK
@@ -30,4 +30,7 @@ class residential_tenancies__tenant(variables.Variable):
         # (c) a lawful successor in title of a tenant to the premises; and
         # (d) the personal representative of a deceased tenant; and
         # (e) an agent of a tenant
-        return people.has_role(entities.Tenancy.TENANT)
+        return (
+            + people.has_role(entities.Tenancy.APPLICANT)
+            + people.has_role(entities.Tenancy.TENANT)
+            )

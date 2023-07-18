@@ -1,15 +1,53 @@
 - name: >
     Residential Tenancies Act 1986 -
     2 Interpretation -
-    Tenant
+    Tenant -
+    Scenario: the applicant is considered a tenant
   period: 1987-02-01
   input:
     persons:
       Juana: {}
       Abdul: {}
     tenancy:
-      tenants: [Juana]
+      applicant: Juana
+      others: [Abdul]
   output:
     residential_tenancies__tenant:
       1987-W05: [false, false]
       1987-W06: [true, false]
+
+
+- name: >
+    Residential Tenancies Act 1986 -
+    2 Interpretation -
+    Tenant -
+    Scenario: there may be multiple tenants
+  period: 1987-02-01
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    tenancy:
+      tenants: [Juana, Abdul]
+  output:
+    residential_tenancies__tenant:
+      1987-W05: [false, false]
+      1987-W06: [true, true]
+
+
+- name: >
+    Residential Tenancies Act 1986 -
+    2 Interpretation -
+    Tenant -
+    Scenario: there may be no tenants
+  period: 1987-02-01
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    tenancy:
+      others: [Juana, Abdul]
+  output:
+    residential_tenancies__tenant:
+      1987-W05: [false, false]
+      1987-W06: [false, false]

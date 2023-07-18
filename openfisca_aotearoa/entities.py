@@ -102,8 +102,8 @@ Tenancy = build_entity(
     doc = """TODO""",
     roles = [
         {
-            "key": "principal",
-            "label": "Principal",
+            "key": "applicant",
+            "label": "applicant",
             "doc": "The one person who is the focus of the calculation",
             "max": 1,
             },
@@ -111,7 +111,7 @@ Tenancy = build_entity(
             "key": "tenant",
             "plural": "tenants",
             "label": "Tenants",
-            "doc": """The grantee of the tenancy""",
+            "doc": """The grantees of the tenancy""",
             },
         {
             "key": "other",
