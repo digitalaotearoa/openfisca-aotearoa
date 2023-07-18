@@ -1,0 +1,15 @@
+- name: >
+    Residential Tenancies Act 1986 -
+    2 Interpretation -
+    Tenant
+  period: 1987-02-01
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    tenancy:
+      tenants: [Juana]
+  output:
+    residential_tenancies__tenant:
+      1987-W05: [false, false]
+      1987-W06: [true, false]
