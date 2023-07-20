@@ -1,5 +1,7 @@
 """TODO: Add missing doctring."""
 
+import numpy
+
 from openfisca_core import holders, indexed_enums, periods, variables
 
 from openfisca_aotearoa import entities
@@ -53,7 +55,7 @@ class housing_costs(variables.Variable):
         rent = people.tenancy("residential_tenancies__rent", period)
         bond = people.tenancy("residential_tenancies__bond", period)
 
-        return (rent + bond) * tenants
+        return (rent + bond) * tenants / numpy.add.reduce(tenants)
 
 
 class service_costs(variables.Variable):
