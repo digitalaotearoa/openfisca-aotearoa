@@ -5,6 +5,7 @@ from openfisca_core import holders, indexed_enums, periods, variables
 from openfisca_aotearoa import entities
 
 
+# TODO: Refactor and split between accommodation type and cost type
 class AccommodationType(indexed_enums.Enum):
     unknown = "We have no idea"
     rent = "Rent"
@@ -15,6 +16,7 @@ class AccommodationType(indexed_enums.Enum):
     residential_care = "Residential care"
 
 
+# TODO: Refactor and split between accommodation type and cost type
 class accommodation_type(variables.Variable):
     label = "TODO"
     reference = "TODO"
@@ -27,10 +29,37 @@ class accommodation_type(variables.Variable):
     set_input = holders.set_input_dispatch_by_period
 
 
-class accommodation_costs(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
+class arrears(variables.Variable):
+    label = "Arrears"
+    reference = "https://en.wiktionary.org/wiki/arrear#English"
+    documentation = """Unpaid debts"""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK
+
+
+class housing_costs(variables.Variable):
+    label = "Housing costs"
+    reference = "https://www.workandincome.govt.nz/housing/live-in-home/housing-costs/index.html"
+    documentation = """On-going costs of rent, board, lodging, or ownership."""
+    entity = entities.Person
+    value_type = float
+    default_value = 0
+    definition_period = periods.DateUnit.WEEK
+
+    def formula(people, period, _params):
+        tenants = people("residential_tenancies__tenant", period)
+        rent = people.tenancy("residential_tenancies__rent", period)
+        bond = people.tenancy("residential_tenancies__bond", period)
+
+        return (rent + bond) * tenants
+
+
+class service_costs(variables.Variable):
+    label = "Service costs"
+    reference = "https://www.workandincome.govt.nz/housing/live-in-home/housing-costs/index.html"
+    documentation = """Costs of services used by the occupants of a premise."""
     entity = entities.Person
     value_type = float
     default_value = 0
@@ -38,9 +67,9 @@ class accommodation_costs(variables.Variable):
 
 
 class arrears(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
+    label = "Arrears"
+    reference = "https://en.wiktionary.org/wiki/arrear#English"
+    documentation = """Unpaid debts"""
     entity = entities.Person
     value_type = float
     default_value = 0

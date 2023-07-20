@@ -1,0 +1,114 @@
+- name: >
+    Residential Tenancies Act 1986 -
+    Exegesis -
+    Housing costs -
+    Scenario: single tenant #1
+  period: 1987-02-01
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+      Pablo: {}
+    tenancy:
+      applicant: Juana
+      others: [Abdul, Pablo]
+      residential_tenancies__rent:
+        1987-W06: 0
+        1987-W07: 100
+        1987-W08: 0
+        1987-W09: 100
+      residential_tenancies__bond:
+        1987-W06: 0
+        1987-W07: 0
+        1987-W08: 100
+        1987-W09: 100
+  output:
+    housing_costs:
+      1987-W06: [0,   0, 0]
+      1987-W07: [100, 0, 0]
+      1987-W08: [100, 0, 0]
+      1987-W09: [200, 0, 0]
+
+
+#- name: >
+#    Residential Tenancies Act 1986 -
+#    Exegesis -
+#    Housing costs -
+#    Scenario: single tenant #2
+#  period: 1987-02-01
+#  input:
+#    persons:
+#      Juana:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#      Abdul:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#      Pablo:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#    tenancy:
+#      tenants: [Juana]
+#      others: [Abdul, Pablo]
+#      residential_tenancies__bond:
+#        1987-W06: 0
+#        1987-W07: 0
+#        1987-W08: 50
+#        1987-W09: 500
+#  output:
+#    residential_tenancies__rent:
+#      1987-W06: 0
+#      1987-W07: 100
+#      1987-W08: 50
+#      1987-W09: 0
+#
+#- name: >
+#    Residential Tenancies Act 1986 -
+#    Exegesis -
+#    Housing costs -
+#    Scenario: joint tenants
+#  period: 1987-02-01
+#  input:
+#    persons:
+#      Juana:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#      Abdul:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#      Pablo:
+#        housing_costs:
+#          1987-W06: 0
+#          1987-W07: 100
+#          1987-W08: 100
+#          1987-W09: 100
+#    tenancy:
+#      applicant: Juana
+#      tenants: [Abdul]
+#      others: [Pablo]
+#      residential_tenancies__bond:
+#        1987-W06: 0
+#        1987-W07: 0
+#        1987-W08: 50
+#        1987-W09: 500
+#  output:
+#    residential_tenancies__rent:
+#      1987-W06: 0
+#      1987-W07: 200
+#      1987-W08: 150
+#      1987-W09: 0
