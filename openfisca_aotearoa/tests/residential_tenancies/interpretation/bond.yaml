@@ -1,7 +1,7 @@
 - name: >
     Residential Tenancies Act 1986 -
     2 Interpretation -
-    Rent -
+    Bond -
     Scenario: single tenant #1
   period: 1987-02-01
   input:
@@ -27,13 +27,13 @@
     tenancy:
       applicant: Juana
       others: [Abdul, Pablo]
-      residential_tenancies__bond:
+      residential_tenancies__rent:
         1987-W06: 0
         1987-W07: 0
         1987-W08: 50
         1987-W09: 500
   output:
-    residential_tenancies__rent:
+    residential_tenancies__bond:
       1987-W06: 0
       1987-W07: 100
       1987-W08: 50
@@ -43,7 +43,7 @@
 - name: >
     Residential Tenancies Act 1986 -
     2 Interpretation -
-    Rent -
+    Bond -
     Scenario: single tenant #2
   period: 1987-02-01
   input:
@@ -69,13 +69,13 @@
     tenancy:
       tenants: [Juana]
       others: [Abdul, Pablo]
-      residential_tenancies__bond:
+      residential_tenancies__rent:
         1987-W06: 0
         1987-W07: 0
         1987-W08: 50
         1987-W09: 500
   output:
-    residential_tenancies__rent:
+    residential_tenancies__bond:
       1987-W06: 0
       1987-W07: 100
       1987-W08: 50
@@ -84,7 +84,7 @@
 - name: >
     Residential Tenancies Act 1986 -
     2 Interpretation -
-    Rent -
+    Bond -
     Scenario: joint tenants
   period: 1987-02-01
   input:
@@ -111,13 +111,13 @@
       applicant: Juana
       tenants: [Abdul]
       others: [Pablo]
-      residential_tenancies__bond:
+      residential_tenancies__rent:
         1987-W06: 0
         1987-W07: 0
         1987-W08: 50
         1987-W09: 500
   output:
-    residential_tenancies__rent:
+    residential_tenancies__bond:
       1987-W06: 0
       1987-W07: 200
       1987-W08: 150

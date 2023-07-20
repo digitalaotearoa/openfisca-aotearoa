@@ -35,6 +35,6 @@ class residential_tenancies__rent(variables.Variable):
 
         # but does not include any sum of money payable or paid by way of bond
         bond = tenancy("residential_tenancies__bond", period)
-        rta1986_2_rent_b = tenancy.sum(bond * tenants)
+        rta1986_2_rent_b = bond * tenants.any()
 
         return numpy.maximum(rta1986_2_rent_a - rta1986_2_rent_b, 0)
