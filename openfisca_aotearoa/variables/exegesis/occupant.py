@@ -1,4 +1,4 @@
-"""Occupant.
+"""Exegesis — Occupant.
 
 An occupant is a person who occupies a premise.
 

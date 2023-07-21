@@ -1,4 +1,4 @@
-"""Housing costs.
+"""Exegesis — Housing costs.
 
 Housing costs are the on-going costs of rent, board, lodging, or ownership.
 
