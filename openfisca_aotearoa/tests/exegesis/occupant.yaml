@@ -1,0 +1,41 @@
+- name: >
+    Exegesis (occupant)
+    Scenario: the applicant is considered an occupant
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    premise:
+      applicant: Juana
+      others: [Abdul]
+  output:
+    occupant:
+      1987-W06: [true, false]
+
+
+- name: >
+    Exegesis (occupant)
+    Scenario: there may be multiple occupants
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    premise:
+      occupants: [Juana, Abdul]
+  output:
+    occupant:
+      1987-W06: [true, true]
+
+
+- name: >
+    Exegesis (occupant)
+    Scenario: there may be no occupants
+  input:
+    persons:
+      Juana: {}
+      Abdul: {}
+    premise:
+      others: [Juana, Abdul]
+  output:
+    occupant:
+      1987-W06: [false, false]

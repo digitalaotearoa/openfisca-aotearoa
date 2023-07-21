@@ -1,7 +1,5 @@
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Tenant -
+    2 (tenant) § RTA 1986
     Scenario: the applicant is considered a tenant
   period: 1987-02-01
   input:
@@ -18,9 +16,7 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Tenant -
+    2 (tenant) § RTA 1986
     Scenario: there may be multiple tenants
   period: 1987-02-01
   input:
@@ -36,9 +32,7 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Tenant -
+    2 (tenant) § RTA 1986
     Scenario: there may be no tenants
   period: 1987-02-01
   input:

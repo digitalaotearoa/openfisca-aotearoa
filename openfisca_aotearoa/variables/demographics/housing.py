@@ -1,7 +1,5 @@
 """TODO: Add missing doctring."""
 
-import numpy
-
 from openfisca_core import holders, indexed_enums, periods, variables
 
 from openfisca_aotearoa import entities
@@ -9,7 +7,7 @@ from openfisca_aotearoa import entities
 
 # TODO: Refactor and split between accommodation type and cost type
 class AccommodationType(indexed_enums.Enum):
-    unknown = "We have no idea"
+    unknown = "Unknown"
     rent = "Rent"
     board = "Board"
     lodging = "Lodging"
@@ -39,23 +37,6 @@ class arrears(variables.Variable):
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
-
-
-class housing_costs(variables.Variable):
-    label = "Housing costs"
-    reference = "https://www.workandincome.govt.nz/housing/live-in-home/housing-costs/index.html"
-    documentation = """On-going costs of rent, board, lodging, or ownership."""
-    entity = entities.Person
-    value_type = float
-    default_value = 0
-    definition_period = periods.DateUnit.WEEK
-
-    def formula(people, period, _params):
-        tenants = people("residential_tenancies__tenant", period)
-        rent = people.tenancy("residential_tenancies__rent", period)
-        bond = people.tenancy("residential_tenancies__bond", period)
-
-        return (rent + bond) * tenants / numpy.add.reduce(tenants)
 
 
 class service_costs(variables.Variable):

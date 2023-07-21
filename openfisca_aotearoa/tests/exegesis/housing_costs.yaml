@@ -1,9 +1,6 @@
 - name: >
-    Residential Tenancies Act 1986 -
-    Exegesis -
-    Housing costs -
+    Exegesis (housing costs)
     Scenario: single tenant #1
-  period: 1987-02-01
   input:
     persons:
       Juana: {}
@@ -31,11 +28,8 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    Exegesis -
-    Housing costs -
+    Exegesis (housing costs)
     Scenario: single tenant #2
-  period: 1987-02-01
   input:
     persons:
       Juana: {}
@@ -63,11 +57,8 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    Exegesis -
-    Housing costs -
+    Exegesis (housing costs)
     Scenario: joint tenants
-  period: 1987-02-01
   input:
     persons:
       Juana: {}

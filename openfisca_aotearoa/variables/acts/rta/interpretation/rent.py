@@ -1,4 +1,4 @@
-"""Residential tenancies' rent.
+"""Residential tenancies — Rent.
 
 Rent is any valuable, including money, goods, services, and excluding bond, to
 be paid under a tenancy agreement by the tenant.
@@ -13,11 +13,11 @@ from openfisca_aotearoa import entities
 
 
 class residential_tenancies__rent(variables.Variable):
-    label = "Residential tenancies' rent"
+    label = "Residential tenancies — Rent"
     reference = "https://www.legislation.govt.nz/act/public/1986/0120/latest/DLM94283.html"
     documentation = """
-        Rent is any valuable, including money, goods, services, and excluding
-        bond, to be paid under a tenancy agreement by the tenant.
+        Any valuable, including money, goods, services, and excluding bond, to
+        be paid under a tenancy agreement by the tenant.
         """
     entity = entities.Tenancy
     value_type = float

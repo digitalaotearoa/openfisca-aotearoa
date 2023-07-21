@@ -1,7 +1,5 @@
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Rent -
+    2 (rent) § RTA 1986
     Scenario: single tenant #1
   period: 1987-02-01
   input:
@@ -41,9 +39,7 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Rent -
+    2 (rent) § RTA 1986
     Scenario: single tenant #2
   period: 1987-02-01
   input:
@@ -83,9 +79,7 @@
 
 
 - name: >
-    Residential Tenancies Act 1986 -
-    2 Interpretation -
-    Rent -
+    2 (rent) § RTA 1986
     Scenario: joint tenants
   period: 1987-02-01
   input:
