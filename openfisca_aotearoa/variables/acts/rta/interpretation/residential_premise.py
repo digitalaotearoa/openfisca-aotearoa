@@ -33,4 +33,4 @@ class residential_tenancies__residential_premise(variables.Variable):
         # whether or not the occupation or intended occupation for residential
         # purposes is or would be unlawful
 
-        return occupant * residence
+        return premises.sum(occupant * residence)
