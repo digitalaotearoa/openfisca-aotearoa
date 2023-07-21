@@ -1,54 +1,19 @@
 - name: >
     2 (residential premise) § RTA 1986
+    Scenario: one occupant
   period: 1987-02-01
   input:
-    persons:
-      Juana:
-        occupation_type:
-          1987-W06: residential
-          1987-W07: residential
-          1987-W08: non_residential
-          1987-W09: residential
-          1987-W10: residential
-          1987-W11: non_residential
-          1987-W12: residential
-          1987-W13: non_residential
-          1987-W14: non_residential
-      Abdul:
-        occupation_type:
-          1987-W06: residential
-          1987-W07: residential
-          1987-W08: residential
-          1987-W09: non_residential
-          1987-W10: residential
-          1987-W11: non_residential
-          1987-W12: non_residential
-          1987-W13: residential
-          1987-W14: non_residential
-      Pablo:
-        occupation_type:
-          1987-W06: residential
-          1987-W07: residential
-          1987-W08: residential
-          1987-W09: residential
-          1987-W10: non_residential
-          1987-W11: residential
-          1987-W12: non_residential
-          1987-W13: non_residential
-          1987-W14: non_residential
-    premise:
-      applicant: [Juana]
-      occupants: [Abdul]
-      others: [Pablo]
+    occupant:
+      1987-W05: [true,  true,   true]
+      1987-W06: [true,  true,   true]
+      1987-W07: [true,  true,   true]
+      1987-W08: [false, false,  false]
+    occupation_type:
+      1987-W07: [unknown, residential, non_residential]
+      1987-W08: [unknown, residential, non_residential]
   output:
     residential_tenancies__residential_premise:
+      1987-W05: false
       1987-W06: false
-      1987-W07: true
-      1987-W08: true
-      1987-W09: true
-      1987-W10: true
-      1987-W11: false
-      1987-W12: true
-      1987-W13: true
-      1987-W14: false
-      1987-W15: false
+      1987-W07: [false, true,   false]
+      1987-W08: [false, false,  false]
