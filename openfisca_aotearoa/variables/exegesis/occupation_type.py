@@ -1,8 +1,8 @@
 """Exegesis — Occupation type.
 
-The intended or actual occupation of a premise by a person.
+The type of occupation of a premise.
 
-Can be either residential or non-residential.
+Can be either rent, board, or ownership.
 
 """
 
@@ -13,15 +13,16 @@ from openfisca_aotearoa import entities
 
 class OccupationType(indexed_enums.Enum):
     unknown = "Unknown"
-    residential = "Residential"
-    non_residential = "Non-residential"
+    rent = "Rent"
+    board = "Board"
+    ownership = "Ownership"
 
 
 class occupation_type(variables.Variable):
     label = "Exegesis — Occupation type"
     reference = "https://en.wiktionary.org/wiki/occupation#English"
-    documentation = """Can be either residential or non-residential."""
-    entity = entities.Person
+    documentation = """Can be rent, board, or ownership."""
+    entity = entities.Premise
     value_type = indexed_enums.Enum
     possible_values = OccupationType
     default_value = OccupationType.unknown

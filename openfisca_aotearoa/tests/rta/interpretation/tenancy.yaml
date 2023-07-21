@@ -1,0 +1,58 @@
+- name: >
+    2 (tenancy) § RTA 1986
+    Scenario: residential premise
+  period: 1987-02-01
+  input:
+    residential_tenancies__residential_premise:
+      1987-W05: [true, false]
+      1987-W06: [true, false]
+    occupation_lawfulness:
+      1987-W05: [legal, legal]
+      1987-W06: [legal, legal]
+    occupation_type:
+      1987-W05: [rent, rent]
+      1987-W06: [rent, rent]
+  output:
+    residential_tenancies__tenancy:
+      1987-W05: [false, false]
+      1987-W06: [true, false]
+
+
+- name: >
+    2 (tenancy) § RTA 1986
+    Scenario: occupation lawfulness
+  period: 1987-02-01
+  input:
+    residential_tenancies__residential_premise:
+      1987-W05: [true, true, true]
+      1987-W06: [true, true, true]
+    occupation_lawfulness:
+      1987-W05: [unknown, legal, illegal]
+      1987-W06: [unknown, legal, illegal]
+    occupation_type:
+      1987-W05: [rent, rent, rent]
+      1987-W06: [rent, rent, rent]
+  output:
+    residential_tenancies__tenancy:
+      1987-W05: [false, false, false]
+      1987-W06: [false, true, false]
+
+
+- name: >
+    2 (tenancy) § RTA 1986
+    Scenario: occupation type
+  period: 1987-02-01
+  input:
+    residential_tenancies__residential_premise:
+      1987-W05: [true, true, true, true]
+      1987-W06: [true, true, true, true]
+    occupation_lawfulness:
+      1987-W05: [legal, legal, legal, legal]
+      1987-W06: [legal, legal, legal, legal]
+    occupation_type:
+      1987-W05: [unknown, rent, board, ownership]
+      1987-W06: [unknown, rent, board, ownership]
+  output:
+    residential_tenancies__tenancy:
+      1987-W05: [false, false, false, false]
+      1987-W06: [false, true, false, false]
