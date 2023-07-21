@@ -180,24 +180,24 @@ The first thing to recognise is it references the `section 16` of the Social Sec
 We choose to structure the code accordingly. This looks like this:
 
 ```
-# ssa16_1 - Descriptive, not requiring coding.
+# ssa2018_16_1 - Descriptive, not requiring coding.
 
-ssa16_2_a = persons("immigration__citizen_or_resident", period) * \
+ssa2018_16_2_a = persons("immigration__citizen_or_resident", period) * \
     persons("social_security__ordinarily_resident_in_new_zealand", period)
 
-ssa16_2_a_i = persons("social_security__resided_continuously_nz_2_years_citizen_or_resident", periods.ETERNITY)
+ssa2018_16_2_a_i = persons("social_security__resided_continuously_nz_2_years_citizen_or_resident", periods.ETERNITY)
 
-ssa16_2_a_ii = persons("immigration__recognised_refugee", period) + \
+ssa2018_16_2_a_ii = persons("immigration__recognised_refugee", period) + \
     persons("immigration__protected_person", period)
 
-ssa16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
+ssa2018_16_2_b = persons("social_security__ordinarily_resident_in_country_with_reciprocity_agreement", period) * (persons("years_resided_continuously_in_new_zealand", period) >= 2)
 
-# ssa16_3 - TODO Useful would be a list of countrys this applies to... we could make country an input.
-# ssa16_4 - MSD can refuse or cancel benefit if person not ordinarily in NZ...
-# ssa16_5 - The Governer-General may by Order in Council make regulations for the purposes of section 16 that specify circumstances in which:...
+# ssa2018_16_3 - TODO Useful would be a list of countrys this applies to... we could make country an input.
+# ssa2018_16_4 - MSD can refuse or cancel benefit if person not ordinarily in NZ...
+# ssa2018_16_5 - The Governer-General may by Order in Council make regulations for the purposes of section 16 that specify circumstances in which:...
 #           Note the content of the list in this section is identical to the list in 421_1_c
 
-return (ssa16_2_a * (ssa16_2_a_i + ssa16_2_a_ii)) + ssa16_2_b
+return (ssa2018_16_2_a * (ssa2018_16_2_a_i + ssa2018_16_2_a_ii)) + ssa2018_16_2_b
 
 ```
  - Firstly create local variables based on the structure that enable a person reading it to understand the reference - see `ssa16_1`
@@ -282,5 +282,3 @@ i.e. the formula for `jobseeker_support__benefit` would be:
  ```
  jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
  ```
-
-
