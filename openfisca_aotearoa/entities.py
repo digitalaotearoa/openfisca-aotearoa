@@ -1,19 +1,29 @@
-"""TODO: Add missing doctring."""
+"""Entities present in New Zealand — Aotearoa's legislation.
+
+Best practice would be to not utilise roles as legal definitions, instead as a
+framework for structuring scenarios.
+
+For instance, a person in the role of child (family entity) should not be
+assumed to be a social_security__dependent_child or even a
+social_security__child. Those legal concepts should be required of the persons
+put in the child role.
+
+In some more generic situations the role can be used to imply a more general
+concept. For an example of this see: in_a_relationship which will return true
+if the person occupies the role of partner in a scenario.
+
+The decision to lean on this variable should be carefully considered in light
+of the definitions within the instrument of law being interpreted.
+
+If the instrument has it's own definition for partner — it's probably better to
+fashion a variable that includes the appropriate tests to that use case.
+
+"""
 
 # This file defines the entities needed by our legislation.
 from openfisca_core.entities import build_entity
 
-# General note about how to consider roles as they are utilised in OpenFisca Aotearoa
-#
-# Best practice would be to not utilise roles as legal definitions, instead as a framework for structuring scenarios.
-#
-# For instance, a person in the role of child (family entity) should not be assumed to be a social_security__dependent_child
-# or even a social_security__child. Those legal concepts should be required of the persons put in the child role.
-#
-# In some more generic situations the role can be used to imply a more general concept. For an example of this see: in_a_relationship which will return true if the person occupys the role of partner in a scenario.
-# The decision to lean on this variable should be carefully considered in light of the definitions within the instrument of law being interpreted.
-# If the instrument has it's own definition for partner - it's probably better to fashion a variable that includes the appropriate tests to that use case.
-
+## People
 
 Person = build_entity(
     key = "person",
@@ -95,16 +105,52 @@ Family = build_entity(
         ],
     )
 
-Tenancy = build_entity(
-    key = "tenancy",
-    plural = "tenancies",
-    label = "Tenancy",
-    doc = """TODO""",
+Premise = build_entity(
+    key = "premise",
+    plural = "premises",
+    label = "Premise",
+    doc = """
+        A premise represents any premise intended for occupation (room, land,
+        caravans, etc.). In the particular case of a boarding house tenancy, it
+        represents a residential premise containing 1 or more boarding rooms
+        and occupied, or intended by the landlord to be occupied, by at least 6
+        tenants at any one time.
+        """,
     roles = [
         {
             "key": "applicant",
             "label": "applicant",
-            "doc": "The one person who is the focus of the calculation",
+            "doc": """The one person who is the focus of the calculation""",
+            "max": 1,
+            },
+        {
+            "key": "occupant",
+            "plural": "occupants",
+            "label": "Occupant",
+            "doc": """The occupants of a premise""",
+            },
+        {
+            "key": "other",
+            "plural": "others",
+            "label": "Other",
+            "doc": """All other non-occupant members of a premise""",
+            },
+        ],
+    )
+
+Tenancy = build_entity(
+    key = "tenancy",
+    plural = "tenancies",
+    label = "Tenancy",
+    doc = """
+        A tenancy represents, in relation to any residential premises, the
+        right to occupy the premises in consideration for rent.
+        """,
+    roles = [
+        {
+            "key": "applicant",
+            "label": "applicant",
+            "doc": """The one person who is the focus of the calculation""",
             "max": 1,
             },
         {
@@ -117,7 +163,7 @@ Tenancy = build_entity(
             "key": "other",
             "plural": "others",
             "label": "Other",
-            "doc": "All other members of a tenancy",
+            "doc": """All other members of a tenancy""",
             },
         ],
     )
@@ -131,7 +177,7 @@ Ownership = build_entity(
         {
             "key": "principal",
             "label": "Principal",
-            "doc": "The one person who is the focus of the calculation",
+            "doc": """The one person who is the focus of the calculation""",
             "max": 1,
             },
         {
@@ -144,11 +190,12 @@ Ownership = build_entity(
             "key": "other",
             "plural": "others",
             "label": "Other",
-            "doc": "All other members of an ownership",
+            "doc": """All other members of an ownership""",
             },
         ],
     )
 
+# TODO: Consolidate with RTA.
 Titled_Property = build_entity(
     key="titled_property",
     plural="titled_properties",
@@ -178,5 +225,4 @@ Titled_Property = build_entity(
         ],
     )
 
-
-entities = [Titled_Property, Ownership, Tenancy, Person, Family]
+entities = [Titled_Property, Ownership, Tenancy, Premise, Person, Family]
