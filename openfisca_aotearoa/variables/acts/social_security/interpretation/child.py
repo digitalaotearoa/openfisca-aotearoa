@@ -2,8 +2,7 @@
 
 import numpy
 
-from openfisca_core import holders
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
