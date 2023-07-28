@@ -17,17 +17,3 @@ class residential_tenancies__tenant(variables.Variable):
     value_type = bool
     default_value = False
     definition_period = periods.DateUnit.WEEK
-
-    def formula_1987_02_01(people, _period, _params):
-        # tenant, in relation to any residential premises that are the subject
-        # of a tenancy agreement, means the grantee of a tenancy of the
-        # premises under the agreement; and, where appropriate, includes—
-        # (a) a prospective tenant; and
-        # (b) a former tenant; and
-        # (c) a lawful successor in title of a tenant to the premises; and
-        # (d) the personal representative of a deceased tenant; and
-        # (e) an agent of a tenant
-        return (
-            + people.has_role(entities.Tenancy.APPLICANT)
-            + people.has_role(entities.Tenancy.TENANT)
-            )

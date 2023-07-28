@@ -3,10 +3,15 @@
     Scenario: single tenant #1
   input:
     persons:
-      Juana: {}
+      Juana:
+        residential_tenancies__tenant:
+          1987-W06: true
+          1987-W07: true
+          1987-W08: true
+          1987-W09: true
       Abdul: {}
       Pablo: {}
-    tenancy:
+    premise:
       applicant: Juana
       others: [Abdul, Pablo]
       residential_tenancies__rent:
@@ -32,12 +37,16 @@
     Scenario: single tenant #2
   input:
     persons:
-      Juana: {}
+      Juana:
+        residential_tenancies__tenant:
+          1987-W06: true
+          1987-W07: true
+          1987-W08: true
+          1987-W09: true
       Abdul: {}
       Pablo: {}
-    tenancy:
-      tenants: [Juana]
-      others: [Abdul, Pablo]
+    premise:
+      others: [Juana, Abdul, Pablo]
       residential_tenancies__rent:
         1987-W06: 0
         1987-W07: 100
@@ -61,13 +70,22 @@
     Scenario: joint tenants
   input:
     persons:
-      Juana: {}
-      Abdul: {}
+      Juana:
+        residential_tenancies__tenant:
+          1987-W06: true
+          1987-W07: true
+          1987-W08: true
+          1987-W09: true
+      Abdul:
+        residential_tenancies__tenant:
+          1987-W06: true
+          1987-W07: true
+          1987-W08: true
+          1987-W09: true
       Pablo: {}
-    tenancy:
+    premise:
       applicant: Juana
-      tenants: [Abdul]
-      others: [Pablo]
+      others: [Abdul, Pablo]
       residential_tenancies__rent:
         1987-W06: 0
         1987-W07: 100

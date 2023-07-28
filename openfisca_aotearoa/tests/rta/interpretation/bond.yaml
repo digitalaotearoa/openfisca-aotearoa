@@ -17,8 +17,8 @@
           1987-W07: 100
           1987-W08: 100
           1987-W09: 100
-    tenancy:
-      tenants: [Juana]  # Delegated to 'residential_tenancies__tenant'
+    premise:
+      applicant: Juana
       residential_tenancies__rent:
         1987-W05: 0
         1987-W06: 0
@@ -79,8 +79,8 @@
           1987-W07: 100
           1987-W08: 100
           1987-W09: 100
-    tenancy:
-      tenants: [Juana, Abdul, Pablo]  # Delegated to 'residential_tenancies__tenant'
+    premise:
+      others: [Juana, Abdul, Pablo]
       residential_tenancies__rent:
         1987-W05: 0
         1987-W06: 0
@@ -167,17 +167,17 @@
           1987-W07: 100
           1987-W08: 100
           1987-W09: 100
-    tenancies:
-      tenancy1:
-        tenants: [Juana, Thorn, Jenny]  # Delegated to 'residential_tenancies__tenant'
+    premises:
+      premise1:
+        others: [Juana, Thorn, Jenny]
         residential_tenancies__rent:
           1987-W05: 0
           1987-W06: 0
           1987-W07: 0
           1987-W08: 50
           1987-W09: 500
-      tenancy2:
-        tenants: [Abdul, Pablo]  # Delegated to 'residential_tenancies__tenant'
+      premise2:
+        others: [Abdul, Pablo]
         residential_tenancies__rent:
           1987-W05: 0
           1987-W06: 0

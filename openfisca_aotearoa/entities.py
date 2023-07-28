@@ -138,36 +138,6 @@ Premise = build_entity(
         ],
     )
 
-Tenancy = build_entity(
-    key = "tenancy",
-    plural = "tenancies",
-    label = "Tenancy",
-    doc = """
-        A tenancy represents, in relation to any residential premises, the
-        right to occupy the premises in consideration for rent.
-        """,
-    roles = [
-        {
-            "key": "applicant",
-            "label": "applicant",
-            "doc": """The one person who is the focus of the calculation""",
-            "max": 1,
-            },
-        {
-            "key": "tenant",
-            "plural": "tenants",
-            "label": "Tenants",
-            "doc": """The grantees of the tenancy""",
-            },
-        {
-            "key": "other",
-            "plural": "others",
-            "label": "Other",
-            "doc": """All other members of a tenancy""",
-            },
-        ],
-    )
-
 Ownership = build_entity(
     key = "ownership",
     plural = "ownerships",
@@ -225,4 +195,4 @@ Titled_Property = build_entity(
         ],
     )
 
-entities = [Titled_Property, Ownership, Tenancy, Premise, Person, Family]
+entities = [Titled_Property, Ownership, Premise, Person, Family]

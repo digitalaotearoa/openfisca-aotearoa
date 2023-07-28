@@ -19,22 +19,22 @@ class residential_tenancies__rent(variables.Variable):
         Any valuable, including money, goods, services, and excluding bond, to
         be paid under a tenancy agreement by the tenant.
         """
-    entity = entities.Tenancy
+    entity = entities.Premise
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
 
-    def formula_1987_02_01(tenancy, period, _params):
-        tenants = tenancy.members("residential_tenancies__tenant", period)
+    def formula_1987_02_01(premises, period, _params):
+        tenants = premises.members("residential_tenancies__tenant", period)
 
         # rent means any money, goods, services, or other valuable
         # consideration in the nature of rent to be paid or supplied under a
         # tenancy agreement by the tenant;
-        housing_costs = tenancy.members("housing_costs", period)
-        rta1986_2_rent_a = tenancy.sum(housing_costs * tenants)
+        housing_costs = premises.members("housing_costs", period)
+        rta1986_2_rent_a = premises.sum(housing_costs * tenants)
 
         # but does not include any sum of money payable or paid by way of bond
-        bond = tenancy("residential_tenancies__bond", period)
+        bond = premises("residential_tenancies__bond", period)
         rta1986_2_rent_b = bond * tenants.any()
 
         return numpy.maximum(rta1986_2_rent_a - rta1986_2_rent_b, 0)

@@ -22,7 +22,7 @@ class housing_costs(variables.Variable):
 
     def formula(people, period, _params):
         tenants = people("residential_tenancies__tenant", period)
-        rent = people.tenancy("residential_tenancies__rent", period)
-        bond = people.tenancy("residential_tenancies__bond", period)
+        rent = people.premise("residential_tenancies__rent", period)
+        bond = people.premise("residential_tenancies__bond", period)
 
         return (rent + bond) * tenants / numpy.add.reduce(tenants)

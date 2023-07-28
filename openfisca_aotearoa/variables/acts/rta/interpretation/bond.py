@@ -19,22 +19,22 @@ class residential_tenancies__bond(variables.Variable):
         Any money, excluding rent, to be paid under a tenancy agreement by the
         tenant, as security for the observance and performance of the tenancy.
         """
-    entity = entities.Tenancy
+    entity = entities.Premise
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
 
-    def formula_1987_02_01(tenancy, period, _params):
-        tenants = tenancy.members("residential_tenancies__tenant", period)
+    def formula_1987_02_01(premises, period, _params):
+        tenants = premises.members("residential_tenancies__tenant", period)
 
         # bond means any sum of money payable or paid under a tenancy agreement
         # as security for the observance and performance of the tenant’s
         # obligations under the agreement and this Act;
-        housing_costs = tenancy.members("housing_costs", period)
-        rta1986_2_bond_a = tenancy.sum(housing_costs * tenants)
+        housing_costs = premises.members("housing_costs", period)
+        rta1986_2_bond_a = premises.sum(housing_costs * tenants)
 
         # but does not include any sum payable or paid by way of rent
-        rent = tenancy("residential_tenancies__rent", period)
+        rent = premises("residential_tenancies__rent", period)
         rta1986_2_bond_b = rent * tenants.any()
 
         return numpy.maximum(rta1986_2_bond_a - rta1986_2_bond_b, 0)
