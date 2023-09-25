@@ -165,7 +165,7 @@ class disability_allowance__income_limit_clause_13(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         sole_parent = persons("social_security__sole_parent", period)
-        only_one_child = (persons("social_security__dependent_children", period) == 1)
+        only_one_child = persons("social_security__dependent_children", period) == 1
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_13"]
         return income_within_limit * only_one_child * sole_parent
 
@@ -180,7 +180,7 @@ class disability_allowance__income_limit_clause_14(variables.Variable):
 
     def formula_2018_11_26(persons, period, parameters):
         sole_parent = persons("social_security__sole_parent", period)
-        more_than_one_child = (persons("social_security__dependent_children", period) > 1)
+        more_than_one_child = persons("social_security__dependent_children", period) > 1
         income_within_limit = persons("social_security__income", period) <= parameters(period).disability_allowance.income_limits.clauses["clause_14"]
         return more_than_one_child * sole_parent * income_within_limit
 

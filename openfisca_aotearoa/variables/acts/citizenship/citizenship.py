@@ -76,7 +76,7 @@ class citizenship__each_year_minimum_presence_requirements(Variable):
             days_present = persons("days_present_in_new_zealand_in_preceeding_year", day_n_years_ago)
             # print("days present on rolling year ending at", day_n_years_ago, "is", days_present)
 
-            meets_presence_n_years_ago = (days_present >= required_days)
+            meets_presence_n_years_ago = days_present >= required_days
             # print("Meets requirement??", meets_presence_n_years_ago)
 
             # Accumulate the each year

@@ -68,7 +68,7 @@ class best_start__year_of_child(Variable):
 
         # adjusts month for first full month after birth
         adjust_month = birth_month + (birth_day > 1)
-        is_birthday_month_past = (adjust_month <= period.start.month)
+        is_birthday_month_past = adjust_month <= period.start.month
         is_current_or_previous_year = birth_year <= period.start.year
         whatyear = (period.start.year - birth_year) - \
             where(is_birthday_month_past, 0, 1)

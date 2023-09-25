@@ -47,7 +47,7 @@ class acc_sched_1__lope_eligible(Variable):
         by_injury = persons("incapacity_for_employment__caused_covered_injury", period)
         potential_earner = persons("acc__potential_earner", period)
 
-        over_or_equal_18 = (persons("age", period) >= 18)
+        over_or_equal_18 = persons("age", period) >= 18
         not_engaged_in_study_at_entitlement = logical_not(persons("acc_sched_1__engaged_fulltime_study_or_training", period))
         earner = persons("acc__earner", period)
         not_earner_with_higher_loe = logical_not(earner * persons("acc_sched_1__loe_more_than_lope", period))
