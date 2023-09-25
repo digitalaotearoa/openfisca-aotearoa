@@ -1,19 +1,31 @@
 # Changelog
 
-# 20.0.3 - [51](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/51)
+## 20.1.0 - [57](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/57)
+
+* Technical improvement
+* Impacted periods: all
+* Impacted areas: all
+* Details:
+  - Catch up from mainstream, both dependencies and code evolution (bumped Numpy to ~1.24 and Python to 39-311)
+  - These upgrades are critical as the aforesaid versions are EOL and do not easily compile in modern workstations (specially ARM64).
+
+### 20.0.3 - [51](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/51)
+
 * Fixes problem with importlib_metadata and idna upstream:
  - `setup.py`
 
+### 20.0.2 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
 
-# 20.0.2 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
 * Added dependency package importlib_metadata:
  - `setup.py`
 
-# 20.0.1 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
+### 20.0.1 - [49](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/49)
+
 * Other Changes:
  - `tests/social_security/sole_parent_support/sole_parent_support__benefit.yaml figure fixed for 2022/23`
 
 # 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
+
 * Added variables:
  - `sole_parent_support__requirement`
  - `sole_parent_support__dependent_child_requirement`
@@ -93,7 +105,8 @@
 * Breaking changes
   - Several definition period and name changes
 
-# 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
+## 17.1.0 - [38](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/38)\\
+
 * Other changes:
   - `social_security__residential_requirement` period changed from monthly to weekly
   - `social_security__ordinarily_resident_in_new_zealand` period changed from monthly to eternity
@@ -109,7 +122,9 @@
   - `youth_payment__receiving`
 * Renamed variables:
   - `jobseeker_benefit__granted` to `jobseeker_support__granted`
-# 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+
+### 16.0.2 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
+*
 * Change to variable `person_has_partner` - time period switched from month to week
 
 ### 16.0.1 - [36](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/35)
@@ -377,7 +392,7 @@
 * Breaking changes:
  - age_of_partner now returns the maximum age of partners rather than assuming one as this section was failing to run after upgrade
 
-# 12.0.0 [13](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/13)
+### 12.0.1 [13](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/13)
 
 * Allows utilisation of the vscode .devcontainer development process. Requires container environment.
 
@@ -721,7 +736,7 @@
 
 * Added Sole Parent Support
 
-# 4.1.1 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/53)
+### 4.1.1 - [#41](https://github.com/ServiceInnovationLab/openfisca-aotearoa/pull/53)
 
 #### Calculation improvement.
 

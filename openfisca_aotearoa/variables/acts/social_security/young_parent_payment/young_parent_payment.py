@@ -118,7 +118,7 @@ class young_parent_payment__income_under_threshold(variables.Variable):
     label = "Is their income under the Young Parent Payment threshold?"
 
     def formula(persons, period, parameters):
-        yearly_income = (persons("monthly_income", period) * 12)
+        yearly_income = persons("monthly_income", period) * 12
         yearly_income_threshold = (
             52 * parameters(period).entitlements.social_security.young_parent_payment.weekly_income_threshold)
         return yearly_income < yearly_income_threshold

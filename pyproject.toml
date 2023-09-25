@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "OpenFisca-Aotearoa"
-version = "20.0.3"
+version = "20.1.0"
 description = "OpenFisca rules-as-code system for Aotearoa."
 license = "AGPL-3.0-only"
 authors = [
@@ -44,7 +44,7 @@ packages = [{include = "openfisca_aotearoa", from = "."}]
 
 [tool.poetry.dependencies]
 python = "~3.9"
-pandas = "~1.5"
+pandas = "^2.1.1"
 openfisca-core = {git = "https://github.com/openfisca/openfisca-core.git", branch = "add-weeks", extras = ["web-api"]}
 
 [tool.poetry.group.dev.dependencies]
@@ -59,7 +59,6 @@ flake8-print = "^5.0.0"
 flake8-rst-docstrings = "^0.2.0"
 flake8-simplify = "^0.19.0"
 flake8-use-fstring = "^1.4.0"
-importlib-metadata = {version = "<4.13.0", python = "~3.7"}
 isort = "^5.11.3"
 mypy = "^0.990"
 pycodestyle = "^2.7.0"

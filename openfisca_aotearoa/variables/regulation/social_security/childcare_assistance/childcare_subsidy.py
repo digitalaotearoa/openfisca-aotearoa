@@ -68,7 +68,7 @@ class childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school(Var
             "social_security__dependent_child", period.first_week)
         children_to_be_enrolled = families.members(
             "will_be_enrolled_in_school", period)
-        aged_5 = (families.members("age", period.start) == 5)
+        aged_5 = families.members("age", period.start) == 5
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period)
         meets_early_childcare_hours_threshold = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating

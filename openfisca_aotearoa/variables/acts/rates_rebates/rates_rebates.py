@@ -1,6 +1,6 @@
 """TODO: Add missing doctring."""
 
-from numpy import clip, floor
+import numpy
 
 # Import from openfisca-core the common python objects used to code the legislation in OpenFisca
 from openfisca_core.holders import set_input_divide_by_period
@@ -54,7 +54,7 @@ class rates_rebates__rebate(Variable):
         allowable_income = (titled_properties.sum(titled_properties.members("rates_rebates__dependants", period)) * additional_per_dependant) + income_threshold
 
         # wrapping floor math function is non legislative and only to conform output of variable with existing infrastracture.
-        excess_income = floor((titled_properties.sum(titled_properties.members("rates_rebates__combined_income", period)) - allowable_income) / 8).clip(min=0)
+        excess_income = numpy.floor((titled_properties.sum(titled_properties.members("rates_rebates__combined_income", period)) - allowable_income) / 8).clip(min=0)
 
         # minus the initial contribution
         rates_minus_contribution = titled_properties("rates_rebates__rates_total", period) - initial_contribution
@@ -63,7 +63,7 @@ class rates_rebates__rebate(Variable):
         rebate = rates_minus_contribution - ((rates_minus_contribution / 3) + excess_income)
 
         # Ensures the results aren't negative (less than 0) or greater than the maximum_allowable
-        return clip(rebate, 0, maximum_allowable)
+        return numpy.clip(rebate, 0, maximum_allowable)
 
 
 class rates_rebates__maximum_income_for_full_rebate(Variable):
