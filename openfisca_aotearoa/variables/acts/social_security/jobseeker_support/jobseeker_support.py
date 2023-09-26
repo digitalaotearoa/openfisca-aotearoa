@@ -38,6 +38,7 @@ class jobseeker_support__entitled(variables.Variable):
     definition_period = periods.WEEK
     label = "Jobseeker Support eligibility and amount"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783144", "http://legislation.govt.nz/act/public/1964/0136/latest/DLM5478527.html"
+    set_input = holders.set_input_dispatch_by_period
 
     # Old Job Seeker formula for 1964 Act, rewritten to show gaps
     def formula_2013_04_17(persons, period, parameters):
@@ -156,6 +157,7 @@ class jobseeker_support__receiving(variables.Variable):
     label = "is receiving jobseeker support at the rate in clause 1(c), (e), or (f) of Part 1 of Schedule 4, SSA2018 21 3(a)"
     definition_period = periods.WEEK
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783146"
+    set_input = holders.set_input_dispatch_by_period
 
 
 class jobseeker_support__granted(variables.Variable):

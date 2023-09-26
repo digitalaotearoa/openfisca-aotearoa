@@ -6,7 +6,7 @@ import numpy
 #
 # For more information on OpenFisca's available modules:
 # https://openfisca.org/doc/openfisca-python-api/index.html
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
 
 # We import the required `entities` corresponding to our formulas.
 #
@@ -24,6 +24,7 @@ class sole_parent_support__benefit(variables.Variable):
     definition_period = periods.WEEK
     label = "The final net benefit entitlement"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784854.html"
+    set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(people, period, parameters):
         return people("sole_parent_support__entitled", period) * numpy.clip(people("sole_parent_support__base", period) - people("sole_parent_support__reduction", period), 0, people("sole_parent_support__base", period))

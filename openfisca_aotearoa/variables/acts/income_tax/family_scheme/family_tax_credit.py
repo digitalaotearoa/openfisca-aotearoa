@@ -62,7 +62,7 @@ class family_tax_credit__eldest(Variable):
         under_16y = age < 16
         principal = people.has_role(Family.PRINCIPAL)
         caregived = people("family_tax_credit__dependent_child", period.this_year)
-        dependent = caregived >= 1 / 3 - .5  # last value is the error margin
+        dependent = caregived >= 1 / 3 - .005  # last value is the error margin
         eldest_child = sum(under_16y * dependent) - 1 >= 0
 
         prescribed_amount = (
@@ -96,7 +96,7 @@ class family_tax_credit__not_eldest(Variable):
         under_16y = age < 16
         principal = people.has_role(Family.PRINCIPAL)
         caregived = people("family_tax_credit__dependent_child", period.this_year)
-        dependent = caregived >= 1 / 3 - .5  # last value is the error margin
+        dependent = caregived >= 1 / 3 - .005  # last value is the error margin
         other_than_the_eldest_child = max([0, sum(under_16y * dependent) - 1])
 
         prescribed_amount = (

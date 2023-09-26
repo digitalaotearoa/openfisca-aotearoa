@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy
 import pandas
 
-from openfisca_core import indexed_enums, periods, variables
+from openfisca_core import holders, indexed_enums, periods, variables
 
 import openfisca_aotearoa
 from openfisca_aotearoa import entities
@@ -38,6 +38,7 @@ class accommodation_supplement__area_of_residence(variables.Variable):
     possible_values = AccommodationSupplement__AreaOfResidence
     default_value = AccommodationSupplement__AreaOfResidence.unknown
     definition_period = periods.DateUnit.WEEK
+    set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(people, period, _params):
         area_of_residence = AccommodationSupplement__AreaOfResidence
