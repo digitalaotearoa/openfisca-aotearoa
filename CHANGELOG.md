@@ -1,10 +1,14 @@
 # Changelog
 
+### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
+
+* Test case.
+* Details:
+  - Add Peta & Kai's stories.
+
 ## 20.1.0 - [57](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/57)
 
-* Technical improvement
-* Impacted periods: all
-* Impacted areas: all
+* Technical improvement.
 * Details:
   - Catch up from mainstream, both dependencies and code evolution (bumped Numpy to ~1.24 and Python to 39-311)
   - These upgrades are critical as the aforesaid versions are EOL and do not easily compile in modern workstations (specially ARM64).
@@ -32,7 +36,6 @@
 * Details:
   - Add Peta's story
   - Add Kai's story
->>>>>>> 6f04876 (Bump version)
 
 # 20.0.0 - [43](https://github.com/govzeroaotearoa/openfisca-aotearoa/pull/43)
 
