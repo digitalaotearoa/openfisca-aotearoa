@@ -1,12 +1,14 @@
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Beneficiaries who are single -
-    (a) for a single beneficiary under the age of 25 years, the maximum weekly
-        rate of a benefit that the beneficiary would have been entitled to
-        receive, before any abatement or deduction, if the beneficiary had
-        attained the age of 25 years: [...]
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Beneficiaries who are single -
+        (a) for a single beneficiary under the age of 25 years, the maximum
+            weekly rate of a benefit that the beneficiary would have been
+            entitled to receive, before any abatement or deduction, if the
+            beneficiary had attained the age of 25 years: [...]
   period: 2018-11-26
   input:
     age:
@@ -19,16 +21,18 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Beneficiaries who are single -
-    (b) for a single beneficiary with 1 or more dependent children,—
-        (i)   the maximum weekly rate of a benefit that the beneficiary is
-              entitled to receive, before any abatement or deduction; plus
-        (ii)  the maximum annual rate of family tax credit (divided by 52) that
-              is payable in respect of an eldest dependent child who is under
-              16 years old under subparts MA to MF and MZ of the Income Tax Act
-              2007:
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Beneficiaries who are single -
+        (b) for a single beneficiary with 1 or more dependent children,—
+            (i)   the maximum weekly rate of a benefit that the beneficiary is
+                  entitled to receive, before any abatement or deduction; plus
+            (ii)  the maximum annual rate of family tax credit (divided by 52)
+                  that is payable in respect of an eldest dependent child who
+                  is under 16 years old under subparts MA to MF and MZ of the
+                  Income Tax Act 2007:
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
@@ -81,12 +85,14 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Beneficiaries who are single -
-    (c) for any other single beneficiary, the maximum weekly rate of a
-        benefit that the beneficiary would be entitled to receive before
-        any abatement or deduction:
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Beneficiaries who are single -
+        (c) for any other single beneficiary, the maximum weekly rate of a
+            benefit that the beneficiary would be entitled to receive before
+            any abatement or deduction:
   period: 2018-11-26
   input:
     age:
@@ -100,13 +106,15 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Beneficiaries who are in a relationship -
-    (c) for a beneficiary who is in a relationship and is not a beneficiary to
-        whom paragraph (e) applies,—
-        (i) the maximum weekly rate of a benefit that the beneficiary
-            is entitled to receive, before any abatement or deduction; [...]
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Beneficiaries who are in a relationship -
+        (c) for a beneficiary who is in a relationship and is not a beneficiary
+            to whom paragraph (e) applies,—
+            (i) the maximum weekly rate of a benefit that the beneficiary
+                is entitled to receive, before any abatement or deduction;
   period: 2018-11-26
   input:
     jobseeker_support__receiving:
@@ -120,15 +128,18 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Beneficiaries who are in a relationship -
-    (c) for a beneficiary who is in a relationship and is not a beneficiary to
-        whom paragraph (e) applies,— [...]
-        (ii)  if the beneficiary has 1 or more dependent children, the maximum
-              annual rate of family tax credit (divided by 52) that is paid in
-              respect of an eldest dependent child who is under 16 years (if
-              any) under subparts MA to MF and MZ of the Income Tax Act 2007;
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Beneficiaries who are in a relationship -
+        (c) for a beneficiary who is in a relationship and is not a beneficiary
+            to whom paragraph (e) applies,— [...]
+            (ii)  if the beneficiary has 1 or more dependent children, the
+                  maximum annual rate of family tax credit (divided by 52) that
+                  is paid in respect of an eldest dependent child who is under
+                  16 years (if any) under subparts MA to MF and MZ of the
+                  Income Tax Act 2007;
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
@@ -185,14 +196,18 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Non-beneficiaries who are single -
-    (f) for a single non-beneficiary with 1 or more dependent children,—
-        (i)   the appropriate maximum weekly rate of jobseeker support; plus
-        (ii)  the annual rate of family tax credit (divided by 52) that is
-              payable in respect of an eldest dependent child who is under 16
-              years under subparts MA to MF and MZ of the Income Tax Act 2007:
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Non-beneficiaries who are single -
+        (f) for a single non-beneficiary with 1 or more dependent children,—
+            (i)   the appropriate maximum weekly rate of jobseeker support;
+                  plus
+            (ii)  the annual rate of family tax credit (divided by 52) that is
+                  payable in respect of an eldest dependent child who is under
+                  16 years under subparts MA to MF and MZ of the Income Tax Act
+                  2007:
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
@@ -245,12 +260,14 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Non-beneficiaries who are single -
-    (g) for any other single non-beneficiary, the weekly rate of jobseeker
-        support at the rate in clause 1(d) of Part 1 of Schedule 4 of the Act
-        before any abatement or deduction:
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Non-beneficiaries who are single -
+        (g) for any other single non-beneficiary, the weekly rate of jobseeker
+            support at the rate in clause 1(d) of Part 1 of Schedule 4 of the
+            Act before any abatement or deduction:
   period: 2018-11-26
   input:
     jobseeker_support__entitled:
@@ -262,11 +279,13 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Non-beneficiaries who are in a relationship -
-    (h) for a non-beneficiary who is in a relationship,—
-        (i)   the appropriate maximum weekly rate of jobseeker support; plus
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Non-beneficiaries who are in a relationship -
+        (h) for a non-beneficiary who is in a relationship,—
+            (i)   the appropriate maximum weekly rate of jobseeker support;
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
@@ -281,14 +300,17 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Non-beneficiaries who are in a relationship -
-    (h) for a non-beneficiary who is in a relationship,— [...]
-        (ii)  if the beneficiary has 1 or more dependent children, the maximum
-              annual rate of family tax credit (divided by 52) that is payable
-              in respect of an eldest dependent child who is under 16 years
-              under subparts MA to MF and MZ of the Income Tax Act 2007; plus
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Non-beneficiaries who are in a relationship -
+        (h) for a non-beneficiary who is in a relationship,— [...]
+            (ii)  if the beneficiary has 1 or more dependent children, the
+                  maximum annual rate of family tax credit (divided by 52) that
+                  is payable in respect of an eldest dependent child who is
+                  under 16 years under subparts MA to MF and MZ of the Income
+                  Tax Act 2007;
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
@@ -345,17 +367,22 @@
 
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    Base rate -
-    Non-beneficiaries who are in a relationship -
-    (h) for a non-beneficiary who is in a relationship,—
-        (i)   the appropriate maximum weekly rate of jobseeker support; plus
-        (ii)  if the beneficiary has 1 or more dependent children, the maximum
-              annual rate of family tax credit (divided by 52) that is payable
-              in respect of an eldest dependent child who is under 16 years
-              under subparts MA to MF and MZ of the Income Tax Act 2007; plus
-        (iii) the maximum weekly rate of jobseeker support that would have been
-              payable in respect of the beneficiary’s spouse or partner.
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (2) The base rate is as follows:
+        Non-beneficiaries who are in a relationship -
+        (h) for a non-beneficiary who is in a relationship,—
+            (i)   the appropriate maximum weekly rate of jobseeker support;
+                  plus
+            (ii)  if the beneficiary has 1 or more dependent children, the
+                  maximum annual rate of family tax credit (divided by 52) that
+                  is payable in respect of an eldest dependent child who is
+                  under 16 years under subparts MA to MF and MZ of the Income
+                  Tax Act 2007; plus
+            (iii) the maximum weekly rate of jobseeker support that would have
+                  been payable in respect of the beneficiary’s spouse or
+                  partner.
   period: 2018-11-26
   absolute_error_margin: 0.005
   input:
