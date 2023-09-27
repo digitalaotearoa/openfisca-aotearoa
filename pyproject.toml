@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "OpenFisca-Aotearoa"
-version = "20.1.1"
+version = "20.1.2"
 description = "OpenFisca rules-as-code system for Aotearoa."
 license = "AGPL-3.0-only"
 authors = [

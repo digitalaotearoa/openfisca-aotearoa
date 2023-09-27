@@ -1,5 +1,15 @@
 # Changelog
 
+### 20.1.2 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 26/11/2018.
+* Impacted areas: `accommodation_supplement`
+* Details:
+  - Fix rate & rebate when accommodation type is lodging
+  - Normally, a %62 rate is to be applied in this particular case
+  - However, in reality %162 was being applied, which is incorrect
+
 ### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
 
 * Test case.
