@@ -1,8 +1,9 @@
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
     (2) Accommodation Costs -
-    (a) Rent
+        (a) Rent
   period: 2018-11-26
   input:
     accommodation_costs:
@@ -19,9 +20,10 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement
-    (2) Accommodation Costs
-    (b) Mortgage
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
+    (2) Accommodation Costs -
+        (b) Mortgage
   period: 2018-11-26
   input:
     accommodation_costs:
@@ -38,9 +40,10 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement
-    (2) Accommodation Costs
-    (c) Board
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
+    (2) Accommodation Costs -
+        (c) Board
   period: 2018-11-26
   input:
     accommodation_costs:
@@ -57,9 +60,10 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement
-    (2) Accommodation Costs
-    (c) Lodging
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
+    (2) Accommodation Costs -
+        (c) Lodging
   period: 2018-11-26
   input:
     accommodation_costs:
@@ -76,9 +80,10 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement
-    (2) Accommodation Costs
-    (d) Joint tenancy
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
+    (2) Accommodation Costs -
+        (d) Joint tenancy
   period: 2018-11-26
   input:
     persons:
@@ -157,9 +162,10 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement
-    (2) Accommodation Costs
-    (d) Joint ownership
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation Supplement -
+    (2) Accommodation Costs -
+        (d) Joint ownership
   period: 2018-11-26
   input:
     persons:

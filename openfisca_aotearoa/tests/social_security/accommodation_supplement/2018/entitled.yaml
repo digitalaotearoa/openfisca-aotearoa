@@ -1,7 +1,8 @@
 - name: >
     Social Security Act 2018 -
-    § 10 Accommodation Supplement
-    65 (1) Entitlement
+    Subpart 10 Accommodation Supplement -
+    65  Accommodation supplement -
+    (1) Entitlement
   period: 2018-11-26
   input:
     accommodation_supplement__accommodation_costs:
