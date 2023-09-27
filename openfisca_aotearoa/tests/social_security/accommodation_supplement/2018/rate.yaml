@@ -1,0 +1,10 @@
+- name: >
+    Social Security ??? 2018 -
+    ???
+  period: 2018-11-26
+  input:
+    accommodation_type:
+      2022-W01: [unknown, rent, board, lodging, mortgage, social_housing, residential_care]
+  output:
+    accommodation_supplement__rate:
+      2022-W01: [1, 1, 1, .62, 1, 1, 1]
