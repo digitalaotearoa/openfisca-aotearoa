@@ -1,3 +1,5 @@
+"""https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784375"""
+
 from numpy.typing import NDArray
 from typing import Callable
 
@@ -20,8 +22,6 @@ class AbatementRate:
     taking into account that benefit's own definition of total income; that is,
     "the rate at which a rate of benefit [...] must, under the appropriate
     income test, be reduced on account of income."
-
-    .. see:: https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784375
 
     """
 
