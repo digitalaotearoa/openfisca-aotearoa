@@ -58,6 +58,7 @@ class jobseeker_support__reduction(variables.Variable):
         scale_1 = parameters(period).social_security.income_test_1
         scale_3 = parameters(period).social_security.income_test_3b
         scale_4 = parameters(period).social_security.income_test_4
+
         return people("jobseeker_support__entitled", period) * \
             (
                 (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
