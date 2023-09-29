@@ -16,6 +16,7 @@ from openfisca_core import holders, periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
+from openfisca_aotearoa.variables.acts.social_security import dictionary
 
 
 class sole_parent_support__benefit(variables.Variable):
@@ -52,15 +53,15 @@ class sole_parent_support__reduction(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
     def formula_2018_11_26(people, period, parameters):
+        applicable_rate = people("sole_parent_support__base", period)
         family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
-
         childcare_deduction_limit = parameters(period.first_day).social_security.sole_parent_support.childcare_deduction_limit
-        family_income = family_income - numpy.clip(people("sole_parent_support__weekly_childcare_cost", period), 0, childcare_deduction_limit)
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
-
-        scale_1 = parameters(period).social_security.income_test_1
-        return people("sole_parent_support__entitled", period) * scale_1.calc(family_income)
+        total_income = family_income - numpy.clip(people("sole_parent_support__weekly_childcare_cost", period), 0, childcare_deduction_limit)
+        income_test_1 = parameters(period).social_security.dictionary.income_test_1.calc
+        return (
+            + people("sole_parent_support__entitled", period)
+            * dictionary.AbatementRate(applicable_rate, total_income)(income_test_1)
+            )
 
 
 class sole_parent_support__weekly_childcare_cost(variables.Variable):

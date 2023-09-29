@@ -16,6 +16,7 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
+from openfisca_aotearoa.variables.acts.social_security import dictionary
 
 
 class jobseeker_support__benefit(variables.Variable):
@@ -37,57 +38,76 @@ class jobseeker_support__reduction(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
     def formula_2018_11_26(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        case_1 = (
+            + people("schedule_4__part1_1_c", period)
+            + people("schedule_4__part1_1_e", period)
+            + people("schedule_4__part1_1_f", period)
+            )
 
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+        case_3 = (
+            + people("schedule_4__part1_1_a", period)
+            + people("schedule_4__part1_1_b", period)
+            + people("schedule_4__part1_1_d", period)
+            + people("schedule_4__part1_1_i", period)
+            + people("schedule_4__part1_1_j", period)
+            )
 
-        test_1 = people("schedule_4__part1_1_c", period) + \
-            people("schedule_4__part1_1_e", period) + \
-            people("schedule_4__part1_1_f", period)
+        case_4 = (
+            + people("schedule_4__part1_1_g", period)
+            + people("schedule_4__part1_1_h", period)
+            )
 
-        test_3 = people("schedule_4__part1_1_a", period) + \
-            people("schedule_4__part1_1_b", period) + \
-            people("schedule_4__part1_1_d", period) + \
-            people("schedule_4__part1_1_i", period) + \
-            people("schedule_4__part1_1_j", period)
+        applicable_rate = people("jobseeker_support__base", period)
+        total_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        abatement = dictionary.AbatementRate(applicable_rate, total_income)
 
-        test_4 = people("schedule_4__part1_1_g", period) + \
-            people("schedule_4__part1_1_h", period)
+        income_test_1 = parameters(period).social_security.dictionary.income_test_1.calc
+        income_test_3 = parameters(period).social_security.dictionary.income_test_3b.calc
+        income_test_4 = parameters(period).social_security.dictionary.income_test_4.calc
 
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_3 = parameters(period).social_security.income_test_3b
-        scale_4 = parameters(period).social_security.income_test_4
-
-        return people("jobseeker_support__entitled", period) * \
-            (
-                (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
+        return (
+            + people("jobseeker_support__entitled", period)
+            * (
+                + case_1 * abatement(income_test_1)
+                + case_3 * abatement(income_test_3)
+                + case_4 * abatement(income_test_4)
+                )
             )
 
     def formula_2020_11_09(people, period, parameters):
-        family_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        case_1 = (
+            + people("schedule_4__part1_1_c", period)
+            + people("schedule_4__part1_1_e", period)
+            + people("schedule_4__part1_1_f", period)
+            )
 
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+        case_3 = (
+            + people("schedule_4__part1_1_a", period)
+            + people("schedule_4__part1_1_b", period)
+            + people("schedule_4__part1_1_d", period)
+            + people("schedule_4__part1_1_j", period)
+            )
 
-        test_1 = people("schedule_4__part1_1_c", period) + \
-            people("schedule_4__part1_1_e", period) + \
-            people("schedule_4__part1_1_f", period)
+        case_4 = (
+            + people("schedule_4__part1_1_g", period)
+            + people("schedule_4__part1_1_h", period)
+            )
 
-        test_3 = people("schedule_4__part1_1_a", period) + \
-            people("schedule_4__part1_1_b", period) + \
-            people("schedule_4__part1_1_d", period) + \
-            people("schedule_4__part1_1_j", period)
+        applicable_rate = people("jobseeker_support__base", period)
+        total_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
+        abatement = dictionary.AbatementRate(applicable_rate, total_income)
 
-        test_4 = people("schedule_4__part1_1_g", period) + \
-            people("schedule_4__part1_1_h", period)
+        income_test_1 = parameters(period).social_security.dictionary.income_test_1.calc
+        income_test_3 = parameters(period).social_security.dictionary.income_test_3b.calc
+        income_test_4 = parameters(period).social_security.dictionary.income_test_4.calc
 
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_3 = parameters(period).social_security.income_test_3b
-        scale_4 = parameters(period).social_security.income_test_4
-        return people("jobseeker_support__entitled", period) * \
-            (
-                (scale_1.calc(family_income) * test_1) + (scale_3.calc(family_income) * test_3) + (scale_4.calc(family_income) * test_4)
+        return (
+            + people("jobseeker_support__entitled", period)
+            * (
+                + case_1 * abatement(income_test_1)
+                + case_3 * abatement(income_test_3)
+                + case_4 * abatement(income_test_4)
+                )
             )
 
 
