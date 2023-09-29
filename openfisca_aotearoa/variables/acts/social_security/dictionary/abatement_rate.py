@@ -8,7 +8,7 @@ import numpy
 Vector = NDArray[numpy.float_]
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(frozen=True)
 class AbatementRate:
     """Abatement rate applicable to income-tested benefits.
 
@@ -33,4 +33,12 @@ class AbatementRate:
 
     def __call__(self, income_test: Callable[[Vector], Vector]) -> Vector:
         """Apply an income test to a benefit's applicable rate."""
-        return income_test(numpy.floor(self.total_income))
+
+        # numpy.floor is required for income tests as i.e. "35c for every $1".
+        floor = numpy.floor(self.total_income)
+
+        # The abatement rate regardless of benefit rate.
+        abatement_rate = income_test(floor)
+
+        # The abatement rate capped at the applicable benefit rate.
+        return numpy.minimum(abatement_rate, self.applicable_rate)
