@@ -115,7 +115,7 @@ class sole_parent_support__income(variables.Variable):
             families.members(
                 "sole_parent_support__weekly_childcare_cost",
                 period,
-                )
+                ),
             )
 
         total_income = (

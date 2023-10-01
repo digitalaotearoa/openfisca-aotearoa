@@ -16,7 +16,6 @@ from openfisca_core import periods, variables
 # For more information on OpenFisca's `entities`:
 # https://openfisca.org/doc/key-concepts/person,_entities,_role.html
 from openfisca_aotearoa import entities
-from openfisca_aotearoa.variables.acts.social_security import dictionary
 
 
 class jobseeker_support__benefit(variables.Variable):
