@@ -1,10 +1,10 @@
-"""This module provides the calculation of Income Test 1.
+"""This module provides the calculation of Income Test 2.
 
-Income Test 1 means that the applicable rate of [a] benefit must be
-reduced by 30 cents for every $1 of the total income of the beneficiary and the
+Income Test 2 means that the applicable rate of [a] benefit must be reduced by
+15 cents for every $1 of the total income of the beneficiary and the
 beneficiary’s spouse or partner that is more than $160 a week but not more than
-$250 a week; and by 70 cents for every $1 of that income that is more than $250
-a week.
+$250 a week; and by 35 cents for every $1 of that income that is more than
+$250 a week.
 
 """
 
@@ -27,14 +27,14 @@ from openfisca_aotearoa.variables.exegesis.income_tested_benefit import (
     )
 
 
-class social_security__income_test_1(variables.Variable):
-    label = "Dictionary — Income Test 1"
+class social_security__income_test_2(variables.Variable):
+    label = "Dictionary — Income Test 2"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784375"
     documentation = """
-        Income Test 1 means that the applicable rate of [a] benefit must be
-        reduced by 30 cents for every $1 of the total income of the beneficiary
+        Income Test 2 means that the applicable rate of [a] benefit must be
+        reduced by 15 cents for every $1 of the total income of the beneficiary
         and the beneficiary’s spouse or partner that is more than $160 a week
-        but not more than $250 a week; and by 70 cents for every $1 of that
+        but not more than $250 a week; and by 35 cents for every $1 of that
         income that is more than $250 a week.
         """
     entity = entities.Family
@@ -43,7 +43,7 @@ class social_security__income_test_1(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(families, period, params):
-        # Income Test 1 means that the applicable rate of [a] benefit must be
+        # Income Test 2 means that the applicable rate of benefit must be
         # reduced—
 
         # List of people with families.
@@ -60,7 +60,7 @@ class social_security__income_test_1(variables.Variable):
                         role = entities.Family.PRINCIPAL,
                         )
 
-                    # (a) by 30 cents for every $1 of the total income of the
+                    # (a) by 15 cents for every $1 of the total income of the
                     #     beneficiary and the beneficiary’s spouse or partner
                     total_income = families(f"{benefit.name}__income", period)
 
@@ -69,13 +69,13 @@ class social_security__income_test_1(variables.Variable):
 
                     #     that is more than $160 a week but not more than $250
                     #     a week; and
-                    # (b) by 70 cents for every $1 of that income that is more
-                    #     than $250 a week
+                    # (b) by 35 cents for every $1 of that income that is more
+                    # than $250 a week
                     scale = (
                         params(period)
                         .social_security
                         .dictionary
-                        .income_test_1
+                        .income_test_2
                         )
 
                     # The abatement rate regardless of benefit rate.

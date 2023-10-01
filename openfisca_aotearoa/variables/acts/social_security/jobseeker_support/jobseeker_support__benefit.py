@@ -27,17 +27,19 @@ class jobseeker_support__benefit(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("jobseeker_support__entitled", period) * numpy.clip(people("jobseeker_support__base", period) - people("jobseeker_support__reduction", period), 0, people("jobseeker_support__base", period))
+        return people("jobseeker_support__entitled", period) * numpy.clip(people("jobseeker_support__base", period) - people("jobseeker_support__abatement", period), 0, people("jobseeker_support__base", period))
 
 
-class jobseeker_support__reduction(variables.Variable):
+class jobseeker_support__abatement(variables.Variable):
     value_type = float
     entity = entities.Person
     definition_period = periods.WEEK
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
 
-    def formula_2018_11_26(people, period, parameters):
+    def formula_2018_11_26(people, period, _params):
+        families = people.family
+
         case_1 = (
             + people("schedule_4__part1_1_c", period)
             + people("schedule_4__part1_1_e", period)
@@ -57,24 +59,22 @@ class jobseeker_support__reduction(variables.Variable):
             + people("schedule_4__part1_1_h", period)
             )
 
-        applicable_rate = people("jobseeker_support__base", period)
-        total_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
-        abatement = dictionary.AbatementRate(applicable_rate, total_income)
-
-        income_test_1 = parameters(period).social_security.dictionary.income_test_1.calc
-        income_test_3 = parameters(period).social_security.dictionary.income_test_3b.calc
-        income_test_4 = parameters(period).social_security.dictionary.income_test_4.calc
+        income_test_1 = families("social_security__income_test_1", period)
+        income_test_3 = families("social_security__income_test_3", period)
+        income_test_4 = families("social_security__income_test_4", period)
 
         return (
             + people("jobseeker_support__entitled", period)
             * (
-                + case_1 * abatement(income_test_1)
-                + case_3 * abatement(income_test_3)
-                + case_4 * abatement(income_test_4)
+                + case_1 * income_test_1
+                + case_3 * income_test_3
+                + case_4 * income_test_4
                 )
             )
 
-    def formula_2020_11_09(people, period, parameters):
+    def formula_2020_11_09(people, period, _params):
+        families = people.family
+
         case_1 = (
             + people("schedule_4__part1_1_c", period)
             + people("schedule_4__part1_1_e", period)
@@ -93,22 +93,41 @@ class jobseeker_support__reduction(variables.Variable):
             + people("schedule_4__part1_1_h", period)
             )
 
-        applicable_rate = people("jobseeker_support__base", period)
-        total_income = people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PARTNER) + people.family.sum(people.family.members("social_security__income", period), role=entities.Family.PRINCIPAL)
-        abatement = dictionary.AbatementRate(applicable_rate, total_income)
-
-        income_test_1 = parameters(period).social_security.dictionary.income_test_1.calc
-        income_test_3 = parameters(period).social_security.dictionary.income_test_3b.calc
-        income_test_4 = parameters(period).social_security.dictionary.income_test_4.calc
+        income_test_1 = families("social_security__income_test_1", period)
+        income_test_3 = families("social_security__income_test_3", period)
+        income_test_4 = families("social_security__income_test_4", period)
 
         return (
             + people("jobseeker_support__entitled", period)
             * (
-                + case_1 * abatement(income_test_1)
-                + case_3 * abatement(income_test_3)
-                + case_4 * abatement(income_test_4)
+                + case_1 * income_test_1
+                + case_3 * income_test_3
+                + case_4 * income_test_4
                 )
             )
+
+
+class jobseeker_support__income(variables.Variable):
+    label = "Jobseeker support — Income"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
+    documentation = """Total income of the people and their partners."""
+    entity = entities.Family
+    value_type = float
+    default_value = 0
+    definition_period = periods.WEEK
+
+    def formula_2018_11_26(families, period, _params):
+        beneficiary_income = families.sum(
+            families.members("social_security__income", period),
+            role = entities.Family.PRINCIPAL,
+            )
+
+        spouse_or_partner_income = families.sum(
+            families.members("social_security__income", period),
+            role = entities.Family.PARTNER,
+            )
+
+        return beneficiary_income + spouse_or_partner_income
 
 
 class jobseeker_support__base(variables.Variable):

@@ -1,4 +1,4 @@
-"""This module provides eligibility and amount for Sole parent support."""
+"""This module provides eligibility and amount for Sole Parent Support."""
 
 import numpy
 

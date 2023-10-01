@@ -13,4 +13,7 @@ from openfisca_core import indexed_enums
 
 
 class IncomeTestedBenefit(indexed_enums.Enum):
+    jobseeker_support = "jobseeker_support"
     sole_parent_support = "sole_parent_support"
+    superannuation = "superannuation"
+    veterans_pension = "veterans_pension"
