@@ -38,7 +38,7 @@ class sole_parent_support__benefit(variables.Variable):
 
 
 class sole_parent_support__base(variables.Variable):
-    label = "Sole parent support — Applicable rate"
+    label = "Sole Parent Support — Applicable rate"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784854.html"
     documentation = """
         Base amount or applicable rate of sole parent support (this is, taxed,
@@ -63,7 +63,7 @@ class sole_parent_support__base(variables.Variable):
 
 
 class sole_parent_support__abatement(variables.Variable):
-    label = "Sole parent support — Abatement rate"
+    label = "Sole Parent Support — Abatement rate"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784854.html"
     documentation = """
         The amount the base benefit is reduced based on the appropriate Income
@@ -79,7 +79,7 @@ class sole_parent_support__abatement(variables.Variable):
 
 
 class sole_parent_support__income(variables.Variable):
-    label = "Sole parent support — Income"
+    label = "Sole Parent Support — Income"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784854.html"
     documentation = """Total income of the people and their partners."""
     entity = entities.Family
