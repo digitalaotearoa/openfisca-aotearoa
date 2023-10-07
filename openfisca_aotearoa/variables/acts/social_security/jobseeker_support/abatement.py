@@ -44,9 +44,9 @@ class jobseeker_support__abatement(variables.Variable):
             + people("schedule_4__part1_1_h", period)
             )
 
-        income_test_1 = families("social_security__income_test_1", period)
-        income_test_3 = families("social_security__income_test_3", period)
-        income_test_4 = families("social_security__income_test_4", period)
+        income_test_1 = families("jobseeker_support__income_test_1", period)
+        income_test_3 = families("jobseeker_support__income_test_3", period)
+        income_test_4 = families("jobseeker_support__income_test_4", period)
 
         return (
             + case_1 * income_test_1
@@ -75,9 +75,9 @@ class jobseeker_support__abatement(variables.Variable):
             + people("schedule_4__part1_1_h", period)
             )
 
-        income_test_1 = families("social_security__income_test_1", period)
-        income_test_3 = families("social_security__income_test_3", period)
-        income_test_4 = families("social_security__income_test_4", period)
+        income_test_1 = families("jobseeker_support__income_test_1", period)
+        income_test_3 = families("jobseeker_support__income_test_3", period)
+        income_test_4 = families("jobseeker_support__income_test_4", period)
 
         return (
             + case_1 * income_test_1

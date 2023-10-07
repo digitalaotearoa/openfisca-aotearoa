@@ -75,7 +75,7 @@ class sole_parent_support__abatement(variables.Variable):
     definition_period = periods.WEEK
 
     def formula_2018_11_26(people, period, _params):
-        return people.family("social_security__income_test_1", period)
+        return people.family("sole_parent_support__income_test_1", period)
 
 
 class sole_parent_support__income(variables.Variable):
