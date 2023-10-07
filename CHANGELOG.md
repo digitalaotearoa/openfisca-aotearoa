@@ -1,5 +1,53 @@
 # Changelog
 
+## 21.0.0 - [59](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/59)
+
+* Tax and benefit system evolution.
+* Impacted periods: all.
+* Impacted areas: `sole_parent_support`, `jobseeker_support`
+* Details:
+  - Add `income_test_n` as the result of applying an income test to a benefit.
+
+#### Discussion
+
+Main benefits are income-tested (subject to an abatement rate based on income).
+Non-main benefits can be income-tested via main benefits (i.e. accommodation
+supplement via jobseeker). However, some benefits change the definitions of
+certain things, i.e. income is not the same for accommodation supplement and
+for jobseeker support. Furthermore, the notion of income-tested benefit has
+been replaced with that of main benefit, which can create confusion when a
+benefit like accommodation supplement is income-tested via jobseeker support.
+
+This poses a challenge to the rule-maker, because in order to define a general
+rule for an income test, that applies to benefits with different definitions of
+income, it has to make it _high order_. In plain English, it has to create a
+_rule factory_. A rule that creates a rule, depending on the context of its
+application (i.e. the benefit it is applied to).
+
+There are several ways to solve this problem, yet all gravitate around two
+philosophies:
+
+1. Stick to the letter: if the rule-maker defines a _pure high-order function_
+   that can't be applied directly, one solution is to just model it as close to
+   the letter that is possible.
+
+2. Incorporate: if the rule can't be applied directly, ignore it, and
+   incorporate it as many times as is used without abstracting it into a rule
+   the way the rule-maker did (cf. copy-paste several times).
+
+Currently the OpenFisca DSL does not provide any native way of modelling this
+cases, as it is assumed as an invariant that, what can be modelled, can be
+directly applied at definition time (just following the text), and not at
+run time (depending on the context it is being applied).
+
+As usually the law doesn't contain this kind of abstractions, their use has
+always been discouraged as _not being truthful to the text_ or _modelling as a
+developer and not as a policy folk_. This case is, then, peculiar.
+
+The solution adopted here is to model the income test as a normal `Variable`,
+and capturing the context of its application from the stack. While it works,
+it is not a very elegant solution, and it is likely error-prone.
+
 ### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
 
 * Test case.

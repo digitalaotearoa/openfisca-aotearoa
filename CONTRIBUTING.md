@@ -275,12 +275,10 @@ This project currently utilises one specific pattern however for benefit calcula
 - `jobseeker_support__entitled` (true/false) - or - `jobseeker_support__eligible` (true/false)
 - `jobseeker_support__base` (float)
 - `jobseeker_support__cutoff` (float)
-- `jobseeker_support__reduction` (float)
+- `jobseeker_support__abatement` (float)
 - `jobseeker_support__benefit` (float)
 
 i.e. the formula for `jobseeker_support__benefit` would be:
  ```
- jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
+ jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__abatement, jobseeker_support__cutoff)
  ```
-
-

@@ -1,0 +1,53 @@
+- name: >
+    Social Security Act 2018 -
+    Schedule 2 Dictionary -
+    Income test 1-4 -
+    The applicable rate of benefit must be reduced [...] of the total income of
+    the beneficiary and the beneficiary’s spouse or partner.
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+  output:
+    jobseeker_support__income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 0]
+      2023-W03: [100, 100]
+
+
+- name: >
+    Social Security Act 2018 -
+    Schedule 2 Dictionary -
+    Income test 1-4 -
+    The applicable rate of benefit must be reduced [...] of the total income of
+    the beneficiary and the beneficiary’s spouse or partner.
+  period: 2018-11-26
+  input:
+    persons:
+      Vrenda:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 100
+          2023-W03: 100
+      Piedad:
+        social_security__income:
+          2023-W01: 0
+          2023-W02: 0
+          2023-W03: 100
+    family:
+      principal: Vrenda
+      partners: [Piedad]
+  output:
+    jobseeker_support__income:
+      2023-W01: [0, 0]
+      2023-W02: [100, 100]
+      2023-W03: [200, 200]
