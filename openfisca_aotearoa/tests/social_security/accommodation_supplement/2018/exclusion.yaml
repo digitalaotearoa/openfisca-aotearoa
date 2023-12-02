@@ -45,6 +45,8 @@
   input:
     basic_grant__receiving:
       2022-W01: [true, true, false, false]
+    basic_grant__entitled:
+      2022-01: [true, true, false, false]
     independent_circumstances_grant__receiving:
       2022-W01: [true, false, true, false]
   output:
@@ -79,6 +81,8 @@
   input:
     basic_grant__would_be_entitled:
       2022-W01: [true, true, false, false]
+    basic_grant__entitled:
+      2022-01: [true, true, false, false]
     independent_circumstances_grant__would_be_entitled:
       2022-W01: [true, false, true, false]
   output:
@@ -95,6 +99,8 @@
   input:
     accommodation_type:
       2022-W01: [residential_care, under_the_moon]
+    basic_grant__entitled:
+      2022-01: [false, false]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, false]
@@ -109,6 +115,8 @@
   input:
     accommodation_supplement__disability:
       2022-W01: [true, false]
+    basic_grant__entitled:
+      2022-01: [false, false]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, false]

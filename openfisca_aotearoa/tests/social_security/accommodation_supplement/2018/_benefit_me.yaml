@@ -24,6 +24,8 @@
           2022-W49: rent
         accommodation_supplement__area_of_residence:
           2022-W49: area_2
+        student_allowance__person_has_spouse:
+          2022-12: false
   output:
     jobseeker_support__benefit:
       2022-W49: 440.96
@@ -59,6 +61,8 @@
           2022-W49: rent
         accommodation_supplement__area_of_residence:
           2022-W49: area_2
+        student_allowance__person_has_spouse:
+          2022-12: false
       Anahera:
         family_tax_credit__dependent_child:
           2022: .5
@@ -89,6 +93,8 @@
           week:2022-W01:52: area_2
         accommodation_supplement__cash_assets:
           2022-W49: 800
+        student_allowance__person_has_spouse:
+          2022-12: false
   output:
     jobseeker_support__benefit:
       2022-W49: 0
