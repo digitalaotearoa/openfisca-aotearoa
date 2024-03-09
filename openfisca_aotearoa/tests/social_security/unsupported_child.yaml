@@ -11,7 +11,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -38,7 +38,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: false
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -65,7 +65,7 @@
         social_security__parent_of_dependent_child: true
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -92,7 +92,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -120,7 +120,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -146,7 +146,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Tama":
         immigration__resident: true
         age:
@@ -174,7 +174,7 @@
         social_security__parent_of_dependent_child: false
         social_security__principal_carer_for_one_year_from_application_date: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
     families:
       "Whanau tahi":
         principal: "Mama"

@@ -26,6 +26,7 @@ class parental_leave__primary_carer(Variable):
 
         # Mark who is the principal caregiver, as there may be >1 eligible
         # PPL Section 7 (2)
+        # TODO This seems an incorrect reference, the legislation doesn't mention principal caregiver
         nominated = persons("income_tax__principal_caregiver", period)
 
         return nominated * (biological_mother + (her_spouse * received_transferred_entitlement) + (other * permanent))

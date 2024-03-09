@@ -6,7 +6,7 @@ license = "AGPL-3.0-only"
 authors = [
     "Asghar Hussain Kazi <https://github.com/asgharkazi>",
     "Brenda Wallace <https://github.com/Br3nda>",
-    "Hamish Fraser <https://github.com/verbman>",
+    "Hamish Fraser <https://hamish.dev>",
     "Jonah Duckles <https://github.com/jduckles>",
     "Mauko Quiroga Alvarado <https://mauko.me>",
     "Pia Andrews <https://github.com/piacandrews>",
@@ -14,13 +14,13 @@ authors = [
 maintainers = [
     "Asghar Hussain Kazi <https://github.com/asgharkazi>",
     "Brenda Wallace <https://github.com/Br3nda>",
-    "Hamish Fraser <https://github.com/verbman>",
+    "Hamish Fraser <https://hamish.dev>",
     "Jonah Duckles <https://github.com/jduckles>",
     "Mauko Quiroga Alvarado <https://mauko.me>",
     "Pia Andrews <https://github.com/piacandrews>",
     ]
 readme = "README.md"
-homepage = "https://benefitme.nz"
+homepage = "https://github.com/digitalaotearoa/openfisca-aotearoa"
 repository = "https://github.com/digitalaotearoa/openfisca-aotearoa"
 documentation = "https://openfisca.org/doc"
 keywords = ["microsimulation", "tax", "benefit", "rac", "rules-as-code"]

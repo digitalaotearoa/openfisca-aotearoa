@@ -29,7 +29,7 @@ class student_allowance__eligible_for_certain_allowances(Variable):
         #         (iii) satisfies the chief executive that he or she is recognised under the Immigration
         #             Act 2009 as a refugee or a protected person and is entitled under the Immigration
         #             Act 2009 to reside indefinitely in New Zealand; or
-        refugee_or_protected = persons("immigration__recognised_refugee", period) + persons("immigration__protected_person", period)
+        refugee_or_protected = persons("immigration__recognised_refugee", period.first_day) + persons("immigration__protected_person", period)
 
         #         (iv) satisfies the chief executive that he or she is entitled under the Immigration Act
         #             2009 to reside indefinitely in New Zealand and was sponsored into New Zealand by a
