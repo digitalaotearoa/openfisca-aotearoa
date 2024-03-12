@@ -35,7 +35,7 @@ class accommodation_supplement__assets_requirement(variables.Variable):
             )
 
         total_cash_assets = (
-            + cash_assets_principal
+            cash_assets_principal
             + cash_assets_partners
             )
 
@@ -47,18 +47,18 @@ class accommodation_supplement__assets_requirement(variables.Variable):
             )
 
         ssr2018_15_1_a_i = (
-            + mingled
+            mingled
             * (total_cash_assets <= threshold.ssa2018_15_1_a)
             )
 
         ssr2018_15_1_a_ii = (
-            + singles
+            singles
             * children
             * (total_cash_assets <= threshold.ssa2018_15_1_a)
             )
 
         ssr2018_15_1_b = (
-            + singles
+            singles
             * no_child
             * (total_cash_assets <= threshold.ssa2018_15_1_b)
             )

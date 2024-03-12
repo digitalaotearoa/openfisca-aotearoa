@@ -15,7 +15,7 @@ class basic_grant__entitled(variables.Variable):
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM260306"
 
     def formula(persons, period, parameters):
-        has_children = persons("student_allowance__supported_child", period)
+        has_children = persons("student_allowance__supported_child", period.start)
         is_secondary_student = persons("student_allowance__secondary_student", period)
         is_tertiary_student = persons("student_allowance__tertiary_student", period)
 
@@ -25,7 +25,7 @@ class basic_grant__entitled(variables.Variable):
         is_under_18 = persons("age", period.start) < 18
         is_or_over_18 = persons("age", period.start) >= 18
 
-        married_or_partnered = persons("student_allowance__married_or_partnered", period)
+        married_or_partnered = persons("student_allowance__married_or_partnered", period.start)
 
         criteria_a = is_secondary_student * is_or_over_16 * is_under_18 * married_or_partnered * has_children
         criteria_b = is_tertiary_student * is_or_over_16 * is_under_18 * has_children

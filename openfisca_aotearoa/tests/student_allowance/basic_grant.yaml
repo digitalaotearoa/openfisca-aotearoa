@@ -6,7 +6,9 @@
     persons:
       fulltime_uni_student:
         age:
-          "2017-08-01": 21
+          "day:2017-08-01:31": 21
+        age_of_partner:
+          "day:2017-08-01:31": 25
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -15,7 +17,9 @@
 
       Parttime_student:
         age:
-          "2017-08-01": 18
+          "day:2017-08-01:31": 18
+        age_of_partner:
+          "day:2017-08-01:31": 25
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -23,7 +27,9 @@
 
       Overseas_student:
         age:
-          "2017-08-01": 27
+          "day:2017-08-01:31": 27
+        age_of_partner:
+          "day:2017-08-01:31": 25
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -31,7 +37,9 @@
 
       Refugee:
         age:
-          "2017-08-01": 25
+          "day:2017-08-01:31": 25
+        age_of_partner:
+          "day:2017-08-01:31": 25
         immigration__recognised_refugee: true
         student_allowance__tertiary_student: true
         student_allowance__enrolled_fulltime: true
@@ -39,7 +47,9 @@
 
       Not_a_student:
         age:
-          "2017-08-01": 50
+          "day:2017-08-01:31": 50
+        age_of_partner:
+          "day:2017-08-01:31": 25
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: false
@@ -57,41 +67,55 @@
     persons:
       married_secondary_school_student_with_child:
         age:
-          "2017-08-01": 16
+          "day:2017-08-01:31": 16
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__secondary_student: true
-        student_allowance__married_or_partnered: true
-        student_allowance__supported_child: true
+        student_allowance__married_or_partnered:
+          "day:2017-08-01:31": true
+        student_allowance__supported_child:
+          "day:2017-08-01:31": true
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
 
 
       not_married_secondary_school_student_with_child:
         age:
-          "2017-08-01": 16
+          "day:2017-08-01:31": 16
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__secondary_student: true
-        student_allowance__married_or_partnered: false
-        student_allowance__supported_child: true
+        student_allowance__married_or_partnered:
+          "day:2017-08-01:31": false
+        student_allowance__supported_child:
+          "day:2017-08-01:31": true
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
 
       childless_married_secondary_school_student:
         age:
-          "2017-08-01": 16
+          "day:2017-08-01:31": 16
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__secondary_student: true
-        student_allowance__married_or_partnered: false
-        student_allowance__supported_child: false
+        student_allowance__married_or_partnered:
+          "day:2017-08-01:31": false
+        student_allowance__supported_child:
+          "day:2017-08-01:31": false
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
 
       18yo_secondary_student:
         age:
-          "2017-08-01": 18
+          "day:2017-08-01:31": 18
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__secondary_student: true
@@ -110,11 +134,15 @@
     persons:
       default:
         age:
-          "2017-08-01": 22
+          "day:2017-08-01:31": 22
+        age_of_partner:
+          "day:2017-08-01:31": 20
 
       not_attending:
         age:
-          "2017-08-01": 21
+          "day:2017-08-01:31": 21
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -123,7 +151,9 @@
 
       not_immigration__citizen_or_resident:
         age:
-          "2017-08-01": 21
+          "day:2017-08-01:31": 21
+        age_of_partner:
+          "day:2017-08-01:31": 20
         student_allowance__tertiary_student: true
         student_allowance__enrolled_fulltime: true
         student_allowance__meets_attendance_and_performance_requirements: true
@@ -140,7 +170,9 @@
     persons:
       fulltime_uni_studdent:
         age:
-          "2017-08-01": 67
+          "day:2017-08-01:31": 67
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -149,7 +181,9 @@
 
       Parttime_student:
         age:
-          "2017-08-01": 68
+          "day:2017-08-01:31": 68
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -157,7 +191,9 @@
 
       Overseas_student:
         age:
-          "2017-08-01": 70
+          "day:2017-08-01:31": 70
+        age_of_partner:
+          "day:2017-08-01:31": 20
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
         student_allowance__tertiary_student: true
@@ -165,7 +201,9 @@
 
       Refugee:
         age:
-          "2017-08-01": 99
+          "day:2017-08-01:31": 99
+        age_of_partner:
+          "day:2017-08-01:31": 20
         immigration__recognised_refugee: true
         student_allowance__tertiary_student: true
         student_allowance__enrolled_fulltime: true

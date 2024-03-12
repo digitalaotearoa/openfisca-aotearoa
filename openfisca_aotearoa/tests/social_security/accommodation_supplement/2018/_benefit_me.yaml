@@ -8,6 +8,8 @@
       Peta:
         age:
           day:2022-01-01:365: 32
+        age_of_partner:
+          day:2022-01-01:365: 32
         social_security__residential_requirement:
           2022-W49: true
         social_security__in_a_relationship:
@@ -42,6 +44,8 @@
     persons:
       Peta:
         age:
+          day:2022-01-01:365: 32
+        age_of_partner:
           day:2022-01-01:365: 32
         social_security__residential_requirement:
           2022-W49: true
@@ -81,6 +85,8 @@
       Kai:
         age:
           day:2022-01-01:365: 23
+        age_of_partner:
+          day:2022-01-01:365: 32
         accommodation_costs:
           week:2022-W01:52: 350
         accommodation_type:

@@ -55,7 +55,7 @@ class accommodation_supplement__entitled(variables.Variable):
         ssa2018_65_1_c_ii = numpy.logical_not(other_funding_exclusion)
 
         return (
-            + ssa2018_65_1_a
+            ssa2018_65_1_a
             * ssa2018_65_1_b
             * ssa2018_65_1_c_i
             * ssa2018_65_1_c_ii
@@ -93,7 +93,7 @@ class accommodation_supplement__entitled(variables.Variable):
             )
 
         resident_or_citizen = (
-            + people("immigration__resident", this_month)
+            people("immigration__resident", this_month)
             + people("immigration__permanent_resident", this_month)
             + people("citizenship__citizen", this_month)
             )
@@ -117,7 +117,7 @@ class accommodation_supplement__entitled(variables.Variable):
             )
 
         return (
-            + age_requirement
+            age_requirement
             * resident_or_citizen
             * in_nz
             * accommodation_supplement__accommodation_costs

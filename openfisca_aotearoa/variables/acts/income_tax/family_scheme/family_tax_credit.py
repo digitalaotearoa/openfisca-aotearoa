@@ -17,7 +17,7 @@ class family_tax_credit(Variable):
 
     def formula_2007_11_01(people, period, _params):
         return (
-            + people("family_tax_credit__eligible", period)
+            people("family_tax_credit__eligible", period)
             * people("family_tax_credit__base", period)
             )
 
@@ -43,7 +43,7 @@ class family_tax_credit__base(Variable):
 
     def formula_2007_11_01(people, period, _params):
         return (
-            + people("family_tax_credit__eldest", period, "add")
+            people("family_tax_credit__eldest", period, "add")
             + people("family_tax_credit__not_eldest", period, "add")
             )
 
@@ -75,7 +75,7 @@ class family_tax_credit__eldest(Variable):
             )
 
         return (
-            + principal
+            principal
             * eldest_child
             * prescribed_amount
             / period.this_year.days
@@ -109,7 +109,7 @@ class family_tax_credit__not_eldest(Variable):
             )
 
         return (
-            + principal
+            principal
             * other_than_the_eldest_child
             * prescribed_amount
             / period.this_year.days

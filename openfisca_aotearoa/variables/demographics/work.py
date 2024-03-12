@@ -42,6 +42,6 @@ class work_gap(variables.Variable):
         losing_earnings_from_health_injury = people("losing_earnings_from_health_injury", period)
 
         return (
-            + numpy.logical_not(fulltime_employment)
+            numpy.logical_not(fulltime_employment)
             + fulltime_employment * losing_earnings_from_health_injury
             )

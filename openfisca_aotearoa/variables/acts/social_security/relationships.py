@@ -20,6 +20,6 @@ class social_security__in_a_relationship(variables.Variable):
         relationship = people.family.nb_persons(entities.Family.PARTNER) > 0
 
         return (
-            + people.has_role(entities.Family.PRINCIPAL)
+            people.has_role(entities.Family.PRINCIPAL)
             * (married + civil_union + de_facto_rel + relationship)
             )
