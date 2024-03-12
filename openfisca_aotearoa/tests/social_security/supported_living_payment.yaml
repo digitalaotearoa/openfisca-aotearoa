@@ -48,7 +48,7 @@
     citizenship__citizen: true
     supported_living_payment__restricted_work_capacity: true
     supported_living_payment__below_income_threshold: true
-    social_security__disability_self_inflicted: true
+    supported_living_payment__disability_self_inflicted: true
     social_security__residential_requirement: true
   output:
     supported_living_payment__entitled: false

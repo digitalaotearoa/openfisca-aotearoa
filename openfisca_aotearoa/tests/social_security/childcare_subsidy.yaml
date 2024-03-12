@@ -7,7 +7,7 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
           "week:2018-W01:52": true
@@ -40,7 +40,7 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
           "week:2018-W01:52": true
@@ -74,16 +74,16 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
-          "week:2018-W01:52": true
+          "week:2018-W31:5": true
         age:
-          "2018-08-01": 5
+          "day:2018-07-30:32": 5
         early_childcare_hours_participation_per_week: 3
-        social_security__child_with_serious_disability: true
-        social_security__requires_constant_care_and_attention: true
-        social_security__medical_certification_months: 12
+        child_disability_allowance__child_with_serious_disability:
+          "week:2018-W31:5": true
+        child_disability_allowance__constant_care_exceeding_12_months: true
         citizenship__citizen: true
         attending_school: true
     families:
@@ -110,7 +110,7 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
           "week:2018-W01:52": true
@@ -144,7 +144,7 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
           "week:2018-W01:52": true
@@ -171,7 +171,7 @@
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        income_tax__principal_caregiver: true
+        social_security__principal_caregiver: true
       "Child":
         social_security__dependent_child:
           "week:2018-W01:52": true

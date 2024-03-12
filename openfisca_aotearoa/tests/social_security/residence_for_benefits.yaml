@@ -67,7 +67,7 @@
         - true # Mary
         - true # Barry
         - false # Larry
-- name: Test for residence status appropriate for recieving benefits for 2018 ACT
+- name: Test for residence status appropriate for recieving benefits for 2018 ACT, Section 16 Residential requirement
   period: 2020-W32
   absolute_error_margin: 0
   input:
@@ -100,7 +100,7 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: false
       Mary:
         immigration__recognised_refugee:
-          2020-08: false
+          day:2020-08-03:7: false
         immigration__resident: false
         social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
         years_resided_continuously_in_new_zealand:
@@ -113,7 +113,7 @@
         social_security__resided_continuously_nz_2_years_citizen_or_resident: false
       Larry:
         immigration__recognised_refugee:
-          2020-08: false
+          day:2020-08-03:7: false
         immigration__resident: false
         social_security__ordinarily_resident_in_country_with_reciprocity_agreement: true
         years_resided_continuously_in_new_zealand:
@@ -146,3 +146,38 @@
       - true # Mary
       - true # Barry
       - false # Larry
+- name: Test for general limitation for recieving benefits for 2018 ACT section 19
+  period: 2020-W32
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__unlawfully_resident_or_present: true
+        immigration__temporary_entry_class_visa: true
+      Papa:
+        social_security__unlawfully_resident_or_present: true
+        immigration__temporary_entry_class_visa: false
+      Tamahine:
+        social_security__unlawfully_resident_or_present: false
+        immigration__temporary_entry_class_visa: true
+      TamahineRua:
+        social_security__unlawfully_resident_or_present: false
+        immigration__temporary_entry_class_visa: false
+      Barry:
+        social_security__unlawfully_resident_or_present: true
+        social_security__refugee_or_protected_person: true
+        immigration__temporary_entry_class_visa: true
+        immigration__recognised_refugee:
+          day:2020-08-03:7: true
+      Larry:
+        social_security__unlawfully_resident_or_present: false
+        immigration__temporary_entry_class_visa: false
+        social_security__refugee_or_protected_person: true
+  output:
+    social_security__general_limitation:
+      - false # mama
+      - false # papa
+      - false # tamahine
+      - true # TamahineRua
+      - true # Barry
+      - true # Larry

@@ -20,7 +20,7 @@ class childcare_assistance__eligible_childcare_subsidy(Variable):
         normally_in_nz = persons("social_security__ordinarily_resident_in_new_zealand", period)
         income_below_threshold = persons.family("childcare_assistance__household_income_below_childcare_subsidy_threshold", period)
 
-        is_principal_carer = persons("income_tax__principal_caregiver", period)
+        is_principal_carer = persons("social_security__principal_caregiver", period)
 
         under_5_years_28_days_not_attending_school = persons.family(
             "childcare_assistance__family_has_resident_child_under_5_not_in_school", period)
@@ -88,7 +88,7 @@ class childcare_assistance__family_has_child_eligible_for_disability_allowance_c
         dependent_children = families.members(
             "social_security__dependent_child", period.first_week)
         eligible_children = families(
-            "child_disability_allowance__family_has_eligible_child", period)
+            "child_disability_allowance__family_has_eligible_child", period.first_week)
         under_6 = families.members("age", period.start) < 6
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period)
