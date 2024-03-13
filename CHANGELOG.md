@@ -1,14 +1,65 @@
 # Changelog
 
-### 20.1.2 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
+### 21.0.1 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
 
 * Tax and benefit system evolution.
 * Impacted periods: from 26/11/2018.
 * Impacted areas: `accommodation_supplement`
 * Details:
-  - Fix rate & rebate when accommodation type is lodging
+  - Fix rate & rebate when accommodation type is lodging or boarding
   - Normally, a %62 rate is to be applied in this particular case
   - However, in reality %162 was being applied, which is incorrect
+
+### 21.0.0 - [60](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/60)
+
+* Tax and benefit system evolution.
+* Impacted periods: all.
+* Impacted areas: 
+  - `variables/acts/social_security`
+  - `variables/acts/parental_leave`
+  - `variables/acts/immigration`
+  - `variables/demographics`
+  - `variables/regulation/social_security/childcare_assistance`
+  - `variables/regulation/student_allowance`
+* Details:
+  - Add calculation for child disability allowance
+
+* Added variables:
+ - `immigration__temporary_entry_class_visa`
+ - `social_security__general_limitation`
+ - `social_security__unlawfully_resident_or_present`
+ - `social_security__compelled_to_remain`
+ - `social_security__refugee_or_protected_person`
+ - `social_security__awaiting_refugee`
+ - `social_security__awaiting_protected_person`
+ - `child_disability_allowance__payment`
+ - `child_disability_allowance__payment_to`
+ - `child_disability_allowance__child_with_serious_disability`
+ - `child_disability_allowance__care_in_home`
+ - `child_disability_allowance__approved_weekly_accomodation`
+ - `child_disability_allowance__granted`
+ - `social_security__temporary_ob_or_ucb_caregiver`
+ - `social_security__care_and_control`
+ - `has_disability`
+
+* Breaking changes:
+ - `immigration__recognised_refugee` period changed from month to day
+ - `child_disability_allowance__eligible` formula and period changed
+ - `child_disability_allowance__family_has_eligible_child` formula and period changed
+ - `child_disability_allowance__allowance_criteria` formula and period changed
+ - `child_disability_allowance__constant_care_exceeding_12_months`
+
+* Renamed variables:
+ - `income_tax__principal_caregiver` renamed to `social_security__principal_caregiver` this affects:
+   - `orphans_benefit__entitled`
+   - `supported_living_payment__entitled`
+   - `unsupported_child__entitled`
+   - `childcare_assistance__eligible_childcare_subsidy`
+ - `social_security__disability_self_inflicted` renamed to `supported_living_payment__disability_self_inflicted`
+
+Added new feature in folder `ōpenfisca_aotearoa/api_examples`. This is a space for example http calls to help illustrate how to call the API.
+Added example calls for entities, parameters, variables and then `acts/social_security/child_disability_allowance` as per project structure
+
 
 ### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
 

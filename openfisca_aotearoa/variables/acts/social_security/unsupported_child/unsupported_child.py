@@ -40,7 +40,7 @@ class unsupported_child__entitled(Variable):
         one_year = persons(
             "social_security__principal_carer_for_one_year_from_application_date", period)
 
-        is_principal_carer = persons("income_tax__principal_caregiver", period)
+        is_principal_carer = persons("social_security__principal_caregiver", period)
 
         has_unsupported_child_in_family = persons.family(
             "unsupported_child__unsupported_child_in_family", period)

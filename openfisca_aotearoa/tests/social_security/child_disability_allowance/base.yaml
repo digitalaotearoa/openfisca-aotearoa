@@ -1,0 +1,338 @@
+---
+
+- name: Child disability allowance with principal caregiver
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: true
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible:
+      - true  # mama (principal carer)
+      - false  # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+
+- name: Child disability allowance with temporary OB or UCB caregiver
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: false
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - true  # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+
+- name: Child disability allowance with care and control
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: false
+      Papa:
+        social_security__care_and_control: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - true  # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+
+- name: Child disability allowance with ufb and care and control
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__temporary_ob_or_ucb_caregiver: false
+      Papa:
+        social_security__care_and_control: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - true  # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+- name: Child disability allowance with UCB caregiver care and control
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: false
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Papa2:
+        social_security__care_and_control: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: [ Papa, Papa2 ]
+  output:
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - true  # papa
+      - false  # papa2
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+
+- name: Child disability allowance with principal caregiver, UCB caregiver care and control
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: true
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Papa2:
+        social_security__care_and_control: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: [ Papa, Papa2 ]
+  output:
+    child_disability_allowance__eligible:
+      - true  # mama (principal carer)
+      - false  # papa
+      - false  # papa2
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+- name: Child disability allowance with unlawfully present principal caregiver
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: true
+        social_security__unlawfully_resident_or_present:
+          - true
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    social_security__general_limitation:
+      - false  # mama (principal carer)
+      - true   # papa
+      - true   # Tama (disabled child)
+      - true   # tamahine (able bodied)
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - true   # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+- name: Child disability allowance with unlawful principal caregiver, unlawful UCB caregiver care and control
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: true
+        social_security__unlawfully_resident_or_present:
+          - true
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+        social_security__unlawfully_resident_or_present:
+          - true
+      Papa2:
+        social_security__care_and_control: true
+        social_security__unlawfully_resident_or_present:
+          - false
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: [ Papa, Papa2 ]
+  output:
+    social_security__general_limitation:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true   # papa2
+      - true   # Tama (disabled child)
+      - true   # tamahine (able bodied)
+    child_disability_allowance__eligible:
+      - false  # mama (principal carer)
+      - false  # papa
+      - true   # papa2
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+
+- name: Child disability allowance with principal caregiver calculated amount
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    persons:
+      Mama:
+        social_security__principal_caregiver:
+          2019-01: true
+      Papa:
+        social_security__temporary_ob_or_ucb_caregiver: true
+      Tama_disabled_child:
+        age:
+          day:2019-01-07:7: 5
+        has_disability:
+          2019-01: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+      Tamahine_able_bodied_teenager:
+        age:
+          day:2019-01-07:7: 19
+    families:
+      Whanau_tahi:
+        principal: Mama
+        children: [ Tama_disabled_child, Tamahine_able_bodied_teenager]
+        others: Papa
+  output:
+    child_disability_allowance__eligible:
+      - true  # mama (principal carer)
+      - false  # papa
+      - false  # Tama (disabled child)
+      - false  # tamahine (able bodied)
+    child_disability_allowance__payment:
+      - 47.64  # mama (principal carer)
+      - 0  # papa
+      - 0  # Tama (disabled child)
+      - 0  # tamahine (able bodied)
+
+- name: Testing amounts
+  period: 2019-W02
+  absolute_error_margin: 0
+  input:
+    child_disability_allowance__eligible:
+      2019-W01: [true, false]
+      2020-W01: [true, false]
+      2021-W01: [true, false]
+      2021-W23: [true, false]
+      2022-W01: [true, false]
+      2023-W01: [true, false]
+  output:
+    child_disability_allowance__payment:
+      2019-W01: [47.64, 0]
+      2020-W01: [48.45, 0]
+      2021-W01: [49.26, 0]
+      2021-W23: [49.83, 0]
+      2022-W01: [49.83, 0]
+      2023-W01: [52.79, 0]

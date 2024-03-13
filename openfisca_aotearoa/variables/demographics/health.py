@@ -2,7 +2,7 @@
 
 from datetime import date
 
-from openfisca_core import periods, variables
+from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
@@ -29,3 +29,12 @@ class totally_blind(variables.Variable):
     entity = entities.Person
     definition_period = periods.ETERNITY
     label = "Person is totally blind"
+
+
+class has_disability(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    label = "Person has a disability"
+    definition_period = periods.MONTH
+    reference = "This appears to not be defined within legislation"
+    set_input = holders.set_input_dispatch_by_period

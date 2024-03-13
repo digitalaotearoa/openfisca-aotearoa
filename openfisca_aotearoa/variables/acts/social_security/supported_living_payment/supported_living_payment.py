@@ -88,7 +88,7 @@ class supported_living_payment__entitled(variables.Variable):
         # 40B (5) A person must not be granted a supported living payment under this section if the chief
         # executive is satisfied that the person's restricted capacity for work, or total blindness, was
         # self-inflicted and brought about by the person with a view to qualifying for a benefit.
-        not_self_inflicted = not_(persons("social_security__disability_self_inflicted", period))
+        not_self_inflicted = not_(persons("supported_living_payment__disability_self_inflicted", period))
 
         # 40B (1A) An applicant for the supported living payment under
         # this section must be aged at least 16 years.
@@ -114,3 +114,11 @@ class supported_living_payment__base(variables.Variable):
     value_type = float
     default_value = 0
     definition_period = periods.DateUnit.WEEK
+
+
+class supported_living_payment__disability_self_inflicted(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.ETERNITY
+    label = "The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by the person with a view to qualifying for a benefit"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178", "s36"
