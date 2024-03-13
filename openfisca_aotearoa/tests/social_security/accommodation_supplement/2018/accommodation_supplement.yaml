@@ -42,6 +42,6 @@
   output:
     accommodation_supplement:
       2022-W01: [0.00, 21.26, 56.26, 91.26, 0.00, 165.00] # January
-      2022-W02: [0.00, 21.26, 56.26, 91.26, 0.00, 165.00] # February (the same)
+      2022-W02: [0.00, 0.00, 16.36, 38.06, 0.00, 124.86] # February (the same)
       2023-W01: [0.00, 0.00, 9.97, 31.68, 0.00, 118.48] # January a year later
       2024-W01: [0.00, 0.00, 34.07, 69.07, 0.00, 165.00] # January, another a year later

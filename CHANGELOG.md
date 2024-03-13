@@ -1,5 +1,15 @@
 # Changelog
 
+### 21.0.1 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 26/11/2018.
+* Impacted areas: `accommodation_supplement`
+* Details:
+  - Fix rate & rebate when accommodation type is lodging or boarding
+  - Normally, a %62 rate is to be applied in this particular case
+  - However, in reality %162 was being applied, which is incorrect
+
 ### 21.0.0 - [60](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/60)
 
 * Tax and benefit system evolution.
@@ -49,6 +59,7 @@
 
 Added new feature in folder `ōpenfisca_aotearoa/api_examples`. This is a space for example http calls to help illustrate how to call the API.
 Added example calls for entities, parameters, variables and then `acts/social_security/child_disability_allowance` as per project structure
+
 
 ### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
 
