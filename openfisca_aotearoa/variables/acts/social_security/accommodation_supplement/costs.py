@@ -32,7 +32,7 @@ class accommodation_supplement__accommodation_costs(variables.Variable):
             )
 
         accommodation_costs_tenancy = (
-            + accommodation_costs_principal_tenant
+            accommodation_costs_principal_tenant
             + accommodation_costs_other_tenants
             )
 
@@ -47,47 +47,47 @@ class accommodation_supplement__accommodation_costs(variables.Variable):
             )
 
         accommodation_costs_ownership = (
-            + accommodation_costs_principal_owner
+            accommodation_costs_principal_owner
             + accommodation_costs_other_owners
             )
 
         ssa2018_65_2_a = (
-            + numpy.logical_not(people.has_role(entities.Tenancy.TENANT))
+            numpy.logical_not(people.has_role(entities.Tenancy.TENANT))
             * numpy.logical_not(people.has_role(entities.Tenancy.OTHER))
             * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.rent)
             )
 
         ssa2018_65_2_b = (
-            + numpy.logical_not(people.has_role(entities.Ownership.OWNER))
+            numpy.logical_not(people.has_role(entities.Ownership.OWNER))
             * numpy.logical_not(people.has_role(entities.Ownership.OTHER))
             * (accommodation_costs > 0)
             * (accommodation_type == housing.AccommodationType.mortgage)
             )
 
         ssa2018_65_2_c = (
-            + (accommodation_costs > 0)
+            (accommodation_costs > 0)
             * (
-                + (accommodation_type == housing.AccommodationType.board)
+                (accommodation_type == housing.AccommodationType.board)
                 + (accommodation_type == housing.AccommodationType.lodging)
                 )
             )
 
         ssa2018_65_2_d = (
-            + (
-                + people.has_role(entities.Tenancy.PRINCIPAL)
+            (
+                people.has_role(entities.Tenancy.PRINCIPAL)
                 * (accommodation_costs_tenancy > 0)
                 * (accommodation_type == housing.AccommodationType.rent)
                 )
             + (
-                + people.has_role(entities.Ownership.PRINCIPAL)
+                people.has_role(entities.Ownership.PRINCIPAL)
                 * (accommodation_costs_ownership > 0)
                 * (accommodation_type == housing.AccommodationType.mortgage)
                 )
             )
 
         return (
-            + ssa2018_65_2_a
+            ssa2018_65_2_a
             + ssa2018_65_2_b
             + ssa2018_65_2_c
             + ssa2018_65_2_d

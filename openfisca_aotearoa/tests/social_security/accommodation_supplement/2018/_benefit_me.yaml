@@ -8,6 +8,8 @@
       Peta:
         age:
           day:2022-01-01:365: 32
+        age_of_partner:
+          day:2022-01-01:365: 32
         social_security__residential_requirement:
           2022-W49: true
         social_security__in_a_relationship:
@@ -25,7 +27,7 @@
         accommodation_supplement__area_of_residence:
           2022-W49: area_2
         student_allowance__person_has_spouse:
-          2022-12: false
+          day:2022-12-01:31: false
   output:
     jobseeker_support__benefit:
       2022-W49: 440.96
@@ -45,6 +47,8 @@
       Peta:
         age:
           day:2022-01-01:365: 32
+        age_of_partner:
+          day:2022-01-01:365: 32
         social_security__residential_requirement:
           2022-W49: true
         social_security__in_a_relationship:
@@ -62,7 +66,7 @@
         accommodation_supplement__area_of_residence:
           2022-W49: area_2
         student_allowance__person_has_spouse:
-          2022-12: false
+          day:2022-12-01:31: false
       Anahera:
         family_tax_credit__dependent_child:
           2022: .5
@@ -85,6 +89,8 @@
       Kai:
         age:
           day:2022-01-01:365: 23
+        age_of_partner:
+          day:2022-01-01:365: 32
         accommodation_costs:
           week:2022-W01:52: 350
         accommodation_type:
@@ -94,7 +100,7 @@
         accommodation_supplement__cash_assets:
           2022-W49: 800
         student_allowance__person_has_spouse:
-          2022-12: false
+          day:2022-12-01:31: false
   output:
     jobseeker_support__benefit:
       2022-W49: 0

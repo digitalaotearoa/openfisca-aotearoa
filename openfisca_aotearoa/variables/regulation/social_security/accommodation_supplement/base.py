@@ -75,7 +75,7 @@ class accommodation_supplement__base(variables.Variable):
 
         # And apply all the conditions.
         ssr2018_17_2_a = (
-            + singles
+            singles
             * beneficiaries
             * no_child
             * under25y
@@ -109,7 +109,7 @@ class accommodation_supplement__base(variables.Variable):
 
         # And apply all the conditions.
         ssr2018_17_2_b = (
-            + singles
+            singles
             * beneficiaries
             * children
             * (numpy.select(receiving, rates) + tax_credit)
@@ -124,7 +124,7 @@ class accommodation_supplement__base(variables.Variable):
 
         # And apply all the conditions.
         ssr2018_17_2_c = (
-            + singles
+            singles
             * beneficiaries
             * no_child
             * leastwise25y
@@ -146,26 +146,26 @@ class accommodation_supplement__base(variables.Variable):
         #     (iii) the maximum weekly rate of a benefit paid in respect of the
         #           beneficiary’s spouse or partner:
         receive_partners = numpy.sum([
-            + people.has_role(entities.Family.PARTNER)
+            people.has_role(entities.Family.PARTNER)
             * numpy.select(receiving, rates),
             ])
 
         ssr2018_17_2_d_i_iii = (
-            + mingled
+            mingled
             * beneficiaries
             * no_child
             * (numpy.select(receiving, rates) + receive_partners)
             )
 
         ssr2018_17_2_d_ii_iii = (
-            + mingled
+            mingled
             * beneficiaries
             * children
             * (numpy.select(receiving, rates) + receive_partners + tax_credit)
             )
 
         ssr2018_17_2_d = (
-            + ssr2018_17_2_d_i_iii
+            ssr2018_17_2_d_i_iii
             + ssr2018_17_2_d_ii_iii
             )
 
@@ -190,7 +190,7 @@ class accommodation_supplement__base(variables.Variable):
         eligible = people("jobseeker_support__entitled", period)
 
         ssr2018_17_2_f = (
-            + singles
+            singles
             * non_beneficiaries
             * children
             * eligible
@@ -210,7 +210,7 @@ class accommodation_supplement__base(variables.Variable):
             )
 
         ssr2018_17_2_g = (
-            + singles
+            singles
             * non_beneficiaries
             * no_child
             * eligible
@@ -231,13 +231,13 @@ class accommodation_supplement__base(variables.Variable):
         #           have been payable in respect of the beneficiary’s spouse or
         #           partner.
         rate_partners = numpy.sum([
-            + people.has_role(entities.Family.PARTNER)
+            people.has_role(entities.Family.PARTNER)
             * eligible
             * rates[1],
             ])
 
         ssr2018_17_2_h_i_iii = (
-            + mingled
+            mingled
             * non_beneficiaries
             * no_child
             * eligible
@@ -245,7 +245,7 @@ class accommodation_supplement__base(variables.Variable):
             )
 
         ssr2018_17_2_h_ii_iii = (
-            + mingled
+            mingled
             * non_beneficiaries
             * children
             * eligible
@@ -253,12 +253,12 @@ class accommodation_supplement__base(variables.Variable):
             )
 
         ssr2018_17_2_h = (
-            + ssr2018_17_2_h_i_iii
+            ssr2018_17_2_h_i_iii
             + ssr2018_17_2_h_ii_iii
             )
 
         return (
-            + ssr2018_17_2_a
+            ssr2018_17_2_a
             + ssr2018_17_2_b
             + ssr2018_17_2_c
             + ssr2018_17_2_d
