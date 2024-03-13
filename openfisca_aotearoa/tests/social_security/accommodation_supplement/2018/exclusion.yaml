@@ -1,12 +1,15 @@
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    66 Social housing exclusion
-    (a) Rent
+    Subpart 10 Accommodation Supplement -
+    66  Social housing exclusion -
+    (1) Social housing exclusion -
+        (a) Rent
   period: 2018-11-26
   input:
     accommodation_type:
       2022-W01: [social_housing, under_the_sun]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24 ]
   output:
     accommodation_supplement__social_housing_exclusion:
       2022-W01: [true, false]
@@ -14,9 +17,9 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    67 Other funding exclusion
-    (a) Couple already receiving accommodation supplement
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (a) Couple already receiving accommodation supplement
   period: 2018-11-26
   input:
     persons:
@@ -25,6 +28,8 @@
         accommodation_supplement__receiving:
           2022-W01: true
           2022-W02: false
+        age:
+          day:2022-01-01:31: 24
     family:
       principal: Vrenda
       partners: [Piedad]
@@ -36,16 +41,20 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    67 Other funding exclusion
-    (b) Grant
-    (i) Receives student grant
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (b) Grant
+            (i)   Receives student grant
   period: 2018-11-26
   input:
     basic_grant__receiving:
       2022-W01: [true, true, false, false]
+    basic_grant__entitled:
+      2022-01: [true, true, false, false]
     independent_circumstances_grant__receiving:
       2022-W01: [true, false, true, false]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24,  24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
@@ -53,16 +62,18 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    67 Other funding exclusion
-    (b)   Grant
-    (ii)  Eligible for student grant
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (b) Grant
+            (ii)  Eligible for student grant
   period: 2018-11-26
   input:
     basic_grant__entitled:
       2022-01: [true, true, false, false]
     independent_circumstances_grant__entitled:
       2022-01: [true, false, true, false]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24,  24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
@@ -70,16 +81,20 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    67 Other funding exclusion
-    (b)   Grant
-    (iii) Would be eligible for student grant were it not means-tested
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (b) Grant
+            (iii) Would be eligible for student grant were it not means-tested
   period: 2018-11-26
   input:
     basic_grant__would_be_entitled:
       2022-W01: [true, true, false, false]
+    basic_grant__entitled:
+      2022-01: [true, true, false, false]
     independent_circumstances_grant__would_be_entitled:
       2022-W01: [true, false, true, false]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24 , 24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
@@ -87,13 +102,17 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    66 Social housing exclusion
-    (c) Residential care
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (c) Residential care
   period: 2018-11-26
   input:
     accommodation_type:
       2022-W01: [residential_care, under_the_moon]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24 ]
+    basic_grant__entitled:
+      2022-01: [false, false]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, false]
@@ -101,13 +120,17 @@
 
 - name: >
     Social Security Act 2018 -
-    65 Accommodation Supplement -
-    66 Social housing exclusion
-    (d) Disability
+    Subpart 10 Accommodation Supplement -
+    67  Other funding exclusion -
+        (d) Disability
   period: 2018-11-26
   input:
     accommodation_supplement__disability:
       2022-W01: [true, false]
+    age_of_partner:
+      day:2022-01-01:31: [ 24, 24 ]
+    basic_grant__entitled:
+      2022-01: [false, false]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, false]

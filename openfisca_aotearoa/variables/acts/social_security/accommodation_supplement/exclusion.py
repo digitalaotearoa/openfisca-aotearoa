@@ -44,22 +44,22 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
             )
 
         ssa2018_67_a = (
-            + people.has_role(entities.Family.PRINCIPAL)
+            people.has_role(entities.Family.PRINCIPAL)
             * partners_accommodation_supplement
             )
 
         ssa2018_67_b_i = (
-            + people("basic_grant__receiving", period)
+            people("basic_grant__receiving", period)
             + people("independent_circumstances_grant__receiving", period)
             )
 
         ssa2018_67_b_ii = (
-            + people("basic_grant__entitled", period.first_month)
+            people("basic_grant__entitled", period.first_month)
             + people("independent_circumstances_grant__entitled", period.first_month)
             )
 
         ssa2018_67_b_iii = (
-            + people("basic_grant__would_be_entitled", period)
+            people("basic_grant__would_be_entitled", period)
             + people("independent_circumstances_grant__would_be_entitled", period)
             )
 
@@ -70,7 +70,7 @@ class accommodation_supplement__other_funding_exclusion(variables.Variable):
         # TODO: ssa2018_67_e
 
         return (
-            + ssa2018_67_a
+            ssa2018_67_a
             + ssa2018_67_b_i
             + ssa2018_67_b_ii
             + ssa2018_67_b_iii

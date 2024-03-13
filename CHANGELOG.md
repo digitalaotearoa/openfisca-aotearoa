@@ -1,5 +1,32 @@
 # Changelog
 
+### 21.0.1 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
+
+* Tax and benefit system evolution.
+* Impacted periods: all.
+* Impacted areas: 
+  - `variables/acts/social_security`
+  - `variables/acts/income_tax`
+  - `variables/regulation/student_allowance`
+  - `variables/regulation/social_security`
+  - `variables/demographics`
+  - `accommodation_supplement`
+* Details:
+  - Fix rate & rebate when accommodation type is lodging or boarding
+  - Normally, a %62 rate is to be applied in this particular case
+  - However, in reality %162 was being applied, which is incorrect
+  - Resolve warnings present in Accomodation Supplement Tests
+  - Resolved linting issues
+
+* Breaking changes:
+ - `student_allowance__married_or_partnered` period changed from month to day
+ - `student_allowance__supported_child` period changed from month to day
+ - `student_allowance__partner_has_a_supported_child` period changed from month to day
+ - `student_allowance__person_has_spouse` period changed from month to day, formula updated
+
+* Changes:
+ - `age_of_partner` set_input_dispatch_by_period applied
+
 ### 21.0.0 - [60](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/60)
 
 * Tax and benefit system evolution.
@@ -49,6 +76,7 @@
 
 Added new feature in folder `ōpenfisca_aotearoa/api_examples`. This is a space for example http calls to help illustrate how to call the API.
 Added example calls for entities, parameters, variables and then `acts/social_security/child_disability_allowance` as per project structure
+
 
 ### 20.1.1 - [48](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/48)
 

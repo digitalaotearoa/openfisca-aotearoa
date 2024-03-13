@@ -1,8 +1,9 @@
 - name: >
     Social Security Regulations 2018 -
-    Accommodation Supplement -
-    § 17  Base rate -
-    ¶ 1   Beneficiaries
+    Part 2 Assistance -
+    Subpart 5 Accommodation Supplement -
+    17  Base rate -
+    (1) Beneficiaries
   period: 2018-11-26
   input:
     emergency_benefit__receiving:

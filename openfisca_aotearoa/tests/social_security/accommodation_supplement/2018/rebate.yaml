@@ -1,7 +1,8 @@
 - name: >
     Social Security Act 2018 -
-    Acommodation Supplement -
-    Rebate amount
+    Schedule 4 Rates of benefits -
+    Part 7 Accommodation Supplement -
+    (1) (2) (3) (4) (5) (6) Rebate amount
   period: 2018-11-26
   input:
     accommodation_supplement__situation:
@@ -14,4 +15,4 @@
       2022-W26: [1000, 1000, 1000, 1000, 1000, 1000, 1000]
   output:
     accommodation_supplement__rebate:
-      2022-W26: [0, 475, 475, 661, 510, 510, 510]
+      2022-W26: [0, 475, 361, 361, 510, 510, 510]

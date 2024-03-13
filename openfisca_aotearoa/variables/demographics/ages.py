@@ -70,6 +70,7 @@ class age_of_partner(Variable):
     definition_period = DAY
     unit = "years"
     label = "The maximum age of partner in a family"
+    set_input = holders.set_input_dispatch_by_period
 
     def formula(persons, period, parameters):
         return persons.family.max(persons.family.members("age", period), role=Family.PARTNER)

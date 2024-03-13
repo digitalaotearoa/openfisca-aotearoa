@@ -38,33 +38,33 @@ class accommodation_supplement__situation(variables.Variable):
         # As conditions 1-3 and 4-6 differ only in the accommodation type, we
         # first calculate the "base condition" (w/o accommodation type).
         cond_1 = (
-            + (dependent_children >= 1) * mingled
+            (dependent_children >= 1) * mingled
             + (dependent_children >= 2) * singles
             )
         cond_2 = (
-            + (dependent_children == 0) * mingled
+            (dependent_children == 0) * mingled
             + (dependent_children == 1) * singles
             )
         cond_3 = (
-            + numpy.logical_not(cond_1)
+            numpy.logical_not(cond_1)
             * numpy.logical_not(cond_2)
             )
 
         # Then we calculate conditions 1-3.
         rent_board_lodge = (
-            + (accommodation_type == housing.AccommodationType.rent)
+            (accommodation_type == housing.AccommodationType.rent)
             + (accommodation_type == housing.AccommodationType.board)
             + (accommodation_type == housing.AccommodationType.lodging)
             )
         ssa2018_sched_4_part_7_1_to_3 = (
-            + numpy.array([cond_1, cond_2, cond_3])
+            numpy.array([cond_1, cond_2, cond_3])
             * rent_board_lodge
             )
 
         # And conditions 4-6.
         mortgage = accommodation_type == housing.AccommodationType.mortgage
         ssa2018_sched_4_part_7_4_to_6 = (
-            + numpy.array([cond_1, cond_2, cond_3])
+            numpy.array([cond_1, cond_2, cond_3])
             * mortgage
             )
 
