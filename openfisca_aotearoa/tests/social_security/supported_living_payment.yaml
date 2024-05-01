@@ -18,7 +18,6 @@
       "2019-01-01": [16, 15]
     citizenship__citizen: [true, true]
     totally_blind: [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, true]
   output:
@@ -33,7 +32,6 @@
     citizenship__citizen: [true, true]
     supported_living_payment__restricted_work_capacity:
       "2019-W01": [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, true]
   output:
@@ -49,7 +47,6 @@
     citizenship__citizen: [true, true]
     supported_living_payment__restricted_work_capacity:
       "2019-W01": [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, true]
     supported_living_payment__disability_self_inflicted: [false, true]
@@ -65,7 +62,6 @@
     citizenship__citizen: [true, true]
     supported_living_payment__caring_for_another_person:
       "2019-W01": [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, true]
   output:
@@ -80,7 +76,6 @@
     citizenship__citizen: [true, true]
     supported_living_payment__caring_for_another_person:
       "2019-W01": [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, true]
     social_security__dependent_children:
@@ -98,7 +93,6 @@
     citizenship__citizen: [true, true]
     supported_living_payment__caring_for_another_person:
       "2019-W01": [true, true]
-    supported_living_payment__below_income_threshold: [true, true]
     social_security__residential_requirement:
       "2019-W01": [true, false]
   output:
