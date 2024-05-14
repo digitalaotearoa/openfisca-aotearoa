@@ -1,5 +1,4 @@
 """This module provides eligibility and amount for Supported Living Payment."""
-
 import numpy
 
 from openfisca_core import holders, periods, variables
@@ -235,13 +234,3 @@ class supported_living_payment__disability_self_inflicted(variables.Variable):
     definition_period = periods.ETERNITY
     label = "The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by the person with a view to qualifying for a benefit"
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178", "s36"
-
-
-class supported_living_payment__base(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = entities.Person
-    value_type = float
-    default_value = 0
-    definition_period = periods.DateUnit.WEEK

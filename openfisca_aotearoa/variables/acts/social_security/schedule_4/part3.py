@@ -55,8 +55,12 @@ class schedule_4__part3_1_d(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(d)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
-            people.family.any(people.family.members("social_security__granted_main_benefit", period), role=entities.Family.PARTNER)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_granted_main_benefit = people.family.any(
+            people.family.members("social_security__granted_main_benefit", period),
+            role=entities.Family.PARTNER)
+        return in_relationship * partner_granted_main_benefit
+
 
 
 class schedule_4__part3_1_d_i(variables.Variable):
@@ -67,8 +71,9 @@ class schedule_4__part3_1_d_i(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(d)(i)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_g", period) * \
-            (people("social_security__dependent_children", period) < 1)
+        base = people("schedule_4__part3_1_d", period)
+        no_children = people("social_security__dependent_children", period) < 1
+        return base * no_children
 
 
 class schedule_4__part3_1_d_ii(variables.Variable):
@@ -79,8 +84,9 @@ class schedule_4__part3_1_d_ii(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(d)(ii)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_g", period) * \
-            (people("social_security__dependent_children", period) > 0)
+        base = people("schedule_4__part3_1_d", period)
+        has_children = people("social_security__dependent_children", period) < 1
+        return base * has_children
 
 
 class schedule_4__part3_1_e(variables.Variable):
@@ -91,13 +97,21 @@ class schedule_4__part3_1_e(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(e)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
-            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        return in_relationship * partner_has_super
 
     def formula_2020_11_09(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * \
-            people.family.any(people.family.members("super__being_paid_nz_superannuation", period.first_month), role=entities.Family.PARTNER) + \
-            people.family.any(people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month), role=entities.Family.PARTNER)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        partner_has_veterans_pension = people.family.any(
+            people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month),
+            role=entities.Family.PARTNER)
+        return in_relationship * (partner_has_super + partner_has_veterans_pension)
 
 
 class schedule_4__part3_1_e_i(variables.Variable):
@@ -108,8 +122,9 @@ class schedule_4__part3_1_e_i(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(e)(i)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_e", period) * \
-            (people("social_security__dependent_children", period) < 1)
+        base = people("schedule_4__part3_1_e", period)
+        no_children = people("social_security__dependent_children", period) < 1
+        return base * no_children
 
 
 class schedule_4__part3_1_e_ii(variables.Variable):
@@ -120,8 +135,9 @@ class schedule_4__part3_1_e_ii(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(e)(ii)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_e", period) * \
-            (people("social_security__dependent_children", period) > 0)
+        base = people("schedule_4__part3_1_e", period)
+        has_children = people("social_security__dependent_children", period) > 0
+        return base * has_children
 
 
 # n.b.: this clause was repealed 2020-11-09 & folded into part3_1_e.
@@ -134,7 +150,11 @@ class schedule_4__part3_1_f(variables.Variable):
     end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("social_security__in_a_relationship", period) * people.family.any(people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month), role=entities.Family.PARTNER)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_veterans_pension = people.family.any(
+            people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month),
+            role=entities.Family.PARTNER)
+        return in_relationship * partner_has_veterans_pension
 
 
 class schedule_4__part3_1_f_i(variables.Variable):
@@ -146,8 +166,9 @@ class schedule_4__part3_1_f_i(variables.Variable):
     end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_f", period) * \
-            (people("social_security__dependent_children", period) < 1)
+        base = people("schedule_4__part3_1_f", period)
+        no_children = people("social_security__dependent_children", period) < 1
+        return base * no_children
 
 
 class schedule_4__part3_1_f_ii(variables.Variable):
@@ -159,8 +180,9 @@ class schedule_4__part3_1_f_ii(variables.Variable):
     end = "2020-11-09"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_f", period) * \
-            (people("social_security__dependent_children", period) > 0)
+        base = people("schedule_4__part3_1_f", period)
+        has_children = people("social_security__dependent_children", period) > 0
+        return base * has_children
 
 
 class schedule_4__part3_1_g(variables.Variable):
@@ -171,17 +193,29 @@ class schedule_4__part3_1_g(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(g)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("supported_living_payment__disabled_or_blind__entitled", period) * \
-            people("social_security__in_a_relationship", period) * \
-            numpy.logical_not(people("schedule_4__part3_1_d", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_e", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_f", period))
+        disabled_or_blind = people("supported_living_payment__disabled_or_blind__entitled", period)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_benefit = people.family.any(
+            people.family.members("social_security__granted_main_benefit", period),
+            role=entities.Family.PARTNER)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        return disabled_or_blind * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super)
 
     def formula_2020_11_09(people, period, parameters):
-        return people("supported_living_payment__disabled_or_blind__entitled", period) * \
-            people("social_security__in_a_relationship", period) * \
-            numpy.logical_not(people("schedule_4__part3_1_d", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_e", period))
+        disabled_or_blind__entitled = people("supported_living_payment__disabled_or_blind__entitled", period)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_benefit = people.family.any(
+            people.family.members("social_security__granted_main_benefit", period),
+            role=entities.Family.PARTNER)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        partner_has_veterans_pension = people.family.any(
+            people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month),
+            role=entities.Family.PARTNER)
+        return disabled_or_blind__entitled * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super + partner_has_veterans_pension)
 
 
 class schedule_4__part3_1_g_i(variables.Variable):
@@ -192,8 +226,9 @@ class schedule_4__part3_1_g_i(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(g)(i)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_g", period) * \
-            (people("social_security__dependent_children", period) < 1)
+        base = people("schedule_4__part3_1_g", period)
+        no_children = people("social_security__dependent_children", period) < 1
+        return base * no_children
 
 
 class schedule_4__part3_1_g_ii(variables.Variable):
@@ -204,8 +239,9 @@ class schedule_4__part3_1_g_ii(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(g)(ii)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_g", period) * \
-            (people("social_security__dependent_children", period) > 0)
+        base = people("schedule_4__part3_1_g", period)
+        has_children = people("social_security__dependent_children", period) > 0
+        return base * has_children
 
 
 class schedule_4__part3_1_h(variables.Variable):
@@ -216,17 +252,29 @@ class schedule_4__part3_1_h(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(h)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("supported_living_payment__carer__entitled", period) * \
-            people("social_security__in_a_relationship", period) * \
-            numpy.logical_not(people("schedule_4__part3_1_d", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_e", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_f", period))
+        carer__entitled = people("supported_living_payment__carer__entitled", period)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_benefit = people.family.any(
+            people.family.members("social_security__granted_main_benefit", period),
+            role=entities.Family.PARTNER)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        return carer__entitled * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super)
 
     def formula_2020_11_09(people, period, parameters):
-        return people("supported_living_payment__carer__entitled", period) * \
-            people("social_security__in_a_relationship", period) * \
-            numpy.logical_not(people("schedule_4__part3_1_d", period)) * \
-            numpy.logical_not(people("schedule_4__part3_1_e", period))
+        carer__entitled = people("supported_living_payment__carer__entitled", period)
+        in_relationship = people("social_security__in_a_relationship", period)
+        partner_has_benefit = people.family.any(
+            people.family.members("social_security__granted_main_benefit", period),
+            role=entities.Family.PARTNER)
+        partner_has_super = people.family.any(
+            people.family.members("super__being_paid_nz_superannuation", period.first_month),
+            role=entities.Family.PARTNER)
+        partner_has_veterans_pension = people.family.any(
+            people.family.members("veterans_support__being_paid_a_veterans_pension", period.first_month),
+            role=entities.Family.PARTNER)
+        return carer__entitled * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super + partner_has_veterans_pension)
 
 
 class schedule_4__part3_1_h_i(variables.Variable):
@@ -237,8 +285,9 @@ class schedule_4__part3_1_h_i(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(h)(i)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_g", period) * \
-            (people("social_security__dependent_children", period) < 1)
+        base = people("schedule_4__part3_1_g", period)
+        no_children = people("social_security__dependent_children", period) < 1
+        return base * no_children
 
 
 class schedule_4__part3_1_h_ii(variables.Variable):
@@ -249,5 +298,6 @@ class schedule_4__part3_1_h_ii(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(g)(ii)"
 
     def formula_2018_11_26(people, period, parameters):
-        return people("schedule_4__part3_1_h", period) * \
-            (people("social_security__dependent_children", period) > 0)
+        base = people("schedule_4__part3_1_h", period)
+        has_children = people("social_security__dependent_children", period) > 0
+        return base * has_children
