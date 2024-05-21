@@ -64,15 +64,30 @@ class supported_living_payment__benefit(variables.Variable):
             default=0)
         benefit_post_c6 = benefit_post_c4 + ssa_s4_6
 
-        # 7. Despite paragraphs (d), (e), and (g) of clause 1, the rate of a supported living payment on the ground of caring for another person under any of those paragraphs must not be less than the rates that would be payable if the beneficiary and the spouse or partner of the beneficiary were both entitled to receive the benefit on those grounds; but the rate of benefit payable by virtue of this clause must not exceed—
-        #     (a) $342.24 a week if the beneficiary and the spouse or partner of the beneficiary have no dependent children; or
-        #     (b) $372.81 a week if the beneficiary and the spouse or partner of the beneficiary have 1 or more dependent children.
+        # 7. If entitled as carer & in a couple, both are entitled as carers with a separate cap
+        ssa_s4_7_rate = numpy.where(
+            no_children,
+            clauses["clause_1_hi"],
+            clauses["clause_1_hii"])
+        ssa_s4_7_gross_benefit = 2 * numpy.clip(ssa_s4_7_rate - abatement_rate, 0)
+        ssa_s4_7_benefit = numpy.where(
+            no_children,
+            numpy.clip(ssa_s4_7_gross_benefit, clauses["clause_7_a"]),
+            numpy.clip(ssa_s4_7_gross_benefit, clauses["clause_7_b"]))
+
+        carer_entitled = population("supported_living_payment__carer__entitled", period, parameters)
+
+        # if the population is entitled as a carer, use the larger of c7 or other clauses
+        benefit_post_c7 = numpy.where(
+            carer_entitled,
+            numpy.maximum(benefit_post_c6, ssa_s4_7_benefit),
+            benefit_post_c6)
 
         # 8. A dependent child is one who is not earning orphans' or unsupported child benefits
 
         is_entitled = population("supported_living_payment__entitled", period)
 
-        return is_entitled * benefit_post_c6
+        return is_entitled * benefit_post_c7
 
 
 # note: this does not calculate exemptions as under:
