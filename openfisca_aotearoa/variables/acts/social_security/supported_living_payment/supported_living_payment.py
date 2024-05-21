@@ -54,7 +54,7 @@ class supported_living_payment__entitled(variables.Variable):
 class supported_living_payment__disabled_or_blind__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment, on ground of restricted work capacity or total blindness."
     reference = [
         "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783174",
@@ -113,7 +113,7 @@ class supported_living_payment__disabled_or_blind__entitled(variables.Variable):
 class supported_living_payment__carer__entitled(variables.Variable):
     value_type = bool
     entity = entities.Person
-    definition_period = periods.MONTH
+    definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment, on grounds of caring for another person."
     reference = [
         "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187",

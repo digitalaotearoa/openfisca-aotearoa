@@ -62,7 +62,6 @@ class schedule_4__part3_1_d(variables.Variable):
         return in_relationship * partner_granted_main_benefit
 
 
-
 class schedule_4__part3_1_d_i(variables.Variable):
     value_type = bool
     entity = entities.Person
