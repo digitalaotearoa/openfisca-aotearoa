@@ -301,3 +301,25 @@ class schedule_4__part3_1_h_ii(variables.Variable):
         base = people("schedule_4__part3_1_h", period)
         has_children = people("social_security__dependent_children", period) > 0
         return base * has_children
+
+
+class schedule_4__part3_5(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = """Shortcut to indicate beneficiary meets the following from clause 5:
+        (a) has a psychiatric, intellectual, physical, or mental disability; and
+        (b) is receiving long-term residential care in a hospital or rest home because of that disability; and
+        (c) has not been means assessed under Part 6 of the Residential Care and Disability Support Services Act 2018.
+    """
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
+
+
+class schedule_4__part3_6(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = """Shortcut to indicate beneficiary meets the following from clause 6:
+        if that spouse or partner is not receiving long-term residential care in a hospital or rest home.
+    """
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"

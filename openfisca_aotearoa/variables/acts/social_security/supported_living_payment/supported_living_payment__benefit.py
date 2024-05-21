@@ -1,6 +1,6 @@
 """This module provides eligibility and amount for Supported Living Payment."""
+
 from functools import reduce
-from operator import add, mul
 
 import numpy
 
@@ -16,12 +16,113 @@ class supported_living_payment__benefit(variables.Variable):
     label = "The final net benefit entitlement"
     reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
 
-    def formula_2018_11_26(people, period, parameters):
-        base_rate = people("supported_living_payment__base", period)
-        abatement_rate = people("supported_living_payment__reduction", period)
-        rate = numpy.clip(base_rate - abatement_rate, 0, base_rate)
-        entitled = people("supported_living_payment__entitled", period)
-        return entitled * rate
+    @staticmethod
+    def formula_2018_11_26(population, period, parameters):
+        # Note: the clauses in this act unfortunately apply out of order
+        base_rate = population("supported_living_payment__base", period)
+        abatement_rate = population("supported_living_payment__reduction", period)
+
+        # 5. Halves benefit & abatement if in a relationship & meets these requirements
+        in_relationship = population("social_security__in_a_relationship", period)
+        ssa_s4_p3_5_applies = in_relationship * population("schedule_4__part3_5", period)
+        base_rate = numpy.where(
+            ssa_s4_p3_5_applies,
+            base_rate * 0.5,
+            base_rate)
+        abatement_rate = numpy.where(
+            ssa_s4_p3_5_applies,
+            abatement_rate * 0.5,
+            abatement_rate)
+
+        # ensure the reduction does not result in a negative benefit
+        benefit_post_c1 = numpy.clip(base_rate - abatement_rate, 0)
+
+        # 2. Maximum amount from all sources
+        clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
+        couple_cap = clauses["clause_2"]
+        single_cap = clauses["clause_2s"] + couple_cap
+
+        # 3. Additional 25% of income subsidy if beneficiary is blind
+        is_blind = population("totally_blind", period)
+        net_income = population("social_security__income", period)
+        benefit_post_s3 = benefit_post_c1 + numpy.where(is_blind, 0.25, * net_income, 0 * net_income)
+
+        # 4. Benefit must not exceed cap from clause 2
+        benefit_post_c4 = numpy.where(
+            in_relationship,
+            numpy.clip(benefit_post_s3, couple_cap),
+            numpy.clip(benefit_post_s3, single_cap))
+
+        # 6. If clause 5 applies, partner is entitled to payment 1b or 1c
+        ssa_s4_6_applies = ssa_s4_p3_5_applies * population("schedule_4__part3_6", period)
+        no_children = population("social_security__dependent_children", period.first_week) < 1
+        has_children = population("social_security__dependent_children", period.first_week) > 0
+        clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
+        ssa_s4_6 = numpy.select(
+            [ssa_s4_6_applies * no_children, ssa_s4_6_applies * has_children],
+            [clauses["clause_1_b"], clauses["clause_1_c"]],
+            default=0)
+        benefit_post_c6 = benefit_post_c4 + ssa_s4_6
+
+        # 7. Despite paragraphs (d), (e), and (g) of clause 1, the rate of a supported living payment on the ground of caring for another person under any of those paragraphs must not be less than the rates that would be payable if the beneficiary and the spouse or partner of the beneficiary were both entitled to receive the benefit on those grounds; but the rate of benefit payable by virtue of this clause must not exceed—
+        #     (a) $342.24 a week if the beneficiary and the spouse or partner of the beneficiary have no dependent children; or
+        #     (b) $372.81 a week if the beneficiary and the spouse or partner of the beneficiary have 1 or more dependent children.
+
+        # 8. A dependent child is one who is not earning orphans' or unsupported child benefits
+
+        is_entitled = population("supported_living_payment__entitled", period)
+
+        return is_entitled * benefit_post_c6
+
+
+# note: this does not calculate exemptions as under:
+#     * SSA 2018, clause 422:
+#         https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783992
+#     * SSR 2018, schedule 10 clause 44:
+#         https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS97179
+# therefore only *non-exempt* income should be entered into social_security__income
+class supported_living_payment__assessable_income(variables.Variable):
+    value_type = float
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "The assessable income of the principle & partner for the purposes of income tests."
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
+
+    @staticmethod
+    def formula_2018_11_26(population, period):
+        # 1. Income for SLP on the basis of blindness or disability:
+        #     (a) disregard that part of the beneficiary’s income (not exceeding $20 a week) earned by the beneficiary’s own efforts; and
+        #     (b) disregard all of the income of a totally blind beneficiary earned by the beneficiary’s own efforts.
+        gross_principal_income = population("social_security__income", period)
+        principal_blind = population("totally_blind", period)
+        principal_disabled = population("supported_living_payment__restricted_work_capacity", period)
+        principal_abled = numpy.logical_not(numpy.logical_or(principal_blind, principal_disabled))
+        principal_limits = {
+            # if a beneficiary is receiving SLP for blindness, disregard all income
+            principal_blind: numpy.clip(gross_principal_income, a_max=0),
+            # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
+            principal_disabled: numpy.clip(gross_principal_income - (20 * period.size_in_weeks), a_min=0),
+            # otherwise, use the gross principal income
+            principal_abled: gross_principal_income}
+        # income based on whether principal population members are blind, disabled, or neither
+        assessable_principal_income = numpy.select(*principal_limits.keys(), *principal_limits.values())
+
+        gross_partner_income = population.partner("social_security__income", period)
+        partner_blind = population.partner("totally_blind", period)
+        partner_disabled = population.partner("supported_living_payment__restricted_work_capacity", period)
+        partner_abled = numpy.logical_not(numpy.logical_or(partner_blind, partner_disabled))
+        partner_limits = {
+            # if a beneficiary is receiving SLP for blindness, disregard all income
+            partner_blind: numpy.clip(gross_partner_income, a_max=0),
+            # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
+            partner_disabled: numpy.clip(gross_partner_income - (20 * period.size_in_weeks), a_min=0),
+            # otherwise, use the gross principal income
+            partner_abled: gross_partner_income}
+        # income based on whether partner population members are blind, disabled, or neither
+        assessable_partner_income = numpy.select(*partner_limits.keys(), *partner_limits.values())
+
+        # numpy.floor required for income tests; reductions are per whole dollar
+        return numpy.floor(assessable_principal_income + assessable_partner_income)
 
 
 class supported_living_payment__reduction(variables.Variable):
@@ -31,83 +132,79 @@ class supported_living_payment__reduction(variables.Variable):
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
     reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
 
-    def formula_2018_11_26(people, period, parameters):
-        family_income = add(
-            people.family.sum(
-                people.family.members("social_security__income", period),
-                role=entities.Family.PARTNER),
-            people.family.sum(
-                people.family.members("social_security__income", period),
-                role=entities.Family.PRINCIPAL))
-
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+    @staticmethod
+    def formula_2018_11_26(population, period, parameters):
+        family_income = population("supported_living_payment__assessable_income", period)
 
         # test 1 is used if any of these clauses apply
-        test_1 = reduce(add, [
-            people("schedule_4__part3_1_a", period),
-            people("schedule_4__part3_1_b", period),
-            people("schedule_4__part3_1_c", period),
-            people("schedule_4__part3_1_g_i", period),
-            people("schedule_4__part3_1_g_ii", period),
-            people("schedule_4__part3_1_h_i", period),
-            people("schedule_4__part3_1_h_ii", period)])
+        test_1_applies = reduce(numpy.logical_or, [
+            population("schedule_4__part3_1_a", period),
+            population("schedule_4__part3_1_b", period),
+            population("schedule_4__part3_1_c", period),
+            population("schedule_4__part3_1_g_i", period),
+            population("schedule_4__part3_1_g_ii", period),
+            population("schedule_4__part3_1_h_i", period),
+            population("schedule_4__part3_1_h_ii", period)])
 
         # test 2 is used if any of these clauses apply
-        test_2 = reduce(add, [
-            people("schedule_4__part3_1_d_i", period),
-            people("schedule_4__part3_1_d_ii", period),
-            people("schedule_4__part3_1_e_i", period),
-            people("schedule_4__part3_1_e_ii", period),
-            people("schedule_4__part3_1_f_i", period),
-            people("schedule_4__part3_1_f_ii", period)])
+        test_2_applies = reduce(numpy.logical_or, [
+            population("schedule_4__part3_1_d_i", period),
+            population("schedule_4__part3_1_d_ii", period),
+            population("schedule_4__part3_1_e_i", period),
+            population("schedule_4__part3_1_e_ii", period),
+            population("schedule_4__part3_1_f_i", period),
+            population("schedule_4__part3_1_f_ii", period)])
 
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_2 = parameters(period).social_security.income_test_2
+        income_test_1 = parameters(period).social_security.income_test_1
+        income_test_2 = parameters(period).social_security.income_test_2
 
-        return mul(
-            people("supported_living_payment__entitled", period),
-            add(
-                (scale_1.calc(family_income) * test_1),
-                (scale_2.calc(family_income) * test_2)))
+        abatement = numpy.select(
+            [test_1_applies, test_2_applies],
+            [income_test_1.calc(family_income), income_test_2.calc(family_income)])
 
-    def formula_2020_11_09(people, period, parameters):
-        family_income = add(
-            people.family.sum(
-                people.family.members("social_security__income", period),
-                role=entities.Family.PARTNER),
-            people.family.sum(
-                people.family.members("social_security__income", period),
-                role=entities.Family.PRINCIPAL))
+        # 5. Halves benefit & abatement if in a relationship & meets these requirements
+        in_relationship = population("social_security__in_a_relationship", period)
+        ssa_s4_5_applies = population("schedule_4__part3_5", period)
+        return numpy.where(
+            in_relationship * ssa_s4_5_applies,
+            abatement * 0.5,
+            abatement)
 
-        # numpy.floor required for income tests as it's "35c for every $1"
-        family_income = numpy.floor(family_income)
+    @staticmethod
+    def formula_2020_11_09(population, period, parameters):
+        family_income = population("supported_living_payment__assessable_income", period)
 
         # test 1 is used if any of these clauses apply
-        test_1 = reduce(add, [
-            people("schedule_4__part3_1_a", period),
-            people("schedule_4__part3_1_b", period),
-            people("schedule_4__part3_1_c", period),
-            people("schedule_4__part3_1_g_i", period),
-            people("schedule_4__part3_1_g_ii", period),
-            people("schedule_4__part3_1_h_i", period),
-            people("schedule_4__part3_1_h_ii", period)])
+        test_1_applies = reduce(numpy.logical_or, [
+            population("schedule_4__part3_1_a", period),
+            population("schedule_4__part3_1_b", period),
+            population("schedule_4__part3_1_c", period),
+            population("schedule_4__part3_1_g_i", period),
+            population("schedule_4__part3_1_g_ii", period),
+            population("schedule_4__part3_1_h_i", period),
+            population("schedule_4__part3_1_h_ii", period)])
 
         # test 2 is used if any of these clauses apply
-        test_2 = reduce(add, [
-            people("schedule_4__part3_1_d_i", period),
-            people("schedule_4__part3_1_d_ii", period),
-            people("schedule_4__part3_1_e_i", period),
-            people("schedule_4__part3_1_e_ii", period)])
+        test_2_applies = reduce(numpy.logical_or, [
+            population("schedule_4__part3_1_d_i", period),
+            population("schedule_4__part3_1_d_ii", period),
+            population("schedule_4__part3_1_e_i", period),
+            population("schedule_4__part3_1_e_ii", period)])
 
-        scale_1 = parameters(period).social_security.income_test_1
-        scale_2 = parameters(period).social_security.income_test_2
+        income_test_1 = parameters(period).social_security.income_test_1
+        income_test_2 = parameters(period).social_security.income_test_2
 
-        return mul(
-            people("supported_living_payment__entitled", period),
-            add(
-                (scale_1.calc(family_income) * test_1),
-                (scale_2.calc(family_income) * test_2)))
+        abatement = numpy.select(
+            [test_1_applies, test_2_applies],
+            [income_test_1.calc(family_income), income_test_2.calc(family_income)])
+
+        # 5. Halves benefit & abatement if in a relationship & meets these requirements
+        in_relationship = population("social_security__in_a_relationship", period)
+        ssa_s4_5_applies = population("schedule_4__part3_5", period)
+        return numpy.where(
+            in_relationship * ssa_s4_5_applies,
+            abatement * 0.5,
+            abatement)
 
 
 class supported_living_payment__base(variables.Variable):
@@ -117,60 +214,80 @@ class supported_living_payment__base(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Supported Living Payment - Base Amount, (this is taxed and the amounts are supplied after tax, i.e. net)"
 
-    def formula_2018_11_26(people, period, parameters):
+    @staticmethod
+    def formula_2018_11_26(population, period, parameters):
         clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
-        # benefit = eligibility (boolean) * rate (float)
-        clause_1_a_net_weekly_benefit = people("schedule_4__part3_1_a", period) * clauses["clause_1_a"]
-        clause_1_b_net_weekly_benefit = people("schedule_4__part3_1_b", period) * clauses["clause_1_b"]
-        clause_1_c_net_weekly_benefit = people("schedule_4__part3_1_c", period) * clauses["clause_1_c"]
-        clause_1_d_i_net_weekly_benefit = people("schedule_4__part3_1_d_i", period) * clauses["clause_1_d_i"]
-        clause_1_d_ii_net_weekly_benefit = people("schedule_4__part3_1_d_ii", period) * clauses["clause_1_d_i"]
-        clause_1_e_i_net_weekly_benefit = people("schedule_4__part3_1_e_i", period) * clauses["clause_1_e_i"]
-        clause_1_e_ii_net_weekly_benefit = people("schedule_4__part3_1_e_ii", period) * clauses["clause_1_e_ii"]
-        clause_1_f_i_net_weekly_benefit = people("schedule_4__part3_1_f_i", period) * clauses["clause_1_f_i"]
-        clause_1_f_ii_net_weekly_benefit = people("schedule_4__part3_1_f_ii", period) * clauses["clause_1_f_ii"]
-        clause_1_g_i_net_weekly_benefit = people("schedule_4__part3_1_g_i", period) * clauses["clause_1_g_i"]
-        clause_1_g_ii_net_weekly_benefit = people("schedule_4__part3_1_g_ii", period) * clauses["clause_1_g_ii"]
-        clause_1_h_i_net_weekly_benefit = people("schedule_4__part3_1_h_i", period) * clauses["clause_1_h_i"]
-        clause_1_h_ii_net_weekly_benefit = people("schedule_4__part3_1_h_ii", period) * clauses["clause_1_h_ii"]
-        return reduce(add, [
-            clause_1_a_net_weekly_benefit,
-            clause_1_b_net_weekly_benefit,
-            clause_1_c_net_weekly_benefit,
-            clause_1_d_i_net_weekly_benefit,
-            clause_1_d_ii_net_weekly_benefit,
-            clause_1_e_i_net_weekly_benefit,
-            clause_1_e_ii_net_weekly_benefit,
-            clause_1_f_i_net_weekly_benefit,
-            clause_1_f_ii_net_weekly_benefit,
-            clause_1_g_i_net_weekly_benefit,
-            clause_1_g_ii_net_weekly_benefit,
-            clause_1_h_i_net_weekly_benefit,
-            clause_1_h_ii_net_weekly_benefit])
+        base_rate = numpy.select([
+            population("schedule_4__part3_1_a", period),
+            population("schedule_4__part3_1_b", period),
+            population("schedule_4__part3_1_c", period),
+            population("schedule_4__part3_1_d_i", period),
+            population("schedule_4__part3_1_d_ii", period),
+            population("schedule_4__part3_1_e_i", period),
+            population("schedule_4__part3_1_e_ii", period),
+            population("schedule_4__part3_1_f_i", period),
+            population("schedule_4__part3_1_f_ii", period),
+            population("schedule_4__part3_1_g_i", period),
+            population("schedule_4__part3_1_g_ii", period),
+            population("schedule_4__part3_1_h_i", period),
+            population("schedule_4__part3_1_h_ii", period),
+            ], [
+            clauses["clause_1_a"],
+            clauses["clause_1_b"],
+            clauses["clause_1_c"],
+            clauses["clause_1_d_i"],
+            clauses["clause_1_d_i"],
+            clauses["clause_1_e_i"],
+            clauses["clause_1_e_ii"],
+            clauses["clause_1_f_i"],
+            clauses["clause_1_f_ii"],
+            clauses["clause_1_g_i"],
+            clauses["clause_1_g_ii"],
+            clauses["clause_1_h_i"],
+            clauses["clause_1_h_ii"],
+            ])
 
-    def formula_2020_11_09(people, period, parameters):
+        # 5. Halves benefit & abatement if in a relationship & meets these requirements
+        in_relationship = population("social_security__in_a_relationship", period)
+        ssa_s4_5_applies = population("schedule_4__part3_5", period)
+        return numpy.where(
+            in_relationship * ssa_s4_5_applies,
+            base_rate * 0.5,
+            base_rate)
+
+    @staticmethod
+    def formula_2020_11_09(population, period, parameters):
         clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
-        # benefit = eligibility (boolean) * rate (float)
-        clause_1_a_net_weekly_benefit = people("schedule_4__part3_1_a", period) * clauses["clause_1_a"]
-        clause_1_b_net_weekly_benefit = people("schedule_4__part3_1_b", period) * clauses["clause_1_b"]
-        clause_1_c_net_weekly_benefit = people("schedule_4__part3_1_c", period) * clauses["clause_1_c"]
-        clause_1_d_i_net_weekly_benefit = people("schedule_4__part3_1_d_i", period) * clauses["clause_1_d_i"]
-        clause_1_d_ii_net_weekly_benefit = people("schedule_4__part3_1_d_ii", period) * clauses["clause_1_d_i"]
-        clause_1_e_i_net_weekly_benefit = people("schedule_4__part3_1_e_i", period) * clauses["clause_1_e_i"]
-        clause_1_e_ii_net_weekly_benefit = people("schedule_4__part3_1_e_ii", period) * clauses["clause_1_e_ii"]
-        clause_1_g_i_net_weekly_benefit = people("schedule_4__part3_1_g_i", period) * clauses["clause_1_g_i"]
-        clause_1_g_ii_net_weekly_benefit = people("schedule_4__part3_1_g_ii", period) * clauses["clause_1_g_ii"]
-        clause_1_h_i_net_weekly_benefit = people("schedule_4__part3_1_h_i", period) * clauses["clause_1_h_i"]
-        clause_1_h_ii_net_weekly_benefit = people("schedule_4__part3_1_h_ii", period) * clauses["clause_1_h_ii"]
-        return reduce(add, [
-            clause_1_a_net_weekly_benefit,
-            clause_1_b_net_weekly_benefit,
-            clause_1_c_net_weekly_benefit,
-            clause_1_d_i_net_weekly_benefit,
-            clause_1_d_ii_net_weekly_benefit,
-            clause_1_e_i_net_weekly_benefit,
-            clause_1_e_ii_net_weekly_benefit,
-            clause_1_g_i_net_weekly_benefit,
-            clause_1_g_ii_net_weekly_benefit,
-            clause_1_h_i_net_weekly_benefit,
-            clause_1_h_ii_net_weekly_benefit])
+        base_rate = numpy.select([
+            population("schedule_4__part3_1_a", period),
+            population("schedule_4__part3_1_b", period),
+            population("schedule_4__part3_1_c", period),
+            population("schedule_4__part3_1_d_i", period),
+            population("schedule_4__part3_1_d_ii", period),
+            population("schedule_4__part3_1_e_i", period),
+            population("schedule_4__part3_1_e_ii", period),
+            population("schedule_4__part3_1_g_i", period),
+            population("schedule_4__part3_1_g_ii", period),
+            population("schedule_4__part3_1_h_i", period),
+            population("schedule_4__part3_1_h_ii", period),
+            ], [
+            clauses["clause_1_a"],
+            clauses["clause_1_b"],
+            clauses["clause_1_c"],
+            clauses["clause_1_d_i"],
+            clauses["clause_1_d_i"],
+            clauses["clause_1_e_i"],
+            clauses["clause_1_e_ii"],
+            clauses["clause_1_g_i"],
+            clauses["clause_1_g_ii"],
+            clauses["clause_1_h_i"],
+            clauses["clause_1_h_ii"],
+            ])
+
+        # 5. Halves benefit & abatement if in a relationship & meets these requirements
+        in_relationship = population("social_security__in_a_relationship", period)
+        ssa_s4_5_applies = population("schedule_4__part3_5", period)
+        return numpy.where(
+            in_relationship * ssa_s4_5_applies,
+            base_rate * 0.5,
+            base_rate)

@@ -233,4 +233,4 @@ class supported_living_payment__disability_self_inflicted(variables.Variable):
     entity = entities.Person
     definition_period = periods.ETERNITY
     label = "The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by the person with a view to qualifying for a benefit"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178", "s36"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178"
