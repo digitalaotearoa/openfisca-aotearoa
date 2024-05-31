@@ -44,13 +44,14 @@ class supported_living_payment__benefit(variables.Variable):
         # 3. Additional 25% of income subsidy if beneficiary is blind
         is_blind = population("totally_blind", period)
         net_income = population("social_security__income", period)
-        benefit_post_s3 = benefit_post_c1 + numpy.where(is_blind, 0.25, * net_income, 0 * net_income)
+        c3_subsidy = numpy.where(is_blind, 0.25 * net_income, 0 * net_income)
 
-        # 4. Benefit must not exceed cap from clause 2
-        benefit_post_c4 = numpy.where(
+        # 4. Subsidy + benefit must not exceed cap from clause 2
+        capped_c3_subsidy = numpy.where(
             in_relationship,
-            numpy.clip(benefit_post_s3, 0, couple_cap),
-            numpy.clip(benefit_post_s3, 0, single_cap))
+            numpy.clip(c3_subsidy, 0, numpy.clip(couple_cap - benefit_post_c1, 0, couple_cap)),
+            numpy.clip(c3_subsidy, 0, numpy.clip(single_cap - benefit_post_c1, 0, single_cap)))
+        benefit_post_c4 = benefit_post_c1 + capped_c3_subsidy
 
         # 6. If clause 5 applies, partner is entitled to payment 1b or 1c
         ssa_s4_6_applies = ssa_s4_p3_5_applies * population("schedule_4__part3_6", period)
@@ -63,11 +64,16 @@ class supported_living_payment__benefit(variables.Variable):
             default=0)
         benefit_post_c6 = benefit_post_c4 + ssa_s4_6
 
-        # 7. If entitled as carer & in a couple, both are entitled as carers with a separate cap
+        # 7. If entitled as carer & in a couple, both are entitled as carers
+        # n.b.: this is the method used by MSD
+        # they give each partner the base rate and then subtract the abatement rate from each
+        # this is equivalent to: 2 * (base - abatement)
+        # an alternative would be to multiply the base rate by 2 and then subtract the abatement rate
+        # this can be argued to be more generous
         ssa_s4_7_rate = numpy.where(
             no_children,
-            clauses["clause_1_hi"],
-            clauses["clause_1_hii"])
+            clauses["clause_1_h_i"],
+            clauses["clause_1_h_ii"])
         ssa_s4_7_gross_benefit = 2 * numpy.clip(ssa_s4_7_rate - abatement_rate, 0, ssa_s4_7_rate)
         ssa_s4_7_benefit = numpy.where(
             no_children,
@@ -86,7 +92,7 @@ class supported_living_payment__benefit(variables.Variable):
 
         is_entitled = population("supported_living_payment__entitled", period)
 
-        return is_entitled * benefit_post_c7
+        return numpy.round(is_entitled * benefit_post_c7, 2)
 
 
 # note: this does not calculate exemptions as under:
@@ -111,30 +117,38 @@ class supported_living_payment__assessable_income(variables.Variable):
         principal_disabled = population("supported_living_payment__restricted_work_capacity", period)
         principal_abled = numpy.logical_not(numpy.logical_or(principal_blind, principal_disabled))
         principal_disabled_income = gross_principal_income - (20 * period.size_in_weeks)
-        principal_limits = {
-            # if a beneficiary is receiving SLP for blindness, disregard all income
-            principal_blind: numpy.clip(gross_principal_income, 0, 0),
-            # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
-            principal_disabled: numpy.clip(principal_disabled_income, 0, principal_disabled_income),
-            # otherwise, use the gross principal income
-            principal_abled: gross_principal_income}
         # income based on whether principal population members are blind, disabled, or neither
-        assessable_principal_income = numpy.select(list(principal_limits.keys()), list(principal_limits.values()))
+        assessable_principal_income = numpy.select(
+            [principal_blind, principal_disabled, principal_abled],
+            [
+                # if a beneficiary is receiving SLP for blindness, disregard all income
+                numpy.clip(gross_principal_income, 0, 0),
+                # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
+                numpy.clip(principal_disabled_income, 0, principal_disabled_income),
+                # otherwise, use the gross principal income
+                gross_principal_income])
 
-        gross_partner_income = population.partner("social_security__income", period)
-        partner_blind = population.partner("totally_blind", period)
-        partner_disabled = population.partner("supported_living_payment__restricted_work_capacity", period)
+        gross_partner_income = population.family.sum(
+            population.family.members("social_security__income", period),
+            role=entities.Family.PARTNER)
+        partner_blind = population.family.any(
+            population.family.members("totally_blind", period),
+            role=entities.Family.PARTNER)
+        partner_disabled = population.family.any(
+            population.family.members("supported_living_payment__restricted_work_capacity", period),
+            role=entities.Family.PARTNER)
         partner_abled = numpy.logical_not(numpy.logical_or(partner_blind, partner_disabled))
         partner_disabled_income = gross_partner_income - (20 * period.size_in_weeks)
-        partner_limits = {
-            # if a beneficiary is receiving SLP for blindness, disregard all income
-            partner_blind: numpy.clip(gross_partner_income, 0, 0),
-            # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
-            partner_disabled: numpy.clip(partner_disabled_income, 0, partner_disabled_income),
-            # otherwise, use the gross principal income
-            partner_abled: gross_partner_income}
         # income based on whether partner population members are blind, disabled, or neither
-        assessable_partner_income = numpy.select(list(partner_limits.keys()), list(partner_limits.values()))
+        assessable_partner_income = numpy.select(
+            [partner_blind, partner_disabled, partner_abled],
+            [
+                # if a beneficiary is receiving SLP for blindness, disregard all income
+                numpy.clip(gross_partner_income, 0, 0),
+                # if a beneficiary is receiving SLP for disability, disregard a maximum of $20
+                numpy.clip(partner_disabled_income, 0, partner_disabled_income),
+                # otherwise, use the gross partner income
+                gross_partner_income])
 
         # numpy.floor required for income tests; reductions are per whole dollar
         return numpy.floor(assessable_principal_income + assessable_partner_income)
@@ -179,10 +193,13 @@ class supported_living_payment__reduction(variables.Variable):
         # 5. Halves benefit & abatement if in a relationship & meets these requirements
         in_relationship = population("social_security__in_a_relationship", period)
         ssa_s4_5_applies = population("schedule_4__part3_5", period)
-        return numpy.where(
-            in_relationship * ssa_s4_5_applies,
-            abatement * 0.5,
-            abatement)
+        is_entitled = population("supported_living_payment__entitled", period)
+        return is_entitled * numpy.round(
+            numpy.where(
+                in_relationship * ssa_s4_5_applies,
+                abatement * 0.5,
+                abatement),
+            2)
 
     def formula_2020_11_09(population, period, parameters):
         family_income = population("supported_living_payment__assessable_income", period)
@@ -214,10 +231,13 @@ class supported_living_payment__reduction(variables.Variable):
         # 5. Halves benefit & abatement if in a relationship & meets these requirements
         in_relationship = population("social_security__in_a_relationship", period)
         ssa_s4_5_applies = population("schedule_4__part3_5", period)
-        return numpy.where(
-            in_relationship * ssa_s4_5_applies,
-            abatement * 0.5,
-            abatement)
+        is_entitled = population("supported_living_payment__entitled", period)
+        return is_entitled * numpy.round(
+            numpy.where(
+                in_relationship * ssa_s4_5_applies,
+                abatement * 0.5,
+                abatement),
+            2)
 
 
 class supported_living_payment__base(variables.Variable):
@@ -248,7 +268,7 @@ class supported_living_payment__base(variables.Variable):
             clauses["clause_1_b"],
             clauses["clause_1_c"],
             clauses["clause_1_d_i"],
-            clauses["clause_1_d_i"],
+            clauses["clause_1_d_ii"],
             clauses["clause_1_e_i"],
             clauses["clause_1_e_ii"],
             clauses["clause_1_f_i"],
@@ -262,7 +282,8 @@ class supported_living_payment__base(variables.Variable):
         # 5. Halves benefit & abatement if in a relationship & meets these requirements
         in_relationship = population("social_security__in_a_relationship", period)
         ssa_s4_5_applies = population("schedule_4__part3_5", period)
-        return numpy.where(
+        is_entitled = population("supported_living_payment__entitled", period)
+        return is_entitled * numpy.where(
             in_relationship * ssa_s4_5_applies,
             base_rate * 0.5,
             base_rate)
@@ -286,7 +307,7 @@ class supported_living_payment__base(variables.Variable):
             clauses["clause_1_b"],
             clauses["clause_1_c"],
             clauses["clause_1_d_i"],
-            clauses["clause_1_d_i"],
+            clauses["clause_1_d_ii"],
             clauses["clause_1_e_i"],
             clauses["clause_1_e_ii"],
             clauses["clause_1_g_i"],
@@ -298,7 +319,8 @@ class supported_living_payment__base(variables.Variable):
         # 5. Halves benefit & abatement if in a relationship & meets these requirements
         in_relationship = population("social_security__in_a_relationship", period)
         ssa_s4_5_applies = population("schedule_4__part3_5", period)
-        return numpy.where(
+        is_entitled = population("supported_living_payment__entitled", period)
+        return is_entitled * numpy.where(
             in_relationship * ssa_s4_5_applies,
             base_rate * 0.5,
             base_rate)

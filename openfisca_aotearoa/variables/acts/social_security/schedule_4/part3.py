@@ -84,7 +84,7 @@ class schedule_4__part3_1_d_ii(variables.Variable):
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_d", period)
-        has_children = people("social_security__dependent_children", period) < 1
+        has_children = people("social_security__dependent_children", period) > 0
         return base * has_children
 
 
@@ -284,7 +284,7 @@ class schedule_4__part3_1_h_i(variables.Variable):
     label = "Part 3 Supported Living Payment - Clause 1(h)(i)"
 
     def formula_2018_11_26(people, period, parameters):
-        base = people("schedule_4__part3_1_g", period)
+        base = people("schedule_4__part3_1_h", period)
         no_children = people("social_security__dependent_children", period) < 1
         return base * no_children
 

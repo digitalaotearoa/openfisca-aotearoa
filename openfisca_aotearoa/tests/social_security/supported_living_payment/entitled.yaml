@@ -1,5 +1,3 @@
----
-
 - name: Supported Living Payment - default false
   period: 2019-W01
   absolute_error_margin: 0
