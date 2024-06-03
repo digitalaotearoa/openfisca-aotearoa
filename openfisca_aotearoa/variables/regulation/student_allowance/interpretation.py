@@ -90,6 +90,7 @@ class student_allowance__person_has_spouse(Variable):
     label = "Has spouse as per Student Allowances Regulations 1998"
     reference = "http://legislation.govt.nz/regulation/public/1998/0277/latest/whole.html#DLM259958"
     set_input = holders.set_input_dispatch_by_period
+
     def formula(persons, period, parameters):
         # NOTE: using the age at the start of the month
         # Age changes on a DAY, but this calculation only has a granularity of MONTH

@@ -160,7 +160,7 @@ class social_security__residential_requirement(variables.Variable):
     reference = [
         "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", 
         "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
-    ]
+        ]
 ```
 - Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
 - Note the descriptive label

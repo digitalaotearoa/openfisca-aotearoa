@@ -6,7 +6,7 @@ It is a New Zealand specific Rules-as-Code project implemented in [OpenFisca](ht
 
 > The codebase was originally started in 2018 within the "Service Innovation Lab", a New Zealand government initative that was tasked with looking at whole-of-government approaches to service innovation. The Lab was hosted within the Department of Internal Affairs (DIA) as no "whole of government" entity existed. The work included service design approaches based on life events such as the birth of a child and the idea that one service could avoid parents having to contact multiple government departments (see https://smartstart.services.govt.nz/). The Lab's eventual closure came about due to internal DIA funding priorities.
 
-This project was continued initially by former members of the Lab and the code base, contributors and uses have widened through a number of citizen lead initiatives.
+This project was continued initially by former members of the Lab and the code base, contributors and uses have widened through a number of citizen led initiatives.
 
 
 ## Minimal Installation - for users running the rules

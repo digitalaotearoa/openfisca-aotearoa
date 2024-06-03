@@ -26,7 +26,7 @@ class social_security__residential_requirement(variables.Variable):
     reference = [
         "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138",
         "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
-    ]
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     # Note this is the date the 1964 act commenced, but jobseeker came later

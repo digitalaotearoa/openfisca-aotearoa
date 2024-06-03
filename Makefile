@@ -40,12 +40,12 @@ lint: clean check-syntax-errors format
 	pylint `git ls-files | grep "\.py$$"`
 	yamllint `git ls-files | grep "\.yaml$$"`
 
-test: clean check-syntax-errors
-	ifdef yaml
-		openfisca test -c openfisca_aotearoa openfisca_aotearoa/tests/$(yaml)
-	else
-		openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests
-	endif
+test: lint
+ifdef yaml
+	openfisca test -c openfisca_aotearoa openfisca_aotearoa/tests/$(yaml)
+else
+	openfisca test --country-package openfisca_aotearoa openfisca_aotearoa/tests
+endif
 
 serve: build
 	openfisca serve --country-package openfisca_aotearoa -b 0.0.0.0:5000 --reload
