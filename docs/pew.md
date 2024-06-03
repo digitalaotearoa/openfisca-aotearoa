@@ -36,10 +36,10 @@ pip install --upgrade pip
 pip install pew  # if asked, answer "Y" to the question about modifying your shell config file.
 ```
 
-To set-up and create a new a virtualenv named **openfisca** running python3.7:
+To set-up and create a new a virtualenv named **openfisca** running python3.11:
 
 ```sh
-pew new openfisca --python=python3.7
+pew new openfisca --python=python3.11
 ```
 
 The virtualenv you just created will be automatically activated. This means you will operate in the virtualenv immediately. You should see a prompt resembling this:
@@ -60,21 +60,21 @@ Additional information:
 Inside your virtualenv, check the prerequisites:
 
 ```sh
-python --version  # should print "Python 3.xx".
+python --version  # should print at least "Python 3.11".
 #if not, make sure you pass the python version as an argument when creating your virtualenv
 ```
 
 ```sh
-pip --version  # should print at least 9.0.
+pip --version  # should print at least 24.0.
 #if not, run "pip install --upgrade pip"
 ```
 
 Install the Country Package:
 
+> Note OpenFisca Aotearoa Pip package is currently out of date.
 
 ```sh
 pip install openfisca_aotearoa
 ```
 
-:tada: This OpenFisca Country Package is now installed and ready!
-
+:tada: OpenFisca Aotearoa Package is now installed and ready, refer to the `README.md` for instructions on how to run tests or serve the web API.
