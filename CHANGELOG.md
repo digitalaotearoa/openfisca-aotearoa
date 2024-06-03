@@ -2,13 +2,13 @@
 
 ### 21.1.1 - [64](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/64)
 
-* Tax and benefit system evolution.
-* Impacted periods: all.
-* Impacted areas: 
-  - `pyproject.toml`
-  - `Docker`
-  - `Web API`
-  - `Documentation`
+* Technical improvement. 
+* Details:
+  - Updated Documentation
+  - Updated OpenFisca Core dependancy (to latest)
+  - Updated python environment and version (3.11)
+  - Updated docker related files
+  - Updated github related files
 
 ### 21.0.1 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
 
