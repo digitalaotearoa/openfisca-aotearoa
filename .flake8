@@ -6,7 +6,7 @@ inline-quotes             = "
 multiline-quotes          = """
 import-order-style        = appnexus
 no-accept-encodings       = true
-application-import-names  = openfisca_country_template
+application-import-names  = openfisca_aotearoa
 application-package-names = openfisca_core
 exclude                   = .git,__pycache__,.venv,.github,.devcontainer,docs
 
