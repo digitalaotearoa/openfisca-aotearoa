@@ -148,26 +148,40 @@ Take a look at the `/variables/acts/social_security/residency.py` and considered
 The variable `social_security__residential_requirement` in this file that we will be referring to is supporting both the 1964 and the 2018 Social Security Acts.
 It's declaration looks like this:
 
-```
+```python
 class social_security__residential_requirement(variables.Variable):
     value_type = bool
     entity = entities.Person
     label = "Residential requirements for certain benefits, calculates for the 1964 and the 2018 Social Security Acts"
     definition_period = periods.MONTH
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796",  # 1964-12-04
+        ]
 ```
 - Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
 - Note the descriptive label
 - Note the naming convention as described in [Naming Variables](#namingvariables)
 
 The variable has two formulas:
-```
+```python
     def formula_1964_12_04(persons, period, parameters):
 ```
-```
+```python
     def formula_2018_11_26(persons, period, parameters):
 ```
 This is an OpenFisca feature that ensures the correct formula will be automatically applied depending on the date supplied with the scenario.
+
+To aid review, the reference list can contain links to the specific versions of legislation in effect for each formula.
+
+e.g.:
+
+```python
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/77.0/whole.html#DLM6783138",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/whole.html#DLM6783138",  # 2020-11-09
+        ]
+```
 
 What is unique to this project is how we intend to code the content of these formulas.
 
@@ -179,7 +193,7 @@ The first thing to recognise is it references the `section 16` of the Social Sec
 
 We choose to structure the code accordingly. This looks like this:
 
-```
+```python
 # ssa16_1 - Descriptive, not requiring coding.
 
 ssa16_2_a = persons("immigration__citizen_or_resident", period) * \
@@ -220,7 +234,8 @@ This allows us to map the extent and reach of the project. The `structure.json` 
 ### structure.json
 
 An array of entries, one for each prefix utilised in the code base. In the format as follows:
-```
+
+```json
 {
     "Title": "Accident Compensation Act 2001",
     "Prefix": "acc",
@@ -233,6 +248,7 @@ An array of entries, one for each prefix utilised in the code base. In the forma
     ]
 }
 ```
+
 Title, Prefix, Type and Reference are all required.
  - Title: The legal title of the legal artifact
  - Prefix: The prefix utilised within the openfisca_aotearoa code base
@@ -279,8 +295,7 @@ This project currently utilises one specific pattern however for benefit calcula
 - `jobseeker_support__benefit` (float)
 
 i.e. the formula for `jobseeker_support__benefit` would be:
- ```
+
+ ```python
  jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
  ```
-
-

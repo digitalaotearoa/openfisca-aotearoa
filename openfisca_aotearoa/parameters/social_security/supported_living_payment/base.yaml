@@ -624,6 +624,14 @@ clauses:
           reference:
             title: Part 3 -> Schedule 4, Part 3, Clause 1(h)(ii)
             href: https://www.legislation.govt.nz/regulation/public/2024/0011/latest/whole.html
+  clause_1_income_disregarded:
+    values:
+      2018-11-26:
+        value: 20
+        metadata:
+          reference:
+            title: Part 3 -> Schedule 4, Part 3, Clause 1
+            href: https://www.legislation.govt.nz/act/public/2018/0032/59.0/DLM6784861.html
   clause_2:
     values:
       2018-11-26:

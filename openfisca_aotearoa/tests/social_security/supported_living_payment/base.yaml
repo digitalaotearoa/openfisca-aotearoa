@@ -826,7 +826,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -858,7 +858,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -890,7 +890,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -922,7 +922,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -954,7 +954,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -986,7 +986,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1018,7 +1018,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1050,7 +1050,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__disabled_or_blind__entitled: true
+        supported_living_payment__disabled_or_blind: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1082,7 +1082,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -1114,7 +1114,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -1146,7 +1146,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -1178,7 +1178,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 0
@@ -1210,7 +1210,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1242,7 +1242,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1274,7 +1274,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1
@@ -1306,7 +1306,7 @@
     persons:
       principal:
         supported_living_payment__entitled: true
-        supported_living_payment__carer__entitled: true
+        supported_living_payment__carer: true
         social_security__in_a_relationship: true
         age: 18
         social_security__dependent_children: 1

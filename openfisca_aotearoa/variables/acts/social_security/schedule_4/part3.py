@@ -10,8 +10,8 @@ class schedule_4__part3_1_a(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(a)"
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(persons, period, parameters):
         single = numpy.logical_not(persons("social_security__in_a_relationship", period))
@@ -24,8 +24,8 @@ class schedule_4__part3_1_b(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(b)"
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(persons, period, parameters):
         single = numpy.logical_not(persons("social_security__in_a_relationship", period))
@@ -38,8 +38,8 @@ class schedule_4__part3_1_c(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(c)"
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(persons, period, parameters):
         single = numpy.logical_not(persons("social_security__in_a_relationship", period))
@@ -51,8 +51,8 @@ class schedule_4__part3_1_d(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(d)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         in_relationship = people("social_security__in_a_relationship", period)
@@ -66,8 +66,8 @@ class schedule_4__part3_1_d_i(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(d)(i)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_d", period)
@@ -79,8 +79,8 @@ class schedule_4__part3_1_d_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(d)(ii)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_d", period)
@@ -92,8 +92,11 @@ class schedule_4__part3_1_e(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(e)"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/77.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09
+        ]
 
     def formula_2018_11_26(people, period, parameters):
         in_relationship = people("social_security__in_a_relationship", period)
@@ -117,8 +120,8 @@ class schedule_4__part3_1_e_i(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(e)(i)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_e", period)
@@ -130,8 +133,8 @@ class schedule_4__part3_1_e_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(e)(ii)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_e", period)
@@ -144,9 +147,12 @@ class schedule_4__part3_1_f(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(f)"
     end = "2020-11-09"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/77.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09  (removed)
+        ]
 
     def formula_2018_11_26(people, period, parameters):
         in_relationship = people("social_security__in_a_relationship", period)
@@ -160,9 +166,9 @@ class schedule_4__part3_1_f_i(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(f)(i)"
     end = "2020-11-09"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_f", period)
@@ -174,9 +180,9 @@ class schedule_4__part3_1_f_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(f)(ii)"
     end = "2020-11-09"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_f", period)
@@ -188,11 +194,14 @@ class schedule_4__part3_1_g(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(g)"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/77.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09
+        ]
 
     def formula_2018_11_26(people, period, parameters):
-        disabled_or_blind = people("supported_living_payment__disabled_or_blind__entitled", period)
+        disabled_or_blind = people("supported_living_payment__disabled_or_blind", period)
         in_relationship = people("social_security__in_a_relationship", period)
         partner_has_benefit = people.family.any(
             people.family.members("social_security__granted_main_benefit", period),
@@ -203,7 +212,7 @@ class schedule_4__part3_1_g(variables.Variable):
         return disabled_or_blind * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super)
 
     def formula_2020_11_09(people, period, parameters):
-        disabled_or_blind__entitled = people("supported_living_payment__disabled_or_blind__entitled", period)
+        disabled_or_blind__entitled = people("supported_living_payment__disabled_or_blind", period)
         in_relationship = people("social_security__in_a_relationship", period)
         partner_has_benefit = people.family.any(
             people.family.members("social_security__granted_main_benefit", period),
@@ -221,8 +230,8 @@ class schedule_4__part3_1_g_i(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(g)(i)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_g", period)
@@ -234,8 +243,8 @@ class schedule_4__part3_1_g_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(g)(ii)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_g", period)
@@ -247,11 +256,14 @@ class schedule_4__part3_1_h(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(h)"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/77.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09
+        ]
 
     def formula_2018_11_26(people, period, parameters):
-        carer__entitled = people("supported_living_payment__carer__entitled", period)
+        carer__entitled = people("supported_living_payment__carer", period)
         in_relationship = people("social_security__in_a_relationship", period)
         partner_has_benefit = people.family.any(
             people.family.members("social_security__granted_main_benefit", period),
@@ -262,7 +274,7 @@ class schedule_4__part3_1_h(variables.Variable):
         return carer__entitled * in_relationship * numpy.logical_not(partner_has_benefit + partner_has_super)
 
     def formula_2020_11_09(people, period, parameters):
-        carer__entitled = people("supported_living_payment__carer__entitled", period)
+        carer__entitled = people("supported_living_payment__carer", period)
         in_relationship = people("social_security__in_a_relationship", period)
         partner_has_benefit = people.family.any(
             people.family.members("social_security__granted_main_benefit", period),
@@ -280,8 +292,8 @@ class schedule_4__part3_1_h_i(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(h)(i)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_h", period)
@@ -293,8 +305,8 @@ class schedule_4__part3_1_h_ii(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
     label = "Part 3 Supported Living Payment - Clause 1(g)(ii)"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784861.html"
 
     def formula_2018_11_26(people, period, parameters):
         base = people("schedule_4__part3_1_h", period)
@@ -306,7 +318,7 @@ class schedule_4__part3_5(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    label = """Shortcut to indicate beneficiary meets the following from clause 5:
+    label = """Indicates beneficiary meets the following from clause 5:
         (a) has a psychiatric, intellectual, physical, or mental disability; and
         (b) is receiving long-term residential care in a hospital or rest home because of that disability; and
         (c) has not been means assessed under Part 6 of the Residential Care and Disability Support Services Act 2018.
@@ -318,7 +330,7 @@ class schedule_4__part3_6(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
-    label = """Shortcut to indicate beneficiary meets the following from clause 6:
+    label = """Indicates beneficiary meets the following from clause 6:
         if that spouse or partner is not receiving long-term residential care in a hospital or rest home.
     """
     reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"

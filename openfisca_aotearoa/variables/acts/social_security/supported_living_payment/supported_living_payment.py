@@ -12,20 +12,7 @@ class supported_living_payment__entitled(variables.Variable):
     definition_period = periods.WEEK
     set_input = holders.set_input_dispatch_by_period
     label = "Eligible for Supported Living Payment."
-    reference = [
-        "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783175",
-        "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367",
-        ]
-
-    def formula_2013_07_15(persons, period, parameters):
-        """
-        For the 1964 version of the act (final version), this is split into two sections:
-            40B on ground of sickness, injury, disability, or total blindness
-            40D on ground of caring for patient requiring care
-        """
-        ssa40B = persons("supported_living_payment__disabled_or_blind__entitled", period, parameters)
-        ssa40D = persons("supported_living_payment__carer__entitled", period, parameters)
-        return ssa40B + ssa40D
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783175"
 
     def formula_2018_11_26(persons, period, parameters):
         """
@@ -33,8 +20,8 @@ class supported_living_payment__entitled(variables.Variable):
             34 - 39 on ground of restricted work capacity or total blindness
             40 - 42 on ground of caring for another person
         """
-        ssa34 = persons("supported_living_payment__disabled_or_blind__entitled", period, parameters)
-        ssa40 = persons("supported_living_payment__carer__entitled", period, parameters)
+        ssa34 = persons("supported_living_payment__disabled_or_blind", period, parameters)
+        ssa40 = persons("supported_living_payment__carer", period, parameters)
 
         # ssa116 - must undergo work ability assessment
 
@@ -51,14 +38,12 @@ class supported_living_payment__entitled(variables.Variable):
         return ssa34 + ssa40
 
 
-class supported_living_payment__disabled_or_blind__entitled(variables.Variable):
+class supported_living_payment__disabled_or_blind(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment, on ground of restricted work capacity or total blindness."
-    reference = [
-        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783174",
-        ]
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783174"
 
     def formula_2018_11_26(persons, period, parameters):
         # person P has restricted work capacity or is totally blind
@@ -83,79 +68,13 @@ class supported_living_payment__disabled_or_blind__entitled(variables.Variable):
 
         return ssa34_a * ssa34_b * ssa34_c * ssa36
 
-    def formula(persons, period, parameters):
-        # person P has restricted work capacity
-        ssa40B_1_a = persons("supported_living_payment__restricted_work_capacity", period.first_week)
 
-        # person P is totally blind
-        ssa40B_1_b = persons("totally_blind", period)
-
-        # person P is 16 or older
-        ssa40B_1A = persons("age", period.start) >= 16
-
-        # person P meets the residential requirement
-        ssa40B_1B = persons("social_security__residential_requirement", period.first_week)
-
-        ssa40B_1 = ssa40B_1A * ssa40B_1B * (ssa40B_1_a + ssa40B_1_b)
-
-        # 40B_2 specifies requirements for restricted work capacity status
-
-        # 40B_3 specifies requirements for restricted work capacity status
-
-        # 40B_4 (redundantly?) states that person P must be either totally blind or permanently disabled
-
-        # person P is ineligible if the disability was self-inflicted to gain benefits
-        ssa40B_5 = numpy.logical_not(persons("supported_living_payment__disability_self_inflicted", period))
-
-        return ssa40B_1 * ssa40B_5
-
-
-class supported_living_payment__carer__entitled(variables.Variable):
+class supported_living_payment__carer(variables.Variable):
     value_type = bool
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment, on grounds of caring for another person."
-    reference = [
-        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187",
-        ]
-
-    def formula_2013_07_15(persons, period, parameters):
-        # person C is caring for person P
-        ssa40D_1 = persons("supported_living_payment__caring_for_another_person", period.first_week)
-
-        # person C is at least 18 years old if they have no dependent children
-        ssa40D_2_a = (persons("age", period.start) >= 18) * (persons("social_security__dependent_children", period.first_week) == 0)
-
-        # person C is at least 19 years old otherwise (i.e.: they have dependent children)
-        ssa40D_2_b = persons("age", period.start) >= 19
-
-        ssa40D_2 = ssa40D_2_a + ssa40D_2_b
-
-        # person C meets the residential requirement
-        ssa40D_3 = persons("social_security__residential_requirement", period.first_week)
-
-        # ssa40D_4 allows for payment to continue if not caring for 28 days
-
-        return ssa40D_1 * ssa40D_2 * ssa40D_3
-
-    def formula_2016_10_25(persons, period, parameters):
-        # person C is caring for person P
-        ssa40D_1 = persons("supported_living_payment__caring_for_another_person", period.first_week)
-
-        # person C is at least 18 years old if they have no dependent children
-        ssa40D_2_a = (persons("age", period.start) >= 18) * (persons("social_security__dependent_children", period.first_week) == 0)
-
-        # person C is at least 20 years old otherwise (i.e.: they have dependent children)
-        ssa40D_2_b = persons("age", period.start) >= 20
-
-        ssa40D_2 = ssa40D_2_a + ssa40D_2_b
-
-        # person C meets the residential requirement
-        ssa40D_3 = persons("social_security__residential_requirement", period.first_week)
-
-        # ssa40D_4 allows for payment to continue if not caring for 28 days
-
-        return ssa40D_1 * ssa40D_2 * ssa40D_3
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
 
     def formula_2018_11_26(persons, period, parameters):
         # person C is caring for person P
@@ -193,10 +112,7 @@ class supported_living_payment__restricted_work_capacity(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Is incapable of regularly working 15 or more hours a week in open employment"
-    reference = [
-        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176",
-        "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367",
-        ]
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176"
     set_input = holders.set_input_dispatch_by_period
 
 
@@ -224,8 +140,8 @@ class supported_living_payment__caring_for_another_person(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment."
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
     set_input = holders.set_input_dispatch_by_period
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
 
 
 class supported_living_payment__disability_self_inflicted(variables.Variable):

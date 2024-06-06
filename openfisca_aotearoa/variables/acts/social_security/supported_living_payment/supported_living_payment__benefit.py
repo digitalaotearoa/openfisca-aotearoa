@@ -80,7 +80,7 @@ class supported_living_payment__benefit(variables.Variable):
             numpy.clip(ssa_s4_7_gross_benefit, 0, clauses["clause_7_a"]),
             numpy.clip(ssa_s4_7_gross_benefit, 0, clauses["clause_7_b"]))
 
-        carer_entitled = population("supported_living_payment__carer__entitled", period, parameters)
+        carer_entitled = population("supported_living_payment__carer", period, parameters)
 
         # if the population is entitled as a carer, use the larger of c7 or other clauses
         benefit_post_c7 = numpy.where(
@@ -108,15 +108,17 @@ class supported_living_payment__assessable_income(variables.Variable):
     label = "The assessable income of the principle & partner for the purposes of income tests."
     reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
 
-    def formula_2018_11_26(population, period):
+    def formula_2018_11_26(population, period, parameters):
         # 1. Income for SLP on the basis of blindness or disability:
         #     (a) disregard that part of the beneficiary’s income (not exceeding $20 a week) earned by the beneficiary’s own efforts; and
         #     (b) disregard all of the income of a totally blind beneficiary earned by the beneficiary’s own efforts.
+        clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
         gross_principal_income = population("social_security__income", period)
         principal_blind = population("totally_blind", period)
         principal_disabled = population("supported_living_payment__restricted_work_capacity", period)
         principal_abled = numpy.logical_not(numpy.logical_or(principal_blind, principal_disabled))
-        principal_disabled_income = gross_principal_income - (20 * period.size_in_weeks)
+        weekly_income_exempt = clauses["clause_1_income_disregarded"]
+        principal_disabled_income = gross_principal_income - (weekly_income_exempt * period.size_in_weeks)
         # income based on whether principal population members are blind, disabled, or neither
         assessable_principal_income = numpy.select(
             [principal_blind, principal_disabled, principal_abled],
@@ -159,7 +161,10 @@ class supported_living_payment__reduction(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "The amount the base benefit is reduced base on the appropriate Income Test and the person & their partners income"
-    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784861"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/56.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09
+        ]
 
     def formula_2018_11_26(population, period, parameters):
         family_income = population("supported_living_payment__assessable_income", period)
@@ -244,8 +249,11 @@ class supported_living_payment__base(variables.Variable):
     value_type = float
     entity = entities.Person
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/DLM6784850.html"
     label = "Supported Living Payment - Base Amount, (this is taxed and the amounts are supplied after tax, i.e. net)"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/56.0/DLM6784861.html",  # 2018-11-26
+        "https://www.legislation.govt.nz/act/public/2018/0032/140.0/DLM6784861.html",  # 2020-11-09
+        ]
 
     def formula_2018_11_26(population, period, parameters):
         clauses = parameters(period.first_day).social_security.supported_living_payment.base.clauses
