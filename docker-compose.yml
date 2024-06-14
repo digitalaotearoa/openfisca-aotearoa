@@ -6,10 +6,7 @@ services:
       context: .
     restart: always
     labels:
-      - traefik.http.routers.openfisca.rule=Host(`rac.g0v.nz`)
-      - traefik.http.routers.openfisca.tls=true
-      - traefik.http.routers.openfisca.tls.certresolver=lets-encrypt
-      - traefik.port=5000
+      lagoon.type: python
     networks:
       - web
     volumes:
