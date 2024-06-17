@@ -4,6 +4,7 @@ services:
   openfisca:
     build:
       context: .
+      dockerfile: Dockerfile
     restart: always
     labels:
       lagoon.type: basic
