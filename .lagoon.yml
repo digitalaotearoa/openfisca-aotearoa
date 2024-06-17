@@ -7,7 +7,7 @@ tasks: {}
 environments:
   main:
     routes:
-      - fisca-py:
+      - openfisca:
           - "rac.g0v.nz":
               tls-acme: false
               insecure: Redirect
