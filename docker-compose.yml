@@ -6,7 +6,8 @@ services:
       context: .
     restart: always
     labels:
-      lagoon.type: python
+      lagoon.type: basic
+      lagoon.service.port: 5000
     networks:
       - web
     volumes:

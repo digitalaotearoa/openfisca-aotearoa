@@ -8,4 +8,4 @@ RUN pip install --upgrade pip && \
 
 EXPOSE 5000
 
-CMD [ "/usr/local/bin/openfisca", "serve", "-b", "0.0.0.0:8800" ]
+CMD [ "/usr/local/bin/openfisca", "serve", "-b", "0.0.0.0:5000" ]
