@@ -54,7 +54,7 @@
     independent_circumstances_grant__receiving:
       2022-W01: [true, false, true, false]
     age_of_partner:
-      day:2022-01-01:31: [ 24, 24,  24, 24 ]
+      day:2022-01-01:31: [ 24, 24, 24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
@@ -73,7 +73,7 @@
     independent_circumstances_grant__entitled:
       2022-01: [true, false, true, false]
     age_of_partner:
-      day:2022-01-01:31: [ 24, 24,  24, 24 ]
+      day:2022-01-01:31: [ 24, 24, 24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
@@ -94,7 +94,7 @@
     independent_circumstances_grant__would_be_entitled:
       2022-W01: [true, false, true, false]
     age_of_partner:
-      day:2022-01-01:31: [ 24, 24 , 24, 24 ]
+      day:2022-01-01:31: [ 24, 24, 24, 24 ]
   output:
     accommodation_supplement__other_funding_exclusion:
       2022-W01: [true, true, true, false]
