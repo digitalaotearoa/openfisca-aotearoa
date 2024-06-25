@@ -1,0 +1,78 @@
+- name: Supported Living Payment - default false
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: 16
+    citizenship__citizen: true
+  output:
+    supported_living_payment__entitled: false
+
+- name: Supported Living Payment - totally blind
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [16, 15]
+    citizenship__citizen: [true, true]
+    totally_blind: [true, true]
+    social_security__residential_requirement: [true, true]
+  output:
+    supported_living_payment__entitled: [true, false]
+
+- name: Supported Living Payment - "severely" disabled
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [16, 15]
+    citizenship__citizen: [true, true]
+    supported_living_payment__restricted_work_capacity: [true, true]
+    social_security__residential_requirement: [true, true]
+  output:
+    supported_living_payment__entitled: [true, false]
+
+
+- name: Supported Living Payment - self inflicted injury
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [16, 16]
+    citizenship__citizen: [true, true]
+    supported_living_payment__restricted_work_capacity: [true, true]
+    social_security__residential_requirement: [true, true]
+    supported_living_payment__disability_self_inflicted: [false, true]
+  output:
+    supported_living_payment__entitled: [true, false]
+
+- name: Supported Living Payment - Carer looking after another person
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [17, 18]
+    citizenship__citizen: [true, true]
+    supported_living_payment__caring_for_another_person: [true, true]
+    social_security__residential_requirement: [true, true]
+  output:
+    supported_living_payment__entitled: [false, true]
+
+- name: Supported Living Payment - Carer looking after another person, with child
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [19, 20]
+    citizenship__citizen: [true, true]
+    supported_living_payment__caring_for_another_person: [true, true]
+    social_security__residential_requirement: [true, true]
+    social_security__dependent_children: [1, 1]
+  output:
+    supported_living_payment__entitled: [false, true]
+
+
+- name: Supported Living Payment - Carer looking after another person, not in NZ
+  period: 2019-W01
+  absolute_error_margin: 0
+  input:
+    age: [20, 20]
+    citizenship__citizen: [true, true]
+    supported_living_payment__caring_for_another_person: [true, true]
+    social_security__residential_requirement: [true, false]
+  output:
+    supported_living_payment__entitled: [true, false]

@@ -1,0 +1,1329 @@
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Single, under 18, without Children (Schedule 4, Part 3, Clause 1a)
+  period: 2024-W15  # 1 week after 2024 act took effect
+  input:
+    supported_living_payment__entitled: [true, true, true, true]
+    social_security__in_a_relationship: [false, false, false, false]
+    age: [17, 17, 17, 17]
+    social_security__dependent_children: [0, 0, 0, 0]
+    social_security__income:
+      2024-W15: [0, 355, 693, 694]
+  output:
+    supported_living_payment__base:
+      2024-W15: [337.63, 337.63, 337.63, 337.63]
+    supported_living_payment__reduction:
+      2024-W15: [0, 100.50, 337.10, 337.80]
+    supported_living_payment__benefit:
+      2024-W15: [337.63, 237.13, 0.53, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Single, over 18, without Children (Schedule 4, Part 3, Clause 1b)
+  period: 2024-W15  # 1 week after 2024 act took effect
+  input:
+    supported_living_payment__entitled: [true, true, true, true]
+    social_security__in_a_relationship: [false, false, false, false]
+    age: [18, 18, 18, 18]
+    social_security__dependent_children: [0, 0, 0, 0]
+    social_security__income:
+      2024-W15: [0, 355, 786, 787]
+  output:
+    supported_living_payment__base:
+      2024-W15: [402.84, 402.84, 402.84, 402.84]
+    supported_living_payment__reduction:
+      2024-W15: [0, 100.50, 402.20, 402.90]
+    supported_living_payment__benefit:
+      2024-W15: [402.84, 302.34, 0.64, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Single, with Children (Schedule 4, Part 3, Clause 1c)
+  period: 2024-W15
+  input:
+    supported_living_payment__entitled: [true, true, true, true]
+    social_security__in_a_relationship: [false, false, false, false]
+    age: [18, 18, 18, 18]
+    social_security__dependent_children: [1, 1, 1, 1]
+    social_security__income:
+      2024-W15: [0, 355, 1000, 1001]
+  output:
+    supported_living_payment__base:
+      2024-W15: [552.14, 552.14, 552.14, 552.14]
+    supported_living_payment__reduction:
+      2024-W15: [0, 100.50, 552.00, 552.70]
+    supported_living_payment__benefit:
+      2024-W15: [552.14, 451.64, 0.14, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, no Children (Schedule 4, Part 3, Clause 1di)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [342.24, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, no Children (Schedule 4, Part 3, Clause 1di)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 497
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [242.29, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, no Children (Schedule 4, Part 3, Clause 1di)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1189
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.15, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.09, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, no Children (Schedule 4, Part 3, Clause 1di)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1190
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, with children (Schedule 4, Part 3, Clause 1dii)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [359.07, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [359.07, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, with children (Schedule 4, Part 3, Clause 1dii)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 497
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [359.07, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [259.12, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, with children (Schedule 4, Part 3, Clause 1dii)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1237
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [359.07, 0]
+    supported_living_payment__reduction:
+      2024-W15: [358.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.12, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has main benefit, with children (Schedule 4, Part 3, Clause 1dii)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1238
+      partner:
+        social_security__granted_main_benefit: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [359.07, 0]
+    supported_living_payment__reduction:
+      2024-W15: [359.30, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, no Children (Schedule 4, Part 3, Clause 1ei)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [342.24, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, no Children (Schedule 4, Part 3, Clause 1ei)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 497
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [242.29, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, no Children (Schedule 4, Part 3, Clause 1ei)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1189
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.15, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.09, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, no Children (Schedule 4, Part 3, Clause 1ei)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1190
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, with children (Schedule 4, Part 3, Clause 1eii)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [372.81, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, with children (Schedule 4, Part 3, Clause 1eii)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 497
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [272.86, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, with children (Schedule 4, Part 3, Clause 1eii)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1276
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [372.60, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.21, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has nz super, with children (Schedule 4, Part 3, Clause 1eii)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1277
+      partner:
+        super__being_paid_nz_superannuation:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [372.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, no Children (Schedule 4, Part 3, Clause 1ei)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [342.24, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, no Children (Schedule 4, Part 3, Clause 1ei)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 497
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [242.29, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, no Children (Schedule 4, Part 3, Clause 1ei)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1189
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.15, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.09, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, no Children (Schedule 4, Part 3, Clause 1ei)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1190
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, with children (Schedule 4, Part 3, Clause 1eii)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [372.81, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, with children (Schedule 4, Part 3, Clause 1eii)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 497
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [99.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [272.86, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, with children (Schedule 4, Part 3, Clause 1eii)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1276
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [372.60, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.21, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, spouse has veteran's pension, with children (Schedule 4, Part 3, Clause 1eii)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1277
+      partner:
+        veterans_support__being_paid_a_veterans_pension:
+          2024-04: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [372.95, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1gi)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [684.48, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [684.48, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1gi)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 355
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [684.48, 0]
+    supported_living_payment__reduction:
+      2024-W15: [100.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [583.98, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1gi)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1189
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [684.48, 0]
+    supported_living_payment__reduction:
+      2024-W15: [684.30, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.18, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1gi)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1190
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [684.48, 0]
+    supported_living_payment__reduction:
+      2024-W15: [685, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1gii)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [718.14, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [718.14, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1gii)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 355
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [718.14, 0]
+    supported_living_payment__reduction:
+      2024-W15: [100.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [617.64, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1gii)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1237
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [718.14, 0]
+    supported_living_payment__reduction:
+      2024-W15: [717.90, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.24, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, restricted work capacity, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1gii)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__disabled_or_blind: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 1238
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [718.14, 0]
+    supported_living_payment__reduction:
+      2024-W15: [718.60, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1hi)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [342.24, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1hi)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 600
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [272, 0]
+    supported_living_payment__benefit:
+      2024-W15: [140.48, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1hi)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 700
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [342, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.48, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    no Children (Schedule 4, Part 3, Clause 1hi)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 1190
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 0
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [342.24, 0]
+    supported_living_payment__reduction:
+      2024-W15: [685, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1hii)
+    No income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [0, 0]
+    supported_living_payment__benefit:
+      2024-W15: [372.81, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1hii)
+    Small income
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 600
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [272, 0]
+    supported_living_payment__benefit:
+      2024-W15: [201.62, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1hii)
+    Income just below cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 744
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [372.80, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0.02, 0]
+- name: >
+    Social Security Act 2018
+    Supported Living Payment
+    Couple, caring for another, partner has no benefits nor super nor pension
+    with children (Schedule 4, Part 3, Clause 1hii)
+    Income just above cap
+  period: 2024-W15
+  input:
+    persons:
+      principal:
+        supported_living_payment__entitled: true
+        supported_living_payment__carer: true
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 745
+      partner:
+        social_security__in_a_relationship: true
+        age: 18
+        social_security__dependent_children: 1
+        social_security__income: 0
+    families:
+      Whanau:
+        principal: ["principal"]
+        partners: ["partner"]
+  output:
+    supported_living_payment__base:
+      2024-W15: [372.81, 0]
+    supported_living_payment__reduction:
+      2024-W15: [373.50, 0]
+    supported_living_payment__benefit:
+      2024-W15: [0, 0]
