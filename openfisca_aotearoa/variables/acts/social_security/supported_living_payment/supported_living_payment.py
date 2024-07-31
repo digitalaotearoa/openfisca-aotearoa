@@ -1,19 +1,121 @@
-"""TODO: Add missing doctring."""
-
-from numpy import logical_not as not_
+"""This module provides eligibility and amount for Supported Living Payment."""
+import numpy
 
 from openfisca_core import holders, periods, variables
 
 from openfisca_aotearoa import entities
 
 
-# Benefit: Part 1E Supported Living Payment (eligible self applicant):
-# If applicant.isNZResident
-#     and 16 <= applicant.Age
-#     and applicant.hasMedicalCertificate
-#     and applicant.hasSeriousDisability
-#     and threshold.income.SupportedLivingPayment
-# then benefit.isSupportedLivingPayment is PERMITTED
+class supported_living_payment__entitled(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    set_input = holders.set_input_dispatch_by_period
+    label = "Eligible for Supported Living Payment."
+    reference = "https://legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783175"
+
+    def formula_2018_11_26(persons, period, parameters):
+        """
+        For the 2018 version of the act, this is split into two sections:
+            34 - 39 on ground of restricted work capacity or total blindness
+            40 - 42 on ground of caring for another person
+        """
+        ssa34 = persons("supported_living_payment__disabled_or_blind", period, parameters)
+        ssa40 = persons("supported_living_payment__carer", period, parameters)
+
+        # ssa116 - must undergo work ability assessment
+
+        # ssa117 - unless they are terminally ill or their condition will not "improve"
+
+        # ssa121_e - spouse must undertake work-preparation obligations
+
+        # ssa128 - children must atend school & healthcare, person required to attend interviews
+
+        # ssa140 - spouse must be available to work
+
+        # ssa170 - person or spouse must work with service providers
+
+        return ssa34 + ssa40
+
+
+class supported_living_payment__disabled_or_blind(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Eligible for Supported Living Payment, on ground of restricted work capacity or total blindness."
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783174"
+
+    def formula_2018_11_26(persons, period, parameters):
+        # person P has restricted work capacity or is totally blind
+        ssa34_a = persons("supported_living_payment__restricted_work_capacity", period.first_week) + persons("totally_blind", period.start)
+
+        # person P meets the residential requirement
+        ssa34_b = persons("social_security__residential_requirement", period.first_week)
+
+        # person P is 16 or older
+        ssa34_c = persons("age", period.start) >= 16
+
+        # ssa35 specifies requirements for restricted work capacity status
+
+        # person P is ineligible if the disability was self-inflicted to gain benefits
+        ssa36 = numpy.logical_not(persons("supported_living_payment__disability_self_inflicted", period))
+
+        # ssa37 specifies medical examination for reassessment of work capacity
+
+        # ssa38 specifies payment rates for person P and partner / spouse S if applicable
+
+        # ssa39 specifies open employment is permitted for reassessment of work capacity
+
+        return ssa34_a * ssa34_b * ssa34_c * ssa36
+
+
+class supported_living_payment__carer(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Eligible for Supported Living Payment, on grounds of caring for another person."
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
+
+    def formula_2018_11_26(persons, period, parameters):
+        # person C is caring for person P
+        ssa40_1_a = persons("supported_living_payment__caring_for_another_person", period.first_week)
+
+        # person C meets the residential requirement
+        ssa40_1_b = persons("social_security__residential_requirement", period.first_week)
+
+        # person C is at least 18 years old if they have no dependent children
+        ssa40_1_c_i = (persons("age", period.start) >= 18) * (persons("social_security__dependent_children", period.first_week) == 0)
+
+        # person C is at least 20 years old otherwise (i.e.: they have dependent children)
+        ssa40_1_c_ii = persons("age", period.start) >= 20
+
+        ssa40_1_c = ssa40_1_c_i + ssa40_1_c_ii
+
+        # ssa40_2 allows for payment to continue if not caring for 28 days
+
+        # ssa40_3 defines "institutional care"
+
+        # ssa41 requires a certificate when applying for supported living payment as a carer
+
+        # ssa42 specifies requirements for medical examination
+
+        # ssa54_5_d person C is ineligible if receiving youth payment
+
+        # ssa61_5_d person C is ineligible if receiving young parent payment
+
+        return ssa40_1_a * ssa40_1_b * ssa40_1_c
+
+
+class supported_living_payment__restricted_work_capacity(variables.Variable):
+    value_type = bool
+    default_value = False
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Is incapable of regularly working 15 or more hours a week in open employment"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176"
+    set_input = holders.set_input_dispatch_by_period
+
+
 class supported_living_payment__granted(variables.Variable):
     value_type = bool
     default_value = False
@@ -34,86 +136,12 @@ class supported_living_payment__receiving(variables.Variable):
 
 class supported_living_payment__caring_for_another_person(variables.Variable):
     value_type = bool
+    default_value = False
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Eligible for Supported Living Payment."
+    set_input = holders.set_input_dispatch_by_period
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783187"
-    set_input = holders.set_input_dispatch_by_period
-
-
-class supported_living_payment__below_income_threshold(variables.Variable):
-    value_type = bool
-    entity = entities.Person
-    definition_period = periods.MONTH
-    label = "Income below threshold for supported living payment"
-    reference = "TODO"
-
-
-class supported_living_payment__restricted_work_capacity(variables.Variable):
-    value_type = bool
-    entity = entities.Person
-    definition_period = periods.WEEK
-    label = "Is incapable of regularly working 15 or more hours a week in open employment"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783176", "http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367"
-    set_input = holders.set_input_dispatch_by_period
-
-
-# TODO: Review against the new 2018 act
-class supported_living_payment__entitled(variables.Variable):
-    value_type = bool
-    entity = entities.Person
-    definition_period = periods.MONTH
-    label = "Eligible for Supported Living Payment."
-    reference = """
-        http://legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM5468367
-        40A Supported living payment: purpose
-        (1) The purpose of the supported living payment is to provide income support
-            to people because they are people who fall within any one of the following 3 categories:
-        (a) people who have, and are likely to have in the future, a severely restricted
-            capacity to support themselves through open employment because of sickness, injury, or disability:
-        (b) people who are totally blind:
-        (c) people who are required to give full-time care and attention at home to some
-            other person (other than their spouse or partner) who is a patient requiring care.
-    """
-
-    def formula(persons, period, parameters):
-        # The 3 ways of being eligible
-        disabled = persons("supported_living_payment__restricted_work_capacity", period.first_week)
-        blind = persons("totally_blind", period)
-        carer = persons("supported_living_payment__caring_for_another_person", period.first_week)
-
-        # 40B (4) A person who is not both permanently and severely restricted in his or her capacity for
-        # work must not be granted a supported living payment under this section, unless he or she is totally blind.
-
-        # 40B (5) A person must not be granted a supported living payment under this section if the chief
-        # executive is satisfied that the person's restricted capacity for work, or total blindness, was
-        # self-inflicted and brought about by the person with a view to qualifying for a benefit.
-        not_self_inflicted = not_(persons("supported_living_payment__disability_self_inflicted", period))
-
-        # 40B (1A) An applicant for the supported living payment under
-        # this section must be aged at least 16 years.
-        is_old_enough = persons("age", period.start) >= 16
-
-        # 40B (1B) An applicant for the supported living payment under
-        # this section must meet the residential requirements in section 74AA.
-        immigration__resident_or_citizen = persons("immigration__citizen_or_resident", period)
-
-        resides_in_nz = persons("social_security__residential_requirement", period.first_week)
-
-        # # income low enough?
-        income = persons("supported_living_payment__below_income_threshold", period)
-
-        return resides_in_nz * (disabled + blind + carer) * not_self_inflicted * is_old_enough * immigration__resident_or_citizen * income
-
-
-class supported_living_payment__base(variables.Variable):
-    label = "TODO"
-    reference = "TODO"
-    documentation = """TODO"""
-    entity = entities.Person
-    value_type = float
-    default_value = 0
-    definition_period = periods.DateUnit.WEEK
 
 
 class supported_living_payment__disability_self_inflicted(variables.Variable):
@@ -121,4 +149,4 @@ class supported_living_payment__disability_self_inflicted(variables.Variable):
     entity = entities.Person
     definition_period = periods.ETERNITY
     label = "The person's restricted capacity for work, or total blindness, was self-inflicted and brought about by the person with a view to qualifying for a benefit"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178", "s36"
+    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783178"
