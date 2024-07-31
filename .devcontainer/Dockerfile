@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 RUN git config --global core.filemode false && \
     git config --global core.autocrlf true && \
