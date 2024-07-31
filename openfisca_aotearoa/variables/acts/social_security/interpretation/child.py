@@ -41,6 +41,7 @@ class social_security__dependent_child(variables.Variable):
 
 
 class social_security__dependent_children(variables.Variable):
+    default_value = 0
     value_type = int
     entity = entities.Person
     label = "number a dependent child (or children)"

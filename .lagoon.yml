@@ -1,0 +1,14 @@
+docker-compose-yaml: docker-compose.yml
+
+project: openfisca-aotearoa
+
+tasks: {}
+
+environments:
+  main:
+    routes:
+      - openfisca:
+          - "rac.g0v.nz":
+              tls-acme: false
+              insecure: Redirect
+              hstsEnabled: true

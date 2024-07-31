@@ -4,12 +4,11 @@ services:
   openfisca:
     build:
       context: .
+      dockerfile: Dockerfile
     restart: always
     labels:
-      - traefik.http.routers.openfisca.rule=Host(`rac.g0v.nz`)
-      - traefik.http.routers.openfisca.tls=true
-      - traefik.http.routers.openfisca.tls.certresolver=lets-encrypt
-      - traefik.port=5000
+      lagoon.type: basic
+      lagoon.service.port: 5000
     networks:
       - web
     volumes:
