@@ -1,18 +1,18 @@
 ---
 
 - name: "Childcare Subsidy - child under 5 not in school"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W01:52": true
+        social_security__dependent_child: true
         age:
-          "2018-08-01": 4
+          "day:2018-03-05:7": 4
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
         attending_school: false
@@ -29,23 +29,23 @@
       - false #  Whanau
     childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
       - false  #  Whanau
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
 - name: "Childcare Subsidy - Family income over threshold"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W01:52": true
+        social_security__dependent_child: true
         age:
-          "2018-08-01": 4
+          "day:2018-03-05:7": 4
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
         attending_school: false
@@ -62,27 +62,26 @@
       - false #  Whanau
     childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
       - false  #  Whanau
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - false  #  Mama
       - false #  child
 
 
 - name: "Childcare Subsidy - Child is older than 5 years and eligible for disability allowance"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W31:5": true
+        social_security__dependent_child: true
         age:
-          "day:2018-07-30:32": 5
+          "day:2018-03-05:7": 5
         early_childcare_hours_participation_per_week: 3
-        child_disability_allowance__child_with_serious_disability:
-          "week:2018-W31:5": true
+        child_disability_allowance__child_with_serious_disability: true
         child_disability_allowance__constant_care_exceeding_12_months: true
         citizenship__citizen: true
         attending_school: true
@@ -99,23 +98,23 @@
       - false #  Whanau
     childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
       - true  #  Whanau
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
 - name: "Childcare Subsidy - Child is older than 5 years, will enrol"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W01:52": true
+        social_security__dependent_child: true
         age:
-          "2018-08-01": 5
+          "day:2018-03-05:7": 5
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
         will_be_enrolled_in_school: true
@@ -128,28 +127,26 @@
   output:
     childcare_assistance__family_has_resident_child_under_5_not_in_school:
       - false  #  Whanau
-    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school:
-      2018-08:
-        - true #  Whanau
+    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school: true #  Whanau
     childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
       - false  #  Whanau
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
 - name: "Childcare Subsidy - not eligible because child is attending school"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W01:52": true
+        social_security__dependent_child: true
         age:
-          "2018-08-01": 4
+          "day:2018-03-05:7": 4
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
         attending_school: true
@@ -160,23 +157,23 @@
         children:
           - "Child"
   output:
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - false  #  Mama
       - false #  child
 
 - name: "Childcare Subsidy - not eligible because child too old"
-  period: 2018-08
+  period: 2018-W10
   input:
     persons:
       "Mama":
         citizenship__citizen: true
         social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver: true
+        social_security__principal_caregiver:
+          2018-03: true
       "Child":
-        social_security__dependent_child:
-          "week:2018-W01:52": true
+        social_security__dependent_child: true
         age:
-          "2018-08-01": 7
+          "day:2018-03-05:7": 7
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
         attending_school: false
@@ -187,6 +184,6 @@
         children:
           - "Child"
   output:
-    childcare_assistance__eligible_childcare_subsidy:
+    childcare_subsidy__eligible:
       - false  #  Mama
       - false #  child
