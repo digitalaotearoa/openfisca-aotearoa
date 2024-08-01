@@ -30,13 +30,14 @@ class attending_school(variables.Variable):
     reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
 
 
-class will_be_enrolled_in_school(variables.Variable):
+class intends_to_enroll_in_school(variables.Variable):
     value_type = bool
     entity = Person
     definition_period = periods.ETERNITY
-    label = "Child will be enrolled in a school that has a cohort entry policy in place"
-    # (ba) who is 5, whose parent, principal caregiver, or guardian intends to enrol
-    # the child in a school that has a cohort entry policy in place, and who
-    # (under section 5B(2) of the Education Act 1989) may not be enrolled in that
-    # school until the term start date of the next term;"""
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
+    label = "It is intended to enroll the child in a school that has a cohort entry policy in place"
+    reference = [
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"  # 2004
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309"  # 2018
+        "https://ref.synco.pt/nz/ssar/168/en/?#P2-S6-s30-p1-b"  # 2018 alternative
+        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html"  # 2018 Work and Income Guide
+        ]

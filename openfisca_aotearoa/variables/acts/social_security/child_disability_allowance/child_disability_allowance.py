@@ -12,7 +12,11 @@ class child_disability_allowance__eligible(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Eligible for Child Disability Allowance discretionary grant"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266", "ssa/221/en#P2-S13", "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783266",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13",  # 2018 alt
+        "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"  # 1964
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     def formula_1964_12_04(persons, period, parameters):
@@ -47,7 +51,10 @@ class child_disability_allowance__payment_to(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Manages who is elegible to recieve the payment"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783275", "ssa/221/en#s82"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783275",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s82"  # 2018 alt
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(persons, period, parameters):
@@ -68,7 +75,11 @@ class child_disability_allowance__child_with_serious_disability(variables.Variab
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Child with a serious disability"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783270", "ssa/221/en#s79-p1", "https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783270",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s79-p1",  # 2018 alt
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"  # 1964
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     def formula_2018_11_26(persons, period, parameters):
@@ -91,7 +102,10 @@ class child_disability_allowance__care_in_home(variables.Variable):
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Cared for in the home of C’s principal caregiver or temporary OB or UCB caregiver"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783267", "ssa/221/en#s78-p1-b-i"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783267",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s78-p1-b-i"  # 2018 alt
+        ]
     set_input = holders.set_input_dispatch_by_period
 
 
@@ -100,7 +114,10 @@ class child_disability_allowance__approved_weekly_accomodation(variables.Variabl
     entity = entities.Person
     definition_period = periods.WEEK
     label = "Child disability allowance -> approved_weekly_accomodation"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783269", "ssa/221/en#s78-p1-b-ii"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783269",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s78-p1-b-ii"  # 2018 alt
+        ]
     set_input = holders.set_input_dispatch_by_period
 
 
@@ -120,7 +137,11 @@ class child_disability_allowance__allowance_criteria(variables.Variable):
     entity = entities.Person
     label = "Has serious disability"
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783267", "ssa/221/en#s78", "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783267",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s78",  # 2018 alt
+        "http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM361659.html"  # 1964
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     def formula_1964_12_04(persons, period, parameters):
@@ -141,7 +162,10 @@ class child_disability_allowance__constant_care_exceeding_12_months(variables.Va
     entity = entities.Person
     label = "Requires constant care and attention"
     definition_period = periods.ETERNITY
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783270", "ssa/221/en#s79-p1-c"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783270",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S13-s79-p1-c"  # 2018 alt
+        ]
 
 
 class child_disability_allowance__granted(variables.Variable):

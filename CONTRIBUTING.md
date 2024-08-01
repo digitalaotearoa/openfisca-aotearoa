@@ -165,6 +165,7 @@ class social_security__residential_requirement(variables.Variable):
 - Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
 - Note the descriptive label
 - Note the naming convention as described in [Naming Variables](#namingvariables)
+- Note the order is latest to oldest
 
 ### References
 
