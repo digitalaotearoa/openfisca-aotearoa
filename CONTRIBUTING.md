@@ -170,7 +170,7 @@ class social_security__residential_requirement(variables.Variable):
 
 When providing references, ensure you provide an accurate as link as possible to the natural language text using anchors if possible as displayed above.
 
- - If the logic of a formula hasn't change historically link to the latest version of legislative text.
+ - If the logic of a formula hasn't changed historically link to the latest version of legislative text.
  - If the logic of a formula has changed, provide references for each formula date that are the earliest implementations of the logic coded. For instance this is likely to include the very first version of the legislation ever published.
 
 ### Formulas

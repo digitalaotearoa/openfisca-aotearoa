@@ -16,4 +16,4 @@
 Once running in the devcontainer, the Visual Studio Code terminal should also be running in the container. This allows you access to a command prompt to do all the normal activities.
 The `Makefile` provides a number of quick commands you can access also.
 
-:tada: OpenFisca Aotearoa development environment is now setup and ready, refer to the `README.md` for instructions on how to run tests or serve the web API and be sure to run the commands in the VSCode terminal.
+Refer to the `README.md` for instructions on how to run tests or serve the web API and be sure to run the commands in the VSCode terminal.

@@ -32,8 +32,7 @@ python --version # This should match the version in .python-version file
 ### Step 3: Install dev dependencies
 
 ```sh
-pip install --upgrade pip
-pip install --upgrade --editable ".[dev]"
+make install
 ```
 
 :tada: OpenFisca Aotearoa Package is now installed and ready, refer to the `README.md` for instructions on how to run tests or serve the web API.

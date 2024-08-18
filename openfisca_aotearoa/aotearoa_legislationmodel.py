@@ -24,7 +24,7 @@ class AotearoaLegislationModel(TaxBenefitSystem):
     '''Aotearoa legislation system'''
 
     def __init__(self):
-        TaxBenefitSystem.__init__(self, entities)
+        super().__init__(entities)
 
         param_dir = os.path.join(COUNTRY_DIR, 'parameters')
         self.load_parameters(param_dir)

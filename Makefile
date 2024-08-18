@@ -26,21 +26,21 @@ build: clean deps
 check-syntax-errors:
 	python -m compileall -q .
 
-format-style:
+format:
 	@# Do not analyse .gitignored files.
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	isort `git ls-files | grep "\.py$$"`
 	autopep8 `git ls-files | grep "\.py$$"`
 	pyupgrade --py39-plus `git ls-files | grep "\.py$$"`
 
-check-style:
+lint:
 	@# Do not analyse .gitignored files.
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	flake8 `git ls-files | grep "\.py$$"`
 	pylint `git ls-files | grep "\.py$$"`
 	yamllint `git ls-files | grep "\.yaml$$"`
 
-test: clean check-syntax-errors check-style
+test: clean check-syntax-errors lint
 ifdef yaml
 	openfisca test -c openfisca_aotearoa openfisca_aotearoa/tests/$(yaml)
 else

@@ -1,4 +1,4 @@
-ame: Deploy
+name: Deploy
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
       - id: stop-early
         run: |
           if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh"
-          then 
+          then
             echo "status=success" >> $GITHUB_OUTPUT
           fi
 
@@ -43,7 +43,7 @@ jobs:
           else
             echo "pypi_token_present=false" >> $GITHUB_OUTPUT
           fi
-      
+
   deploy:
     runs-on: ubuntu-22.04
     needs: [ validate, check-for-functional-changes, check-pypi-token ]
