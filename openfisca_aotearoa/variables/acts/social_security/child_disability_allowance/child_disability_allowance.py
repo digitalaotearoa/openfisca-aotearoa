@@ -1,4 +1,4 @@
-"""TODO: Add missing doctring."""
+"""Formula for establishing eligibility for the Child Disability Allowance. """
 
 import numpy
 
@@ -44,6 +44,23 @@ class child_disability_allowance__eligible(variables.Variable):
         # 83 - test for other benefits, Veteran's Support Act and ACC compensation
 
         return ssa78 * ssa82
+
+
+class child_disability_allowance__payable(variables.Variable):
+    value_type = float
+    entity = entities.Person
+    definition_period = periods.WEEK
+    default_value = False
+    label = "Is a child disability allowance payable for the child"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/14.0/whole.html#LMS96313",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s32-p1-b"  # 2018 alt
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s34-l1-c-iv"  # 2018 alt
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s35-l1-c"  # 2018 alt
+        ]
+
+    def formula_2018_11_26(people, period, parameters):
+        return people("child_disability_allowance__allowance_criteria", period)
 
 
 class child_disability_allowance__payment_to(variables.Variable):

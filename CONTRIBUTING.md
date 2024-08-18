@@ -313,6 +313,10 @@ i.e. the formula for `jobseeker_support__benefit` would be:
  jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
  ```
 
+Some subsidies have a seperate concept of payable to eligible, in those circumstances use the following format:
+
+- `childcare_subsidy__payable` (true/false)
+
 As eligibility or entitlement to a number of benefits is dependant on whether a person is currently granted or recieving another benefit the following pattern is used throughout the project to aid in those calculations
 
 - `jobseeker_support__receiving` (generally utilised as an input that would be a result of the question "are you currently receiving the Jobseeker Benefit?")

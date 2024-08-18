@@ -1,4 +1,4 @@
-"""TODO: Add missing doctring."""
+"""Global used variables that relate to education."""
 
 from datetime import date
 
@@ -19,7 +19,11 @@ class early_childcare_hours_participation_per_week(variables.Variable):
     entity = Person
     definition_period = periods.WEEK
     label = "Number of hours per week person is participating in approved early-childhood education programmes"
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282547"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96311",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s32-p1",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282547"  # 2004
+        ]
 
 
 class attending_school(variables.Variable):
@@ -27,7 +31,11 @@ class attending_school(variables.Variable):
     entity = Person
     definition_period = periods.WEEK
     label = "Is child attending school"
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-a",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html",  # 2004
+        ]
 
 
 class intends_to_enroll_in_school(variables.Variable):
@@ -36,8 +44,8 @@ class intends_to_enroll_in_school(variables.Variable):
     definition_period = periods.ETERNITY
     label = "It is intended to enroll the child in a school that has a cohort entry policy in place"
     reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html",  # 2018 Work and Income Guide
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-b",  # 2018 alternative
         "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"  # 2004
-        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309"  # 2018
-        "https://ref.synco.pt/nz/ssar/168/en/?#P2-S6-s30-p1-b"  # 2018 alternative
-        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html"  # 2018 Work and Income Guide
         ]

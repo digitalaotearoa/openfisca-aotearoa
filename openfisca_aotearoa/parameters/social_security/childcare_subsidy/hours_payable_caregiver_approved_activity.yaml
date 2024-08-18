@@ -1,0 +1,10 @@
+---
+description: >
+   Total hours payable if caregiver is engaged in approved activity
+reference: >
+  "Social Security Regulations 2018 https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96313"
+  "Social Security Regulations 2018 alt https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s34-l1"
+  "Social Security (Childcare Assistance) Regulations 2004 https://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282549"
+values:
+  "2018-11-26":
+    value: 50

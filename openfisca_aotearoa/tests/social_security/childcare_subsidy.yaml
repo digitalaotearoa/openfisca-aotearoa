@@ -1,6 +1,6 @@
 ---
 
-- name: "Childcare Subsidy - child under 5 not in school"
+- name: "Childcare Subsidy - child under 5 not in school 2018"
   period: 2018-W10
   input:
     persons:
@@ -18,56 +18,21 @@
         attending_school: false
     families:
       "Whanau":
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: true
         principal: "Mama"
         children:
           - "Child"
   output:
-    childcare_assistance__family_has_resident_child_under_5_not_in_school:
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
       - true  #  Whanau
-    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school:
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
       - false #  Whanau
-    childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
       - false  #  Whanau
     childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
-- name: "Childcare Subsidy - Family income over threshold"
-  period: 2018-W10
-  input:
-    persons:
-      "Mama":
-        citizenship__citizen: true
-        social_security__ordinarily_resident_in_new_zealand: true
-        social_security__principal_caregiver:
-          2018-03: true
-      "Child":
-        social_security__dependent_child: true
-        age:
-          "day:2018-03-05:7": 4
-        early_childcare_hours_participation_per_week: 3
-        citizenship__citizen: true
-        attending_school: false
-    families:
-      "Whanau":
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: false
-        principal: "Mama"
-        children:
-          - "Child"
-  output:
-    childcare_assistance__family_has_resident_child_under_5_not_in_school:
-      - true  #  Whanau
-    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school:
-      - false #  Whanau
-    childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
-      - false  #  Whanau
-    childcare_subsidy__eligible:
-      - false  #  Mama
-      - false #  child
-
-
-- name: "Childcare Subsidy - Child is older than 5 years and eligible for disability allowance"
+- name: "Childcare Subsidy - Child is older than 5 years and eligible for disability allowance 2018"
   period: 2018-W10
   input:
     persons:
@@ -87,22 +52,21 @@
         attending_school: true
     families:
       "Whanau":
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: true
         principal: "Mama"
         children:
           - "Child"
   output:
-    childcare_assistance__family_has_resident_child_under_5_not_in_school:
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
       - false  #  Whanau
-    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school:
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
       - false #  Whanau
-    childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
       - true  #  Whanau
     childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
-- name: "Childcare Subsidy - Child is older than 5 years, will enrol"
+- name: "Childcare Subsidy - Child is older than 5 years, will enrol 2018"
   period: 2018-W10
   input:
     persons:
@@ -117,24 +81,23 @@
           "day:2018-03-05:7": 5
         early_childcare_hours_participation_per_week: 3
         citizenship__citizen: true
-        will_be_enrolled_in_school: true
+        intends_to_enroll_in_school: true
     families:
       "Whanau":
         principal: "Mama"
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: true
         children:
           - "Child"
   output:
-    childcare_assistance__family_has_resident_child_under_5_not_in_school:
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
       - false  #  Whanau
-    childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school: true #  Whanau
-    childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6:
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school: true #  Whanau
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
       - false  #  Whanau
     childcare_subsidy__eligible:
       - true  #  Mama
       - false #  child
 
-- name: "Childcare Subsidy - not eligible because child is attending school"
+- name: "Childcare Subsidy - not eligible because child is attending school 2018"
   period: 2018-W10
   input:
     persons:
@@ -153,7 +116,6 @@
     families:
       "Whanau":
         principal: "Mama"
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: true
         children:
           - "Child"
   output:
@@ -161,7 +123,7 @@
       - false  #  Mama
       - false #  child
 
-- name: "Childcare Subsidy - not eligible because child too old"
+- name: "Childcare Subsidy - not eligible because child too old 2018"
   period: 2018-W10
   input:
     persons:
@@ -180,10 +142,504 @@
     families:
       "Whanau":
         principal: "Mama"
-        childcare_assistance__household_income_below_childcare_subsidy_threshold: true
         children:
           - "Child"
   output:
     childcare_subsidy__eligible:
       - false  #  Mama
       - false #  child
+
+- name: "Childcare Subsidy - child under 5 not in school 2020"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__engaged_in_approved_activity: true
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 4
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        attending_school: false
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
+      - true  #  Whanau
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
+      - false #  Whanau
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
+      - false  #  Whanau
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - Child is older than 5 years and eligible for disability allowance 2020"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        child_disability_allowance__child_with_serious_disability: true
+        child_disability_allowance__constant_care_exceeding_12_months: true
+        child_disability_allowance__care_in_home: true
+        attending_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    child_disability_allowance__family_has_eligible_child:
+      - true  # Whanau
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
+      - false  #  Whanau
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
+      - false #  Whanau
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
+      - true  #  Whanau
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - Child is older than 5 years, will enrol 2020"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+        childcare_subsidy__engaged_in_approved_activity: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
+      - false  #  Whanau
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school: true #  Whanau
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
+      - false  #  Whanau
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - not eligible because child is attending school 2020"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+        childcare_subsidy__engaged_in_approved_activity: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 4
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        attending_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 0
+      - 0
+
+- name: "Childcare Subsidy - not eligible because child too old 2020"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+        childcare_subsidy__engaged_in_approved_activity: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 7
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        attending_school: false
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 0
+      - 0
+
+- name: "Childcare Subsidy - payable because of shift work"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+        childcare_subsidy__shift_work: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - payable minimal because not approved activity or disablity"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 9
+      - 0
+
+- name: "Childcare Subsidy - payable because child is payable disability allowance"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+        child_disability_allowance__payable: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - payable because caregiver has serious disability"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__caregiver_serious_disability_illness: true
+        childcare_subsidy__caregiver_serious_disability_illness_hours_needed: 12
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__hours_payable:
+      - 50
+      - 0
+
+- name: "Childcare Subsidy - caregiver does not have serious disability or approved activity"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__caregiver_serious_disability_illness: false
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_other_hours:
+      - 9
+      - 0
+    childcare_subsidy__hours_payable:
+      - 9
+      - 0
+
+- name: "Childcare Subsidy - caregiver is recieving Oscar Subsidy"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__caregiver_serious_disability_illness: false
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+        oscar_subsidy__granted: true
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+  output:
+    childcare_subsidy__eligible:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_approved_activity:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false #  child
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
+      - false  #  Family
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
+      - false  #  Family
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
+      - false  #  Family
+    childcare_subsidy__caregiver_other_hours:
+      - 0
+      - 0
+    childcare_subsidy__hours_payable:
+      - 0
+      - 0
+
+- name: "Childcare Subsidy - caregiver is recieving Oscar Subsidy for one child, not the other"
+  period: 2020-W10
+  input:
+    persons:
+      "Mama":
+        citizenship__citizen: true
+        social_security__ordinarily_resident_in_new_zealand: true
+        social_security__principal_caregiver:
+          2020-03: true
+        childcare_subsidy__caregiver_serious_disability_illness: false
+        childcare_subsidy__no_other_caregiver: true
+      "Child":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+        oscar_subsidy__granted: true
+      "Child2":
+        social_security__dependent_child: true
+        age:
+          "day:2020-03-02:7": 5
+        early_childcare_hours_participation_per_week: 3
+        citizenship__citizen: true
+        intends_to_enroll_in_school: true
+        oscar_subsidy__granted: false
+    families:
+      "Whanau":
+        principal: "Mama"
+        children:
+          - "Child"
+          - "Child2"
+  output:
+    childcare_subsidy__eligible:
+      - true  #  Mama
+      - false  #  child
+      - false  #  child2
+    childcare_subsidy__caregiver_approved_activity:
+      - false  #  Mama
+      - false  #  child
+      - false  #  child2
+    childcare_subsidy__caregiver_serious_disability:
+      - false  #  Mama
+      - false  #  child
+      - false  #  child2
+    childcare_subsidy__family_has_resident_child_under_5_not_in_school:
+      - false  #  Whanau
+    childcare_subsidy__resident_child_aged_5_intend_enrol_in_school:
+      - true  #  Whanau
+    childcare_subsidy__family_with_disability_allowance_child_under_6:
+      - false  #  Whanau
+    childcare_subsidy__caregiver_other_hours:
+      - 9  #  Mama
+      - 0  #  child
+      - 0  #  child2
+    childcare_subsidy__hours_payable:
+      - 9  #  Mama
+      - 0  #  child
+      - 0  #  child2
