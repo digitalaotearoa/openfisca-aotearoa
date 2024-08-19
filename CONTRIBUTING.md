@@ -2,14 +2,18 @@ Thank you for wanting to contribute to OpenFisca Aotearoa! :smiley:
 
 TL;DR: [GitHub Flow](https://guides.github.com/introduction/flow/), [SemVer](http://semver.org/).
 
+But do please read the Coding Guide.
+
 ## Contents:
  - [Pull Requests](#pullrequests)
  - [Advertising changes](#advertisingchanges)
  - [Coding guide: naming, structure and patterns](#codingguide)
-   -  [Naming Variables](#namingvariables)
-   -  [Coding Variables](#codingvariables)
-   -  [Structure](#structure)
-   -  [Patterns](#patterns)
+   - [Naming Variables](#namingvariables)
+   - [Coding Variables](#codingvariables)
+     - [References](#references)
+     - [Formulas](#formulas)
+   - [Structure](#structure)
+   - [Patterns](#patterns)
 
 $~$
 <a name="pullrequests"></a>
@@ -104,9 +108,8 @@ Each change must be documented with the following elements:
 >  - Change the syntax used to declare parameters:
 >      - Remove "fuzzy" attribute
 >      - Remove "end" attribute
->      - All parameters are assumed to be valid until and end date is explicitely specified with an `<END>` tag
+>      - All parameters are assumed to be valid until an end date is explicitely specified with an `<END>` tag
 
-When a Pull Request contains several disctincts changes, several paragraphs may be added to the Changelog. To be properly formatted in Markdown, these paragraphs must be separated by `<!-- -->`.
 
 $~$
 <a name="codingguide"></a>
@@ -143,7 +146,7 @@ $~$
 The goal of the approach outlined is to aid future people studying the variable you're coding in matching it to how you interpreted the natural language rules.
 
 
-Take a look at the `/variables/acts/social_security/residency.py` and considered it a __"best practice"__ approach.
+Take a look at the `/variables/acts/social_security/resident.py` and considered it a __"best practice"__ approach.
 
 The variable `social_security__residential_requirement` in this file that we will be referring to is supporting both the 1964 and the 2018 Social Security Acts.
 It's declaration looks like this:
@@ -162,6 +165,15 @@ class social_security__residential_requirement(variables.Variable):
 - Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
 - Note the descriptive label
 - Note the naming convention as described in [Naming Variables](#namingvariables)
+
+### References
+
+When providing references, ensure you provide an accurate as link as possible to the natural language text using anchors if possible as displayed above.
+
+ - If the logic of a formula hasn't changed historically link to the latest version of legislative text.
+ - If the logic of a formula has changed, provide references for each formula date that are the earliest implementations of the logic coded. For instance this is likely to include the very first version of the legislation ever published.
+
+### Formulas
 
 The variable has two formulas:
 ```python
@@ -216,7 +228,7 @@ return (ssa16_2_a * (ssa16_2_a_i + ssa16_2_a_ii)) + ssa16_2_b
 ```
  - Firstly create local variables based on the structure that enable a person reading it to understand the reference - see `ssa16_1`
  - Comment out the ones not coded and supply a comment as to why.
- - List **ALL** the possible local variables as just described as it helps future people to understand how what's interpreted and how.
+ - List **ALL** the possible local variables as just described as it helps future people to understand what's interpreted and how.
  - Order them on the page in the same order as the natural language text
  - Introduce the OpenFisca variables that make up the concepts strictly within the sections as they appear.
  - Finally handle the `and` and `or` and other language of the natural language text to return the final computation utilising those local variables.

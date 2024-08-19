@@ -14,43 +14,6 @@
 ## Run the OpenFisca Web API or tests from the dev container
 
 Once running in the devcontainer, the Visual Studio Code terminal should also be running in the container. This allows you access to a command prompt to do all the normal activities.
-The ``/Makefile`` provides a number of quick commands you can access also.
+The `Makefile` provides a number of quick commands you can access also.
 
-### To serve the Openfisca Web API locally, run:
-
-```bash
-make serve
-```
-or
-
-```bash
-openfisca serve --port 5000
-```
-
-### To run the Openfisca tests, run:
-
-```bash
-make test
-```
-to run them all, or
-
-```bash
-make test yaml=social_security/child.yaml
-```
-To run individual tests.
-
----
-
-## Further notes
-
-To read more about the `openfisca serve` command, check out its [documentation](https://openfisca.readthedocs.io/en/latest/openfisca_serve.html).
-
-You can make sure that your instance of the API is working by requesting:
-
-```sh
-curl "http://localhost:5000/spec"
-```
-
-This endpoint returns the [Open API specification](https://www.openapis.org/) of your API.
-
-:tada: OpenFisca Aotearoa is now served by the OpenFisca Web API! To learn more, go to the [OpenFisca Web API documentation](https://openfisca.org/doc/openfisca-web-api/index.html)
+Refer to the `README.md` for instructions on how to run tests or serve the web API and be sure to run the commands in the VSCode terminal.

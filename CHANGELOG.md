@@ -1,10 +1,20 @@
 # Changelog
 
+### 21.1.1 - [64](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/64)
+
+* Technical improvement.
+* Details:
+  - Updated Documentation
+  - Updated OpenFisca Core dependency (to latest)
+  - Updated python environment and version (3.11)
+  - Updated docker related files
+  - Updated github related files
+
 ### 21.0.1 - [58](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/58)
 
 * Tax and benefit system evolution.
 * Impacted periods: all.
-* Impacted areas: 
+* Impacted areas:
   - `variables/acts/social_security`
   - `variables/acts/income_tax`
   - `variables/regulation/student_allowance`
@@ -31,7 +41,7 @@
 
 * Tax and benefit system evolution.
 * Impacted periods: all.
-* Impacted areas: 
+* Impacted areas:
   - `variables/acts/social_security`
   - `variables/acts/parental_leave`
   - `variables/acts/immigration`

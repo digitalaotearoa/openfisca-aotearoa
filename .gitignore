@@ -1,19 +1,22 @@
+# Python builds
+
+*.egg-info
+*.pyc
+build
+dist
+.venv
+
 # Editors
+
 .idea
 .project
 .pydevproject
+.python-version
 .settings
 .spyderproject
 .vscode
 
-# Python stuff
-*.egg-info
-*.pyc
-.pytest_cache
-.python-version
-build
-dist
-
 # OS stuff
-*~
+
 .DS_Store
+*~

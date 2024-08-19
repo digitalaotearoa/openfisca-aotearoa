@@ -1,0 +1,67 @@
+
+{
+  "persons": {
+    "Mama": {
+      "social_security__principal_caregiver" : {
+        "2019-01": true
+      },
+      "child_disability_allowance__eligible" : {
+        "2019-W02": null
+      },
+      "child_disability_allowance__payment" : {
+        "2019-W02": null
+      }
+    },
+    "Papa": {
+      "social_security__temporary_ob_or_ucb_caregiver" : {
+        "2019-W02": true
+      },
+      "child_disability_allowance__eligible" : {
+        "2019-W02": null
+      },
+      "child_disability_allowance__payment" : {
+        "2019-W02": null
+      }
+    },
+    "Tama_disabled_child": {
+      "age" : {
+        "day:2019-01-07:7": 5
+      },
+      "has_disability" : {
+        "2019-01": true
+      },
+      "child_disability_allowance__constant_care_exceeding_12_months" : {
+        "2019-W02": true
+      },
+      "child_disability_allowance__care_in_home" : {
+        "2019-W02": true
+      },
+      "child_disability_allowance__eligible" : {
+        "2019-W02": null
+      },
+      "child_disability_allowance__payment" : {
+        "2019-W02": null
+      }
+    },
+    "Tamahine_able_bodied_teenager": {
+      "age" : {
+        "day:2019-01-07:7": 19
+      },
+      "child_disability_allowance__eligible" : {
+        "2019-W02": null
+      },
+      "child_disability_allowance__payment" : {
+        "2019-W02": null
+      }
+    }
+  },
+  "families": {
+    "Whanau_tahi": {
+      "principal": "Mama",
+      "children": [
+        "Tama_disabled_child", "Tamahine_able_bodied_teenager"
+      ],
+      "others" : "Papa"
+    }
+  }
+}

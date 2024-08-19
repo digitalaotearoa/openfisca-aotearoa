@@ -1,6 +1,6 @@
 Hi there!
 
-I really enjoy OpenFisca, but I recently encountered an issue.
+While utilising OpenFisca Aotearoa I recently encountered an issue.
 
 ### Here is what I did:
 
