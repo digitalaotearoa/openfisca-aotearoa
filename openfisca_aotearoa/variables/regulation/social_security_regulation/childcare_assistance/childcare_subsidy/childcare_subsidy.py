@@ -64,6 +64,19 @@ class childcare_subsidy__eligible(variables.Variable):
         return general_limitation * is_parent_carer_etc * (ssar30_1_a + ssar30_1_b + ssar30_1_c)
 
 
+class childcare_subsidy__granted(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    default_value = False
+    label = "Are payments under the childcare subsidy granted for this child"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/14.0/whole.html#LMS96299"  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s21"  # 2018 alt
+        "https://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282529"  # 2004
+        ]
+
+
 class childcare_subsidy__receiving(variables.Variable):
     value_type = bool
     entity = entities.Person
@@ -139,7 +152,7 @@ class childcare_subsidy__caregiver_approved_activity_hours(variables.Variable):
         ]
 
     def formula_2018_11_26(persons, period, parameters):
-        hours_payable_approved_activity = parameters(period).social_security.childcare_subsidy.hours_payable_caregiver_approved_activity
+        hours_payable_approved_activity = parameters(period).social_security.childcare_assistance.childcare_subsidy.hours_payable_caregiver_approved_activity
         ssar32_hours = persons("childcare_subsidy__caregiver_approved_activity", period) * hours_payable_approved_activity
 
         return ssar32_hours
@@ -157,8 +170,8 @@ class childcare_subsidy__caregiver_serious_disability(variables.Variable):
         ]
 
     def formula_2018_11_26(persons, period, parameters):
-        minimum_hours_participating = parameters(period).social_security.childcare_subsidy.minimum_hours_in_childcare
-        needs_childcare_minimum = parameters(period).social_security.childcare_subsidy.needs_childcare_minimum_with_serious_disability
+        minimum_hours_participating = parameters(period).social_security.childcare_assistance.childcare_subsidy.minimum_hours_in_childcare
+        needs_childcare_minimum = parameters(period).social_security.childcare_assistance.childcare_subsidy.needs_childcare_minimum_with_serious_disability
         not_engaged_in_approved_activity = numpy.logical_not(persons("childcare_subsidy__caregiver_approved_activity", period))
         s34_l1_a = persons.family.any(persons.family.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating)
         s34_l1_b_i = persons("childcare_subsidy__caregiver_serious_disability_illness", period)
@@ -188,7 +201,7 @@ class childcare_subsidy__caregiver_serious_disability_hours(variables.Variable):
         ]
 
     def formula_2018_11_26(persons, period, parameters):
-        hours_payable_serious_disability = parameters(period).social_security.childcare_subsidy.hours_payable_caregiver_serious_disability
+        hours_payable_serious_disability = parameters(period).social_security.childcare_assistance.childcare_subsidy.hours_payable_caregiver_serious_disability
         ssar34_hours = persons("childcare_subsidy__caregiver_serious_disability", period) * hours_payable_serious_disability
 
         return ssar34_hours
@@ -206,8 +219,8 @@ class childcare_subsidy__caregiver_other_hours(variables.Variable):
         ]
 
     def formula_2018_11_26(persons, period, parameters):
-        minimum_hours_participating = parameters(period).social_security.childcare_subsidy.minimum_hours_in_childcare
-        hours_payable_other = parameters(period).social_security.childcare_subsidy.hours_payable_caregiver_other
+        minimum_hours_participating = parameters(period).social_security.childcare_assistance.childcare_subsidy.minimum_hours_in_childcare
+        hours_payable_other = parameters(period).social_security.childcare_assistance.childcare_subsidy.hours_payable_caregiver_other
         s35_l1_a = persons.family.any(persons.family.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating)
         s35_l1_b = numpy.logical_not(persons("childcare_subsidy__caregiver_approved_activity", period))
         s35_l1_c = numpy.logical_not(persons("childcare_subsidy__caregiver_serious_disability", period))
@@ -329,13 +342,10 @@ class childcare_subsidy__family_has_resident_child_under_5_not_in_school(variabl
         return families.any((dependent_children * citizens_and_residents * not_in_school * under_5 * oscar_subsidy_granted_for_child), role=entities.Family.CHILD)
 
     def formula_2018_11_26(families, period, parameters):
-        minimum_hours_participating = parameters(period).social_security.childcare_subsidy.minimum_hours_in_childcare
-        meeting_minimum_hours = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
+        criteria = families.members("childcare_subsidy__child_under_5_not_in_school", period)
         dependent_children = families.members("social_security__dependent_child", period)
-        not_in_school = numpy.logical_not(families.members("attending_school", period))
-        under_5 = families.members("age", period.start) < 5
-        oscar_subsidy_granted_for_child = numpy.logical_not(families.members("oscar_subsidy__granted", period))
-        return families.any((dependent_children * not_in_school * under_5 * meeting_minimum_hours * oscar_subsidy_granted_for_child), role=entities.Family.CHILD)
+
+        return families.any((dependent_children * criteria), role=entities.Family.CHILD)
 
 
 class childcare_subsidy__resident_child_aged_5_intend_enrol_in_school(variables.Variable):
@@ -358,12 +368,10 @@ class childcare_subsidy__resident_child_aged_5_intend_enrol_in_school(variables.
         return families.any((dependent_children * citizens_and_residents * children_to_be_enrolled * aged_5 * oscar_subsidy_granted_for_child), role=entities.Family.CHILD)
 
     def formula_2018_11_26(families, period, parameters):
-        minimum_hours_participating = parameters(period).social_security.childcare_subsidy.minimum_hours_in_childcare
-        meeting_minimum_hours = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
-        children_to_be_enrolled = families.members("intends_to_enroll_in_school", period)
-        aged_5 = families.members("age", period.start) == 5
-        oscar_subsidy_granted_for_child = numpy.logical_not(families.members("oscar_subsidy__granted", period))
-        return families.any((children_to_be_enrolled * aged_5 * meeting_minimum_hours * oscar_subsidy_granted_for_child), role=entities.Family.CHILD)
+        criteria = families.members("childcare_subsidy__child_aged_5_intend_enrol_in_school", period)
+        dependent_children = families.members("social_security__dependent_child", period)
+
+        return families.any(dependent_children * criteria, role=entities.Family.CHILD)
 
 
 class childcare_subsidy__family_with_disability_allowance_child_under_6(variables.Variable):
@@ -380,9 +388,9 @@ class childcare_subsidy__family_with_disability_allowance_child_under_6(variable
 
     def formula_2004_10_04(families, period, parameters):
         dependent_children = families.members(
-            "social_security__dependent_child", period.first_week)
+            "social_security__dependent_child", period)
         eligible_children = families(
-            "child_disability_allowance__family_has_eligible_child", period.first_week)
+            "child_disability_allowance__family_has_eligible_child", period)
         under_6 = families.members("age", period.start) < 6
         citizens_and_residents = families.members(
             "immigration__citizen_or_resident", period.first_month)
@@ -390,14 +398,86 @@ class childcare_subsidy__family_with_disability_allowance_child_under_6(variable
         return families.any((dependent_children * citizens_and_residents * eligible_children * under_6 * oscar_subsidy_granted_for_child), role=entities.Family.CHILD)
 
     def formula_2018_11_26(families, period, parameters):
-        minimum_hours_participating = parameters(period).social_security.childcare_subsidy.minimum_hours_in_childcare
-        meeting_minimum_hours = families.members("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
+        criteria = families.members("childcare_subsidy__child_meets_criteria_with_disability_allowance_under_6", period)
+        dependent_children = families.members("social_security__dependent_child", period)
 
-        dependent_children = families.members(
-            "social_security__dependent_child", period.first_week)
-        eligible_children = families(
-            "child_disability_allowance__family_has_eligible_child", period.first_week)
-        under_6 = families.members("age", period.start) < 6
-        oscar_subsidy_granted_for_child = numpy.logical_not(families.members("oscar_subsidy__granted", period))
+        return families.any(dependent_children * criteria, role=entities.Family.CHILD)
 
-        return families.any(dependent_children * eligible_children * under_6 * meeting_minimum_hours * oscar_subsidy_granted_for_child, role=entities.Family.CHILD)
+
+class childcare_subsidy__child_under_5_not_in_school(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Child who is under 5 years old, not in school and in minimum childcare hours per week"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-a",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"  # 2004
+        ]
+
+    def formula_2018_11_26(persons, period, parameters):
+        minimum_hours_participating = parameters(period).social_security.childcare_assistance.childcare_subsidy.minimum_hours_in_childcare
+        meeting_minimum_hours = persons("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
+        not_in_school = numpy.logical_not(persons("attending_school", period))
+        under_5 = persons("age", period.start) < 5
+        oscar_subsidy_granted_for_child = numpy.logical_not(persons("oscar_subsidy__granted", period))
+        return not_in_school * under_5 * meeting_minimum_hours * oscar_subsidy_granted_for_child
+
+
+class childcare_subsidy__child_aged_5_intend_enrol_in_school(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Child aged 5 who will be enrolled in school and in minimum childcare hours per week"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-b",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"  # 2004
+        ]
+
+    def formula_2018_11_26(persons, period, parameters):
+        minimum_hours_participating = parameters(period).social_security.childcare_assistance.childcare_subsidy.minimum_hours_in_childcare
+        meeting_minimum_hours = persons("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
+        to_be_enrolled = persons("intends_to_enroll_in_school", period)
+        aged_5 = persons("age", period.start) == 5
+        oscar_subsidy_granted_for_child = numpy.logical_not(persons("oscar_subsidy__granted", period))
+        return to_be_enrolled * aged_5 * meeting_minimum_hours * oscar_subsidy_granted_for_child
+
+
+class childcare_subsidy__child_meets_criteria_with_disability_allowance_under_6(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Test to determine if a child meets the criteria for the caregiver to be eligible"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96308",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/#P2-S6-s30-p1-c",  # 2018 alt
+        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html",
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"  # 2004
+        ]
+
+    def formula_2018_11_26(persons, period, parameters):
+        minimum_hours_participating = parameters(period).social_security.childcare_assistance.childcare_subsidy.minimum_hours_in_childcare
+        meeting_minimum_hours = persons("early_childcare_hours_participation_per_week", period) >= minimum_hours_participating
+
+        disability_allowance = persons("child_disability_allowance__allowance_criteria", period)
+        under_6 = persons("age", period.start) < 6
+        oscar_subsidy_granted_for_child = numpy.logical_not(persons("oscar_subsidy__granted", period))
+
+        return disability_allowance * under_6 * meeting_minimum_hours * oscar_subsidy_granted_for_child
+
+
+class childcare_subsidy__child_meets_criteria(variables.Variable):
+    value_type = bool
+    entity = entities.Person
+    definition_period = periods.WEEK
+    label = "Test to determine if a child meets the criteria for the caregiver to be eligible"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96308",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/#P2-S6-s30-p1-c",  # 2018 alt
+        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html",
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282544"  # 2004
+        ]
+
+    def formula_2018_11_26(persons, period, parameters):
+        return persons("childcare_subsidy__child_under_5_not_in_school", period) + persons("childcare_subsidy__child_aged_5_intend_enrol_in_school", period) + persons("childcare_subsidy__child_meets_criteria_with_disability_allowance_under_6", period)

@@ -307,6 +307,11 @@ This project currently utilises one specific pattern however for benefit calcula
 - `jobseeker_support__reduction` (float)
 - `jobseeker_support__benefit` (float)
 
+also
+
+- `childcare_subsidy__rate` (float) for more simple "rate" type calculations
+- `childcare_subsidy__maximum` when combining a rate and maximum amount on a subsidy.
+
 i.e. the formula for `jobseeker_support__benefit` would be:
 
  ```python
