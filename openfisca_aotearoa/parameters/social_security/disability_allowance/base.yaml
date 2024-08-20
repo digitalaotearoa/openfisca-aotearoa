@@ -120,6 +120,12 @@ clauses:
           reference:
             title: Schedule 2, Part 2, Clause 2  (Child disability allowance and disability allowance)
             href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
+      2024-04-01:
+        value: 78.60
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 2  (Child disability allowance and disability allowance)
+            href: https://www.legislation.govt.nz/regulation/public/2024/0011/latest/whole.html
   clause_3:
     values:
       2018-11-26:
@@ -158,3 +164,9 @@ clauses:
           reference:
             title: Schedule 2, Part 2, Clause 3  (Child disability allowance and disability allowance)
             href: https://www.legislation.govt.nz/regulation/public/2023/0038/latest/whole.html
+      2024-04-01:
+        value: 49.02
+        metadata:
+          reference:
+            title: Schedule 2, Part 1, Clause 3  (Child disability allowance and disability allowance)
+            href: https://www.legislation.govt.nz/regulation/public/2024/0011/latest/whole.html
