@@ -1,4 +1,4 @@
-"""TODO: Add missing doctring."""
+"""Global used variables that relate to education."""
 
 from datetime import date
 
@@ -17,26 +17,35 @@ class finish_date_of_full_time_study_training_bridging_18th_birthday(variables.V
 class early_childcare_hours_participation_per_week(variables.Variable):
     value_type = int
     entity = Person
-    definition_period = periods.MONTH
+    definition_period = periods.WEEK
     label = "Number of hours per week person is participating in approved early-childhood education programmes"
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282547"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96311",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s32-p1",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282547"  # 2004
+        ]
 
 
 class attending_school(variables.Variable):
     value_type = bool
     entity = Person
-    definition_period = periods.MONTH
+    definition_period = periods.WEEK
     label = "Is child attending school"
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-a",  # 2018 alt
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html",  # 2004
+        ]
 
 
-class will_be_enrolled_in_school(variables.Variable):
+class intends_to_enroll_in_school(variables.Variable):
     value_type = bool
     entity = Person
-    definition_period = periods.MONTH
-    label = "Child will be enrolled in a school that has a cohort entry policy in place"
-    # (ba) who is 5, whose parent, principal caregiver, or guardian intends to enrol
-    # the child in a school that has a cohort entry policy in place, and who
-    # (under section 5B(2) of the Education Act 1989) may not be enrolled in that
-    # school until the term start date of the next term;"""
-    reference = "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"
+    definition_period = periods.ETERNITY
+    label = "It is intended to enroll the child in a school that has a cohort entry policy in place"
+    reference = [
+        "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96309",  # 2018
+        "https://www.workandincome.govt.nz/map/income-support/extra-help/childcare-assistance-programme/qualifications-01.html",  # 2018 Work and Income Guide
+        "https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s30-p1-b",  # 2018 alternative
+        "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/DLM282545.html"  # 2004
+        ]

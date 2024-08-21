@@ -1,5 +1,58 @@
 # Changelog
 
+### 22.0.0 - [69](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/64)
+
+* Tax and benefit system evolution.
+* Impacted periods: all.
+* Impacted areas:
+  - `CONTRIBUTING.md`
+  - `Makefile`
+  - `variables/acts/social_security/childcare_assistance`
+  - `variables/regulation/social_security_regulation`
+  - `variables/demographics`
+  - `parameters/social_security/childcare_assistance`
+
+* Breaking changes:
+ - `early_childcare_hours_participation_per_week` period changed from month to week
+ - `attending_school` period changed from month to week
+
+* Added variables:
+ - `child_disability_allowance__payable`
+ - `childcare_subsidy__eligible`
+ - `childcare_subsidy__granted`
+ - `childcare_subsidy__receiving`
+ - `childcare_subsidy__hours_payable`
+ - `childcare_subsidy__caregiver_approved_activity`
+ - `childcare_subsidy__caregiver_approved_activity_hours`
+ - `childcare_subsidy__caregiver_serious_disability`
+ - `childcare_subsidy__caregiver_serious_disability_hours`
+ - `childcare_subsidy__caregiver_other_hours`
+ - `childcare_subsidy__caregiver_serious_disability_illness`
+ - `childcare_subsidy__caregiver_serious_disability_illness_hours_needed`
+ - `childcare_subsidy__no_other_caregiver`
+ - `childcare_subsidy__other_child_in_hospital_or_disability_allowance`
+ - `childcare_subsidy__other_caregiver_appproved_activity`
+ - `childcare_subsidy__engaged_in_approved_activity`
+ - `childcare_subsidy__shift_work`
+ - `childcare_subsidy__family_has_resident_child_under_5_not_in_school`
+ - `childcare_subsidy__resident_child_aged_5_intend_enrol_in_school`
+ - `childcare_subsidy__family_with_disability_allowance_child_under_6`
+ - `childcare_subsidy__child_under_5_not_in_school`
+ - `childcare_subsidy__child_aged_5_intend_enrol_in_school`
+ - `childcare_subsidy__child_meets_criteria_with_disability_allowance_under_6`
+ - `childcare_subsidy__child_meets_criteria`
+ - `childcare_subsidy__maximum`
+ - `childcare_subsidy__rate`
+ - `oscar_subsidy__granted`
+ - `social_security_regulation__household_income`
+
+* Renamed variables:
+ - `will_be_enrolled_in_school` renamed to `intends_to_enroll_in_school`  period changed from month to eternity
+ - `childcare_assistance__family_has_resident_child_under_5_not_in_school` renamed to `childcare_subsidy__family_has_resident_child_under_5_not_in_school`
+ - `childcare_assistance__resident_child_aged_5_will_be_enrolled_in_school` renamed to `childcare_subsidy__resident_child_aged_5_intend_enrol_in_school`
+ - `childcare_assistance__family_has_child_eligible_for_disability_allowance_child_under_6` renamed to `childcare_subsidy__family_with_disability_allowance_child_under_6`
+ - `childcare_assistance__eligible_childcare_subsidy` renamed to `childcare_subsidy__eligible`
+
 ### 21.1.1 - [64](https://github.com/digitalaotearoa/openfisca-aotearoa/pull/64)
 
 * Technical improvement.

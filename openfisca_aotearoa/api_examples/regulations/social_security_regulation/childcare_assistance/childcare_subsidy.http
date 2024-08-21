@@ -1,0 +1,75 @@
+POST http://localhost:5000/calculate HTTP/1.1
+content-type: application/json
+
+{
+  "persons": {
+    "Mama": {
+      "social_security__ordinarily_resident_in_new_zealand" : {
+        "ETERNITY": "true"
+      },
+      "social_security__principal_caregiver": {
+        "2024-W30": "true"
+      },
+      "childcare_subsidy__caregiver_serious_disability_illness": {
+        "2024-W30": "false"
+      },
+      "childcare_subsidy__no_other_caregiver": {
+        "2024-W30": "true"
+      },
+      "childcare_subsidy__eligible" : {
+        "2024-W30": "true"
+      },
+      "childcare_subsidy__caregiver_approved_activity" : {
+        "2024-W30": null
+      },
+      "childcare_subsidy__hours_payable" : {
+        "2024-W30": null
+      },
+      "social_security__dependent_children" : {
+        "2024-W30": null
+      },
+      "childcare_subsidy__rate" : {
+        "2024-W30": null
+      },
+      "childcare_subsidy__maximum" : {
+        "2024-W30": null
+      }
+    },
+    "Tama": {
+      "social_security__dependent_child" : {
+        "2019-W02": true
+      },
+      "age" : {
+        "day:2024-07-22:7": "5"
+      },
+      "early_childcare_hours_participation_per_week" : {
+        "2024-W30": "3"
+      },
+      "intends_to_enroll_in_school" : {
+        "2024-W30": "false"
+      }
+    },
+    "Tamahine": {
+      "social_security__dependent_child" : {
+        "2019-W02": true
+      },
+      "age" : {
+        "day:2024-07-22:7": "5"
+      },
+      "early_childcare_hours_participation_per_week" : {
+        "2024-W30": "3"
+      },
+      "intends_to_enroll_in_school" : {
+        "2024-W30": "false"
+      }
+    }
+  },
+  "families": {
+    "Whanau_tahi": {
+      "principal": "Mama",
+      "children": [
+        "Tama", "Tamahine"
+      ]
+    }
+  }
+}

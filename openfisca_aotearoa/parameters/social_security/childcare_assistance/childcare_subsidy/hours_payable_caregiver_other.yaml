@@ -1,0 +1,10 @@
+---
+description: >
+   Total hours payable if caregiver is not engaged in an approved activity and does not have a serious disability or illness
+reference: >
+  "Social Security Regulations 2018 https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96314"
+  "Social Security Regulations 2018 alt https://ref.synco.pt/nz/ssar/171/en/?#P2-S6-s35-l1"
+  "Social Security (Childcare Assistance) Regulations 2004 https://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html#DLM282550"
+values:
+  "2018-11-26":
+    value: 9

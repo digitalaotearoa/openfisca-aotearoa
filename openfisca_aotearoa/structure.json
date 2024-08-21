@@ -179,10 +179,10 @@
             "Reference": "https://www.legislation.govt.nz/act/public/2018/0032/59.0/whole.html#DLM6784849"
         },
         {
-            "Title": "Social Security (Childcare Assistance) Regulations 2004",
+            "Title": "Social Security Regulations 2018",
             "Prefix": "social_security_regulation",
             "Type": "Regulation",
-            "Reference": "http://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html",
+            "Reference": "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html",
             "Children": [
                 "childcare_assistance"
             ]
@@ -191,7 +191,23 @@
             "Title": "Childcare Assistance",
             "Prefix": "childcare_assistance",
             "Type": "Section",
-            "Reference": "https://www.legislation.govt.nz/regulation/public/2004/0268/latest/whole.html"
+            "Reference": "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96331",
+            "Children": [
+              "childcare_subsidy",
+              "oscar_subsidy"
+            ]
+        },
+        {
+            "Title": "Childcare Subsidy",
+            "Prefix": "childcare_subsidy",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96331"
+        },
+        {
+            "Title": "OSCAR Subsidy",
+            "Prefix": "oscar_subsidy",
+            "Type": "Section",
+            "Reference": "https://www.legislation.govt.nz/regulation/public/2018/0202/latest/whole.html#LMS96317"
         },
         {
             "Title": "Sole Parent Support",

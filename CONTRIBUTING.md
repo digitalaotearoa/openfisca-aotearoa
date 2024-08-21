@@ -165,6 +165,7 @@ class social_security__residential_requirement(variables.Variable):
 - Note the two references (2018 and 1964). They link to the specific section of the act on legislation.govt.nz
 - Note the descriptive label
 - Note the naming convention as described in [Naming Variables](#namingvariables)
+- Note the order is latest to oldest
 
 ### References
 
@@ -306,8 +307,24 @@ This project currently utilises one specific pattern however for benefit calcula
 - `jobseeker_support__reduction` (float)
 - `jobseeker_support__benefit` (float)
 
+also
+
+- `childcare_subsidy__rate` (float) for more simple "rate" type calculations
+- `childcare_subsidy__maximum` when combining a rate and maximum amount on a subsidy.
+
 i.e. the formula for `jobseeker_support__benefit` would be:
 
  ```python
  jobseeker_support__entitled * min(jobseeker_support__base - jobseeker_support__reduction, jobseeker_support__cutoff)
  ```
+
+Some subsidies have a seperate concept of payable to eligible, in those circumstances use the following format:
+
+- `childcare_subsidy__payable` (true/false)
+
+As eligibility or entitlement to a number of benefits is dependant on whether a person is currently granted or recieving another benefit the following pattern is used throughout the project to aid in those calculations
+
+- `jobseeker_support__receiving` (generally utilised as an input that would be a result of the question "are you currently receiving the Jobseeker Benefit?")
+- `sole_parent_support__granted` (generally utilised as an input that would be a result of the question "have you been granted Sole Parent Support?")
+
+Note also the presence of `social_security__granted_main_benefit` which tests each of the `*__granted` variables for main benefits.

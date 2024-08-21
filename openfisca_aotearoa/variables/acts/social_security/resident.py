@@ -79,7 +79,12 @@ class social_security__ordinarily_resident_in_new_zealand(variables.Variable):
     entity = entities.Person
     label = "is ordinarily resident in New Zealand"
     definition_period = periods.ETERNITY
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784616", "ssa/221/en#sd2-d134", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM360407", "https://www.openlaw.nz/case/2014NZCA611"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6784616",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#sd2-d133",  # 2018 alt
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM360407",  # 1964
+        "https://www.openlaw.nz/case/2014NZCA611"  # Caselaw reference
+        ]
 
 
 class social_security__resided_continuously_nz_2_years_citizen_or_resident(variables.Variable):
@@ -87,7 +92,11 @@ class social_security__resided_continuously_nz_2_years_citizen_or_resident(varia
     entity = entities.Person
     label = "has resided continuously in New Zealand for a period of at least 2 years after becoming a citizen, 16 2(a)i"
     definition_period = periods.ETERNITY
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "ssa/221/en#s16-p2-a-i", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S1-s16-p2-a-i",  # 2018 alt
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"  # 1964
+        ]
 
 
 class social_security__ordinarily_resident_in_country_with_reciprocity_agreement(variables.Variable):
@@ -95,15 +104,22 @@ class social_security__ordinarily_resident_in_country_with_reciprocity_agreement
     entity = entities.Person
     label = "is ordinarily resident in a country with which New Zealand has a reciprocity agreement"
     definition_period = periods.ETERNITY
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "ssa/221/en#s16-p2-b", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S1-s16-p2-b",  # 2018 alt
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"  # 1964
+        ]
 
 
 class social_security__general_limitation(variables.Variable):
     value_type = bool
     entity = entities.Person
-    label = "persons unlawfully resident or temporary entry class visa generally not eligible"
+    label = "persons unlawfully resident or temporary entry class visa generally not eligible, note this directly relates to 'ordinarily resident'"
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783143", "ssa/221/en#s19"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783143",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S1-s19"  # 2018 alt
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     # Note this is the date the 2018 act commenced
@@ -121,7 +137,11 @@ class social_security__unlawfully_resident_or_present(variables.Variable):
     entity = entities.Person
     label = "Unlawfully resident or present in New Zealand, this is a term not mentioned in the Immigration Act specifically"
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138", "ssa/221/en#s19-p1-a", "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783138",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P2-S1-s19-p1-a",  # 2018 alt
+        "https://www.legislation.govt.nz/act/public/1964/0136/latest/whole.html#DLM363796"  # 1964
+        ]
 
 
 class social_security__compelled_to_remain(variables.Variable):
@@ -129,7 +149,10 @@ class social_security__compelled_to_remain(variables.Variable):
     entity = entities.Person
     definition_period = periods.DAY
     label = "compelled to remain in New Zealand because of unforeseen circumstances, this is a term only found in the social security act and social security regulations, not the immigration act."
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542", "ssa/221/en#s205-p1-c"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P4-S2-s205-p1-c"  # 2018 alt
+        ]
 
 
 class social_security__refugee_or_protected_person(variables.Variable):
@@ -138,7 +161,10 @@ class social_security__refugee_or_protected_person(variables.Variable):
     entity = entities.Person
     label = "Refugee or protected person status, Section 205, only to be utilised with emergency benefit and temporary additional support"
     definition_period = periods.WEEK
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542", "ssa/221/en#s205-p1"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P4-S2-s205-p1"  # 2018 alt
+        ]
     set_input = holders.set_input_dispatch_by_period
 
     # Note this is the date the 2018 act commenced
@@ -161,7 +187,10 @@ class social_security__awaiting_refugee(variables.Variable):
     entity = entities.Person
     definition_period = periods.DAY
     label = " is awaiting the outcome of the person’s claim for recognition as a refugee"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542", "ssa/221/en#s205-p1-a"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P4-S2-s205-p1-a"  # 2018 alt
+        ]
 
 
 class social_security__awaiting_protected_person(variables.Variable):
@@ -169,4 +198,7 @@ class social_security__awaiting_protected_person(variables.Variable):
     entity = entities.Person
     definition_period = periods.DAY
     label = " is awaiting the outcome of the person’s claim for recognition as a protected person"
-    reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542", "ssa/221/en#s205-p1-a"
+    reference = [
+        "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783542",  # 2018
+        "https://ref.synco.pt/nz/ssa/230/en/?#P4-S2-s205-p1-a"  # 2018 alt
+        ]

@@ -40,7 +40,9 @@ lint:
 	pylint `git ls-files | grep "\.py$$"`
 	yamllint `git ls-files | grep "\.yaml$$"`
 
-test: clean check-syntax-errors lint
+test: clean check-syntax-errors lint qtest
+
+qtest:
 ifdef yaml
 	openfisca test -c openfisca_aotearoa openfisca_aotearoa/tests/$(yaml)
 else

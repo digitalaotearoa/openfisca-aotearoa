@@ -1,6 +1,6 @@
 [project]
 name = "openfisca-aotearoa"
-version = "21.1.1"
+version = "22.0.0"
 dependencies = [
     "openfisca-core[web-api] >=41.4.5, <42",
     "pandas>=2.2.1",
@@ -97,8 +97,8 @@ known_openfisca = [
     "openfisca_aotearoa"
 ]
 known_typing = [
-    "mypy*", 
-    "*types*", 
+    "mypy*",
+    "*types*",
     "*typing*"
 ]
 sections = [
