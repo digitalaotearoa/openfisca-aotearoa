@@ -207,8 +207,8 @@ class disability_allowance__benefit(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783280"
 
     def formula_2018_11_26(persons, period, parameters):
-
-        return persons("disability_allowance__entitled", period) * parameters(period).disability_allowance.max_weekly_benefit
+        disability_allowance = parameters(period.first_day).social_security.disability_allowance.base.clauses["clause_2"]
+        return persons("disability_allowance__entitled", period) * disability_allowance
 
 
 class social_security__sole_parent(variables.Variable):
