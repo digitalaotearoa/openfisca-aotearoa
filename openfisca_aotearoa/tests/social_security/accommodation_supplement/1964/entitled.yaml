@@ -64,6 +64,50 @@
     accommodation_supplement__entitled:
       2018-W01: true
 
+- name: Accommodation Supplement for a non citizen
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      2018-01-01: 30
+    citizenship__citizen:
+      2018-01: false
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-01: true
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
+    social_housing__eligible:
+      2018-W01: false
+    accommodation_supplement__below_income_threshold:
+      2018-W01: true
+    accommodation_supplement__below_cash_threshold:
+      2018-W01: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W01: false
+
+- name: Accommodation Supplement for a non-resident
+  period: 2018-11-25
+  absolute_error_margin: 0
+  input:
+    age:
+      2018-01-01: 30
+    citizenship__citizen:
+      2018-01: true
+    social_security__ordinarily_resident_in_new_zealand:
+      2018-01: false
+    accommodation_supplement__accommodation_costs:
+      2018-W01: true
+    social_housing__eligible:
+      2018-W01: false
+    accommodation_supplement__below_income_threshold:
+      2018-W01: true
+    accommodation_supplement__below_cash_threshold:
+      2018-W01: true
+  output:
+    accommodation_supplement__entitled:
+      2018-W01: false
+
 - name: Tests Accommodation Supplement, when applicant has no costs
   period: 2018-11-25
   absolute_error_margin: 0
