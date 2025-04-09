@@ -17,7 +17,6 @@ class accommodation_supplement__entitled(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, parameters):
-        # http://www.legislation.govt.nz/act/public/1964/0136/latest/DLM363772.html
         # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
         # Support Act 2014 or the New Zealand Superannuation and Retirement Income Act 2001,
         # the chief executive may, in the chief executive’s discretion, refuse to grant any

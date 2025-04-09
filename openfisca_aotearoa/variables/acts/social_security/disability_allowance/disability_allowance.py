@@ -42,6 +42,14 @@ class disability_allowance__entitled(variables.Variable):
     reference = "https://www.legislation.govt.nz/act/public/2018/0032/latest/whole.html#DLM6783277"
 
     def formula_2018_11_26(persons, period, parameters):
+        # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
+        # Support Act 2014 or the New Zealand Superannuation and Retirement Income Act 2001,
+        # the chief executive may, in the chief executive’s discretion, refuse to grant any
+        # benefit or may terminate or reduce any benefit already granted or may grant a
+        # benefit at a reduced rate in any case where the chief executive is satisfied
+        # (a) that the applicant, or the spouse or partner of the applicant or any person
+        # in respect of whom the benefit or any part of the benefit is or would be payable,
+        # is not ordinarily resident in New Zealand;
         residential_requirement = persons("social_security__residential_requirement", period.first_week)
 
         ssa2018_85_2_a_i = persons("disability_allowance__needs_ongoing_support", period)
@@ -51,7 +59,13 @@ class disability_allowance__entitled(variables.Variable):
         ssa2018_85_2_c_ii = persons("disability_allowance__below_income_threshold", period)
         ssa2018_85_2_d = persons("disability_allowance__ongoing_additional_expenses", period)
 
-        return residential_requirement * (ssa2018_85_2_a_i + ssa2018_85_2_a_ii) * ssa2018_85_2_b * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii)) * ssa2018_85_2_d
+        return (
+            residential_requirement
+            * (ssa2018_85_2_a_i + ssa2018_85_2_a_ii)
+            * ssa2018_85_2_b
+            * ((ssa2018_85_2_c_i) + (ssa2018_85_2_c_ii))
+            * ssa2018_85_2_d
+            )
 
 
 class disability_allowance__needs_ongoing_support(variables.Variable):
