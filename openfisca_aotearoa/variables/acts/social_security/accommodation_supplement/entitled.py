@@ -74,6 +74,8 @@ class accommodation_supplement__entitled(variables.Variable):
             )
 
     def formula_1964_12_04(people, period, params):
+        this_month = period.first_month
+
         # Based on MSD's web page
         # https://www.workandincome.govt.nz/products/a-z-benefits/accommodation-supplement.html
         age_threshold = (
@@ -96,7 +98,17 @@ class accommodation_supplement__entitled(variables.Variable):
         # (a) that the applicant, or the spouse or partner of the applicant or any person
         # in respect of whom the benefit or any part of the benefit is or would be payable,
         # is not ordinarily resident in New Zealand;
-        residential_requirement = people("social_security__residential_requirement", period)
+
+        in_nz = people(
+            "social_security__ordinarily_resident_in_new_zealand",
+            this_month,
+            )
+
+        resident_or_citizen = (
+            people("immigration__resident", this_month)
+            + people("immigration__permanent_resident", this_month)
+            + people("citizenship__citizen", this_month)
+            )
 
         accommodation_supplement__accommodation_costs = people(
             "accommodation_supplement__accommodation_costs",
@@ -118,7 +130,8 @@ class accommodation_supplement__entitled(variables.Variable):
 
         return (
             age_requirement
-            * residential_requirement
+            * resident_or_citizen
+            * in_nz
             * accommodation_supplement__accommodation_costs
             * not_social_housing
             * income
