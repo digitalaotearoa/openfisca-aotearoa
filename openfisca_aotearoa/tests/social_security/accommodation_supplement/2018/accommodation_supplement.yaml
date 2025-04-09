@@ -28,6 +28,11 @@
       day:2022-01-01:31: [24, 24, 24, 24, 24, 24]
       day:2023-01-01:31: [24, 24, 24, 24, 24, 24]
       day:2024-01-01:31: [24, 24, 24, 24, 24, 24]
+    social_security__residential_requirement:
+      2022-W01: [true, true, true, true, true, true]
+      2022-W02: [true, true, true, true, true, true]
+      2023-W01: [true, true, true, true, true, true]
+      2024-W01: [true, true, true, true, true, true]
     jobseeker_support__receiving:
       2022-W01: [true, true, true, true, true, true]
       2022-W02: [true, true, true, true, true, true]
