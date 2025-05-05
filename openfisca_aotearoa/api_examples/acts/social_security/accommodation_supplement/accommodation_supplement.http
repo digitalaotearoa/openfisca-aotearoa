@@ -1,0 +1,27 @@
+POST http://localhost:5000/calculate HTTP/1.1
+content-type: application/json
+
+{
+  "persons": {
+    "personA": {
+        "date_of_birth": {
+            "ETERNITY": "2013-01-04"
+        },
+        "social_security__residential_requirement": {
+            "2025-W06": true
+        },
+        "accommodation_type": {
+            "2025-W06": "rent"
+        },
+        "accommodation_costs": {
+            "2025-W06": "1200"
+        },
+        "accommodation_supplement": {
+            "2025-W06": null
+        },
+        "accommodation_supplement__entitled": {
+            "2025-W06": null
+        }
+    }
+  }
+}

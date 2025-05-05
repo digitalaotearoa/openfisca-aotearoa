@@ -1,0 +1,30 @@
+POST http://localhost:5000/calculate HTTP/1.1
+content-type: application/json
+
+{
+  "persons": {
+    "personA": {
+        "date_of_birth": {
+            "ETERNITY": "2013-01-04"
+        },
+        "social_security__residential_requirement": {
+            "2025-W06": true
+        },
+        "disability_allowance__needs_ongoing_support": {
+            "2025-W06": true
+        },
+        "disability_allowance__continuing_disability": {
+            "2025-W06": true
+        },
+        "disability_allowance__ongoing_additional_expenses": {
+            "2025-W06": true
+        },
+        "disability_allowance__entitled": {
+            "2025-W06": null
+        },
+        "disability_allowance__benefit": {
+            "2025-W06": null
+        }
+    }
+  }
+}

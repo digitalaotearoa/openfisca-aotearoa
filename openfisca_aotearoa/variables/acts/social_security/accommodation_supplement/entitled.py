@@ -17,6 +17,16 @@ class accommodation_supplement__entitled(variables.Variable):
     definition_period = periods.DateUnit.WEEK
 
     def formula_2018_11_26(people, period, parameters):
+        # Notwithstanding anything to the contrary in this Act or Part 6 of the Veterans’
+        # Support Act 2014 or the New Zealand Superannuation and Retirement Income Act 2001,
+        # the chief executive may, in the chief executive’s discretion, refuse to grant any
+        # benefit or may terminate or reduce any benefit already granted or may grant a
+        # benefit at a reduced rate in any case where the chief executive is satisfied
+        # (a) that the applicant, or the spouse or partner of the applicant or any person
+        # in respect of whom the benefit or any part of the benefit is or would be payable,
+        # is not ordinarily resident in New Zealand;
+        residential_requirement = people("social_security__residential_requirement", period)
+
         accommodation_costs = people(
             "accommodation_supplement__accommodation_costs",
             period,
@@ -55,7 +65,8 @@ class accommodation_supplement__entitled(variables.Variable):
         ssa2018_65_1_c_ii = numpy.logical_not(other_funding_exclusion)
 
         return (
-            ssa2018_65_1_a
+            residential_requirement
+            * ssa2018_65_1_a
             * ssa2018_65_1_b
             * ssa2018_65_1_c_i
             * ssa2018_65_1_c_ii

@@ -91,6 +91,8 @@
           day:2022-01-01:365: 23
         age_of_partner:
           day:2022-01-01:365: 32
+        social_security__residential_requirement:
+          2022-W49: true
         accommodation_costs:
           week:2022-W01:52: 350
         accommodation_type:
